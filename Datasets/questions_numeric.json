@@ -1,0 +1,18 @@
+[   
+    {
+        "question": "Suppose the movies are arrange in decreasing order of IMDB ratings. What is the maximum IMDB rating of a movie that is not in the top 25% movies?",
+        "type": "numeric",
+        "answers": [
+            {
+                "type": "value",
+                "value": 7.1,
+                "correct": true,
+                "feedback": "Correct! Since the 75th percentile IMDB rating is 7.1, 25% of the movies have an IMDB rating greater than 7.1"
+            },
+            {
+                "type": "default",
+                "feedback": "Incorrect."
+            }
+        ]
+    }
+]

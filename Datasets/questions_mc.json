@@ -1,0 +1,55 @@
+[    
+    {
+        "question": "Do majority of the movies have a higher IMDB rating than the average IMDB rating of a movie?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": true,
+                "feedback": "Correct! 50% of the movies have an IMDB rating greater than 6.4, while the average rating is 6.24. Thus, more than 50% (or majority) of the movies will have an IMDB rating greater than 6.24."
+            },
+            {
+                "answer": "No",
+                "correct": false,
+                "feedback": "Incorrect"
+            }
+        ]
+    },
+ {
+        "question": "What is approximately the average profit of a movie? Profit = Worldwide gross - Production budget",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "\\$64 million",
+                "correct": true,
+                "feedback": "Correct! Subtract the mean production budget from the mean worldwide gross."
+            },
+            {
+                "answer": "\\$17 million",
+                "correct": false,
+                "feedback": "Incorrect"
+            },
+ {
+                "answer": "\\$127 million",
+                "correct": false,
+                "feedback": "Incorrect"
+            }
+        ]
+    },
+{
+        "question": "Can you find the maximum profit of a movie?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Yes",
+                "correct": false,
+                "feedback": "Incorrect! The 'maximum' statistic for worlwide gross and production budget may correspond to different movies."
+            },
+            {
+                "answer": "No",
+                "correct": true,
+                "feedback": "Correct!"
+            }
+        ]
+    }
+]

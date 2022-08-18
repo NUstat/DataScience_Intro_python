@@ -1,0 +1,25 @@
+project:
+  type: book
+
+book:
+  title: "stats"
+  author: "Jane Doe"
+  date: "7/27/2022"
+  chapters:
+    - index.qmd
+    - Chap 1 Reading data.ipynb
+    - hello.ipynb
+    - intro.qmd
+    - summary.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

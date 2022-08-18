@@ -1,0 +1,28 @@
+[    
+    {
+        "question": "What is the data type of values in the last column (named 'rates') of the above dataset on ted talks",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "list",
+                "correct": true,
+                "feedback": "Correct!"
+            },
+            {
+                "answer": "string",
+                "correct": false,
+                "feedback": "Incorrect. Use the type function on the variable to find its datatype."
+            },
+ 	    {
+                "answer": "numeric",
+                "correct": false,
+                "feedback": "Incorrect. Use the type function on the variable to find its datatype."
+            },
+{
+                "answer": "dictionary",
+                "correct": false,
+                "feedback": "Incorrect. Use the type function on the variable to find its datatype."
+            }
+        ]
+    }
+]
