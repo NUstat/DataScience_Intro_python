@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "stats",
+    "section": "",
+    "text": "This is a Quarto book.\nTo learn more about Quarto books visit https://quarto.org/docs/books.\nSome more content"
+  },
+  {
+    "objectID": "ch01.html",
+    "href": "ch01.html",
+    "title": "1  ! ipython suppress id=b0641b6ae09942babe0c88f69c55482d",
+    "section": "",
+    "text": "#! ipython id=085dfdc5abf744bebb6e84ea614aa99d\nimport numpy as np\ndata = [np.random.standard_normal() for i in range(7)]\ndata\n\n\n#! ipython id=1a4e6fcb22eb4f89986abfae4c83b48d\na = [1, 2, 3]\n\n\n#! ipython id=64f8a5dfa016429c8d659bf729003401\nb = a\nb\n\n\n#! ipython id=0eced45afa5347248bb2af66fa5c4e2b\na.append(4)\nb\n\n\n#! ipython id=1018283ab59f4f05bfe84afca4fc9936\ndef append_element(some_list, element):\n    some_list.append(element)\n\n\n#! ipython id=2edb843baee44895b71dbd9474407c9c\ndata = [1, 2, 3]\nappend_element(data, 4)\ndata\n\n\n#! ipython id=e71481e654d64e649533772a2381a3c6\na = 5\ntype(a)\na = \"foo\"\ntype(a)\n\n\n#! ipython allow_exceptions id=c9cf6d998c39413a9fc48646f91dec3e\n\"5\" + 5\n\n\n#! ipython id=0003b825a15647e49598d18de47cbd57\na = 4.5\nb = 2\n# String formatting, to be visited later\nprint(f\"a is {type(a)}, b is {type(b)}\")\na / b\n\n\n#! ipython id=f3d0ca0ebd384742976ccd83633ac8be\na = 5\nisinstance(a, int)\n\n\n#! ipython id=5dacb5ef6e394fe7a8b3f724cb9cdf4d\na = 5; b = 4.5\nisinstance(a, (int, float))\nisinstance(b, (int, float))\n\n\n#! ipython suppress id=7bd32461c0bf45ff9bee3de05a7fa5cf\na = \"foo\"\n\n\n#! ipython id=d2aef8895e6f4b67aaa1d6cbd2b6affa\ngetattr(a, \"split\")\n\n\n#! ipython id=f2617db9765f49009c55756ce9cf87cd\ndef isiterable(obj):\n    try:\n        iter(obj)\n        return True\n    except TypeError: # not iterable\n        return False\n\n\n#! ipython id=1ea41933d16e460380316fd7a4e0b1d8\nisiterable(\"a string\")\nisiterable([1, 2, 3])\nisiterable(5)\n\n\n#! ipython id=84c35fbe613341129d0e94d6fc798e76\n5 - 7\n12 + 21.5\n5 <= 2\n\n\n#! ipython id=a91f01a0ee1e43e2a000db5609d04789\na = [1, 2, 3]\nb = a\nc = list(a)\na is b\na is not c\n\n\n#! ipython id=1fca12df22264d9881690fcaa804149d\na == c\n\n\n#! ipython id=e6fe568326a94c0d899c9c8b31f0c355\na = None\na is None\n\n\n#! ipython id=7db7331aee334850b9b17cb4f86e6d18\na_list = [\"foo\", 2, [4, 5]]\na_list[2] = (3, 4)\na_list\n\n\n#! ipython allow_exceptions id=2536d7cdf32b4faaa753207cbfcc17fe\na_tuple = (3, 5, (4, 5))\na_tuple[1] = \"four\"\n\n\n#! ipython id=51ad7d167b834b85a8eda9bc416c955b\nival = 17239871\nival ** 6\n\n\n#! ipython id=3350052c32fc49b599322353c27a4586\nfval = 7.243\nfval2 = 6.78e-5\n\n\n#! ipython id=38bc4370bb6840c5beb557dead1d6998\n3 / 2\n\n\n#! ipython id=2ccf1adf240348008ed8ce811792dbf8\n3 // 2\n\n\n#! ipython verbatim id=f1454b6b49ff4e2bba6124576e18cd53\nc = \"\"\"\nThis is a longer string that\nspans multiple lines\n\"\"\"\n\n\n#! ipython id=03cb238d855d42dda40a45ab91254038\nc.count(\"\\n\")\n\n\n#! ipython allow_exceptions id=59788f621484492ba307f10961edbb6c\na = \"this is a string\"\na[10] = \"f\"\n\n\n#! ipython id=f5c3a08f5aaf4706a5122f3ef51f5e89\nb = a.replace(\"string\", \"longer string\")\nb\n\n\n#! ipython id=90017a4e11754eac828714ee61b43ac1\na\n\n\n#! ipython id=99b192a5b56946cda8707464fb8e2bea\na = 5.6\ns = str(a)\nprint(s)\n\n\n#! ipython id=5bce41fece2f47bc90fb813f26cfa081\ns = \"python\"\nlist(s)\ns[:3]\n\n\n#! ipython id=c826919c945643b8adb2dc48b3fa204b\ns = \"12\\\\34\"\nprint(s)\n\n\n#! ipython id=f705192174ec4c849203a659260960e0\ns = r\"this\\has\\no\\special\\characters\"\ns\n\n\n#! ipython id=9e52b9bfcf734a899ad5b9deecc6b5f1\na = \"this is the first half \"\nb = \"and this is the second half\"\na + b\n\n\n#! ipython id=8ba0128b1e144dfd87b0a96bbb95e090\ntemplate = \"{0:.2f} {1:s} are worth US${2:d}\"\n\n\n#! ipython id=830e8c337251466d8704122c38e4a31d\ntemplate.format(88.46, \"Argentine Pesos\", 1)\n\n\n#! ipython id=c5eab29881e7453bbdc2b8d3f1e81924\namount = 10\nrate = 88.46\ncurrency = \"Pesos\"\nresult = f\"{amount} {currency} is worth US${amount / rate}\"\n\n\n#! ipython id=d4d50688c6c145d5a2d11d846f03dba2\nf\"{amount} {currency} is worth US${amount / rate:.2f}\"\n\n\n#! ipython id=fe3d6a3ffd5c4906858baeb46363aee5\nval = \"español\"\nval\n\n\n#! ipython id=f1369533406f414ea648c7b80c22cba3\nval_utf8 = val.encode(\"utf-8\")\nval_utf8\ntype(val_utf8)\n\n\n#! ipython id=6cfcab789284478f9fe920568aad6276\nval_utf8.decode(\"utf-8\")\n\n\n#! ipython id=9e55ca7c4e2642e5a26f603523e87564\nval.encode(\"latin1\")\nval.encode(\"utf-16\")\nval.encode(\"utf-16le\")\n\n\n#! ipython id=422e235bb54842adb436742e6caba89c\nTrue and True\nFalse or True\n\n\n#! ipython id=1051ac23010f466c8f2160c865da145f\nint(False)\nint(True)\n\n\n#! ipython id=14dc7378115c43349c92e34020bb3b71\na = True\nb = False\nnot a\nnot b\n\n\n#! ipython id=345c0ce8702b41539a102f07716ff00d\ns = \"3.14159\"\nfval = float(s)\ntype(fval)\nint(fval)\nbool(fval)\nbool(0)\n\n\n#! ipython id=163e5f37123741a88e61ef81c85fedc1\na = None\na is None\nb = 5\nb is not None\n\n\n#! ipython id=552d7fff9f2a45a38b54fa44add624c7\nfrom datetime import datetime, date, time\ndt = datetime(2011, 10, 29, 20, 30, 21)\ndt.day\ndt.minute\n\n\n#! ipython id=a527d76de7e141568e7dd9e5c9f8d8ce\ndt.date()\ndt.time()\n\n\n#! ipython id=9bd051a88f7b458fae19e8e156fda078\ndt.strftime(\"%Y-%m-%d %H:%M\")\n\n\n#! ipython id=3fe2b447220b4b8ca70b526d76e31cb5\ndatetime.strptime(\"20091031\", \"%Y%m%d\")\n\n\n#! ipython id=178fb4d50aff4d68a0a7e0ab28ee71f3\ndt_hour = dt.replace(minute=0, second=0)\ndt_hour\n\n\n#! ipython id=9ad24ebe03e049b2af9a81ec22a90675\ndt\n\n\n#! ipython id=1a41f2e49eee432cbc4a32f4298e1f3c\ndt2 = datetime(2011, 11, 15, 22, 30)\ndelta = dt2 - dt\ndelta\ntype(delta)\n\n\n#! ipython id=04baa0c20d534202ad4714e5c68d04a4\ndt\ndt + delta\n\n\n#! ipython id=6551625a4f864b5fb5ce6b81e5ffd81b\na = 5; b = 7\nc = 8; d = 4\nif a < b or c > d:\n    print(\"Made it\")\n\n\n#! ipython id=ace8e0c5cbb349cb852d8248394b0f7c\n4 > 3 > 2 > 1\n\n\n#! ipython id=6e3b4a652a894d25906ad84f8b4248ea\n#! blockstart\nfor i in range(4):\n    for j in range(4):\n        if j > i:\n            break\n        print((i, j))\n#! blockend\n\n\n#! ipython id=60383320960a45bcb83e21d713d5619c\nrange(10)\nlist(range(10))\n\n\n#! ipython id=71696aba433c43f6b2e05d488837f0f3\nlist(range(0, 20, 2))\nlist(range(5, 0, -1))\n\n\n#! ipython id=c9e25935441242149e5f4b406032113f\nseq = [1, 2, 3, 4]\nfor i in range(len(seq)):\n    print(f\"element {i}: {seq[i]}\")\n\n\n#! ipython id=430c1852ec4847bcad3afc4a3a68c2f3\ntotal = 0\nfor i in range(100_000):\n    # % is the modulo operator\n    if i % 3 == 0 or i % 5 == 0:\n        total += i\nprint(total)\n\n\n#! ipython suppress id=25d6eae18f4846ed89c817cb487df3b5\n%popd"
+  },
+  {
+    "objectID": "hello.html",
+    "href": "hello.html",
+    "title": "2  Quarto Basics 2",
+    "section": "",
+    "text": "For a demonstration of a line plot on a polar axis, see Figure 2.1.\n\n\n\n\n\nFigure 2.1: A line plot on a polar axis"
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "3  Introduction",
+    "section": "",
+    "text": "See Knuth (1984) for additional discussion of literate programming.\n#| label: fig-polar #| fig-cap: “A line plot on a polar axis”\nimport numpy as np import matplotlib.pyplot as plt\nr = np.arange(0, 2, 0.01) theta = 4 * np.pi * r fig, ax = plt.subplots( subplot_kw = {‘projection’: ‘polar’} ) ax.plot(theta, r) ax.set_rticks([0.5, 1, 1.5, 2]) ax.grid(True) plt.show()\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "4  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
+  }
+]
