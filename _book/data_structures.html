@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>stats - 1&nbsp; Data structures</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Chap 2 Reading data.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data structures</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">stats</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structures.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap 2 Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Summary</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#tuple" id="toc-tuple" class="nav-link active" data-scroll-target="#tuple"> <span class="header-section-number">1.1</span> Tuple</a></li>
+  <li><a href="#list" id="toc-list" class="nav-link" data-scroll-target="#list"> <span class="header-section-number">1.2</span> List</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data structures</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>In this chapter we’ll learn about the python data structures that are often used or appear while analyzing data.</p>
+<section id="tuple" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="tuple"><span class="header-section-number">1.1</span> Tuple</h2>
+<p>Tuple is a sequence of python objects, with two key characeterisics: (1) the number of objects are fixed, and (2) the objects are immutable, i.e., they cannot be changed.</p>
+<p>Tuple can be defined as a sequence of python objects separated by commas, and enclosed in rounded brackets (). For example, below is a tuple containing three integers.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>tuple_example <span class="op">=</span> (<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can check the data type of a python object using the <em>type()</em> function. Let us check the data type of the object <em>tuple_example</em>.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(tuple_example)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+<pre><code>tuple</code></pre>
+</div>
+</div>
+<p>Elements of a tuple can be extracted using their index within square brackets. For example the second element of the tuple <em>tuple_example</em> can be extracted as follows:</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tuple_example[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+<pre><code>7</code></pre>
+</div>
+</div>
+<p>Note that an object of a tuple cannot be modified. For example, consider the following attempt in changing the second element of the tuple <em>tuple_example</em>.</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tuple_example[<span class="dv">1</span>] <span class="op">=</span> <span class="dv">8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>TypeError: 'tuple' object does not support item assignment</code></pre>
+</div>
+</div>
+<p>The above code results in an error as tuple elements cannot be modified.</p>
+<p>Now that we have an idea about tuple, let us try to think where it can be used.</p>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>os.getcwd()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>'C:\\Users\\akl0407\\Desktop\\STAT303-1\\Quarto Book\\DataScience_Intro_python\\Datasets'</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="51">
+<div class="cell-output cell-output-stdout">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-display">
+
+<div id="xAFipiVgiQNH" data-shufflequestions="False" data-shuffleanswers="True" data-preserveresponses="false" data-numquestions="1000000"> <style>:root {
+    --medium-slate-blue: #6f78ffff;
+    --orange-pantone: #f75c03ff;
+    --russian-violet: #392061ff;
+    --maximum-yellow-red: #ffc857ff;
+    --viridian-green: #119da4ff;
+    --incorrect-red: #c80202;
+    --correct-green: #009113;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Answer {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+    min-height: 2em;
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: 140px;
+    background-color: #c0c0c0;
+    color: #fff;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    outline: none;
+    background-color: #c0c0c0;
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem #999999;
+}
+
+.MCButton {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--medium-slate-blue);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--orange-pantone);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn {
+    padding: 10px;
+    background: var(--russian-violet);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.InpLabel {
+    line-height: 34px;
+    float: left;
+    margin-right: 10px;
+    color: #101010;
+    font-size: 15pt;
+}
+
+.incorrect {
+    color: var(--incorrect-red);
+}
+
+.correct {
+    color: var(--correct-green);
+}
+
+.correctButton {
+    /*
+    background: var(--correct-green);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--incorrect-red);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--correct-green);
+    }
+}</style><script type="text/Javascript">var questionsxAFipiVgiQNH=[{"question": "For which of the following purposes will it be appropriate to use a tuple: (a) storing mean co-ordinates of a city, (b) storing everyday mean temperature and humidity of a city?", "type": "multiple_choice", "answers": [{"answer": "(a)", "correct": true, "feedback": "Correct! The mean co-ordinates of a city will not change, and thus can be stored in a tuple."}, {"answer": "(b)", "correct": false, "feedback": "Incorrect. Everyday weather of a city will change, but tuple objects are immutable."}, {"answer": "both (a) and (b)", "correct": false, "feedback": "Incorrect. Everyday weather of a city will change, but tuple objects are immutable."}, {"answer": "None", "correct": false, "feedback": "Incorrect. The mean co-ordinates of a city will not change, and thus can be stored in a tuple."}]}];
+    // Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+
+    //console.log(answers);
+
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+
+    if (fb.dataset.numcorrect == 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+        
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else {
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+    var shuffled;
+    if (shuffle_answers == "True") {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            precision = ths.dataset.precision;
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.textContent = "Incorrect -- try again.";
+
+        answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                if (submission == answer.value) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                //console.log(answer.range);
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                defaultFB = answer.feedback;
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        return false;
+    }
+
+}
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.textContent = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+function jaxify(string) {
+    var mystring = string;
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+
+function show_questions(json, mydiv) {
+    console.log('show_questions');
+    //var mydiv=document.getElementById(myid);
+    var shuffle_questions = mydiv.dataset.shufflequestions;
+    var num_questions = mydiv.dataset.numquestions;
+    var shuffle_answers = mydiv.dataset.shuffleanswers;
+
+    if (num_questions > json.length) {
+        num_questions = json.length;
+    }
+
+    var questions;
+    if ((num_questions < json.length) || (shuffle_questions == "True")) {
+        //console.log(num_questions+","+json.length);
+        questions = getRandomSubarray(json, num_questions);
+    } else {
+        questions = json;
+    }
+
+    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
+
+    // Iterate over questions
+    questions.forEach((qa, index, array) => {
+        //console.log(qa.question); 
+
+        var id = makeid(8);
+        //console.log(id);
+
+
+        // Create Div to contain question and answers
+        var iDiv = document.createElement('div');
+        //iDiv.id = 'quizWrap' + id + index;
+        iDiv.id = 'quizWrap' + id;
+        iDiv.className = 'Quiz';
+        iDiv.setAttribute('data-qnum', index);
+        mydiv.appendChild(iDiv);
+        // iDiv.innerHTML=qa.question;
+
+        var outerqDiv = document.createElement('div');
+        outerqDiv.id = "OuterquizQn" + id + index;
+
+        iDiv.append(outerqDiv);
+
+        // Create div to contain question part
+        var qDiv = document.createElement('div');
+        qDiv.id = "quizQn" + id + index;
+        //qDiv.textContent=qa.question;
+        qDiv.innerHTML = jaxify(qa.question);
+
+        outerqDiv.append(qDiv);
+
+        // Create div for code inside question
+        var codeDiv;
+        if ("code" in qa) {
+            codeDiv = document.createElement('div');
+            codeDiv.id = "code" + id + index;
+            codeDiv.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeDiv.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = qa.code;
+            outerqDiv.append(codeDiv);
+            //console.log(codeDiv);
+        }
+
+
+        // Create div to contain answer part
+        var aDiv = document.createElement('div');
+        aDiv.id = "quizAns" + id + index;
+        aDiv.className = 'Answer';
+        iDiv.append(aDiv);
+
+        //console.log(qa.type);
+
+        var num_correct;
+        if (qa.type == "multiple_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "many_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "numeric") {
+            //console.log("numeric");
+            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
+        }
+
+
+        //Make div for feedback
+        var fb = document.createElement("div");
+        fb.id = "fb" + id;
+        //fb.style="font-size: 20px;text-align:center;";
+        fb.className = "Feedback";
+        fb.setAttribute("data-answeredcorrect", 0);
+        fb.setAttribute("data-numcorrect", num_correct);
+        iDiv.append(fb);
+
+
+    });
+    var preserveResponses = mydiv.dataset.preserveresponses;
+    console.log(preserveResponses);
+    console.log(preserveResponses == "true");
+    if (preserveResponses == "true") {
+        console.log(preserveResponses);
+        // Create Div to contain record of answers
+        var iDiv = document.createElement('div');
+        iDiv.id = 'responses' + mydiv.id;
+        iDiv.className = 'JCResponses';
+        // Create a place to store responses as an empty array
+        iDiv.setAttribute('data-responses', '[]');
+
+        // Dummy Text
+        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
+        //iDiv.className = 'Quiz';
+        mydiv.appendChild(iDiv);
+    }
+//console.log("At end of show_questions");
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    return false;
+}
+
+        {
+        show_questions(questionsxAFipiVgiQNH,  xAFipiVgiQNH);
+        }
+        </script>
+        
+</div>
+</div>
+</div></section>
+<section id="list" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="list"><span class="header-section-number">1.2</span> List</h2>
+<p>List is a sequence of python objects, with two key characeterisics that differentiate them from tuples: (1) the number of objects are variable, i.e., objects can be added or removed from a list, and (2) the objects are mutable, i.e., they can be changed.</p>
+<p>List can be defined as a sequence of python objects separated by commas, and enclosed in square brackets []. For example, below is a list containing three integers.</p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>list_example <span class="op">=</span> [<span class="dv">2</span>,<span class="dv">7</span>,<span class="dv">4</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We can add elements at the end of the list using the <em>append</em> method. For example, we append the string ‘red’ to the list <em>list_example</em> below.</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>list_example.append(<span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>list_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
+<pre><code>[2, 7, 4, 'red']</code></pre>
+</div>
+</div>
+<p>Note that the objects of a list or tuple can be of different datatypes.</p>
+<p>An element can be added at a specific location of the list using the <em>insert</em> method. For example, if we wish to insert the number 2.32 as the second element of the list <em>list_example</em>, we can do it as follows:</p>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>list_example.insert(<span class="dv">1</span>,<span class="fl">2.32</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>list_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>[2, 2.32, 7, 4, 'red']</code></pre>
+</div>
+</div>
+<p>For removing an element from the list, the <em>pop</em> and <em>remove</em> methods may be used. The <em>pop</em> method removes an element at particular index, while the <em>remove</em> method removes the element by its value. See the examples below.</p>
+<p>Let us say, we need to remove the third element of the list.</p>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>list_example.pop(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>7</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>list_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>[2, 2.32, 4, 'red']</code></pre>
+</div>
+</div>
+<p>Let us say, we need to remove the element ‘red’.</p>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>list_example.remove(<span class="st">'red'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>list_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>[2, 2.32, 4]</code></pre>
+</div>
+</div>
+<p>We may extract or update a section of the list by passing the starting index (say <code>start</code>) and the stopping index (say <code>stop</code>) as <code>start:stop</code> to the index operator []. This is called <em>slicing</em> a list. For example, consider the following list <em>list_example2</em>.</p>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>list_example2 <span class="op">=</span> [<span class="dv">4</span>,<span class="dv">7</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">5</span>,<span class="dv">87</span>,<span class="dv">5</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let us extract a slice containing all the elements starting from the the 3rd position upto the 7th position.</p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>list_example2[<span class="dv">2</span>:<span class="dv">7</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>[3, 5, 7, 1, 5]</code></pre>
+</div>
+</div>
+<p>Note that while the element at the <code>start</code> index is included, the element with the <code>stop</code> index is excluded in the above slice.</p>
+<p>Now that we have an idea about lists, let us try to think where it can be used.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Chap 2 Reading data.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Reading data</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -7,8 +7,8 @@ book:
   date: "7/27/2022"
   chapters:
     - index.qmd
-    - Chap 1 Reading data.ipynb
-    - hello.ipynb
+    - data_structures.ipynb
+    - Chap 2 Reading data.ipynb
     - intro.qmd
     - summary.qmd
     - references.qmd
