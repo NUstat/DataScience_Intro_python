@@ -9,7 +9,7 @@
   {
     "objectID": "intro.html",
     "href": "intro.html",
-    "title": "2  Introduction",
+    "title": "3  Introduction",
     "section": "",
     "text": "See Knuth (1984) for additional discussion of literate programming.\n#| label: fig-polar #| fig-cap: “A line plot on a polar axis”\nimport numpy as np import matplotlib.pyplot as plt\nr = np.arange(0, 2, 0.01) theta = 4 * np.pi * r fig, ax = plt.subplots( subplot_kw = {‘projection’: ‘polar’} ) ax.plot(theta, r) ax.set_rticks([0.5, 1, 1.5, 2]) ax.grid(True) plt.show()\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97."
   },
