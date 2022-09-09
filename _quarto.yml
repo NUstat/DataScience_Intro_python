@@ -7,10 +7,15 @@ book:
   date: "7/27/2022"
   chapters:
     - index.qmd
+    - Introduction to Python and Jupyter Notebooks.ipynb
     - data_structures.ipynb
     - Chap 2 Reading data.ipynb
-    - intro.qmd
-    - summary.qmd
+    - NumPy.ipynb
+    - Pandas.ipynb
+    - Data visualization.ipynb
+    - Data cleaning and preparation.ipynb
+    - Data wrangling.ipynb
+    - Data aggregation.ipynb
     - references.qmd
 
 bibliography: references.bib

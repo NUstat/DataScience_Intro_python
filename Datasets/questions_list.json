@@ -1,0 +1,28 @@
+[    
+    {
+        "question": "For which of the following purposes will it be appropriate to use a list: (a) storing the names of all countries, (b) storing the population of all countries each year?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "(a)",
+                "correct": false,
+                "feedback": "Incorrect! Although a list can be used, a tuple will be more efficient, assuming that the number of countries and their names do not change."
+            },
+            {
+                "answer": "(b)",
+                "correct": true,
+                "feedback": "Correct! The population of countries may change . Thus, a list will be appropriate."
+            },
+	    {
+                "answer": "both (a) and (b)",
+                "correct": false,
+                "feedback": "Incorrect! Although a list can be used for (a), a tuple will be more efficient, assuming that the number of countries and their names do not change."
+            },
+	    {
+                "answer": "None",
+                "correct": false,
+                "feedback": "Incorrect! Although a list can be used for (a), a tuple will be more efficient, assuming that the number of countries and their names do not change."
+            }
+        ]
+    } 
+]

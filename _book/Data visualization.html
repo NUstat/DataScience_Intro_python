@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>stats - 6&nbsp; Data visualization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Data cleaning and preparation.html" rel="next">
+<link href="./Pandas.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">stats</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap 2 Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NumPy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Pandas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link active" data-scroll-target="#matplotlib"> <span class="header-section-number">6.1</span> Matplotlib</a>
+  <ul class="collapse">
+  <li><a href="#scatterplots-and-trendline" id="toc-scatterplots-and-trendline" class="nav-link" data-scroll-target="#scatterplots-and-trendline"> <span class="header-section-number">6.1.1</span> Scatterplots and trendline</a></li>
+  <li><a href="#subplots" id="toc-subplots" class="nav-link" data-scroll-target="#subplots"> <span class="header-section-number">6.1.2</span> Subplots</a></li>
+  <li><a href="#overlapping-plots-with-legend" id="toc-overlapping-plots-with-legend" class="nav-link" data-scroll-target="#overlapping-plots-with-legend"> <span class="header-section-number">6.1.3</span> Overlapping plots with legend</a></li>
+  </ul></li>
+  <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"> <span class="header-section-number">6.2</span> Pandas</a>
+  <ul class="collapse">
+  <li><a href="#scatterplots-and-lineplots" id="toc-scatterplots-and-lineplots" class="nav-link" data-scroll-target="#scatterplots-and-lineplots"> <span class="header-section-number">6.2.1</span> Scatterplots and lineplots</a></li>
+  <li><a href="#bar-plots" id="toc-bar-plots" class="nav-link" data-scroll-target="#bar-plots"> <span class="header-section-number">6.2.2</span> Bar plots</a></li>
+  </ul></li>
+  <li><a href="#seaborn" id="toc-seaborn" class="nav-link" data-scroll-target="#seaborn"> <span class="header-section-number">6.3</span> Seaborn</a>
+  <ul class="collapse">
+  <li><a href="#bar-plots-with-confidence-interevals" id="toc-bar-plots-with-confidence-interevals" class="nav-link" data-scroll-target="#bar-plots-with-confidence-interevals"> <span class="header-section-number">6.3.1</span> Bar plots with confidence interevals</a></li>
+  <li><a href="#facetgrid-multi-plot-grid-for-plotting-conditional-relationships" id="toc-facetgrid-multi-plot-grid-for-plotting-conditional-relationships" class="nav-link" data-scroll-target="#facetgrid-multi-plot-grid-for-plotting-conditional-relationships"> <span class="header-section-number">6.3.2</span> Facetgrid: Multi-plot grid for plotting conditional relationships</a></li>
+  <li><a href="#histogram-and-density-plots" id="toc-histogram-and-density-plots" class="nav-link" data-scroll-target="#histogram-and-density-plots"> <span class="header-section-number">6.3.3</span> Histogram and density plots</a></li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"> <span class="header-section-number">6.3.4</span> Boxplots</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>It is generally easier for humans to comprehend information with plots, diagrams and pictures, rather than with text and numbers. This makes data visualizations a vital part of data science. Some of the key purposes of data visualization are:</p>
+<ol type="1">
+<li>Data visualization is the first step towards exploratory data analysis (EDA), which reveals trends, patterns, insights, or even irrugalarities in data.</li>
+<li>Data visualization can help explain the workings of complex mathematical models.</li>
+<li>Data visualization are an elegant way to summarise the findings of a data analysis project.</li>
+<li>Data visualizations (especially interactive ones such as those on Tableau) may be the end-product of data analytics project, where the stakeholders make decisions based on the vizualizations.</li>
+</ol>
+<p>We’ll use a couple of libraries for making data visualizations - <a href="https://matplotlib.org/">matplotlib</a> and <a href="https://seaborn.pydata.org/">seaborn</a>. Matplotlib is mostly used for creating relatively simple two-dimensional plots. Its plotting interface that is similar to the <code>plot()</code> function in MATLAB, so those who have used MATLAB should find it familiar. Seaborn is a recently developed data visualization library based on matplotlib. It is more oriented towards visualizing data with Pandas DataFrame and NumPy arrays. While matplotlib may also be used to create complex plots, seaborn has some built-in themes that may make it more convenient to make complex plots. Seaborn also has color schemes and plot styles that improve the readability and aesthetics of malplotlib plots. However, preferences depend on the user and their coding style, and it is perfectly fine to use either library for making the same visualization.</p>
+<section id="matplotlib" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="matplotlib"><span class="header-section-number">6.1</span> Matplotlib</h2>
+<p>Let’s visualize the life expectancy of different countries with GDP per capita. We’ll read the data file <em>gdp_lifeExpectancy.csv</em>, which contains the GDP per capita and life expectancy of countries from 1952 to 2007.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gdp_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="2">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<section id="scatterplots-and-trendline" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="scatterplots-and-trendline"><span class="header-section-number">6.1.1</span> Scatterplots and trendline</h3>
+<p>Now, we’ll import the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.html">pyplot</a> module of matplotlib to make plots. We’ll use the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plot()</a> function to make the scatter plot, and the functions <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xlabel.html">xlabel()</a> and <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.ylabel.html">ylabel()</a> for lablelling the plot axes.</p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Q:</strong> Make a scatterplot of Life expectancy vs GDP per capita.</p>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a scatterplot of Life expectancy vs GDP per capita</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gdp_data.gdpPercap</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gdp_data.lifeExp</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>) <span class="co">#By default, the plot() function makes a lineplot. The 'o' arguments specifies a scatterplot</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'GDP per capita'</span>)  <span class="co">#Labelling the horizontal X-axis</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Life expectancy'</span>) <span class="co">#Labelling the verical Y-axis</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+<pre><code>Text(0, 0.5, 'Life expectancy')</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>From the above plot, we observe that life expectancy seems to be positively correlated with the GDP per capita of the country, as one may expect. However, there are a few outliers in the data - which are countries having extremely high GDP per capita, but not a correspondingly high life expectancy.</p>
+<p>Sometimes it is difficult to get an idea of the overall trend (positive or negative correlation). In such cases, it may help to add a trendline to the scatter plot. In the plot below we add a trendline over the scatterplot showing that the life expectancy on an average increases with increasing GDP per capita. The trendline is actually a linear regression of life expectancy on GDP per capita. However, we’ll not discuss linear regression is this book.</p>
+<p><strong>Q:</strong> Add a trendline over the scatterplot of life expectancy vs GDP per capita.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a scatterplot of Life expectancy vs GDP per capita</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gdp_data.gdpPercap</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gdp_data.lifeExp</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>) <span class="co">#By default, the plot() function makes a lineplot. The 'o' arguments specifies a scatterplot</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'GDP per capita'</span>)  <span class="co">#Labelling the horizontal X-axis</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Life expectancy'</span>) <span class="co">#Labelling the verical Y-axis</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting a trendline (linear regression) on the scatterplot</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>slope_intercept_trendline <span class="op">=</span> np.polyfit(x,y,<span class="dv">1</span>)   <span class="co">#Finding the slope and intercept for the trendline</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>compute_y_given_x <span class="op">=</span> np.poly1d(slope_intercept_trendline) <span class="co">#Defining a function that computes the 'y' given 'x' for the trendline</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x,compute_y_given_x(x)) <span class="co">#Plotting the trendline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-6-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The above plot shows that our earlier intuition of a postive correlation between Life expectancy and GDP per capita was correct.</p>
+<p>We used the NumPy function <a href="https://numpy.org/doc/stable/reference/generated/numpy.polyfit.html">polyfit()</a> to compute the slope and intercept of the trendline. Then, we defined an object <code>compute_y_given_x</code> of <a href="https://numpy.org/doc/stable/reference/generated/numpy.poly1d.html">poly1d</a> class and used it to compute the trendline.</p>
+</section>
+<section id="subplots" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="subplots"><span class="header-section-number">6.1.2</span> Subplots</h3>
+<p>There is often a need to make a few plots together to compare them. See the example below.</p>
+<p><strong>Q:</strong> Make scatterplots of life expectancy vs GDP per capita separately for each of the 4 continents of Asia, Europe, Africa and America. Arrange the plots in a 2 x 2 grid.</p>
+<div class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 2x2 grid of subplots</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.4</span>) <span class="co">#adjusting white space between individual plots</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a scatterplot of Life expectancy vs GDP per capita for each continent</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>continents <span class="op">=</span> np.array([[<span class="st">'Asia'</span>, <span class="st">'Europe'</span>], [<span class="st">'Africa'</span>, <span class="st">'Americas'</span>]])</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Looping over the 2x2 grid</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].gdpPercap</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].lifeExp</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>        axes[i,j].plot(x,y,<span class="st">'o'</span>) </span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlim([gdp_data.gdpPercap.<span class="bu">min</span>(), gdp_data.gdpPercap.<span class="bu">max</span>()])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylim([gdp_data.lifeExp.<span class="bu">min</span>(), gdp_data.lifeExp.<span class="bu">max</span>()])</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlabel(<span class="st">'GDP per capita for '</span><span class="op">+</span> continents[i,j])  </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylabel(<span class="st">'Life expectancy for '</span><span class="op">+</span> continents[i,j]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-7-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We observe that for each continent, except Africa, initially life expectancy increases rapidly with increasing GDP per capita. However, after a certain threshold of GDP per capita, life expectancy increases slowly. Several countries in Europe enjoy a relatively high GDP per capita as well as high life expectancy. Some countries in Asia have an extremely high GDP per capita, but a relatively low life expectancy. It will be interesting to see the proportion of GDP associated with healthcare for these outlying Asian countries, and European countries.</p>
+<p>We used the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html">subplot</a> function of matplotlib to define the 2x2 grid of subplots. The function <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots_adjust.html">subplots_adjust()</a> can be used to adjust white spaces around the plot. We used a <code>for</code> loop to iterate over each subplot. The <code>axes</code> object returned by the <code>subplot()</code> function was used to refer to individual subplots.</p>
+</section>
+<section id="overlapping-plots-with-legend" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="overlapping-plots-with-legend"><span class="header-section-number">6.1.3</span> Overlapping plots with legend</h3>
+<p>We can also have the scatterplot of all the continents on the sample plot, with a distinct color for each continent. A legend will be required to identify the continent’s color.</p>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>continents <span class="op">=</span> np.array([[<span class="st">'Asia'</span>, <span class="st">'Europe'</span>], [<span class="st">'Africa'</span>, <span class="st">'Americas'</span>]])</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].gdpPercap</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].lifeExp</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>        plt.plot(x,y,<span class="st">'o'</span>,label <span class="op">=</span> continents[i,j]) </span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>        plt.xlim([gdp_data.gdpPercap.<span class="bu">min</span>(), gdp_data.gdpPercap.<span class="bu">max</span>()])</span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>        plt.ylim([gdp_data.lifeExp.<span class="bu">min</span>(), gdp_data.lifeExp.<span class="bu">max</span>()])</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'GDP per capita'</span>)  </span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Life expectancy'</span>) </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+<pre><code>&lt;matplotlib.legend.Legend at 0x1d09bf00040&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="pandas" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="pandas"><span class="header-section-number">6.2</span> Pandas</h2>
+<p>Matplotlib is low-level tool, in which different components of the plot, such as points, legend, axis titles, etc. need to be specified separately. The Pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">plot()</a> function can be used directly with a DataFrame or Series to make plots.</p>
+<section id="scatterplots-and-lineplots" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="scatterplots-and-lineplots"><span class="header-section-number">6.2.1</span> Scatterplots and lineplots</h3>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting life expectancy vs GDP per capita using the Pandas plot() function</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>gdp_data.plot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, kind <span class="op">=</span> <span class="st">'scatter'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="62">
+<pre><code>&lt;AxesSubplot:xlabel='gdpPercap', ylabel='lifeExp'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-9-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Note that with matplolib, it will take 3 lines to make the same plot - one for the scatterplot, and two for the axis titles.</p>
+<p>Let us re-arrange the data to show other benefits of the Pandas <code>plot()</code> function. Note that data resphaping is explained in Chapter 8 of the book, so you may ignore the code block below that uses the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pivot_table()</a> function.</p>
+<div class="cell" data-execution_count="75">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You may ignore this code block until Chapter 8.</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita <span class="op">=</span> gdp_data.pivot_table(index <span class="op">=</span> <span class="st">'year'</span>, columns <span class="op">=</span> <span class="st">'continent'</span>,values <span class="op">=</span> <span class="st">'gdpPercap'</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="75">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>continent</th>
+      <th>Africa</th>
+      <th>Americas</th>
+      <th>Asia</th>
+      <th>Europe</th>
+      <th>Oceania</th>
+    </tr>
+    <tr>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1952</th>
+      <td>1252.572466</td>
+      <td>4079.062552</td>
+      <td>5195.484004</td>
+      <td>5661.057435</td>
+      <td>10298.085650</td>
+    </tr>
+    <tr>
+      <th>1957</th>
+      <td>1385.236062</td>
+      <td>4616.043733</td>
+      <td>5787.732940</td>
+      <td>6963.012816</td>
+      <td>11598.522455</td>
+    </tr>
+    <tr>
+      <th>1962</th>
+      <td>1598.078825</td>
+      <td>4901.541870</td>
+      <td>5729.369625</td>
+      <td>8365.486814</td>
+      <td>12696.452430</td>
+    </tr>
+    <tr>
+      <th>1967</th>
+      <td>2050.363801</td>
+      <td>5668.253496</td>
+      <td>5971.173374</td>
+      <td>10143.823757</td>
+      <td>14495.021790</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>2339.615674</td>
+      <td>6491.334139</td>
+      <td>8187.468699</td>
+      <td>12479.575246</td>
+      <td>16417.333380</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We have reshaped the data to obtain the mean GDP per capita of each continent for each year.</p>
+<p>The pandas <code>plot()</code> function can be directly used with this DataFrame to create line plots showing mean GDP per capita of each continent with year.</p>
+<div class="cell" data-execution_count="104">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.plot(ylabel <span class="op">=</span> <span class="st">'GDP per capita'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="104">
+<pre><code>&lt;AxesSubplot:xlabel='year', ylabel='GDP per capita'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-11-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We observe that the mean GDP per capita of of Europe and Oceania have increased rapidly, while that for Africa is incresing very slowly.</p>
+<p>The above plot will take several lines of code if developed using only matplotlib. The pandas <code>plot()</code> function has a framework to conveniently make commonly used plots.</p>
+</section>
+<section id="bar-plots" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="bar-plots"><span class="header-section-number">6.2.2</span> Bar plots</h3>
+<p>Bar plots can be made using the pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.bar.html">bar</a> function with the DataFrame or Series, just like the line plots and scatterplots.</p>
+<p>Below, we are reading the dataset of noise complaints of type <em>Loud music/Party</em> received the police in New York City in 2016.</p>
+<div class="cell" data-scrolled="true" data-execution_count="167">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/party_nyc.csv'</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="167">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Created Date</th>
+      <th>Closed Date</th>
+      <th>Location Type</th>
+      <th>Incident Zip</th>
+      <th>City</th>
+      <th>Borough</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Hour_of_the_day</th>
+      <th>Month_of_the_year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>12/31/2015 0:01</td>
+      <td>12/31/2015 3:48</td>
+      <td>Store/Commercial</td>
+      <td>10034.0</td>
+      <td>NEW YORK</td>
+      <td>MANHATTAN</td>
+      <td>40.866183</td>
+      <td>-73.918930</td>
+      <td>0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>12/31/2015 0:02</td>
+      <td>12/31/2015 4:36</td>
+      <td>Store/Commercial</td>
+      <td>10040.0</td>
+      <td>NEW YORK</td>
+      <td>MANHATTAN</td>
+      <td>40.859324</td>
+      <td>-73.931237</td>
+      <td>0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>12/31/2015 0:03</td>
+      <td>12/31/2015 0:40</td>
+      <td>Residential Building/House</td>
+      <td>10026.0</td>
+      <td>NEW YORK</td>
+      <td>MANHATTAN</td>
+      <td>40.799415</td>
+      <td>-73.953371</td>
+      <td>0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>12/31/2015 0:03</td>
+      <td>12/31/2015 1:53</td>
+      <td>Residential Building/House</td>
+      <td>11231.0</td>
+      <td>BROOKLYN</td>
+      <td>BROOKLYN</td>
+      <td>40.678285</td>
+      <td>-73.994668</td>
+      <td>0</td>
+      <td>12</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>12/31/2015 0:05</td>
+      <td>12/31/2015 3:49</td>
+      <td>Residential Building/House</td>
+      <td>10033.0</td>
+      <td>NEW YORK</td>
+      <td>MANHATTAN</td>
+      <td>40.850304</td>
+      <td>-73.938516</td>
+      <td>0</td>
+      <td>12</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Let us visualise the locations from where the the complaints are coming.</p>
+<div class="cell" data-execution_count="168">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pandas function bar() to create bar plot</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints[<span class="st">'Location Type'</span>].value_counts().plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="168">
+<pre><code>&lt;AxesSubplot:ylabel='Number of complaints'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>From the above plot, we observe that most of the complaints come from residential buildings and houses, as one may expect.</p>
+<p>Let is visualize the time of the year when most complaints occur.</p>
+<div class="cell" data-execution_count="224">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pandas function bar() to create bar plot</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints[<span class="st">'Month_of_the_year'</span>].value_counts().sort_index().plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="224">
+<pre><code>&lt;AxesSubplot:ylabel='Number of complaints'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Try executing the code without <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html">sort_index()</a> to figure out the purpose of using the function.</p>
+<p>From the above plot, we observe that most of the complaints occur during summer and early Fall.</p>
+<p>Let us create a stacked bar chart that combines both the above plots into a single plot. You may ignore the code used for re-shaping the data until Chapter 8. The purpose here is to show the utility of the pandas <code>bar()</code> function.</p>
+<div class="cell" data-execution_count="225">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reshaping the data to make it suitable for a stacked barplot - ignore this code until chapter 8</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>complaints_location<span class="op">=</span>pd.crosstab(nyc_party_complaints.Month_of_the_year, nyc_party_complaints[<span class="st">'Location Type'</span>])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>complaints_location.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="225">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Location Type</th>
+      <th>Club/Bar/Restaurant</th>
+      <th>House of Worship</th>
+      <th>Park/Playground</th>
+      <th>Residential Building/House</th>
+      <th>Store/Commercial</th>
+      <th>Street/Sidewalk</th>
+    </tr>
+    <tr>
+      <th>Month_of_the_year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>748</td>
+      <td>24</td>
+      <td>17</td>
+      <td>9393</td>
+      <td>1157</td>
+      <td>832</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>570</td>
+      <td>29</td>
+      <td>16</td>
+      <td>8383</td>
+      <td>1197</td>
+      <td>782</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>747</td>
+      <td>39</td>
+      <td>90</td>
+      <td>9689</td>
+      <td>1480</td>
+      <td>1835</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>848</td>
+      <td>53</td>
+      <td>129</td>
+      <td>11984</td>
+      <td>1761</td>
+      <td>2943</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2091</td>
+      <td>72</td>
+      <td>322</td>
+      <td>15676</td>
+      <td>1941</td>
+      <td>5090</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-scrolled="true" data-execution_count="222">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacked bar plot showing number of complaints at different months of the year, and from different locations</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>complaints_location.plot.bar(stacked<span class="op">=</span><span class="va">True</span>,ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="222">
+<pre><code>&lt;AxesSubplot:xlabel='Month_of_the_year', ylabel='Number of complaints'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The above plots gives the insights about location and day of the year simultaneously that were previously separately obtained by the individual plots.</p>
+</section>
+</section>
+<section id="seaborn" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="seaborn"><span class="header-section-number">6.3</span> Seaborn</h2>
+<p>Seaborn offers the flexibility of simultaneously visualizing multiple variables in a single plot, and offers several themes to develop plots.</p>
+<div class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the seaborn library</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="bar-plots-with-confidence-interevals" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="bar-plots-with-confidence-interevals"><span class="header-section-number">6.3.1</span> Bar plots with confidence interevals</h3>
+<p>We’ll group the data to obtain the total complaints for each <em>Location Type, Borough, Month_of_the_year, and Hour_of_the_day</em>. Note that you’ll learn grouping data in Chapter 9, so you may ignore the next code block. The grouping is done to shape the data in a suitable form for visualization.</p>
+<div class="cell" data-execution_count="234">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data to make it suitable for visualization using Seaborn. Ignore this code block until learn chapter 9.</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped <span class="op">=</span> nyc_party_complaints[[<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Latitude'</span>,<span class="st">'Hour_of_the_day'</span>]].groupby([<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Hour_of_the_day'</span>])[<span class="st">'Latitude'</span>].agg([(<span class="st">'complaints'</span>,<span class="st">'count'</span>)]).reset_index()</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="234">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Location Type</th>
+      <th>Borough</th>
+      <th>Month_of_the_year</th>
+      <th>Hour_of_the_day</th>
+      <th>complaints</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Club/Bar/Restaurant</td>
+      <td>BRONX</td>
+      <td>1</td>
+      <td>0</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Club/Bar/Restaurant</td>
+      <td>BRONX</td>
+      <td>1</td>
+      <td>1</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Club/Bar/Restaurant</td>
+      <td>BRONX</td>
+      <td>1</td>
+      <td>2</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Club/Bar/Restaurant</td>
+      <td>BRONX</td>
+      <td>1</td>
+      <td>3</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Club/Bar/Restaurant</td>
+      <td>BRONX</td>
+      <td>1</td>
+      <td>4</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Let us create a bar plot visualizing the average number of complaints with the time of the day.</p>
+<div class="cell" data-execution_count="233">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sns.barplot(x<span class="op">=</span><span class="st">"Hour_of_the_day"</span>, y <span class="op">=</span> <span class="st">'complaints'</span>,  data<span class="op">=</span>nyc_complaints_grouped)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="233">
+<pre><code>&lt;AxesSubplot:xlabel='Hour_of_the_day', ylabel='complaints'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>From the above plot, we observe that most of the complaints are made around midnight. However, interestingly, there are some complaints at each hour of the day.</p>
+<p>Note that the above barplot shows the mean number of complaints in a month at each hour of the day. The black lines are the 95% confidence intervals of the mean number of complaints.</p>
+</section>
+<section id="facetgrid-multi-plot-grid-for-plotting-conditional-relationships" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="facetgrid-multi-plot-grid-for-plotting-conditional-relationships"><span class="header-section-number">6.3.2</span> Facetgrid: Multi-plot grid for plotting conditional relationships</h3>
+<p>With pandas, we simultaneously visualized the number of complaints with month of the year and location type. We’ll use Seaborn to add another variable - Borough to the visualization.</p>
+<p><strong>Q:</strong> Visualize the number of complaints with <em>Month_of_the_year, Location Type,</em> and <em>Borough</em>.</p>
+<p>The seaborn class <a href="https://seaborn.pydata.org/generated/seaborn.FacetGrid.html">FacetGrid</a> is used to design the plot, i.e., specify the way the data will be divided in mutually exclusive subsets for visualization. Then the [map] function of the <code>FacetGrid</code> class is used to apply a plotting function to each subset of the data.</p>
+<div class="cell" data-execution_count="235">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the number of complaints with Month_of_the_year, Location Type, and Borough.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(nyc_complaints_grouped, hue <span class="op">=</span> <span class="st">'Location Type'</span>, col <span class="op">=</span> <span class="st">'Borough'</span>,col_wrap<span class="op">=</span><span class="dv">3</span>,height<span class="op">=</span><span class="fl">3.5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'Month_of_the_year'</span>,<span class="st">'complaints'</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="235">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e52ff580&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>From the above plot, we get a couple of interesting insights: 1. For Queens and Staten Island, most of the complaints occur in summer, for Manhattan and Bronx it is mostly during late spring, while Brooklyn has a spike of complaints in early Fall. 2. In most of the Boroughs, the majority complaints always occur in residential areas. However, for Manhattan, the number of street/sidewalk complaints in the summer are comparable to those from residential areas.</p>
+<p>We have visualized 4 variables simultaneously in the above plot.</p>
+<p>Let us consider another example, where we will visualize the weather in a few cities of Australia. The file <em>Australia_weather.csv</em> consists of weather details of Syndey, Canberra, and Melbourne from 2007 to 2017.</p>
+<div class="cell" data-execution_count="246">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>aussie_weather <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Australia_weather.csv'</span>)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>aussie_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="246">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Date</th>
+      <th>Location</th>
+      <th>MinTemp</th>
+      <th>MaxTemp</th>
+      <th>Rainfall</th>
+      <th>Evaporation</th>
+      <th>Sunshine</th>
+      <th>WindGustDir</th>
+      <th>WindGustSpeed</th>
+      <th>WindDir9am</th>
+      <th>...</th>
+      <th>Humidity3pm</th>
+      <th>Pressure9am</th>
+      <th>Pressure3pm</th>
+      <th>Cloud9am</th>
+      <th>Cloud3pm</th>
+      <th>Temp9am</th>
+      <th>Temp3pm</th>
+      <th>RainToday</th>
+      <th>RISK_MM</th>
+      <th>RainTomorrow</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>10/20/2010</td>
+      <td>Sydney</td>
+      <td>12.9</td>
+      <td>20.3</td>
+      <td>0.2</td>
+      <td>3.0</td>
+      <td>10.9</td>
+      <td>ENE</td>
+      <td>37</td>
+      <td>W</td>
+      <td>...</td>
+      <td>57</td>
+      <td>1028.8</td>
+      <td>1025.6</td>
+      <td>3</td>
+      <td>1</td>
+      <td>16.9</td>
+      <td>19.8</td>
+      <td>No</td>
+      <td>0.0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>10/21/2010</td>
+      <td>Sydney</td>
+      <td>13.3</td>
+      <td>21.5</td>
+      <td>0.0</td>
+      <td>6.6</td>
+      <td>11.0</td>
+      <td>ENE</td>
+      <td>41</td>
+      <td>W</td>
+      <td>...</td>
+      <td>58</td>
+      <td>1025.9</td>
+      <td>1022.4</td>
+      <td>2</td>
+      <td>5</td>
+      <td>17.6</td>
+      <td>21.3</td>
+      <td>No</td>
+      <td>0.0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10/22/2010</td>
+      <td>Sydney</td>
+      <td>15.3</td>
+      <td>23.0</td>
+      <td>0.0</td>
+      <td>5.6</td>
+      <td>11.0</td>
+      <td>NNE</td>
+      <td>41</td>
+      <td>W</td>
+      <td>...</td>
+      <td>63</td>
+      <td>1021.4</td>
+      <td>1017.8</td>
+      <td>1</td>
+      <td>4</td>
+      <td>19.0</td>
+      <td>22.2</td>
+      <td>No</td>
+      <td>0.0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>10/26/2010</td>
+      <td>Sydney</td>
+      <td>12.9</td>
+      <td>26.7</td>
+      <td>0.2</td>
+      <td>3.8</td>
+      <td>12.1</td>
+      <td>NE</td>
+      <td>33</td>
+      <td>W</td>
+      <td>...</td>
+      <td>56</td>
+      <td>1018.0</td>
+      <td>1015.0</td>
+      <td>1</td>
+      <td>5</td>
+      <td>17.8</td>
+      <td>22.5</td>
+      <td>No</td>
+      <td>0.0</td>
+      <td>No</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>10/27/2010</td>
+      <td>Sydney</td>
+      <td>14.8</td>
+      <td>23.8</td>
+      <td>0.0</td>
+      <td>6.8</td>
+      <td>9.6</td>
+      <td>SSE</td>
+      <td>54</td>
+      <td>SSE</td>
+      <td>...</td>
+      <td>69</td>
+      <td>1016.0</td>
+      <td>1014.7</td>
+      <td>2</td>
+      <td>7</td>
+      <td>20.2</td>
+      <td>20.6</td>
+      <td>No</td>
+      <td>1.8</td>
+      <td>Yes</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 24 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="247">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>aussie_weather.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="247">
+<pre><code>(4666, 24)</code></pre>
+</div>
+</div>
+<p><strong>Q:</strong> Visualize if it rains the next day (<em>RainTomorrow</em>) given whether it has rained today (<em>RainToday</em>), the current day’s humidity (<em>Humidity9am</em>), maximum temperature (<em>MaxTemp</em>) and the city (<em>Location</em>).</p>
+<div class="cell" data-execution_count="249">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(aussie_weather,col<span class="op">=</span><span class="st">'Location'</span>,row<span class="op">=</span><span class="st">'RainToday'</span>,height <span class="op">=</span> <span class="dv">4</span>,aspect <span class="op">=</span> <span class="fl">0.8</span>,hue <span class="op">=</span> <span class="st">'RainTomorrow'</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(plt.scatter,<span class="st">'MaxTemp'</span>,<span class="st">'Humidity9am'</span>)</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="249">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e77b0610&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Humidity tends to be higher when it is going to rain the next day. However, the correlation is much more pronounced for Syndey. In case it is not raining on the current day, humidity seems to be slightly negatively correlated with temperature.</p>
+</section>
+<section id="histogram-and-density-plots" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="histogram-and-density-plots"><span class="header-section-number">6.3.3</span> Histogram and density plots</h3>
+<p>Histogram and density plots visualize the data distribution. A histogram plots the number of observations occuring within discrete, evenly spaced bins of a random variable, to visualize the distribution of the variable. It may be considered a special case of bar plot as bars are used to plot the observation counts.</p>
+<p>A density plot uses a kernel density estimate to approximate the distribution of random variable.</p>
+<p>We can use the Seaborn <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">displot()</a> function to make both kinds of plots - histogram or density plot.</p>
+<p><strong>Example:</strong> Make a histogram showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
+<div class="cell" data-execution_count="267">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="267">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0ec989e50&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperture.</p>
+<p><strong>Example:</strong> Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
+<div class="cell" data-execution_count="262">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="262">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-25-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
+<div class="cell" data-execution_count="266">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="266">
+<pre><code>&lt;matplotlib.legend.Legend at 0x1d0eb6b9790&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The Seaborn function <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">histplot()</a> can be used to make a density plot overlapping on a histogram.</p>
+</section>
+<section id="boxplots" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="boxplots"><span class="header-section-number">6.3.4</span> Boxplots</h3>
+<p>Boxplots is a standardized way of visualizing the data distribution. They show five key metrics that describe the data distribution - median, 25th percentile value, 75th percentile value, minimum and maximum, as shown in the figure below. Note that the minimum and maximum exclude the outliers.</p>
+<div class="cell" data-execution_count="282">
+<div class="cell-output cell-output-display" data-execution_count="282">
+<img src="./Datasets/boxplot.jpg" width="400" height="400">
+</div>
+</div>
+<p><strong>Example:</strong> Make a boxplot comparing the distributions of maximum temperatures of Sydney, Canberra and Melbourne, given whether or not it has rained on the day.</p>
+<div class="cell" data-execution_count="284">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="284">
+<pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>From the above plot, we observe that: 1. The maximum temperature of the day, on an average, is lower if it rained on the day. 2. Sydney and Meloboure have some extremly high outlying values of maximum temperature.</p>
+<p>We have used the Seaborn <a href="https://seaborn.pydata.org/generated/seaborn.boxplot.html">boxplot()</a> function for the above plot.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Pandas.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Data cleaning and preparation.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

@@ -1,0 +1,3308 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>stats - 5&nbsp; Pandas</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Data visualization.html" rel="next">
+<link href="./NumPy.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">stats</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap 2 Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NumPy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Pandas.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#pandas-data-stuctures---series-and-dataframe" id="toc-pandas-data-stuctures---series-and-dataframe" class="nav-link active" data-scroll-target="#pandas-data-stuctures---series-and-dataframe"> <span class="header-section-number">5.1</span> Pandas data stuctures - Series and DataFrame</a></li>
+  <li><a href="#data-manipulations-with-pandas" id="toc-data-manipulations-with-pandas" class="nav-link" data-scroll-target="#data-manipulations-with-pandas"> <span class="header-section-number">5.2</span> Data manipulations with Pandas</a>
+  <ul class="collapse">
+  <li><a href="#sub-setting-data" id="toc-sub-setting-data" class="nav-link" data-scroll-target="#sub-setting-data"> <span class="header-section-number">5.2.1</span> Sub-setting data</a></li>
+  <li><a href="#sorting-data" id="toc-sorting-data" class="nav-link" data-scroll-target="#sorting-data"> <span class="header-section-number">5.2.2</span> Sorting data</a></li>
+  <li><a href="#unique-values-value-counts-and-membership" id="toc-unique-values-value-counts-and-membership" class="nav-link" data-scroll-target="#unique-values-value-counts-and-membership"> <span class="header-section-number">5.2.3</span> Unique values, value counts and membership</a></li>
+  </ul></li>
+  <li><a href="#operations-between-dataframe-and-series" id="toc-operations-between-dataframe-and-series" class="nav-link" data-scroll-target="#operations-between-dataframe-and-series"> <span class="header-section-number">5.3</span> Operations between DataFrame and Series</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"> <span class="header-section-number">5.4</span> Correlation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>The Pandas library contains several methods and functions for cleaning, manipulating and analyzing data. While NumPy is suited for working with homogenous numerical array data, Pandas is designed for working with tabular or heterogenous data.</p>
+<p>Let is import the Pandas library to use its methods and functions.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="pandas-data-stuctures---series-and-dataframe" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="pandas-data-stuctures---series-and-dataframe"><span class="header-section-number">5.1</span> Pandas data stuctures - Series and DataFrame</h2>
+<p>A DataFrame is a two-dimensional object - conmprising of tabular data organized in rows and columns, where individual columns can be of different value types (numeric / string / boolean etc.). A DataFrame has row indices which refer to individual rows, and column names that refer to indvidual columns. By default, the row indices are integers starting from zero. However, both the row indices and column names can be customized by the user.</p>
+<p>Let us read the spotify data - <em>spotify_data.csv</em>, using the Pandas function <code>read_csv()</code>.</p>
+<div class="cell" data-execution_count="109">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spotify_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/spotify_data.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>spotify_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="109">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>All Girls Are The Same</td>
+      <td>0</td>
+      <td>165820</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.673</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-7.226</td>
+      <td>1</td>
+      <td>0.3060</td>
+      <td>0.0769</td>
+      <td>0.000338</td>
+      <td>0.0856</td>
+      <td>0.203</td>
+      <td>161.991</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Lucid Dreams</td>
+      <td>0</td>
+      <td>239836</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.511</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-7.230</td>
+      <td>0</td>
+      <td>0.2000</td>
+      <td>0.3490</td>
+      <td>0.000000</td>
+      <td>0.3400</td>
+      <td>0.218</td>
+      <td>83.903</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Hear Me Calling</td>
+      <td>0</td>
+      <td>189977</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.699</td>
+      <td>...</td>
+      <td>7</td>
+      <td>-3.997</td>
+      <td>0</td>
+      <td>0.1060</td>
+      <td>0.3080</td>
+      <td>0.000036</td>
+      <td>0.1210</td>
+      <td>0.499</td>
+      <td>88.933</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Robbery</td>
+      <td>0</td>
+      <td>240527</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.708</td>
+      <td>...</td>
+      <td>2</td>
+      <td>-5.181</td>
+      <td>1</td>
+      <td>0.0442</td>
+      <td>0.3480</td>
+      <td>0.000000</td>
+      <td>0.2220</td>
+      <td>0.543</td>
+      <td>79.993</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5988689</td>
+      <td>rap</td>
+      <td>Roddy Ricch</td>
+      <td>88</td>
+      <td>Big Stepper</td>
+      <td>0</td>
+      <td>175170</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.753</td>
+      <td>...</td>
+      <td>8</td>
+      <td>-8.469</td>
+      <td>1</td>
+      <td>0.2920</td>
+      <td>0.0477</td>
+      <td>0.000000</td>
+      <td>0.1970</td>
+      <td>0.616</td>
+      <td>76.997</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<p>The object <code>spotify_data</code> is a pandas DataFrame:</p>
+<div class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(spotify_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="46">
+<pre><code>pandas.core.frame.DataFrame</code></pre>
+</div>
+</div>
+<p>A Series is a one-dimensional object, containing a sequence of values, where each value has an index. Each column of a DataFrame is Series as shown in the example below.</p>
+<div class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Extracting movie titles from the movie_ratings DataFrame</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>spotify_songs <span class="op">=</span> movie_ratings[<span class="st">'track_name'</span>]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>spotify_songs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="47">
+<pre><code>0                      Eno Ide
+1            Ee Tanuvu Ninnade
+2            Munjaane Manjalli
+3         Gudugudiya Sedi Nodo
+4                        Ambar
+                  ...         
+245618         Coming Up Roses
+245619               Young Kid
+245620                Apricots
+245621    Time I Love to Waste
+245622                 Call me
+Name: track_name, Length: 245623, dtype: object</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The object movie_titles is a Series</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(spotify_songs)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="48">
+<pre><code>pandas.core.series.Series</code></pre>
+</div>
+</div>
+</section>
+<section id="data-manipulations-with-pandas" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="data-manipulations-with-pandas"><span class="header-section-number">5.2</span> Data manipulations with Pandas</h2>
+<section id="sub-setting-data" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="sub-setting-data"><span class="header-section-number">5.2.1</span> Sub-setting data</h3>
+<p>In the chapter on reading data, we learned about operators <code>loc</code> and <code>iloc</code> that can be used to subset data based on axis labels and position of rows/columns respectively. However, usually we are not aware of the relevant row indices, and we may want to subset data based on some condition(s). For example, suppose we wish to analyze only those songs whose track popularity is higher than 50.</p>
+<p><strong>Q:</strong> Do we need to subset rows or columns in this case?<br>
+<strong>A:</strong> Rows, as songs correspond to rows, while features of songs correspond to columns.</p>
+<p>As we need to subset rows, the filter must be applied at the starting index. As we don’t need to subset any specific features of the songs, there is no subsetting to be done on the columns. A <code>:</code> at the ending index means that all columns need to selected.</p>
+<div class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>popular_songs <span class="op">=</span> spotify_data.loc[spotify_data.track_popularity<span class="op">&gt;=</span><span class="dv">50</span>,:]</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>popular_songs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>181</th>
+      <td>1277325</td>
+      <td>hip hop</td>
+      <td>Dave</td>
+      <td>77</td>
+      <td>Titanium</td>
+      <td>69</td>
+      <td>127750</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.959</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-8.687</td>
+      <td>0</td>
+      <td>0.4370</td>
+      <td>0.152000</td>
+      <td>0.000001</td>
+      <td>0.1050</td>
+      <td>0.510</td>
+      <td>121.008</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>191</th>
+      <td>1123869</td>
+      <td>rap</td>
+      <td>Jay Wheeler</td>
+      <td>85</td>
+      <td>Viendo el Techo</td>
+      <td>64</td>
+      <td>188955</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.741</td>
+      <td>...</td>
+      <td>11</td>
+      <td>-6.029</td>
+      <td>0</td>
+      <td>0.2290</td>
+      <td>0.306000</td>
+      <td>0.000327</td>
+      <td>0.1000</td>
+      <td>0.265</td>
+      <td>179.972</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>208</th>
+      <td>3657199</td>
+      <td>rap</td>
+      <td>Polo G</td>
+      <td>91</td>
+      <td>RAPSTAR</td>
+      <td>89</td>
+      <td>165926</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.789</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-6.862</td>
+      <td>1</td>
+      <td>0.2420</td>
+      <td>0.410000</td>
+      <td>0.000000</td>
+      <td>0.1290</td>
+      <td>0.437</td>
+      <td>81.039</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>263</th>
+      <td>1461700</td>
+      <td>pop &amp; rock</td>
+      <td>Teoman</td>
+      <td>67</td>
+      <td>Gecenin Sonuna Yolculuk</td>
+      <td>52</td>
+      <td>280600</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.686</td>
+      <td>...</td>
+      <td>11</td>
+      <td>-7.457</td>
+      <td>0</td>
+      <td>0.0268</td>
+      <td>0.119000</td>
+      <td>0.000386</td>
+      <td>0.1080</td>
+      <td>0.560</td>
+      <td>100.932</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>293</th>
+      <td>299746</td>
+      <td>pop &amp; rock</td>
+      <td>Lars Winnerbäck</td>
+      <td>62</td>
+      <td>Själ och hjärta</td>
+      <td>55</td>
+      <td>271675</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.492</td>
+      <td>...</td>
+      <td>2</td>
+      <td>-6.005</td>
+      <td>0</td>
+      <td>0.0349</td>
+      <td>0.000735</td>
+      <td>0.000207</td>
+      <td>0.0953</td>
+      <td>0.603</td>
+      <td>142.042</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<p>Suppose we wish to analyze only <em>track_name, release year</em> and <em>track_popularity</em> of songs. Then, we can subset the revelant columns:</p>
+<div class="cell" data-execution_count="129">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>relevant_columns <span class="op">=</span> spotify_data.loc[:,[<span class="st">'track_name'</span>,<span class="st">'release_year'</span>,<span class="st">'track_popularity'</span>]]</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>relevant_columns.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="129">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>track_name</th>
+      <th>release_year</th>
+      <th>track_popularity</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>All Girls Are The Same</td>
+      <td>2021</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lucid Dreams</td>
+      <td>2021</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Hear Me Calling</td>
+      <td>2021</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Robbery</td>
+      <td>2021</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Big Stepper</td>
+      <td>2021</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="sorting-data" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="sorting-data"><span class="header-section-number">5.2.2</span> Sorting data</h3>
+<p>Sorting dataset is a very common operation. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html">sort_values()</a> function of Pandas can be used to sort a Pandas DataFrame or Series. Let us sort the spotify data in decreasing order of <em>track_popularity</em>:</p>
+<div class="cell" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>spotify_sorted <span class="op">=</span> spotify_data.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>spotify_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="133">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2398</th>
+      <td>1444702</td>
+      <td>pop</td>
+      <td>Olivia Rodrigo</td>
+      <td>88</td>
+      <td>drivers license</td>
+      <td>99</td>
+      <td>242014</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.585</td>
+      <td>...</td>
+      <td>10</td>
+      <td>-8.761</td>
+      <td>1</td>
+      <td>0.0601</td>
+      <td>0.72100</td>
+      <td>0.000013</td>
+      <td>0.1050</td>
+      <td>0.132</td>
+      <td>143.874</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2442</th>
+      <td>177401</td>
+      <td>hip hop</td>
+      <td>Masked Wolf</td>
+      <td>85</td>
+      <td>Astronaut In The Ocean</td>
+      <td>98</td>
+      <td>132780</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.778</td>
+      <td>...</td>
+      <td>4</td>
+      <td>-6.865</td>
+      <td>0</td>
+      <td>0.0913</td>
+      <td>0.17500</td>
+      <td>0.000000</td>
+      <td>0.1500</td>
+      <td>0.472</td>
+      <td>149.996</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3133</th>
+      <td>1698014</td>
+      <td>pop</td>
+      <td>Kali Uchis</td>
+      <td>88</td>
+      <td>telepatía</td>
+      <td>97</td>
+      <td>160191</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>0.653</td>
+      <td>...</td>
+      <td>11</td>
+      <td>-9.016</td>
+      <td>0</td>
+      <td>0.0502</td>
+      <td>0.11200</td>
+      <td>0.000000</td>
+      <td>0.2030</td>
+      <td>0.553</td>
+      <td>83.970</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6702</th>
+      <td>31308207</td>
+      <td>pop</td>
+      <td>The Weeknd</td>
+      <td>96</td>
+      <td>Save Your Tears</td>
+      <td>97</td>
+      <td>215627</td>
+      <td>1</td>
+      <td>2020</td>
+      <td>0.680</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-5.487</td>
+      <td>1</td>
+      <td>0.0309</td>
+      <td>0.02120</td>
+      <td>0.000012</td>
+      <td>0.5430</td>
+      <td>0.644</td>
+      <td>118.051</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6703</th>
+      <td>31308207</td>
+      <td>pop</td>
+      <td>The Weeknd</td>
+      <td>96</td>
+      <td>Blinding Lights</td>
+      <td>96</td>
+      <td>200040</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>0.514</td>
+      <td>...</td>
+      <td>1</td>
+      <td>-5.934</td>
+      <td>1</td>
+      <td>0.0598</td>
+      <td>0.00146</td>
+      <td>0.000095</td>
+      <td>0.0897</td>
+      <td>0.334</td>
+      <td>171.005</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<p>Drivers license is the most popular song!</p>
+<div class="cell" data-execution_count="148">
+<div class="cell-output cell-output-stdout">
+<pre><code></code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div id="IIttxITiVYyQ" data-shufflequestions="False" data-shuffleanswers="True" data-preserveresponses="false" data-numquestions="1000000"> <style>:root {
+    --medium-slate-blue: #6f78ffff;
+    --orange-pantone: #f75c03ff;
+    --russian-violet: #392061ff;
+    --maximum-yellow-red: #ffc857ff;
+    --viridian-green: #119da4ff;
+    --incorrect-red: #c80202;
+    --correct-green: #009113;
+}
+
+.Quiz {
+    max-width: 600px;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    line-height: 1.1;
+    font-size: 16pt;
+}
+
+.QuizCode {
+    font-size: 14pt;
+    margin-top: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.QuizCode>pre {
+    padding: 4px;
+}
+
+.Answer {
+    margin: 10px 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+}
+
+.Feedback {
+    font-size: 16pt;
+    text-align: center;
+    min-height: 2em;
+}
+
+.Input {
+    align: left;
+    font-size: 20pt;
+}
+
+.Input-text {
+    display: block;
+    margin: 10px;
+    color: inherit;
+    width: 140px;
+    background-color: #c0c0c0;
+    color: #fff;
+    padding: 5px;
+    padding-left: 10px;
+    font-family: inherit;
+    font-size: 20px;
+    font-weight: inherit;
+    line-height: 20pt;
+    border: none;
+    border-radius: 0.2rem;
+    transition: box-shadow 0.1s);
+}
+
+.Input-text:focus {
+    outline: none;
+    background-color: #c0c0c0;
+    box-shadow: 0.6rem 0.8rem 1.4rem -0.5rem #999999;
+}
+
+.MCButton {
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.MCButton p {
+    color: inherit;
+}
+
+.MultipleChoiceQn {
+    padding: 10px;
+    background: var(--medium-slate-blue);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.ManyChoiceQn {
+    padding: 10px;
+    background: var(--orange-pantone);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn {
+    padding: 10px;
+    background: var(--russian-violet);
+    color: #fafafa;
+    border-radius: 10px;
+}
+
+.NumericQn p {
+    color: inherit;
+}
+
+.InpLabel {
+    line-height: 34px;
+    float: left;
+    margin-right: 10px;
+    color: #101010;
+    font-size: 15pt;
+}
+
+.incorrect {
+    color: var(--incorrect-red);
+}
+
+.correct {
+    color: var(--correct-green);
+}
+
+.correctButton {
+    /*
+    background: var(--correct-green);
+   */
+    animation: correct-anim 0.6s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+.incorrectButton {
+    animation: incorrect-anim 0.8s ease;
+    animation-fill-mode: forwards;
+    color: #fafafa;
+    box-shadow: inset 0px 0px 5px #555555;
+    outline: none;
+}
+
+@keyframes incorrect-anim {
+    100% {
+        background-color: var(--incorrect-red);
+    }
+}
+
+@keyframes correct-anim {
+    100% {
+        background-color: var(--correct-green);
+    }
+}</style><script type="text/Javascript">var questionsIIttxITiVYyQ=[{"question": "Which is the most popular latin song, i.e., the song with the highest 'track_popularity' in the 'latin' genre?", "type": "multiple_choice", "answers": [{"answer": "Agua de Jamaica", "correct": false, "feedback": "Incorrect!"}, {"answer": "Solo Se Quiere Una Vez", "correct": false, "feedback": "Incorrect!"}, {"answer": "Tarde Gris", "correct": false, "feedback": "Incorrect!"}, {"answer": "Hawai", "correct": true, "feedback": "Correct!"}]}];
+    // Make a random ID
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    var charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result.push(characters.charAt(Math.floor(Math.random() * charactersLength)));
+    }
+    return result.join('');
+}
+
+// Choose a random subset of an array. Can also be used to shuffle the array
+function getRandomSubarray(arr, size) {
+    var shuffled = arr.slice(0), i = arr.length, temp, index;
+    while (i--) {
+        index = Math.floor((i + 1) * Math.random());
+        temp = shuffled[index];
+        shuffled[index] = shuffled[i];
+        shuffled[i] = temp;
+    }
+    return shuffled.slice(0, size);
+}
+
+function printResponses(responsesContainer) {
+    var responses=JSON.parse(responsesContainer.dataset.responses);
+    var stringResponses='<B>IMPORTANT!</B>To preserve this answer sequence for submission, when you have finalized your answers: <ol> <li> Copy the text in this cell below "Answer String"</li> <li> Double click on the cell directly below the Answer String, labeled "Replace Me"</li> <li> Select the whole "Replace Me" text</li> <li> Paste in your answer string and press shift-Enter.</li><li>Save the notebook using the save icon or File->Save Notebook menu item</li></ul><br><br><br><b>Answer String:</b><br> ';
+    console.log(responses);
+    responses.forEach((response, index) => {
+        if (response) {
+            console.log(index + ': ' + response);
+            stringResponses+= index + ': ' + response +"<BR>";
+        }
+    });
+    responsesContainer.innerHTML=stringResponses;
+}
+function check_mc() {
+    var id = this.id.split('-')[0];
+    //var response = this.id.split('-')[1];
+    //console.log(response);
+    //console.log("In check_mc(), id="+id);
+    //console.log(event.srcElement.id)           
+    //console.log(event.srcElement.dataset.correct)   
+    //console.log(event.srcElement.dataset.feedback)
+
+    var label = event.srcElement;
+    //console.log(label, label.nodeName);
+    var depth = 0;
+    while ((label.nodeName != "LABEL") && (depth < 20)) {
+        label = label.parentElement;
+        console.log(depth, label);
+        depth++;
+    }
+
+
+
+    var answers = label.parentElement.children;
+
+    //console.log(answers);
+
+
+    // Split behavior based on multiple choice vs many choice:
+    var fb = document.getElementById("fb" + id);
+
+
+
+
+    if (fb.dataset.numcorrect == 1) {
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            responses[qnum]= response;
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+        
+        for (var i = 0; i < answers.length; i++) {
+            var child = answers[i];
+            //console.log(child);
+            child.className = "MCButton";
+        }
+
+
+
+        if (label.dataset.correct == "true") {
+            // console.log("Correct action");
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Correct!";
+            }
+            label.classList.add("correctButton");
+
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+
+        } else {
+            if ("feedback" in label.dataset) {
+                fb.textContent = jaxify(label.dataset.feedback);
+            } else {
+                fb.textContent = "Incorrect -- try again.";
+            }
+            //console.log("Error action");
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+    }
+    else {
+        var reset = false;
+        var feedback;
+         if (label.dataset.correct == "true") {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Correct!";
+            }
+            if (label.dataset.answered <= 0) {
+                if (fb.dataset.answeredcorrect < 0) {
+                    fb.dataset.answeredcorrect = 1;
+                    reset = true;
+                } else {
+                    fb.dataset.answeredcorrect++;
+                }
+                if (reset) {
+                    for (var i = 0; i < answers.length; i++) {
+                        var child = answers[i];
+                        child.className = "MCButton";
+                        child.dataset.answered = 0;
+                    }
+                }
+                label.classList.add("correctButton");
+                label.dataset.answered = 1;
+                fb.className = "Feedback";
+                fb.classList.add("correct");
+
+            }
+        } else {
+            if ("feedback" in label.dataset) {
+                feedback = jaxify(label.dataset.feedback);
+            } else {
+                feedback = "Incorrect -- try again.";
+            }
+            if (fb.dataset.answeredcorrect > 0) {
+                fb.dataset.answeredcorrect = -1;
+                reset = true;
+            } else {
+                fb.dataset.answeredcorrect--;
+            }
+
+            if (reset) {
+                for (var i = 0; i < answers.length; i++) {
+                    var child = answers[i];
+                    child.className = "MCButton";
+                    child.dataset.answered = 0;
+                }
+            }
+            label.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            //console.log(responsesContainer);
+            var response = label.firstChild.innerText;
+            if (label.querySelector(".QuizCode")){
+                response+= label.querySelector(".QuizCode").firstChild.innerText;
+            }
+            console.log(response);
+            //console.log(document.getElementById("quizWrap"+id));
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            if (label.dataset.correct == "true") {
+                if (typeof(responses[qnum]) == "object"){
+                    if (!responses[qnum].includes(response))
+                        responses[qnum].push(response);
+                } else{
+                    responses[qnum]= [ response ];
+                }
+            } else {
+                responses[qnum]= response;
+            }
+            console.log(responses);
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End save responses stuff
+
+
+
+        var numcorrect = fb.dataset.numcorrect;
+        var answeredcorrect = fb.dataset.answeredcorrect;
+        if (answeredcorrect >= 0) {
+            fb.textContent = feedback + " [" + answeredcorrect + "/" + numcorrect + "]";
+        } else {
+            fb.textContent = feedback + " [" + 0 + "/" + numcorrect + "]";
+        }
+
+
+    }
+
+    if (typeof MathJax != 'undefined') {
+        var version = MathJax.version;
+        console.log('MathJax version', version);
+        if (version[0] == "2") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+        } else if (version[0] == "3") {
+            MathJax.typeset([fb]);
+        }
+    } else {
+        console.log('MathJax not detected');
+    }
+
+}
+
+function make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id) {
+    var shuffled;
+    if (shuffle_answers == "True") {
+        //console.log(shuffle_answers+" read as true");
+        shuffled = getRandomSubarray(qa.answers, qa.answers.length);
+    } else {
+        //console.log(shuffle_answers+" read as false");
+        shuffled = qa.answers;
+    }
+
+
+    var num_correct = 0;
+
+
+
+    shuffled.forEach((item, index, ans_array) => {
+        //console.log(answer);
+
+        // Make input element
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.id = "quizo" + id + index;
+        inp.style = "display:none;";
+        aDiv.append(inp);
+
+        //Make label for input element
+        var lab = document.createElement("label");
+        lab.className = "MCButton";
+        lab.id = id + '-' + index;
+        lab.onclick = check_mc;
+        var aSpan = document.createElement('span');
+        aSpan.classsName = "";
+        //qDiv.id="quizQn"+id+index;
+        if ("answer" in item) {
+            aSpan.innerHTML = jaxify(item.answer);
+            //aSpan.innerHTML=item.answer;
+        }
+        lab.append(aSpan);
+
+        // Create div for code inside question
+        var codeSpan;
+        if ("code" in item) {
+            codeSpan = document.createElement('span');
+            codeSpan.id = "code" + id + index;
+            codeSpan.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeSpan.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = item.code;
+            lab.append(codeSpan);
+            //console.log(codeSpan);
+        }
+
+        //lab.textContent=item.answer;
+
+        // Set the data attributes for the answer
+        lab.setAttribute('data-correct', item.correct);
+        if (item.correct) {
+            num_correct++;
+        }
+        if ("feedback" in item) {
+            lab.setAttribute('data-feedback', item.feedback);
+        }
+        lab.setAttribute('data-answered', 0);
+
+        aDiv.append(lab);
+
+    });
+
+    if (num_correct > 1) {
+        outerqDiv.className = "ManyChoiceQn";
+    } else {
+        outerqDiv.className = "MultipleChoiceQn";
+    }
+
+    return num_correct;
+
+}
+function check_numeric(ths, event) {
+
+    if (event.keyCode === 13) {
+        ths.blur();
+
+        var id = ths.id.split('-')[0];
+
+        var submission = ths.value;
+        if (submission.indexOf('/') != -1) {
+            sub_parts = submission.split('/');
+            //console.log(sub_parts);
+            submission = sub_parts[0] / sub_parts[1];
+        }
+        //console.log("Reader entered", submission);
+
+        if ("precision" in ths.dataset) {
+            precision = ths.dataset.precision;
+            // console.log("1:", submission)
+            submission = Math.round((1 * submission + Number.EPSILON) * 10 ** precision) / 10 ** precision;
+            // console.log("Rounded to ", submission, " precision=", precision  );
+        }
+
+
+        //console.log("In check_numeric(), id="+id);
+        //console.log(event.srcElement.id)           
+        //console.log(event.srcElement.dataset.feedback)
+
+        var fb = document.getElementById("fb" + id);
+        fb.style.display = "none";
+        fb.textContent = "Incorrect -- try again.";
+
+        answers = JSON.parse(ths.dataset.answers);
+        //console.log(answers);
+
+        var defaultFB = "";
+        var correct;
+        var done = false;
+        answers.every(answer => {
+            //console.log(answer.type);
+
+            correct = false;
+            // if (answer.type=="value"){
+            if ('value' in answer) {
+                if (submission == answer.value) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+                // } else if (answer.type=="range") {
+            } else if ('range' in answer) {
+                //console.log(answer.range);
+                if ((submission >= answer.range[0]) && (submission < answer.range[1])) {
+                    fb.textContent = jaxify(answer.feedback);
+                    correct = answer.correct;
+                    //console.log(answer.correct);
+                    done = true;
+                }
+            } else if (answer.type == "default") {
+                defaultFB = answer.feedback;
+            }
+            if (done) {
+                return false; // Break out of loop if this has been marked correct
+            } else {
+                return true; // Keep looking for case that includes this as a correct answer
+            }
+        });
+
+        if ((!done) && (defaultFB != "")) {
+            fb.innerHTML = jaxify(defaultFB);
+            //console.log("Default feedback", defaultFB);
+        }
+
+        fb.style.display = "block";
+        if (correct) {
+            ths.className = "Input-text";
+            ths.classList.add("correctButton");
+            fb.className = "Feedback";
+            fb.classList.add("correct");
+        } else {
+            ths.className = "Input-text";
+            ths.classList.add("incorrectButton");
+            fb.className = "Feedback";
+            fb.classList.add("incorrect");
+        }
+
+        // What follows is for the saved responses stuff
+        var outerContainer = fb.parentElement.parentElement;
+        var responsesContainer = document.getElementById("responses" + outerContainer.id);
+        if (responsesContainer) {
+            console.log(submission);
+            var qnum = document.getElementById("quizWrap"+id).dataset.qnum;
+            //console.log("Question " + qnum);
+            //console.log(id, ", got numcorrect=",fb.dataset.numcorrect);
+            var responses=JSON.parse(responsesContainer.dataset.responses);
+            console.log(responses);
+            if (submission == ths.value){
+                responses[qnum]= submission;
+            } else {
+                responses[qnum]= ths.value + "(" + submission +")";
+            }
+            responsesContainer.setAttribute('data-responses', JSON.stringify(responses));
+            printResponses(responsesContainer);
+        }
+        // End code to preserve responses
+
+        if (typeof MathJax != 'undefined') {
+            var version = MathJax.version;
+            console.log('MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([fb]);
+            }
+        } else {
+            console.log('MathJax not detected');
+        }
+        return false;
+    }
+
+}
+
+function isValid(el, charC) {
+    //console.log("Input char: ", charC);
+    if (charC == 46) {
+        if (el.value.indexOf('.') === -1) {
+            return true;
+        } else if (el.value.indexOf('/') != -1) {
+            parts = el.value.split('/');
+            if (parts[1].indexOf('.') === -1) {
+                return true;
+            }
+        }
+        else {
+            return false;
+        }
+    } else if (charC == 47) {
+        if (el.value.indexOf('/') === -1) {
+            if ((el.value != "") && (el.value != ".")) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else if (charC == 45) {
+        edex = el.value.indexOf('e');
+        if (edex == -1) {
+            edex = el.value.indexOf('E');
+        }
+
+        if (el.value == "") {
+            return true;
+        } else if (edex == (el.value.length - 1)) { // If just after e or E
+            return true;
+        } else {
+            return false;
+        }
+    } else if (charC == 101) { // "e"
+        if ((el.value.indexOf('e') === -1) && (el.value.indexOf('E') === -1) && (el.value.indexOf('/') == -1)) {
+            // Prev symbol must be digit or decimal point:
+            if (el.value.slice(-1).search(/\d/) >= 0) {
+                return true;
+            } else if (el.value.slice(-1).search(/\./) >= 0) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        if (charC > 31 && (charC < 48 || charC > 57))
+            return false;
+    }
+    return true;
+}
+
+function numeric_keypress(evnt) {
+    var charC = (evnt.which) ? evnt.which : evnt.keyCode;
+
+    if (charC == 13) {
+        check_numeric(this, evnt);
+    } else {
+        return isValid(this, charC);
+    }
+}
+
+
+
+
+
+function make_numeric(qa, outerqDiv, qDiv, aDiv, id) {
+
+
+
+    //console.log(answer);
+
+
+    outerqDiv.className = "NumericQn";
+    aDiv.style.display = 'block';
+
+    var lab = document.createElement("label");
+    lab.className = "InpLabel";
+    lab.textContent = "Type numeric answer here:";
+    aDiv.append(lab);
+
+    var inp = document.createElement("input");
+    inp.type = "text";
+    //inp.id="input-"+id;
+    inp.id = id + "-0";
+    inp.className = "Input-text";
+    inp.setAttribute('data-answers', JSON.stringify(qa.answers));
+    if ("precision" in qa) {
+        inp.setAttribute('data-precision', qa.precision);
+    }
+    aDiv.append(inp);
+    //console.log(inp);
+
+    //inp.addEventListener("keypress", check_numeric);
+    //inp.addEventListener("keypress", numeric_keypress);
+    /*
+    inp.addEventListener("keypress", function(event) {
+        return numeric_keypress(this, event);
+    }
+                        );
+                        */
+    //inp.onkeypress="return numeric_keypress(this, event)";
+    inp.onkeypress = numeric_keypress;
+    inp.onpaste = event => false;
+
+    inp.addEventListener("focus", function (event) {
+        this.value = "";
+        return false;
+    }
+    );
+
+
+}
+function jaxify(string) {
+    var mystring = string;
+
+    count = 0;
+    var loc = mystring.search(/([^\\]|^)(\$)/);
+
+    count2 = 0;
+    var loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+
+    //console.log(loc);
+
+    while ((loc >= 0) || (loc2 >= 0)) {
+
+        /* Have to replace all the double $$ first with current implementation */
+        if (loc2 >= 0) {
+            if (count2 % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\[");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$\$)/, "$1\\]");
+            }
+            count2++;
+        } else {
+            if (count % 2 == 0) {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\(");
+            } else {
+                mystring = mystring.replace(/([^\\]|^)(\$)/, "$1\\)");
+            }
+            count++;
+        }
+        loc = mystring.search(/([^\\]|^)(\$)/);
+        loc2 = mystring.search(/([^\\]|^)(\$\$)/);
+        //console.log(mystring,", loc:",loc,", loc2:",loc2);
+    }
+
+    //console.log(mystring);
+    return mystring;
+}
+
+
+function show_questions(json, mydiv) {
+    console.log('show_questions');
+    //var mydiv=document.getElementById(myid);
+    var shuffle_questions = mydiv.dataset.shufflequestions;
+    var num_questions = mydiv.dataset.numquestions;
+    var shuffle_answers = mydiv.dataset.shuffleanswers;
+
+    if (num_questions > json.length) {
+        num_questions = json.length;
+    }
+
+    var questions;
+    if ((num_questions < json.length) || (shuffle_questions == "True")) {
+        //console.log(num_questions+","+json.length);
+        questions = getRandomSubarray(json, num_questions);
+    } else {
+        questions = json;
+    }
+
+    //console.log("SQ: "+shuffle_questions+", NQ: " + num_questions + ", SA: ", shuffle_answers);
+
+    // Iterate over questions
+    questions.forEach((qa, index, array) => {
+        //console.log(qa.question); 
+
+        var id = makeid(8);
+        //console.log(id);
+
+
+        // Create Div to contain question and answers
+        var iDiv = document.createElement('div');
+        //iDiv.id = 'quizWrap' + id + index;
+        iDiv.id = 'quizWrap' + id;
+        iDiv.className = 'Quiz';
+        iDiv.setAttribute('data-qnum', index);
+        mydiv.appendChild(iDiv);
+        // iDiv.innerHTML=qa.question;
+
+        var outerqDiv = document.createElement('div');
+        outerqDiv.id = "OuterquizQn" + id + index;
+
+        iDiv.append(outerqDiv);
+
+        // Create div to contain question part
+        var qDiv = document.createElement('div');
+        qDiv.id = "quizQn" + id + index;
+        //qDiv.textContent=qa.question;
+        qDiv.innerHTML = jaxify(qa.question);
+
+        outerqDiv.append(qDiv);
+
+        // Create div for code inside question
+        var codeDiv;
+        if ("code" in qa) {
+            codeDiv = document.createElement('div');
+            codeDiv.id = "code" + id + index;
+            codeDiv.className = "QuizCode";
+            var codePre = document.createElement('pre');
+            codeDiv.append(codePre);
+            var codeCode = document.createElement('code');
+            codePre.append(codeCode);
+            codeCode.innerHTML = qa.code;
+            outerqDiv.append(codeDiv);
+            //console.log(codeDiv);
+        }
+
+
+        // Create div to contain answer part
+        var aDiv = document.createElement('div');
+        aDiv.id = "quizAns" + id + index;
+        aDiv.className = 'Answer';
+        iDiv.append(aDiv);
+
+        //console.log(qa.type);
+
+        var num_correct;
+        if (qa.type == "multiple_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "many_choice") {
+            num_correct = make_mc(qa, shuffle_answers, outerqDiv, qDiv, aDiv, id);
+        } else if (qa.type == "numeric") {
+            //console.log("numeric");
+            make_numeric(qa, outerqDiv, qDiv, aDiv, id);
+        }
+
+
+        //Make div for feedback
+        var fb = document.createElement("div");
+        fb.id = "fb" + id;
+        //fb.style="font-size: 20px;text-align:center;";
+        fb.className = "Feedback";
+        fb.setAttribute("data-answeredcorrect", 0);
+        fb.setAttribute("data-numcorrect", num_correct);
+        iDiv.append(fb);
+
+
+    });
+    var preserveResponses = mydiv.dataset.preserveresponses;
+    console.log(preserveResponses);
+    console.log(preserveResponses == "true");
+    if (preserveResponses == "true") {
+        console.log(preserveResponses);
+        // Create Div to contain record of answers
+        var iDiv = document.createElement('div');
+        iDiv.id = 'responses' + mydiv.id;
+        iDiv.className = 'JCResponses';
+        // Create a place to store responses as an empty array
+        iDiv.setAttribute('data-responses', '[]');
+
+        // Dummy Text
+        iDiv.innerHTML="<b>Select your answers and then follow the directions that will appear here.</b>"
+        //iDiv.className = 'Quiz';
+        mydiv.appendChild(iDiv);
+    }
+//console.log("At end of show_questions");
+    if (typeof MathJax != 'undefined') {
+        console.log("MathJax version", MathJax.version);
+        var version = MathJax.version;
+        setTimeout(function(){
+            var version = MathJax.version;
+            console.log('After sleep, MathJax version', version);
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            }
+        }, 500);
+if (typeof version == 'undefined') {
+        } else
+        {
+            if (version[0] == "2") {
+                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+            } else if (version[0] == "3") {
+                MathJax.typeset([mydiv]);
+            } else {
+                console.log("MathJax not found");
+            }
+        }
+    }
+    return false;
+}
+
+        {
+        show_questions(questionsIIttxITiVYyQ,  IIttxITiVYyQ);
+        }
+        </script>
+        
+</div>
+</div>
+</div></section>
+<section id="unique-values-value-counts-and-membership" class="level3" data-number="5.2.3">
+<h3 data-number="5.2.3" class="anchored" data-anchor-id="unique-values-value-counts-and-membership"><span class="header-section-number">5.2.3</span> Unique values, value counts and membership</h3>
+<p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.unique.html">unique</a> provides the unique values of a Series. For example, let us find the number of unique genres of songs in the spotify dataset:</p>
+<div class="cell" data-execution_count="149">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="149">
+<pre><code>array(['rap', 'pop', 'miscellaneous', 'metal', 'hip hop', 'rock',
+       'pop &amp; rock', 'hoerspiel', 'folk', 'electronic', 'jazz', 'country',
+       'latin'], dtype=object)</code></pre>
+</div>
+</div>
+<p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html">value_counts()</a> provides the number of observations of each value of a Series. For example, let us find the number of songs of each genre in the spotify dataset:</p>
+<div class="cell" data-execution_count="153">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="153">
+<pre><code>pop              70441
+rock             49785
+pop &amp; rock       43437
+miscellaneous    35848
+jazz             13363
+hoerspiel        12514
+hip hop           7373
+folk              2821
+latin             2125
+rap               1798
+metal             1659
+country           1236
+electronic         790
+Name: genres, dtype: int64</code></pre>
+</div>
+</div>
+<p>More than half the songs in the dataset are <em>pop, rock</em> or <em>pop &amp; rock</em>.</p>
+<p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isin.html">isin()</a> provides a boolean Series indicating the position of certain values in a Series. The function is helpful in sub-setting data. For example, let us subset the songs that are either <em>latin, rap,</em> or <em>metal</em>:</p>
+<div class="cell" data-execution_count="155">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>latin_rap_metal_songs <span class="op">=</span> spotify_data.loc[spotify_data.genres.isin([<span class="st">'latin'</span>,<span class="st">'rap'</span>,<span class="st">'metal'</span>]),:]</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>latin_rap_metal_songs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="155">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>All Girls Are The Same</td>
+      <td>0</td>
+      <td>165820</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.673</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-7.226</td>
+      <td>1</td>
+      <td>0.3060</td>
+      <td>0.0769</td>
+      <td>0.000338</td>
+      <td>0.0856</td>
+      <td>0.203</td>
+      <td>161.991</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Lucid Dreams</td>
+      <td>0</td>
+      <td>239836</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.511</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-7.230</td>
+      <td>0</td>
+      <td>0.2000</td>
+      <td>0.3490</td>
+      <td>0.000000</td>
+      <td>0.3400</td>
+      <td>0.218</td>
+      <td>83.903</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Hear Me Calling</td>
+      <td>0</td>
+      <td>189977</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.699</td>
+      <td>...</td>
+      <td>7</td>
+      <td>-3.997</td>
+      <td>0</td>
+      <td>0.1060</td>
+      <td>0.3080</td>
+      <td>0.000036</td>
+      <td>0.1210</td>
+      <td>0.499</td>
+      <td>88.933</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Robbery</td>
+      <td>0</td>
+      <td>240527</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.708</td>
+      <td>...</td>
+      <td>2</td>
+      <td>-5.181</td>
+      <td>1</td>
+      <td>0.0442</td>
+      <td>0.3480</td>
+      <td>0.000000</td>
+      <td>0.2220</td>
+      <td>0.543</td>
+      <td>79.993</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5988689</td>
+      <td>rap</td>
+      <td>Roddy Ricch</td>
+      <td>88</td>
+      <td>Big Stepper</td>
+      <td>0</td>
+      <td>175170</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.753</td>
+      <td>...</td>
+      <td>8</td>
+      <td>-8.469</td>
+      <td>1</td>
+      <td>0.2920</td>
+      <td>0.0477</td>
+      <td>0.000000</td>
+      <td>0.1970</td>
+      <td>0.616</td>
+      <td>76.997</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 21 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="operations-between-dataframe-and-series" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="operations-between-dataframe-and-series"><span class="header-section-number">5.3</span> Operations between DataFrame and Series</h2>
+<p>Let us learn arithematic operations between DataFrame and Series with the help of an example.</p>
+<p><strong>Example:</strong> Spotify recommends songs based on songs listened by the user. Suppose you have listned to the song <em>drivers license</em>. Spotify intends to recommend you 5 songs that are <em>similar</em> to <em>drivers license</em>. Which songs should it recommend?</p>
+<p>Let us see what information do we have about songs that can help us identify songs similar to drivers license. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.columns.html">columns</a> attribute of DataFrame will display all the columns names. The description of some of the column names relating to audio features is <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features">here</a>.</p>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>spotify_data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="54">
+<pre><code>Index(['artist_followers', 'genres', 'artist_name', 'artist_popularity',
+       'track_name', 'track_popularity', 'duration_ms', 'explicit',
+       'release_year', 'danceability', 'energy', 'key', 'loudness', 'mode',
+       'speechiness', 'acousticness', 'instrumentalness', 'liveness',
+       'valence', 'tempo', 'time_signature'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<p><strong>Solution approach:</strong> We have serveral features of a song. Let us find songs similar to <em>drivers license</em> in terms of <em>danceability, energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, time_signature</em> and <em>tempo</em>. Note that we are considering only audio features for simplicity.</p>
+<p>To find the songs most similar to <em>drivers license</em>, we need to define a measure that quantifies the similarity. Let us define simililarity of a song with <em>drivers license</em> as the Euclidean distance of the song from <em>drivers license</em>, where the coordinates of a song are: (danceability, energy, key, loudness, mode, speechiness, acousticness, instrumentalness, liveness, valence, time_signature, tempo). Thus, similarity can be formulated as:</p>
+<p><span class="math display">\[Similarity_{DL-S} = \sqrt{(danceability_{DL}-danceability_{S})^2+(energy_{DL}-energy_{S})^2 +...+ (tempo_{DL}-tempo_{S})^2)},\]</span></p>
+<p>where the subscript <em>DL</em> stands for <em>drivers license</em> and <em>S</em> stands for any song. The top 5 songs with the least value of <span class="math inline">\(Similarity_{DL-S}\)</span> will be the most similar to <em>drivers lincense</em> and should be recommended.</p>
+<p>Let us subset the columns that we need to use to compute the Euclidean distance.</p>
+<div class="cell" data-execution_count="110">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>audio_features <span class="op">=</span> spotify_data[[<span class="st">'danceability'</span>, <span class="st">'energy'</span>, <span class="st">'key'</span>, <span class="st">'loudness'</span>,<span class="st">'mode'</span>,<span class="st">'speechiness'</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'acousticness'</span>, <span class="st">'instrumentalness'</span>, <span class="st">'liveness'</span>,<span class="st">'valence'</span>, <span class="st">'tempo'</span>, <span class="st">'time_signature'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="111">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>audio_features.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="111">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.673</td>
+      <td>0.529</td>
+      <td>0</td>
+      <td>-7.226</td>
+      <td>1</td>
+      <td>0.3060</td>
+      <td>0.0769</td>
+      <td>0.000338</td>
+      <td>0.0856</td>
+      <td>0.203</td>
+      <td>161.991</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.511</td>
+      <td>0.566</td>
+      <td>6</td>
+      <td>-7.230</td>
+      <td>0</td>
+      <td>0.2000</td>
+      <td>0.3490</td>
+      <td>0.000000</td>
+      <td>0.3400</td>
+      <td>0.218</td>
+      <td>83.903</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.699</td>
+      <td>0.687</td>
+      <td>7</td>
+      <td>-3.997</td>
+      <td>0</td>
+      <td>0.1060</td>
+      <td>0.3080</td>
+      <td>0.000036</td>
+      <td>0.1210</td>
+      <td>0.499</td>
+      <td>88.933</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.708</td>
+      <td>0.690</td>
+      <td>2</td>
+      <td>-5.181</td>
+      <td>1</td>
+      <td>0.0442</td>
+      <td>0.3480</td>
+      <td>0.000000</td>
+      <td>0.2220</td>
+      <td>0.543</td>
+      <td>79.993</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.753</td>
+      <td>0.597</td>
+      <td>8</td>
+      <td>-8.469</td>
+      <td>1</td>
+      <td>0.2920</td>
+      <td>0.0477</td>
+      <td>0.000000</td>
+      <td>0.1970</td>
+      <td>0.616</td>
+      <td>76.997</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="112">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of values of audio_features</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>audio_features.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="112">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.568357</td>
+      <td>0.580633</td>
+      <td>5.240326</td>
+      <td>-9.432548</td>
+      <td>0.670928</td>
+      <td>0.111984</td>
+      <td>0.383938</td>
+      <td>0.071169</td>
+      <td>0.223756</td>
+      <td>0.552302</td>
+      <td>119.335060</td>
+      <td>3.884177</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.159444</td>
+      <td>0.236631</td>
+      <td>3.532546</td>
+      <td>4.449731</td>
+      <td>0.469877</td>
+      <td>0.198068</td>
+      <td>0.321142</td>
+      <td>0.209555</td>
+      <td>0.198076</td>
+      <td>0.250017</td>
+      <td>29.864219</td>
+      <td>0.458082</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-60.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.462000</td>
+      <td>0.405000</td>
+      <td>2.000000</td>
+      <td>-11.990000</td>
+      <td>0.000000</td>
+      <td>0.033200</td>
+      <td>0.070000</td>
+      <td>0.000000</td>
+      <td>0.098100</td>
+      <td>0.353000</td>
+      <td>96.099250</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.579000</td>
+      <td>0.591000</td>
+      <td>5.000000</td>
+      <td>-8.645000</td>
+      <td>1.000000</td>
+      <td>0.043100</td>
+      <td>0.325000</td>
+      <td>0.000011</td>
+      <td>0.141000</td>
+      <td>0.560000</td>
+      <td>118.002000</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.685000</td>
+      <td>0.776000</td>
+      <td>8.000000</td>
+      <td>-6.131000</td>
+      <td>1.000000</td>
+      <td>0.075300</td>
+      <td>0.671000</td>
+      <td>0.002220</td>
+      <td>0.292000</td>
+      <td>0.760000</td>
+      <td>137.929000</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.988000</td>
+      <td>1.000000</td>
+      <td>11.000000</td>
+      <td>3.744000</td>
+      <td>1.000000</td>
+      <td>0.969000</td>
+      <td>0.996000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>243.507000</td>
+      <td>5.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Note that the audio features differ in terms of scale. Some features like <em>key</em> have a wide range of [0,11], while others like <em>danceability</em> have a very narrow range of [0,0.988]. If we use them directly, features like <em>danceability</em> will have a much higher influence on <span class="math inline">\(Similarity_{DL-S}\)</span> as compared to features like <em>key</em>. Assuming we wish all the features to have equal weight in quantifying a song’s similarity to <em>drivers license</em>, we should scale the features, so that their values are comparable.</p>
+<p>Let us scale the value of each column to a standard uniform distribtion: <span class="math inline">\(U[0,1]\)</span>.</p>
+<p>For scaling the values of a column to <span class="math inline">\(U[0,1]\)</span>, we need to subtract the minimum value of the column from each value, and divide by the range of values of the column. For example, <em>danceability</em> can be standardized as follows:</p>
+<div class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling danceability to U[0,1]</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>danceability_value_range <span class="op">=</span> audio_features.danceability.<span class="bu">max</span>()<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>()</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>danceability_std <span class="op">=</span> (audio_features.danceability<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>())<span class="op">/</span>danceability_value_range</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>danceability_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="113">
+<pre><code>0         0.681174
+1         0.517206
+2         0.707490
+3         0.716599
+4         0.762146
+            ...   
+243185    0.621457
+243186    0.797571
+243187    0.533401
+243188    0.565789
+243189    0.750000
+Name: danceability, Length: 243190, dtype: float64</code></pre>
+</div>
+</div>
+<p>However, it will be cumbersome to repeat the above code for each audio feature. We can instead write a function that scales values of a column to <span class="math inline">\(U[0,1]\)</span>, and apply the function on all the audio features.</p>
+<div class="cell" data-execution_count="114">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Function to scale a column to U[0,1]</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale_uniform(x):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We will use the Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html">apply()</a> to apply the above function to the DataFrame <code>audio_features</code>.</p>
+<div class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling all audio features to U[0,1]</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(scale_uniform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>lambda function:</strong> Note that one line functions can be conveniently written as lambda functions in Python. These functions do not require a name, and can be defined using the keyword <code>lambda</code>. The above two blocks of code can be concisely written as:</p>
+<div class="cell" data-execution_count="156">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="116">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#All the audio features are scaled to U[0,1]</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="116">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>0.575260</td>
+      <td>0.580633</td>
+      <td>0.476393</td>
+      <td>0.793290</td>
+      <td>0.670928</td>
+      <td>0.115566</td>
+      <td>0.385480</td>
+      <td>0.071169</td>
+      <td>0.223756</td>
+      <td>0.552302</td>
+      <td>0.490068</td>
+      <td>0.776835</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.161380</td>
+      <td>0.236631</td>
+      <td>0.321141</td>
+      <td>0.069806</td>
+      <td>0.469877</td>
+      <td>0.204405</td>
+      <td>0.322431</td>
+      <td>0.209555</td>
+      <td>0.198076</td>
+      <td>0.250017</td>
+      <td>0.122642</td>
+      <td>0.091616</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>0.467611</td>
+      <td>0.405000</td>
+      <td>0.181818</td>
+      <td>0.753169</td>
+      <td>0.000000</td>
+      <td>0.034262</td>
+      <td>0.070281</td>
+      <td>0.000000</td>
+      <td>0.098100</td>
+      <td>0.353000</td>
+      <td>0.394647</td>
+      <td>0.800000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>0.586032</td>
+      <td>0.591000</td>
+      <td>0.454545</td>
+      <td>0.805644</td>
+      <td>1.000000</td>
+      <td>0.044479</td>
+      <td>0.326305</td>
+      <td>0.000011</td>
+      <td>0.141000</td>
+      <td>0.560000</td>
+      <td>0.484594</td>
+      <td>0.800000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.693320</td>
+      <td>0.776000</td>
+      <td>0.727273</td>
+      <td>0.845083</td>
+      <td>1.000000</td>
+      <td>0.077709</td>
+      <td>0.673695</td>
+      <td>0.002220</td>
+      <td>0.292000</td>
+      <td>0.760000</td>
+      <td>0.566427</td>
+      <td>0.800000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Since we need to find the Euclidean distance from the song <em>drivers license</em>, let us find the index of the row containing features of *drivers license.</p>
+<div class="cell" data-execution_count="117">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>drivers_license_index <span class="op">=</span> spotify_data[spotify_data.track_name<span class="op">==</span><span class="st">'drivers license'</span>].index[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we’ll subtract the audio features of <em>drivers license</em> from all other songs:</p>
+<div class="cell" data-execution_count="118">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL <span class="op">=</span> audio_features_scaled<span class="op">-</span>audio_features_scaled.loc[drivers_license_index,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, let us square the difference computed above. We’ll use the in-built python function <code>pow()</code> to square the difference:</p>
+<div class="cell" data-execution_count="119">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq <span class="op">=</span> songs_minus_DL.<span class="bu">pow</span>(<span class="dv">2</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="119">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.007933</td>
+      <td>0.008649</td>
+      <td>0.826446</td>
+      <td>0.000580</td>
+      <td>0.0</td>
+      <td>0.064398</td>
+      <td>0.418204</td>
+      <td>1.055600e-07</td>
+      <td>0.000376</td>
+      <td>0.005041</td>
+      <td>0.005535</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.005610</td>
+      <td>0.016900</td>
+      <td>0.132231</td>
+      <td>0.000577</td>
+      <td>1.0</td>
+      <td>0.020844</td>
+      <td>0.139498</td>
+      <td>1.716100e-10</td>
+      <td>0.055225</td>
+      <td>0.007396</td>
+      <td>0.060654</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.013314</td>
+      <td>0.063001</td>
+      <td>0.074380</td>
+      <td>0.005586</td>
+      <td>1.0</td>
+      <td>0.002244</td>
+      <td>0.171942</td>
+      <td>5.382400e-10</td>
+      <td>0.000256</td>
+      <td>0.134689</td>
+      <td>0.050906</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.015499</td>
+      <td>0.064516</td>
+      <td>0.528926</td>
+      <td>0.003154</td>
+      <td>0.0</td>
+      <td>0.000269</td>
+      <td>0.140249</td>
+      <td>1.716100e-10</td>
+      <td>0.013689</td>
+      <td>0.168921</td>
+      <td>0.068821</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.028914</td>
+      <td>0.025921</td>
+      <td>0.033058</td>
+      <td>0.000021</td>
+      <td>0.0</td>
+      <td>0.057274</td>
+      <td>0.456981</td>
+      <td>1.716100e-10</td>
+      <td>0.008464</td>
+      <td>0.234256</td>
+      <td>0.075428</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, we’ll sum the squares of differences from all audio features to compute the similarity of all songs to <em>drivers license</em>.</p>
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>distance_squared <span class="op">=</span> songs_minus_DL_sq.<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>distance_squared.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="120">
+<pre><code>0    1.337163
+1    1.438935
+2    1.516317
+3    1.004043
+4    0.920316
+dtype: float64</code></pre>
+</div>
+</div>
+<p>Now, we’ll sort these distances to find the top 5 songs closest to drivers’s license.</p>
+<div class="cell" data-execution_count="121">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>distances_sorted <span class="op">=</span> distance_squared.sort_values()</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>distances_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="121">
+<pre><code>2398      0.000000
+81844     0.008633
+4397      0.011160
+130789    0.015018
+143744    0.015058
+dtype: float64</code></pre>
+</div>
+</div>
+<p>Using the indices of the top 5 distances, we will identify the top 5 songs most similar to <em>drivers license</em>:</p>
+<div class="cell" data-scrolled="true" data-execution_count="122">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>spotify_data.loc[distances_sorted.index[<span class="dv">0</span>:<span class="dv">6</span>],:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="122">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2398</th>
+      <td>1444702</td>
+      <td>pop</td>
+      <td>Olivia Rodrigo</td>
+      <td>88</td>
+      <td>drivers license</td>
+      <td>99</td>
+      <td>242014</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.585</td>
+      <td>...</td>
+      <td>10</td>
+      <td>-8.761</td>
+      <td>1</td>
+      <td>0.0601</td>
+      <td>0.721</td>
+      <td>0.000013</td>
+      <td>0.105</td>
+      <td>0.132</td>
+      <td>143.874</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>81844</th>
+      <td>2264501</td>
+      <td>pop</td>
+      <td>Jay Chou</td>
+      <td>74</td>
+      <td>安靜</td>
+      <td>49</td>
+      <td>334240</td>
+      <td>0</td>
+      <td>2001</td>
+      <td>0.513</td>
+      <td>...</td>
+      <td>10</td>
+      <td>-7.853</td>
+      <td>1</td>
+      <td>0.0281</td>
+      <td>0.688</td>
+      <td>0.000008</td>
+      <td>0.116</td>
+      <td>0.123</td>
+      <td>143.924</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4397</th>
+      <td>25457</td>
+      <td>pop</td>
+      <td>Terence Lam</td>
+      <td>60</td>
+      <td>拼命無恙 in Bb major</td>
+      <td>52</td>
+      <td>241062</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>0.532</td>
+      <td>...</td>
+      <td>10</td>
+      <td>-9.690</td>
+      <td>1</td>
+      <td>0.0269</td>
+      <td>0.674</td>
+      <td>0.000000</td>
+      <td>0.117</td>
+      <td>0.190</td>
+      <td>151.996</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>130789</th>
+      <td>176266</td>
+      <td>pop</td>
+      <td>Alan Tam</td>
+      <td>54</td>
+      <td>從後趕上</td>
+      <td>8</td>
+      <td>258427</td>
+      <td>0</td>
+      <td>1988</td>
+      <td>0.584</td>
+      <td>...</td>
+      <td>10</td>
+      <td>-11.889</td>
+      <td>1</td>
+      <td>0.0282</td>
+      <td>0.707</td>
+      <td>0.000002</td>
+      <td>0.107</td>
+      <td>0.124</td>
+      <td>140.147</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>143744</th>
+      <td>396326</td>
+      <td>pop &amp; rock</td>
+      <td>Laura Branigan</td>
+      <td>64</td>
+      <td>How Am I Supposed to Live Without You</td>
+      <td>40</td>
+      <td>263320</td>
+      <td>0</td>
+      <td>1983</td>
+      <td>0.559</td>
+      <td>...</td>
+      <td>10</td>
+      <td>-8.260</td>
+      <td>1</td>
+      <td>0.0355</td>
+      <td>0.813</td>
+      <td>0.000083</td>
+      <td>0.134</td>
+      <td>0.185</td>
+      <td>139.079</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>35627</th>
+      <td>1600562</td>
+      <td>pop</td>
+      <td>Tiziano Ferro</td>
+      <td>68</td>
+      <td>Non Me Lo So Spiegare</td>
+      <td>44</td>
+      <td>240040</td>
+      <td>0</td>
+      <td>2014</td>
+      <td>0.609</td>
+      <td>...</td>
+      <td>11</td>
+      <td>-7.087</td>
+      <td>1</td>
+      <td>0.0352</td>
+      <td>0.706</td>
+      <td>0.000000</td>
+      <td>0.130</td>
+      <td>0.207</td>
+      <td>146.078</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>6 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<p>We can see the top 5 songs most similar to <em>drivers license</em> in the <em>track_name</em> column above. Interestingly, three of the five songs are Asian! These songs indeed sound similart to <em>drivers license</em>!</p>
+</section>
+<section id="correlation" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="correlation"><span class="header-section-number">5.4</span> Correlation</h2>
+<p>Correlation may refer to any kind of association between two random variables. However, in this book, we will always consider correlation as the linear association between two random variables, or the Pearson’s correlation coefficient. Note that correlation does not imply causalty and vice-versa.</p>
+<p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html">corr()</a> provides the pairwise correlation between all columns of a DataFrame, or between two Series. The function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html#pandas.DataFrame.corrwith">corrwith()</a> provides the pairwise correlation of a DataFrame with another DataFrame or Series.</p>
+<div class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pairwise correlation amongst all columns</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>spotify_data.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="159">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>artist_popularity</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>artist_followers</th>
+      <td>1.000000</td>
+      <td>0.577861</td>
+      <td>0.197426</td>
+      <td>0.040435</td>
+      <td>0.082857</td>
+      <td>0.098589</td>
+      <td>-0.010120</td>
+      <td>0.080085</td>
+      <td>-0.000119</td>
+      <td>0.123771</td>
+      <td>0.004313</td>
+      <td>-0.059933</td>
+      <td>-0.107475</td>
+      <td>-0.033986</td>
+      <td>0.002425</td>
+      <td>-0.053317</td>
+      <td>0.016524</td>
+      <td>0.030826</td>
+    </tr>
+    <tr>
+      <th>artist_popularity</th>
+      <td>0.577861</td>
+      <td>1.000000</td>
+      <td>0.285565</td>
+      <td>-0.097996</td>
+      <td>0.092147</td>
+      <td>0.062007</td>
+      <td>0.038784</td>
+      <td>0.039583</td>
+      <td>-0.011005</td>
+      <td>0.045165</td>
+      <td>0.018758</td>
+      <td>0.236942</td>
+      <td>-0.075715</td>
+      <td>-0.066679</td>
+      <td>0.099678</td>
+      <td>-0.034501</td>
+      <td>-0.032036</td>
+      <td>-0.033423</td>
+    </tr>
+    <tr>
+      <th>track_popularity</th>
+      <td>0.197426</td>
+      <td>0.285565</td>
+      <td>1.000000</td>
+      <td>0.060474</td>
+      <td>0.193685</td>
+      <td>0.568329</td>
+      <td>0.158507</td>
+      <td>0.217342</td>
+      <td>0.013369</td>
+      <td>0.296350</td>
+      <td>-0.022486</td>
+      <td>-0.056537</td>
+      <td>-0.284433</td>
+      <td>-0.124283</td>
+      <td>-0.090479</td>
+      <td>-0.038859</td>
+      <td>0.058408</td>
+      <td>0.071741</td>
+    </tr>
+    <tr>
+      <th>duration_ms</th>
+      <td>0.040435</td>
+      <td>-0.097996</td>
+      <td>0.060474</td>
+      <td>1.000000</td>
+      <td>-0.024226</td>
+      <td>0.067665</td>
+      <td>-0.145779</td>
+      <td>0.075990</td>
+      <td>0.007710</td>
+      <td>0.078586</td>
+      <td>-0.034818</td>
+      <td>-0.332585</td>
+      <td>-0.133960</td>
+      <td>0.067055</td>
+      <td>-0.034631</td>
+      <td>-0.155354</td>
+      <td>0.051046</td>
+      <td>0.085015</td>
+    </tr>
+    <tr>
+      <th>explicit</th>
+      <td>0.082857</td>
+      <td>0.092147</td>
+      <td>0.193685</td>
+      <td>-0.024226</td>
+      <td>1.000000</td>
+      <td>0.215656</td>
+      <td>0.138522</td>
+      <td>0.104734</td>
+      <td>0.011818</td>
+      <td>0.124410</td>
+      <td>-0.060350</td>
+      <td>0.077268</td>
+      <td>-0.129363</td>
+      <td>-0.039472</td>
+      <td>-0.024283</td>
+      <td>-0.032549</td>
+      <td>0.006585</td>
+      <td>0.043538</td>
+    </tr>
+    <tr>
+      <th>release_year</th>
+      <td>0.098589</td>
+      <td>0.062007</td>
+      <td>0.568329</td>
+      <td>0.067665</td>
+      <td>0.215656</td>
+      <td>1.000000</td>
+      <td>0.204743</td>
+      <td>0.338096</td>
+      <td>0.021497</td>
+      <td>0.430054</td>
+      <td>-0.071338</td>
+      <td>-0.032968</td>
+      <td>-0.369038</td>
+      <td>-0.149644</td>
+      <td>-0.045160</td>
+      <td>-0.070025</td>
+      <td>0.079382</td>
+      <td>0.089485</td>
+    </tr>
+    <tr>
+      <th>danceability</th>
+      <td>-0.010120</td>
+      <td>0.038784</td>
+      <td>0.158507</td>
+      <td>-0.145779</td>
+      <td>0.138522</td>
+      <td>0.204743</td>
+      <td>1.000000</td>
+      <td>0.137615</td>
+      <td>0.020128</td>
+      <td>0.142239</td>
+      <td>-0.051130</td>
+      <td>0.198509</td>
+      <td>-0.143936</td>
+      <td>-0.179213</td>
+      <td>-0.114999</td>
+      <td>0.505350</td>
+      <td>-0.125061</td>
+      <td>0.111015</td>
+    </tr>
+    <tr>
+      <th>energy</th>
+      <td>0.080085</td>
+      <td>0.039583</td>
+      <td>0.217342</td>
+      <td>0.075990</td>
+      <td>0.104734</td>
+      <td>0.338096</td>
+      <td>0.137615</td>
+      <td>1.000000</td>
+      <td>0.030824</td>
+      <td>0.747829</td>
+      <td>-0.053374</td>
+      <td>-0.043377</td>
+      <td>-0.678745</td>
+      <td>-0.131269</td>
+      <td>0.126050</td>
+      <td>0.348158</td>
+      <td>0.205960</td>
+      <td>0.170854</td>
+    </tr>
+    <tr>
+      <th>key</th>
+      <td>-0.000119</td>
+      <td>-0.011005</td>
+      <td>0.013369</td>
+      <td>0.007710</td>
+      <td>0.011818</td>
+      <td>0.021497</td>
+      <td>0.020128</td>
+      <td>0.030824</td>
+      <td>1.000000</td>
+      <td>0.024674</td>
+      <td>-0.139688</td>
+      <td>-0.003533</td>
+      <td>-0.023179</td>
+      <td>-0.006600</td>
+      <td>-0.011566</td>
+      <td>0.024206</td>
+      <td>0.008336</td>
+      <td>0.007738</td>
+    </tr>
+    <tr>
+      <th>loudness</th>
+      <td>0.123771</td>
+      <td>0.045165</td>
+      <td>0.296350</td>
+      <td>0.078586</td>
+      <td>0.124410</td>
+      <td>0.430054</td>
+      <td>0.142239</td>
+      <td>0.747829</td>
+      <td>0.024674</td>
+      <td>1.000000</td>
+      <td>-0.028151</td>
+      <td>-0.173444</td>
+      <td>-0.493020</td>
+      <td>-0.269008</td>
+      <td>0.002959</td>
+      <td>0.209588</td>
+      <td>0.171926</td>
+      <td>0.146030</td>
+    </tr>
+    <tr>
+      <th>mode</th>
+      <td>0.004313</td>
+      <td>0.018758</td>
+      <td>-0.022486</td>
+      <td>-0.034818</td>
+      <td>-0.060350</td>
+      <td>-0.071338</td>
+      <td>-0.051130</td>
+      <td>-0.053374</td>
+      <td>-0.139688</td>
+      <td>-0.028151</td>
+      <td>1.000000</td>
+      <td>-0.037237</td>
+      <td>0.043773</td>
+      <td>-0.024695</td>
+      <td>0.005657</td>
+      <td>0.010305</td>
+      <td>0.015399</td>
+      <td>-0.015225</td>
+    </tr>
+    <tr>
+      <th>speechiness</th>
+      <td>-0.059933</td>
+      <td>0.236942</td>
+      <td>-0.056537</td>
+      <td>-0.332585</td>
+      <td>0.077268</td>
+      <td>-0.032968</td>
+      <td>0.198509</td>
+      <td>-0.043377</td>
+      <td>-0.003533</td>
+      <td>-0.173444</td>
+      <td>-0.037237</td>
+      <td>1.000000</td>
+      <td>0.112061</td>
+      <td>-0.094796</td>
+      <td>0.263630</td>
+      <td>0.052171</td>
+      <td>-0.127945</td>
+      <td>-0.150350</td>
+    </tr>
+    <tr>
+      <th>acousticness</th>
+      <td>-0.107475</td>
+      <td>-0.075715</td>
+      <td>-0.284433</td>
+      <td>-0.133960</td>
+      <td>-0.129363</td>
+      <td>-0.369038</td>
+      <td>-0.143936</td>
+      <td>-0.678745</td>
+      <td>-0.023179</td>
+      <td>-0.493020</td>
+      <td>0.043773</td>
+      <td>0.112061</td>
+      <td>1.000000</td>
+      <td>0.112107</td>
+      <td>0.007415</td>
+      <td>-0.175674</td>
+      <td>-0.173152</td>
+      <td>-0.163243</td>
+    </tr>
+    <tr>
+      <th>instrumentalness</th>
+      <td>-0.033986</td>
+      <td>-0.066679</td>
+      <td>-0.124283</td>
+      <td>0.067055</td>
+      <td>-0.039472</td>
+      <td>-0.149644</td>
+      <td>-0.179213</td>
+      <td>-0.131269</td>
+      <td>-0.006600</td>
+      <td>-0.269008</td>
+      <td>-0.024695</td>
+      <td>-0.094796</td>
+      <td>0.112107</td>
+      <td>1.000000</td>
+      <td>-0.031301</td>
+      <td>-0.150172</td>
+      <td>-0.027369</td>
+      <td>-0.022034</td>
+    </tr>
+    <tr>
+      <th>liveness</th>
+      <td>0.002425</td>
+      <td>0.099678</td>
+      <td>-0.090479</td>
+      <td>-0.034631</td>
+      <td>-0.024283</td>
+      <td>-0.045160</td>
+      <td>-0.114999</td>
+      <td>0.126050</td>
+      <td>-0.011566</td>
+      <td>0.002959</td>
+      <td>0.005657</td>
+      <td>0.263630</td>
+      <td>0.007415</td>
+      <td>-0.031301</td>
+      <td>1.000000</td>
+      <td>-0.011137</td>
+      <td>-0.027716</td>
+      <td>-0.040789</td>
+    </tr>
+    <tr>
+      <th>valence</th>
+      <td>-0.053317</td>
+      <td>-0.034501</td>
+      <td>-0.038859</td>
+      <td>-0.155354</td>
+      <td>-0.032549</td>
+      <td>-0.070025</td>
+      <td>0.505350</td>
+      <td>0.348158</td>
+      <td>0.024206</td>
+      <td>0.209588</td>
+      <td>0.010305</td>
+      <td>0.052171</td>
+      <td>-0.175674</td>
+      <td>-0.150172</td>
+      <td>-0.011137</td>
+      <td>1.000000</td>
+      <td>0.100947</td>
+      <td>0.084783</td>
+    </tr>
+    <tr>
+      <th>tempo</th>
+      <td>0.016524</td>
+      <td>-0.032036</td>
+      <td>0.058408</td>
+      <td>0.051046</td>
+      <td>0.006585</td>
+      <td>0.079382</td>
+      <td>-0.125061</td>
+      <td>0.205960</td>
+      <td>0.008336</td>
+      <td>0.171926</td>
+      <td>0.015399</td>
+      <td>-0.127945</td>
+      <td>-0.173152</td>
+      <td>-0.027369</td>
+      <td>-0.027716</td>
+      <td>0.100947</td>
+      <td>1.000000</td>
+      <td>0.017423</td>
+    </tr>
+    <tr>
+      <th>time_signature</th>
+      <td>0.030826</td>
+      <td>-0.033423</td>
+      <td>0.071741</td>
+      <td>0.085015</td>
+      <td>0.043538</td>
+      <td>0.089485</td>
+      <td>0.111015</td>
+      <td>0.170854</td>
+      <td>0.007738</td>
+      <td>0.146030</td>
+      <td>-0.015225</td>
+      <td>-0.150350</td>
+      <td>-0.163243</td>
+      <td>-0.022034</td>
+      <td>-0.040789</td>
+      <td>0.084783</td>
+      <td>0.017423</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>Q:</strong> Which audio feature is the most correlated with <em>track_popularity</em>?</p>
+<div class="cell" data-execution_count="168">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>spotify_data.corrwith(spotify_data.track_popularity).sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="168">
+<pre><code>track_popularity     1.000000
+release_year         0.568329
+loudness             0.296350
+artist_popularity    0.285565
+energy               0.217342
+artist_followers     0.197426
+explicit             0.193685
+danceability         0.158507
+time_signature       0.071741
+duration_ms          0.060474
+tempo                0.058408
+key                  0.013369
+mode                -0.022486
+valence             -0.038859
+speechiness         -0.056537
+liveness            -0.090479
+instrumentalness    -0.124283
+acousticness        -0.284433
+dtype: float64</code></pre>
+</div>
+</div>
+<p>Loudness is the audio feature having the highest correlation with <em>track_popularity</em>.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./NumPy.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Data visualization.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

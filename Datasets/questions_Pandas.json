@@ -1,0 +1,28 @@
+[    
+    {
+        "question": "Which is the most popular latin song, i.e., the song with the highest 'track_popularity' in the 'latin' genre?",
+        "type": "multiple_choice",
+        "answers": [
+            {
+                "answer": "Agua de Jamaica",
+                "correct": false,
+                "feedback": "Incorrect!"
+            },
+            {
+                "answer": "Solo Se Quiere Una Vez",
+                "correct": false,
+                "feedback": "Incorrect!"
+            },
+	    {
+                "answer": "Tarde Gris",
+                "correct": false,
+                "feedback": "Incorrect!"
+            },
+	    {
+                "answer": "Hawai",
+                "correct": true,
+                "feedback": "Correct!"
+            }
+        ]
+    } 
+]

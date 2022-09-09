@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.0.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>stats - 4&nbsp; NumPy</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Pandas.html" rel="next">
+<link href="./Chap 2 Reading data.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">stats</a> 
+    </div>
+      </div>
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Chap 2 Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./NumPy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Pandas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data vizualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data vizualization</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#vectorized-computation-with-numpy" id="toc-vectorized-computation-with-numpy" class="nav-link active" data-scroll-target="#vectorized-computation-with-numpy"> <span class="header-section-number">4.1</span> Vectorized computation with NumPy</a>
+  <ul class="collapse">
+  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In-class exercise</a></li>
+  </ul></li>
+  <li><a href="#pseudorandom-number-generation" id="toc-pseudorandom-number-generation" class="nav-link" data-scroll-target="#pseudorandom-number-generation"> <span class="header-section-number">4.2</span> Pseudorandom number generation</a>
+  <ul class="collapse">
+  <li><a href="#in-class-exercise-1" id="toc-in-class-exercise-1" class="nav-link" data-scroll-target="#in-class-exercise-1">In-class exercise</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<p>NumPy, short for Numerical Python is used to analyze numeric data with Python. Although numeric operations may be performed without NumPy, NumPy is preferred for its efficiency, especially when working with large arrays of data. A couple of reasons that make NumPy more efficient are:</p>
+<ol type="1">
+<li>NumPy arrays use much less memory than other built-in Python data structures. This is because a NumPy array is densenly packed due to the homogenous nature of data stored in it. This helps retrieve the data faster as well, thereby making computations faster.</li>
+<li>With NumPy, vectorized computations can replace the relatively more expensive python <code>for</code> loops.</li>
+</ol>
+<p>We’ll see the above two advantages of NumPy with the examples below.</p>
+<p>Let us import the NumPy library to use its methods and functions.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Example 1:</strong> This example shows that computations using NumPy arrays are typically much faster than computations with other data structures such as a list.</p>
+<p><strong>Q:</strong> Multiply whole numbers upto 1 million by an integer, say 2. Compare the time taken for the computation if the numbers are stored in a NumPy array vs a list.</p>
+<p>Use the numpy function <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html">arange()</a> to define a one-dimensional NumPy array.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Examples showing NumPy arrays are more efficient for numerical computation</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>list_ex <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1000000</span>)) <span class="co">#List containinig whole numbers upto 1 million</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>(list_ex<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time take to multiply numbers in a list = "</span>, tm.time()<span class="op">-</span>start_time)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>tuple_ex <span class="op">=</span> <span class="bu">tuple</span>(<span class="bu">range</span>(<span class="dv">1000000</span>)) <span class="co">#List containinig whole numbers upto 1 million</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>(tuple_ex<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time take to multiply numbers in a tuple = "</span>, tm.time()<span class="op">-</span>start_time)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>numpy_ex <span class="op">=</span> np.arange(<span class="dv">1000000</span>) <span class="co">#tuple containinig whole numbers upto 1 million</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>(numpy_ex<span class="op">*</span><span class="dv">2</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time take to multiply numbers in a NumPy array = "</span>, tm.time()<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Time take to multiply numbers in a list =  0.04031014442443848
+Time take to multiply numbers in a tuple =  0.03827619552612305
+Time take to multiply numbers in a NumPy array =  0.0</code></pre>
+</div>
+</div>
+<section id="vectorized-computation-with-numpy" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="vectorized-computation-with-numpy"><span class="header-section-number">4.1</span> Vectorized computation with NumPy</h2>
+<p>Several matrix algebra operations such as multiplications, decompositions, determinants, etc. can be performed convenienetly with NumPy. However, we’ll focus on matrix multiplication as it is very commonly used to avoid python <code>for</code> loops and make computations faster. The <a href="https://numpy.org/doc/stable/reference/generated/numpy.dot.html">dot</a> function is used to multiply matrices:</p>
+<div class="cell" data-execution_count="98">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 2x3 matrix</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="98">
+<pre><code>array([[0, 1],
+       [3, 4]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 3x2 matrix</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([[<span class="dv">6</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="dv">2</span>,<span class="dv">1</span>]])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="99">
+<pre><code>array([[ 6, -1],
+       [ 2,  1]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Multiplying matrices 'a' and 'b' using the dot function</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>a.dot(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
+<pre><code>array([[ 2,  1],
+       [26,  1]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="101">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that * results in element-wise multiplication</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">*</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="101">
+<pre><code>array([[ 0, -1],
+       [ 6,  4]])</code></pre>
+</div>
+</div>
+<p><strong>Example 2:</strong> This example will show vectorized computations with NumPy. Vectorized computations help perform computations more efficiently, and also make the code concise.</p>
+<p><strong>Q:</strong> Read the (1) quantities of roll, bun, cake and bread required by 3 people - Ben, Barbara &amp; Beth, from <em>food_quantity.csv</em>, (2) price of these food items in two shops - Target and Kroger, from <em>price.csv</em>. Find out which shop should each person go to minimize their expenses.</p>
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading the datasets on food quantity and price</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>food_qty <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/food_quantity.csv'</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/price.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>food_qty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Person</th>
+      <th>roll</th>
+      <th>bun</th>
+      <th>cake</th>
+      <th>bread</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Ben</td>
+      <td>6</td>
+      <td>5</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Barbara</td>
+      <td>3</td>
+      <td>6</td>
+      <td>2</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Beth</td>
+      <td>3</td>
+      <td>4</td>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Item</th>
+      <th>Target</th>
+      <th>Kroger</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>roll</td>
+      <td>1.5</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>bun</td>
+      <td>2.0</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>cake</td>
+      <td>5.0</td>
+      <td>4.5</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>bread</td>
+      <td>16.0</td>
+      <td>17.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>First, let’s start from a simple problem. We’ll compute the expenses of Ben if he prefers to buy all food items from Target</p>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loop</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>bens_target_expense <span class="op">=</span> <span class="dv">0</span> <span class="co">#Initializing Ben's expenses to 0</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):   <span class="co">#Iterating over all the four desired food items</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    bens_target_expense <span class="op">+=</span> food_qty.iloc[<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,<span class="dv">1</span>] <span class="co">#Total expenses on the kth item</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>bens_target_expense    <span class="co">#Total expenses for Ben if he goes to Target</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>50.0</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[<span class="dv">0</span>,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting food quantity (for Ben) dataframe to NumPy array</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>].to_numpy()     <span class="co">#Converting price (for Target) dataframe to NumPy array</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)   <span class="co">#Matrix multiplication of the quantity vector with the price vector directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
+<pre><code>50.0</code></pre>
+</div>
+</div>
+<p>Ben will spend $50 if he goes to Target</p>
+<p>Now, let’s add another layer of complication. We’ll compute Ben’s expenses for both stores - Target and Kroger</p>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing a Series of length two to store the expenses in Target and Kroger for Ben</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>bens_store_expense <span class="op">=</span> pd.Series(<span class="fl">0.0</span>,index<span class="op">=</span>price.columns[<span class="dv">1</span>:<span class="dv">3</span>])</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):      <span class="co">#Iterating over both the stores - Target and Kroger</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):        <span class="co">#Iterating over all the four desired food items</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>        bens_store_expense[j] <span class="op">+=</span> food_qty.iloc[<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,j<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>bens_store_expense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="38">
+<pre><code>Target    50.0
+Kroger    49.0
+dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[<span class="dv">0</span>,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting food quantity (for Ben) dataframe to NumPy array</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>:].to_numpy()    <span class="co">#Converting price dataframe to NumPy array</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)      <span class="co">#Matrix multiplication of the quantity vector with the price matrix directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
+<pre><code>array([50.0, 49.0], dtype=object)</code></pre>
+</div>
+</div>
+<p>Ben will spend \$50 if he goes to Target, and $49 if he goes to Kroger. Thus, he should choose Kroger.</p>
+<p>Now, let’s add the final layer of complication, and solve the problem. We’ll compute everyone’s expenses for both stores - Target and Kroger</p>
+<div class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>store_expense <span class="op">=</span> pd.DataFrame(<span class="fl">0.0</span>,index<span class="op">=</span>price.columns[<span class="dv">1</span>:<span class="dv">3</span>],columns <span class="op">=</span> food_qty[<span class="st">'Person'</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):    <span class="co">#Iterating over all the three people - Ben, Barbara, and Beth</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):     <span class="co">#Iterating over both the stores - Target and Kroger</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):        <span class="co">#Iterating over all the four desired food items</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>            store_expense.iloc[j,i] <span class="op">+=</span> food_qty.iloc[i,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,j<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>store_expense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Person</th>
+      <th>Ben</th>
+      <th>Barbara</th>
+      <th>Beth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Target</th>
+      <td>50.0</td>
+      <td>58.5</td>
+      <td>43.5</td>
+    </tr>
+    <tr>
+      <th>Kroger</th>
+      <td>49.0</td>
+      <td>61.0</td>
+      <td>43.5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[:,<span class="dv">1</span>:].to_numpy() <span class="co">#Converting food quantity dataframe to NumPy array</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting price dataframe to NumPy array</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)  <span class="co">#Matrix multiplication of the quantity matrix with the price matrix directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
+<pre><code>array([[50. , 49. ],
+       [58.5, 61. ],
+       [43.5, 43.5]])</code></pre>
+</div>
+</div>
+<p>Based on the above table, Ben should go to Kroger, Barbara to Target and Beth can go to either store.<br>
+Note that, with each layer of complication, the number of for loops keep increasing, thereby increasing the complexity of Method 1, while the method with NumPy array does not change much. Vectorized computations with arrays are much more efficient.</p>
+<section id="in-class-exercise" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="in-class-exercise">In-class exercise</h3>
+<p>Use matrix multiplication to find the average IMDB rating and average Rotten tomatoes rating for each genre - comedy, action, drama and horror. Use the data: <em>movies_cleaned.csv</em>. Which is the most preferred genre for IMDB users, and which is the least preferred genre for Rotten Tomatoes users?</p>
+<p><strong>Hint:</strong> 1. Create two matrices - one containing the IMDB and Rotten Tomatoes ratings, and the other containing the genre flags (comedy/action/drama/horror). 2. Multiply the two matrices created in 1. 3. Divide each row/column of the resulting matrix by a vector having the number of ratings in each genre to get the average rating for the genre.</p>
+</section>
+</section>
+<section id="pseudorandom-number-generation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="pseudorandom-number-generation"><span class="header-section-number">4.2</span> Pseudorandom number generation</h2>
+<p>Random numbers often need to be generated to analyze processes or systems, especially in cases when these processes or systems are governed by known probability distrbutions. For example, the number of personnel required to answer calls at a call center can be analyzed by simulating occurence and duration of calls.</p>
+<p>NumPy’s <a href="https://numpy.org/doc/stable/reference/random/index.html">random</a> module can be used to generate arrays of random numbers from several different probability distributions. For example, a <code>3x5</code> array of uniformly distributed random numbers can be generated using the <code>uniform</code> function of teh <code>random</code> module.</p>
+<div class="cell" data-execution_count="81">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size <span class="op">=</span> (<span class="dv">3</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="81">
+<pre><code>array([[0.69256322, 0.69259973, 0.03515058, 0.45186048, 0.43513769],
+       [0.07373366, 0.07465425, 0.92195975, 0.72915895, 0.8906299 ],
+       [0.15816734, 0.88144978, 0.05954028, 0.81403832, 0.97725557]])</code></pre>
+</div>
+</div>
+<p>Random numbers can also be generated by Python’s built-in <a href="https://docs.python.org/3/library/random.html">random</a> module. However, it generates one random number at a time, which makes it much slower than NumPy’s random module.</p>
+<p><strong>Example 3:</strong> Suppose 500 people eat at Mod Pizza, and another 500 eat at Viet nom nom, everyday.</p>
+<p>The waiting time at Viet nom nom has a normal distribution with mean 8 minutes and standard deviation 3 minutes, while the waiting time at Mod Pizza has a uniform distribution with minimum 5 minutes and maximum 25 minutes.</p>
+<p>Simulate a dataset containing waiting times for 500 ppl for 30 days in each of the food joints. Assume that the waiting time is meansured simultaneously at a certain time in both places, i.e., the observations are paired.</p>
+<p><strong>On how many days is the average waiting time at Viet Nom Nom higher than that at Mod Pizza?</strong></p>
+<p><strong>What percentage of times the waiting time at Viet nom nom was higher than the waiting time at Mod Pizza?</strong></p>
+<p>Try both approaches: (1) Using loops to generate data, (2) numpy array to generate data. Compare the time taken in both approaches.</p>
+<div class="cell" data-execution_count="82">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="88">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing waiting times for 500 ppl over 30 days</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>waiting_times_MOD <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#Mod pizza</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>waiting_times_Vnom <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#Viet nom nom</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> rm</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):  <span class="co">#Iterating over 500 ppl</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>): <span class="co">#Iterating over 30 days</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        waiting_times_Vnom.iloc[i,j] <span class="op">=</span> rm.gauss(<span class="dv">8</span>,<span class="dv">3</span>) <span class="co">#Simulating waiting time in Viet nom nom for the ith person on jth day</span></span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>        waiting_times_MOD.iloc[i,j] <span class="op">=</span> rm.uniform(<span class="dv">5</span>,<span class="dv">25</span>) <span class="co">#Simulating waiting time in Mod pizza for the ith person on jth day</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_times_Vnom<span class="op">-</span>waiting_times_MOD</span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,<span class="bu">sum</span>(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>),<span class="st">" days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza"</span>)</span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>().<span class="bu">sum</span>()<span class="op">/</span>(<span class="dv">30</span><span class="op">*</span><span class="dv">500</span>),<span class="st">"%"</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>On  0  days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza
+Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza =  16.58 %
+Time taken =  3.5454351902008057</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="89">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy arrays</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>waiting_time_Vnom <span class="op">=</span> np.random.normal(<span class="dv">8</span>,<span class="dv">3</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in Viet nom nom</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>waiting_time_MOD <span class="op">=</span> np.random.uniform(<span class="dv">5</span>,<span class="dv">25</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in MOD pizza</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_time_Vnom<span class="op">-</span>waiting_time_MOD</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>(),<span class="st">" days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza"</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>()<span class="op">/</span><span class="dv">15000</span>,<span class="st">"%"</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time()</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>On  0  days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza
+Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza =  16.486666666666668 %
+Time taken =  0.001995563507080078</code></pre>
+</div>
+</div>
+<p>The approach with NumPy is much faster than the one with loops.</p>
+<section id="in-class-exercise-1" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="in-class-exercise-1">In-class exercise</h3>
+<p><strong>Lab Question</strong>: Bootstrapping<br>
+Question) Find the 95% confidence interval of Profit for ‘Action’ movies, using Bootstrapping<br>
+Answer) Bootstrapping is a non-parametric method for obtaining confidence interval. The Bootstrapping method for finding the confidence interval is as follows.<br>
+(a) Find the profit for each of the ‘Action’ movies. Suppose there are <em>N</em> such movies. We will have a <em>Profit</em> column with <em>N</em> values.<br>
+(b) Randomly sample <em>N</em> values with replacement from the <em>Profit</em> column<br>
+(c) Find the mean of the <em>N</em> values obtained in (b)<br>
+(d) Repeat steps (b) and (c) <em>M=1000</em> times<br>
+(e) The 95% Confidence interval is the range between the 2.5% and 97.5% percentile values of the 1000 means obtained in (c)<br>
+Use the <em>movies_cleaned.csv</em> dataset.<br>
+Go ahead, code this up, and find the confidence interval!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Chap 2 Reading data.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./Pandas.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

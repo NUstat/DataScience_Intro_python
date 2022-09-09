@@ -1,6 +1,6 @@
 [    
     {
-        "question": "For which of the following purposes will it be appropriate to use a tuple: (a) storing mean co-ordinates of a city, (b) storing everyday mean temperature and humidity of a city?",
+        "question": "For which of the following purposes will it be appropriate to use a tuple: (a) storing mean co-ordinates of a city, (b) storing the maximum temperature and humidity of a city, everyday?",
         "type": "multiple_choice",
         "answers": [
             {
@@ -11,12 +11,12 @@
             {
                 "answer": "(b)",
                 "correct": false,
-                "feedback": "Incorrect. Everyday weather of a city will change, but tuple objects are immutable."
+                "feedback": "Incorrect. Weather of a city is likely to change everyday, but tuple objects are immutable."
             },
 	    {
                 "answer": "both (a) and (b)",
                 "correct": false,
-                "feedback": "Incorrect. Everyday weather of a city will change, but tuple objects are immutable."
+                "feedback": "Incorrect. Weather of a city is likely to change everyday, but tuple objects are immutable."
             },
 	    {
                 "answer": "None",
