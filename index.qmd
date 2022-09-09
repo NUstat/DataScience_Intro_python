@@ -1,7 +1,3 @@
 # Preface {.unnumbered}
 
-This is a Quarto book.
-
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
-
-Some more content
+This book is developed for the course STAT303-1 (Data Science with Python-1).

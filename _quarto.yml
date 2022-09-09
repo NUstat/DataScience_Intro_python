@@ -2,9 +2,9 @@ project:
   type: book
 
 book:
-  title: "stats"
-  author: "Jane Doe"
-  date: "7/27/2022"
+  title: "STAT303-1"
+  author: "Arvind Krishna and Arend Kuyper"
+  date: "9/20/2022"
   chapters:
     - index.qmd
     - Introduction to Python and Jupyter Notebooks.ipynb
