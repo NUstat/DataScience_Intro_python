@@ -234,6 +234,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#object-oriented-programming" id="toc-object-oriented-programming" class="nav-link" data-scroll-target="#object-oriented-programming"><span class="toc-section-number">1.3.1</span>  Object Oriented Programming</a></li>
   <li><a href="#assigning-variable-name-to-object" id="toc-assigning-variable-name-to-object" class="nav-link" data-scroll-target="#assigning-variable-name-to-object"><span class="toc-section-number">1.3.2</span>  Assigning variable name to object</a></li>
+  <li><a href="#importing-libraries" id="toc-importing-libraries" class="nav-link" data-scroll-target="#importing-libraries"><span class="toc-section-number">1.3.3</span>  Importing libraries</a></li>
+  <li><a href="#built-in-scalar-object-types" id="toc-built-in-scalar-object-types" class="nav-link" data-scroll-target="#built-in-scalar-object-types"><span class="toc-section-number">1.3.4</span>  Built-in scalar object types</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -355,6 +357,40 @@ Real part of 'var':  0</code></pre>
 </div>
 </div>
 <p>When we changed <code>y</code>, note that <code>x</code> also changed to the same object, showing that <code>x</code> and <code>y</code> refer to the same object, instead of referring to different copies of the same object.</p>
+</section>
+<section id="importing-libraries" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="importing-libraries"><span class="header-section-number">1.3.3</span> Importing libraries</h3>
+<p>There are several <a href="https://docs.python.org/3/library/functions.html">built-in functions</a> in python like <code>print()</code>, <code>abs()</code>, <code>max()</code>, <code>sum()</code> etc., which do not require importing any library. However, these functions will typically be insufficient for a analyzing data. Some of the popular libraries and their primary purposes are as follows:</p>
+<ol type="1">
+<li>NumPy: Performing numerical operations and efficiently storing numerical data.</li>
+<li>Pandas: Reading, cleaning and manipulating data.</li>
+<li>Matplotlib, Seaborn: Visualizing data.</li>
+<li>SciPy: Performing scientific computing such as solving differential equations, optimization, statistical tests, etc.</li>
+<li>Scikit-learn: Data pre-processing and machine learning, with a focus on prediction.</li>
+<li>Statsmodels: Developing statistical models with a focus on inference</li>
+</ol>
+<p>A library can be imported using the <code>import</code> keyword. For example, a NumPy library can be imported as:</p>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>as</code> keyboard, the NumPy library has been given the name <code>np</code>. All the functions and attributes of the library can be called using the <em>‘np.’</em> prefix. For example, let us generate a sequence of whole numbers upto <code>10</code> using the NumPy function <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html">arange()</a>:</p>
+<div class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7])</code></pre>
+</div>
+</div>
+</section>
+<section id="built-in-scalar-object-types" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="built-in-scalar-object-types"><span class="header-section-number">1.3.4</span> Built-in scalar object types</h3>
+<p>Python has some <a href="https://docs.python.org/3/library/stdtypes.html">built-in datatypes</a> for handling scalar objects such as number, string, boolean values, and date/time. The built-in function <code>type()</code> function can be used to determine the datatype of an object:</p>
+<div class="cell" data-execution_count="68">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="fl">2.2</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="68">
+<pre><code>float</code></pre>
+</div>
+</div>
 
 
 </section>
