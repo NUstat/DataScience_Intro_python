@@ -225,7 +225,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#writing-and-executing-code" id="toc-writing-and-executing-code" class="nav-link" data-scroll-target="#writing-and-executing-code"> <span class="header-section-number">1.2.2</span> Writing and executing code</a></li>
   <li><a href="#saving-and-loading-notebooks" id="toc-saving-and-loading-notebooks" class="nav-link" data-scroll-target="#saving-and-loading-notebooks"> <span class="header-section-number">1.2.3</span> Saving and loading notebooks</a></li>
   </ul></li>
-  <li><a href="#object-oriented-programming" id="toc-object-oriented-programming" class="nav-link" data-scroll-target="#object-oriented-programming"> <span class="header-section-number">1.3</span> Object Oriented Programming</a></li>
+  <li><a href="#python-language-basics" id="toc-python-language-basics" class="nav-link" data-scroll-target="#python-language-basics"> <span class="header-section-number">1.3</span> Python language basics</a>
+  <ul class="collapse">
+  <li><a href="#object-oriented-programming" id="toc-object-oriented-programming" class="nav-link" data-scroll-target="#object-oriented-programming"> <span class="header-section-number">1.3.1</span> Object Oriented Programming</a></li>
+  <li><a href="#assigning-variable-name-to-object" id="toc-assigning-variable-name-to-object" class="nav-link" data-scroll-target="#assigning-variable-name-to-object"> <span class="header-section-number">1.3.2</span> Assigning variable name to object</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -290,8 +294,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Save the notebook by clicking on <code>File</code>, and selecting <code>Save as</code>, or clicking on the <code>Save and Checkpoint</code> icon (below the <code>File</code> tab). Your notebook will be saved as a file with an exptension <em>ipynb</em>. This file will contain all the code as well as the outputs, and can be loaded and edited by a Jupyter user. To load an existing Jupyter notebook, navigate to the folder of the notebook on the <em>landing page</em>, and then click on the file to open it.</p>
 </section>
 </section>
-<section id="object-oriented-programming" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="object-oriented-programming"><span class="header-section-number">1.3</span> Object Oriented Programming</h2>
+<section id="python-language-basics" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="python-language-basics"><span class="header-section-number">1.3</span> Python language basics</h2>
+<section id="object-oriented-programming" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="object-oriented-programming"><span class="header-section-number">1.3.1</span> Object Oriented Programming</h3>
 <p>Python is an object-oriented programming language. In layman terms, it means that every number, string, data structure, function, class, module, etc., exists in the python interpreter as a python object. An object may have attributes and methods associated with it. For example, let us define a variable that stores an integer:</p>
 <div class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -305,25 +311,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Real part of 'var':  0</code></pre>
 </div>
 </div>
-<p><strong>Attribute:</strong> An attribute is a value associated with an object which is referenced by name using dotted expressions. For example, if an object o has an attribute a it would be referenced as o.a.</p>
-<p><strong>Method:</strong> A function which is defined inside a class body. If called as an attribute of an instance of that class, the method will get the instance object as its first argument (which is usually called self).</p>
+<p><strong>Attribute:</strong> An attribute is a value associated with an object, defined within the class of the object.</p>
+<p><strong>Method:</strong> A method is a function associated with an object, defined within the class of the object, and has access to the attributes associated with the object.</p>
+<p>For looking at attributes and methods associated with an object, say <code>obj</code>, press tab key after typing <code>obj.</code>.</p>
 <p>Consider the example below of a class <em>example_class</em>:</p>
-<div class="cell" data-execution_count="94">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> example_class:</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    val <span class="op">=</span> <span class="dv">20</span>                     <span class="co"># class attribute</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, d):    </span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.d <span class="op">=</span> d              <span class="co"># instance attribute</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> show(<span class="va">self</span>):             <span class="co"># method</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="va">self</span>.c, <span class="va">self</span>.d) </span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> C(<span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    class_name <span class="op">=</span> <span class="st">'My Class'</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> my_method(<span class="va">self</span>):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'Hello World!'</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>e <span class="op">=</span> example_class()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In the above class, <code>val</code> is an attribute, while <code>__init__</code> and <code>show</code> are methods.</p>
+<p>In the above class, <code>class_name</code> is an attribute, while <code>my_method</code> is a method.</p>
+</section>
+<section id="assigning-variable-name-to-object" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="assigning-variable-name-to-object"><span class="header-section-number">1.3.2</span> Assigning variable name to object</h3>
+<p>When an object is assigned to a variable name, the variable name serves as a reference to the object. For example, consider the following assignment:</p>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">5</span>,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The variable name <code>x</code> is a reference to the memory location where the object <code>[5, 3]</code> is stored. Now, suppose assign <code>x</code> to a new variable <code>y</code>:</p>
+<div class="cell" data-execution_count="58">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In the above statement the variable name <code>y</code> now refers to the same object <code>[5,3]</code>. The object <code>[5,3]</code> does <strong>not</strong> get copied to a new memory location referred by <code>y</code>. To prove this, let us add an element to <code>y</code>:</p>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>y.append(<span class="dv">4</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[5, 3, 4]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[5, 3, 4]</code></pre>
+</div>
+</div>
+<p>When we changed <code>y</code>, note that <code>x</code> also changed to the same object, showing that <code>x</code> and <code>y</code> refer to the same object, instead of referring to different copies of the same object.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
