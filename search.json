@@ -18,7 +18,7 @@
     "href": "Introduction to Python and Jupyter Notebooks.html#installation",
     "title": "1  Introduction to Python and Jupyter Notebooks",
     "section": "1.1 Installation",
-    "text": "1.1 Installation\nAnaconda: If you are new to python, we recommend downloading the Anaconda installer and following the instructions for installation. Once installed, we’ll use the Jupyter Notebook interface to write code.\nQuarto: We’ll use Quarto to publish the **.ipynb* file containing text, python code, and the output. Download and install Quarto from here."
+    "text": "1.1 Installation\nAnaconda: If you are new to python, we recommend downloading the Anaconda installer and following the instructions for installation. Once installed, we’ll use the Jupyter Notebook interface to write code.\nQuarto: We’ll use Quarto to publish the .ipynb file containing text, python code, and the output. Download and install Quarto from here."
   },
   {
     "objectID": "Introduction to Python and Jupyter Notebooks.html#jupyter-notebook",
