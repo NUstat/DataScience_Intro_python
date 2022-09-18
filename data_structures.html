@@ -237,15 +237,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#concatenating-lists" id="toc-concatenating-lists" class="nav-link" data-scroll-target="#concatenating-lists"><span class="toc-section-number">2.2.3</span>  Concatenating lists</a></li>
   <li><a href="#sorting-a-list" id="toc-sorting-a-list" class="nav-link" data-scroll-target="#sorting-a-list"><span class="toc-section-number">2.2.4</span>  Sorting a list</a></li>
   <li><a href="#slicing-a-list" id="toc-slicing-a-list" class="nav-link" data-scroll-target="#slicing-a-list"><span class="toc-section-number">2.2.5</span>  Slicing a list</a></li>
-  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise"><span class="toc-section-number">2.2.6</span>  In-class exercise</a></li>
+  <li><a href="#practice-exercise" id="toc-practice-exercise" class="nav-link" data-scroll-target="#practice-exercise"><span class="toc-section-number">2.2.6</span>  Practice exercise</a></li>
   </ul></li>
   <li><a href="#dictionary" id="toc-dictionary" class="nav-link" data-scroll-target="#dictionary"><span class="toc-section-number">2.3</span>  Dictionary</a>
   <ul class="collapse">
   <li><a href="#adding-and-removing-elements-in-a-dictionary" id="toc-adding-and-removing-elements-in-a-dictionary" class="nav-link" data-scroll-target="#adding-and-removing-elements-in-a-dictionary"><span class="toc-section-number">2.3.1</span>  Adding and removing elements in a dictionary</a></li>
+  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">2.3.2</span>  Practice exercise</a></li>
   </ul></li>
   <li><a href="#functions" id="toc-functions" class="nav-link" data-scroll-target="#functions"><span class="toc-section-number">2.4</span>  Functions</a>
   <ul class="collapse">
   <li><a href="#global-and-local-variables-with-respect-to-a-function" id="toc-global-and-local-variables-with-respect-to-a-function" class="nav-link" data-scroll-target="#global-and-local-variables-with-respect-to-a-function"><span class="toc-section-number">2.4.1</span>  Global and local variables with respect to a function</a></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">2.4.2</span>  Practice exercise</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -1502,8 +1504,8 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 </section>
-<section id="in-class-exercise" class="level3" data-number="2.2.6">
-<h3 data-number="2.2.6" class="anchored" data-anchor-id="in-class-exercise"><span class="header-section-number">2.2.6</span> In-class exercise</h3>
+<section id="practice-exercise" class="level3" data-number="2.2.6">
+<h3 data-number="2.2.6" class="anchored" data-anchor-id="practice-exercise"><span class="header-section-number">2.2.6</span> Practice exercise</h3>
 <p><strong>Q1:</strong>. Start with the list [8,9,10]. Do the following: 1. Set the second entry (index 1) to 17 2. Add 4, 5, and 6 to the end of the list 3. Remove the first entry from the list 4. Sort the list 5. Double the list (concatenate the list to itself) 6. Insert 25 at index 3</p>
 <p>The final list should equal [4,5,6,25,10,17,4,5,6,10,17]</p>
 <div class="cell" data-execution_count="80">
@@ -1512,24 +1514,17 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 <p>Ask the user to enter a list containing numbers between 1 and 12. Then replace all of the entries in the list that are greater than 10 with 10.</p>
-<div class="cell" data-execution_count="84">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">5</span>,<span class="dv">98</span>,<span class="dv">10</span>,<span class="dv">67</span>]</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>[<span class="bu">min</span>(x,<span class="dv">10</span>) <span class="cf">for</span> x <span class="kw">in</span> L]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="84">
-<pre><code>[5, 10, 10, 10]</code></pre>
-</div>
-</div>
-<p><strong>Q2:</strong> The GFP per capita of USA from 1960 to 2021 is given by the list <code>L</code> given in the code cell below.</p>
+<p><strong>Q2:</strong> The GDP per capita of USA from 1960 to 2021 is given by the tuple <code>T</code> given in the code cell below.</p>
 <p>Use a list comprehension to produce a list of the gaps between consecutive entries in L, i.e, the increase in GDP as compared to the previous year. The list with gaps should look like: [60, 177, …]. Then find:</p>
 <ol type="1">
 <li>The maximum gap size, i.e, the maximum increase in GDP per capita,</li>
 <li>The year when the GDP per capita increase was the maximum,</li>
 <li>The percentage of gaps that have size greater than $1000.</li>
 </ol>
-<div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> [<span class="dv">3007</span>, <span class="dv">3067</span>, <span class="dv">3244</span>, <span class="dv">3375</span>,<span class="dv">3574</span>, <span class="dv">3828</span>, <span class="dv">4146</span>, <span class="dv">4336</span>, <span class="dv">4696</span>, <span class="dv">5032</span>,<span class="dv">5234</span>,<span class="dv">5609</span>,<span class="dv">6094</span>,<span class="dv">6726</span>,<span class="dv">7226</span>,<span class="dv">7801</span>,<span class="dv">8592</span>,<span class="dv">9453</span>,<span class="dv">10565</span>,<span class="dv">11674</span>,<span class="dv">12575</span>,<span class="dv">13976</span>,<span class="dv">14434</span>,<span class="dv">15544</span>,<span class="dv">17121</span>,<span class="dv">18237</span>,<span class="dv">19071</span>,<span class="dv">20039</span>,<span class="dv">21417</span>,<span class="dv">22857</span>,<span class="dv">23889</span>,<span class="dv">24342</span>,<span class="dv">25419</span>,<span class="dv">26387</span>,<span class="dv">27695</span>,<span class="dv">28691</span>,<span class="dv">29968</span>,<span class="dv">31459</span>,<span class="dv">32854</span>,<span class="dv">34515</span>,<span class="dv">36330</span>,<span class="dv">37134</span>,<span class="dv">37998</span>,<span class="dv">39490</span>,<span class="dv">41725</span>,<span class="dv">44123</span>,<span class="dv">46302</span>,<span class="dv">48050</span>,<span class="dv">48570</span>,<span class="dv">47195</span>,<span class="dv">48651</span>,<span class="dv">50066</span>,<span class="dv">51784</span>,<span class="dv">53291</span>,<span class="dv">55124</span>,<span class="dv">56763</span>,<span class="dv">57867</span>,<span class="dv">59915</span>,<span class="dv">62805</span>,<span class="dv">65095</span>,<span class="dv">63028</span>,<span class="dv">69288</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>T <span class="op">=</span> (<span class="dv">3007</span>, <span class="dv">3067</span>, <span class="dv">3244</span>, <span class="dv">3375</span>,<span class="dv">3574</span>, <span class="dv">3828</span>, <span class="dv">4146</span>, <span class="dv">4336</span>, <span class="dv">4696</span>, <span class="dv">5032</span>,<span class="dv">5234</span>,<span class="dv">5609</span>,<span class="dv">6094</span>,<span class="dv">6726</span>,<span class="dv">7226</span>,<span class="dv">7801</span>,<span class="dv">8592</span>,<span class="dv">9453</span>,<span class="dv">10565</span>,<span class="dv">11674</span>,<span class="dv">12575</span>,<span class="dv">13976</span>,<span class="dv">14434</span>,<span class="dv">15544</span>,<span class="dv">17121</span>,<span class="dv">18237</span>,<span class="dv">19071</span>,<span class="dv">20039</span>,<span class="dv">21417</span>,<span class="dv">22857</span>,<span class="dv">23889</span>,<span class="dv">24342</span>,<span class="dv">25419</span>,<span class="dv">26387</span>,<span class="dv">27695</span>,<span class="dv">28691</span>,<span class="dv">29968</span>,<span class="dv">31459</span>,<span class="dv">32854</span>,<span class="dv">34515</span>,<span class="dv">36330</span>,<span class="dv">37134</span>,<span class="dv">37998</span>,<span class="dv">39490</span>,<span class="dv">41725</span>,<span class="dv">44123</span>,<span class="dv">46302</span>,<span class="dv">48050</span>,<span class="dv">48570</span>,<span class="dv">47195</span>,<span class="dv">48651</span>,<span class="dv">50066</span>,<span class="dv">51784</span>,<span class="dv">53291</span>,<span class="dv">55124</span>,<span class="dv">56763</span>,<span class="dv">57867</span>,<span class="dv">59915</span>,<span class="dv">62805</span>,<span class="dv">65095</span>,<span class="dv">63028</span>,<span class="dv">69288</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="62">
+<div class="cell" data-execution_count="121">
 <div class="cell-output cell-output-stdout">
 <pre><code>Maximum gap size =  6260
 The year the GDP per capita increase was maximum is: 2021
@@ -2451,39 +2446,39 @@ if (typeof version == 'undefined') {
 </ol>
 <p>The examples below illustrate the above advantages of a tuple.</p>
 <div class="cell" data-execution_count="131">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example showing tuples take less storage space than lists for the same elements</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>tuple_ex <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">'Obama'</span>)</span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>list_ex <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">'Obama'</span>]</span>
-<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Space taken by tuple ="</span>,tuple_ex.__sizeof__(),<span class="st">" bytes"</span>)</span>
-<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Space taken by list ="</span>,list_ex.__sizeof__(),<span class="st">" bytes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Example showing tuples take less storage space than lists for the same elements</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>tuple_ex <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">'Obama'</span>)</span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>list_ex <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">'Obama'</span>]</span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Space taken by tuple ="</span>,tuple_ex.__sizeof__(),<span class="st">" bytes"</span>)</span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Space taken by list ="</span>,list_ex.__sizeof__(),<span class="st">" bytes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Space taken by tuple = 48  bytes
 Space taken by list = 64  bytes</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="166">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Examples showing that a tuples are not copied, while lists can be copied</span></span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>tuple_copy <span class="op">=</span> <span class="bu">tuple</span>(tuple_ex)</span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is tuple_copy same as tuple_ex?"</span>, tuple_ex <span class="kw">is</span> tuple_copy)</span>
-<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>list_copy <span class="op">=</span> <span class="bu">list</span>(list_ex)</span>
-<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is list_copy same as list_ex?"</span>,list_ex <span class="kw">is</span> list_copy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Examples showing that a tuples are not copied, while lists can be copied</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>tuple_copy <span class="op">=</span> <span class="bu">tuple</span>(tuple_ex)</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is tuple_copy same as tuple_ex?"</span>, tuple_ex <span class="kw">is</span> tuple_copy)</span>
+<span id="cb88-4"><a href="#cb88-4" aria-hidden="true" tabindex="-1"></a>list_copy <span class="op">=</span> <span class="bu">list</span>(list_ex)</span>
+<span id="cb88-5"><a href="#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Is list_copy same as list_ex?"</span>,list_ex <span class="kw">is</span> list_copy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Is tuple_copy same as tuple_ex? True
 Is list_copy same as list_ex? False</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="198">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Examples showing tuples takes lesser time to retrieve elements</span></span>
-<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span>
-<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> tm.time()</span>
-<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a>list_ex <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1000000</span>)) <span class="co">#List containinig whole numbers upto 1 million</span></span>
-<span id="cb92-5"><a href="#cb92-5" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>(list_ex[::<span class="op">-</span><span class="dv">2</span>])</span>
-<span id="cb92-6"><a href="#cb92-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time take to retrieve every 2nd element from a list = "</span>, tm.time()<span class="op">-</span>tt)</span>
-<span id="cb92-7"><a href="#cb92-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb92-8"><a href="#cb92-8" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> tm.time()</span>
-<span id="cb92-9"><a href="#cb92-9" aria-hidden="true" tabindex="-1"></a>tuple_ex <span class="op">=</span> <span class="bu">tuple</span>(<span class="bu">range</span>(<span class="dv">1000000</span>)) <span class="co">#tuple containinig whole numbers upto 1 million</span></span>
-<span id="cb92-10"><a href="#cb92-10" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>(tuple_ex[::<span class="op">-</span><span class="dv">2</span>])</span>
-<span id="cb92-11"><a href="#cb92-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time take to retrieve every 2nd element from a tuple = "</span>, tm.time()<span class="op">-</span>tt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Examples showing tuples takes lesser time to retrieve elements</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> tm.time()</span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>list_ex <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1000000</span>)) <span class="co">#List containinig whole numbers upto 1 million</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>(list_ex[::<span class="op">-</span><span class="dv">2</span>])</span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time take to retrieve every 2nd element from a list = "</span>, tm.time()<span class="op">-</span>tt)</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>tt <span class="op">=</span> tm.time()</span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a>tuple_ex <span class="op">=</span> <span class="bu">tuple</span>(<span class="bu">range</span>(<span class="dv">1000000</span>)) <span class="co">#tuple containinig whole numbers upto 1 million</span></span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>(tuple_ex[::<span class="op">-</span><span class="dv">2</span>])</span>
+<span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time take to retrieve every 2nd element from a tuple = "</span>, tm.time()<span class="op">-</span>tt)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Time take to retrieve every 2nd element from a list =  0.03579902648925781
 Time take to retrieve every 2nd element from a tuple =  0.02684164047241211</code></pre>
@@ -2495,11 +2490,11 @@ Time take to retrieve every 2nd element from a tuple =  0.02684164047241211</cod
 <h2 data-number="2.3" class="anchored" data-anchor-id="dictionary"><span class="header-section-number">2.3</span> Dictionary</h2>
 <p>A dictionary consists of key-value pairs, where the keys and values are python objects. While values can be any python object, keys need to be immutable python objects, like strings, intergers, tuples, etc. Thus, a list can be a value, but not a key, as a elements of list can be changed. A dictionary is defined using the keyword <code>dict</code> along with curly braces, colons to separate keys and values, and commas to separate elements of a dictionary:</p>
 <div class="cell" data-execution_count="203">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>dict_example <span class="op">=</span> {<span class="st">'USA'</span>:<span class="st">'Joe Biden'</span>, <span class="st">'India'</span>:<span class="st">'Narendra Modi'</span>, <span class="st">'China'</span>:<span class="st">'Xi Jinping'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>dict_example <span class="op">=</span> {<span class="st">'USA'</span>:<span class="st">'Joe Biden'</span>, <span class="st">'India'</span>:<span class="st">'Narendra Modi'</span>, <span class="st">'China'</span>:<span class="st">'Xi Jinping'</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Elements of a dictionary can be retrieved by using the corresponding key.</p>
 <div class="cell" data-execution_count="204">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>dict_example[<span class="st">'India'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>dict_example[<span class="st">'India'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="204">
 <pre><code>'Narendra Modi'</code></pre>
 </div>
@@ -2508,9 +2503,9 @@ Time take to retrieve every 2nd element from a tuple =  0.02684164047241211</cod
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="adding-and-removing-elements-in-a-dictionary"><span class="header-section-number">2.3.1</span> Adding and removing elements in a dictionary</h3>
 <p>New elements can be added to a dictionary by defining a key in square brackets and assiging it to a value:</p>
 <div class="cell" data-execution_count="216">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>dict_example[<span class="st">'Japan'</span>] <span class="op">=</span> <span class="st">'Fumio Kishida'</span></span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>dict_example[<span class="st">'Countries'</span>] <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>dict_example[<span class="st">'Japan'</span>] <span class="op">=</span> <span class="st">'Fumio Kishida'</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>dict_example[<span class="st">'Countries'</span>] <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="216">
 <pre><code>{'USA': 'Joe Biden',
  'India': 'Narendra Modi',
@@ -2521,11 +2516,11 @@ Time take to retrieve every 2nd element from a tuple =  0.02684164047241211</cod
 </div>
 <p>Elements can be removed from the dictionary using the <code>del</code> method or the <code>pop</code> method:</p>
 <div class="cell" data-execution_count="217">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing the element having key as 'Countries'</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dict_example[<span class="st">'Countries'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing the element having key as 'Countries'</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="kw">del</span> dict_example[<span class="st">'Countries'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="218">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="218">
 <pre><code>{'USA': 'Joe Biden',
  'India': 'Narendra Modi',
@@ -2534,22 +2529,22 @@ Time take to retrieve every 2nd element from a tuple =  0.02684164047241211</cod
 </div>
 </div>
 <div class="cell" data-execution_count="219">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing the element having key as 'USA'</span></span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>dict_example.pop(<span class="st">'USA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Removing the element having key as 'USA'</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>dict_example.pop(<span class="st">'USA'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="219">
 <pre><code>'Joe Biden'</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="220">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="220">
 <pre><code>{'India': 'Narendra Modi', 'China': 'Xi Jinping', 'Japan': 'Fumio Kishida'}</code></pre>
 </div>
 </div>
 <p>New elements can be added, and values of exisiting keys can be changed using the <code>update</code> method:</p>
 <div class="cell" data-execution_count="226">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>dict_example <span class="op">=</span> {<span class="st">'USA'</span>:<span class="st">'Joe Biden'</span>, <span class="st">'India'</span>:<span class="st">'Narendra Modi'</span>, <span class="st">'China'</span>:<span class="st">'Xi Jinping'</span>,<span class="st">'Countries'</span>:<span class="dv">3</span>}</span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>dict_example <span class="op">=</span> {<span class="st">'USA'</span>:<span class="st">'Joe Biden'</span>, <span class="st">'India'</span>:<span class="st">'Narendra Modi'</span>, <span class="st">'China'</span>:<span class="st">'Xi Jinping'</span>,<span class="st">'Countries'</span>:<span class="dv">3</span>}</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="226">
 <pre><code>{'USA': ['Joe Biden'],
  'India': 'Narendra Modi',
@@ -2558,16 +2553,34 @@ Time take to retrieve every 2nd element from a tuple =  0.02684164047241211</cod
 </div>
 </div>
 <div class="cell" data-execution_count="223">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>dict_example.update({<span class="st">'Countries'</span>:<span class="dv">4</span>, <span class="st">'Japan'</span>:<span class="st">'Fumio Kishida'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>dict_example.update({<span class="st">'Countries'</span>:<span class="dv">4</span>, <span class="st">'Japan'</span>:<span class="st">'Fumio Kishida'</span>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="224">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>dict_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="224">
 <pre><code>{'USA': 'Joe Biden',
  'India': 'Narendra Modi',
  'China': 'Xi Jinping',
  'Countries': 4,
  'Japan': 'Fumio Kishida'}</code></pre>
+</div>
+</div>
+</section>
+<section id="practice-exercise-1" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="practice-exercise-1"><span class="header-section-number">2.3.2</span> Practice exercise</h3>
+<p>The GDP per capita of USA for most years from 1960 to 2021 is given by the dictionary <code>D</code> given in the code cell below.</p>
+<p>Find:</p>
+<ol type="1">
+<li>The GDP per capita in 2015</li>
+<li>The GDP per capita of 2014 is missing. Update the dictionary to include the GDP per capita of 2014 as the average of the GDP per capita of 2013 and 2015.</li>
+<li>Impute the GDP per capita of other missing years in the same manner as in (2), i.e., as the average GDP per capita of the previous year and the next year. Note that the GDP per capita is not missing for any two consecutive years.</li>
+</ol>
+<div class="cell" data-execution_count="115">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> {<span class="st">'1960'</span>:<span class="dv">3007</span>,<span class="st">'1961'</span>:<span class="dv">3067</span>,<span class="st">'1962'</span>:<span class="dv">3244</span>,<span class="st">'1963'</span>:<span class="dv">3375</span>,<span class="st">'1964'</span>:<span class="dv">3574</span>,<span class="st">'1965'</span>:<span class="dv">3828</span>,<span class="st">'1966'</span>:<span class="dv">4146</span>,<span class="st">'1967'</span>:<span class="dv">4336</span>,<span class="st">'1968'</span>:<span class="dv">4696</span>,<span class="st">'1970'</span>:<span class="dv">5234</span>,<span class="st">'1971'</span>:<span class="dv">5609</span>,<span class="st">'1972'</span>:<span class="dv">6094</span>,<span class="st">'1973'</span>:<span class="dv">6726</span>,<span class="st">'1974'</span>:<span class="dv">7226</span>,<span class="st">'1975'</span>:<span class="dv">7801</span>,<span class="st">'1976'</span>:<span class="dv">8592</span>,<span class="st">'1978'</span>:<span class="dv">10565</span>,<span class="st">'1979'</span>:<span class="dv">11674</span>, <span class="st">'1980'</span>:<span class="dv">12575</span>,<span class="st">'1981'</span>:<span class="dv">13976</span>,<span class="st">'1982'</span>:<span class="dv">14434</span>,<span class="st">'1983'</span>:<span class="dv">15544</span>,<span class="st">'1984'</span>:<span class="dv">17121</span>,<span class="st">'1985'</span>:<span class="dv">18237</span>,  <span class="st">'1986'</span>:<span class="dv">19071</span>,<span class="st">'1987'</span>:<span class="dv">20039</span>,<span class="st">'1988'</span>:<span class="dv">21417</span>,<span class="st">'1989'</span>:<span class="dv">22857</span>,<span class="st">'1990'</span>:<span class="dv">23889</span>,<span class="st">'1991'</span>:<span class="dv">24342</span>,  <span class="st">'1992'</span>:<span class="dv">25419</span>,<span class="st">'1993'</span>:<span class="dv">26387</span>,<span class="st">'1994'</span>:<span class="dv">27695</span>,<span class="st">'1995'</span>:<span class="dv">28691</span>,<span class="st">'1996'</span>:<span class="dv">29968</span>,<span class="st">'1997'</span>:<span class="dv">31459</span>,  <span class="st">'1998'</span>:<span class="dv">32854</span>,<span class="st">'2000'</span>:<span class="dv">36330</span>,<span class="st">'2001'</span>:<span class="dv">37134</span>,<span class="st">'2002'</span>:<span class="dv">37998</span>,<span class="st">'2003'</span>:<span class="dv">39490</span>,<span class="st">'2004'</span>:<span class="dv">41725</span>,  <span class="st">'2005'</span>:<span class="dv">44123</span>,<span class="st">'2006'</span>:<span class="dv">46302</span>,<span class="st">'2007'</span>:<span class="dv">48050</span>,<span class="st">'2008'</span>:<span class="dv">48570</span>,<span class="st">'2009'</span>:<span class="dv">47195</span>,<span class="st">'2010'</span>:<span class="dv">48651</span>,  <span class="st">'2011'</span>:<span class="dv">50066</span>,<span class="st">'2012'</span>:<span class="dv">51784</span>,<span class="st">'2013'</span>:<span class="dv">53291</span>,<span class="st">'2015'</span>:<span class="dv">56763</span>,<span class="st">'2016'</span>:<span class="dv">57867</span>,<span class="st">'2017'</span>:<span class="dv">59915</span>,<span class="st">'2018'</span>:<span class="dv">62805</span>, <span class="st">'2019'</span>:<span class="dv">65095</span>,<span class="st">'2020'</span>:<span class="dv">63028</span>,<span class="st">'2021'</span>:<span class="dv">69288</span>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="116">
+<div class="cell-output cell-output-stdout">
+<pre><code>GDP per capita in 2015 = 56763</code></pre>
 </div>
 </div>
 </section>
@@ -2631,6 +2644,27 @@ Time take to retrieve every 2nd element from a tuple =  0.02684164047241211</cod
 <div class="cell-output cell-output-stdout">
 <pre><code>Local value of 'var' within 'sample_function()'=  4
 Global value of 'var' outside 'sample_function()' =  5</code></pre>
+</div>
+</div>
+</section>
+<section id="practice-exercise-2" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">2.4.2</span> Practice exercise</h3>
+<p>The object <code>deck</code> defined below corresponds to a deck of cards. Estimate the probablity that a five card hand will be a <a href="https://en.wikipedia.org/wiki/Flush_(cards)">flush</a>, as follows:</p>
+<ol type="1">
+<li>Write a function that accepts a hand of 5 cards as argument, and returns whether the hand is a flush or not.</li>
+<li>Randomly pull a hand of 5 cards from the deck. Call the function developed in (1) to determine if the hand is a flush.</li>
+<li>Repeat (2) 10,000 times.</li>
+<li>Estimate the probability of the hand being a flush from the results of the 10,000 simulations.</li>
+</ol>
+<p>You may use the function <a href="https://docs.python.org/3/library/random.html">shuffle()</a> from the <code>random</code> library to shuffle the deck everytime before pulling a hand of 5 cards.</p>
+<div class="cell" data-execution_count="85">
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>deck <span class="op">=</span> [{<span class="st">'value'</span>:i, <span class="st">'suit'</span>:c}</span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> c <span class="kw">in</span> [<span class="st">'spades'</span>, <span class="st">'clubs'</span>, <span class="st">'hearts'</span>, <span class="st">'diamonds'</span>]</span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">15</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="90">
+<div class="cell-output cell-output-stdout">
+<pre><code>Probability of obtainig a flush= 0.20000000000000018 %</code></pre>
 </div>
 </div>
 
