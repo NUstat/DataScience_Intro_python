@@ -269,8 +269,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Untructured data.</li>
 </ol>
 <p>Structured data is typically stored in a tabular form, where rows in the data correspond to “observations” and columns correspond to “variables”. For example, the following dataset contains 5 observations, where each observation (or row) consists of information about a movie. The variables (or columns) contain different pieces of information about a given movie. As all variables for a given row are related to the same movie, the data below is also called as relational data.</p>
-<div class="cell" data-execution_count="15">
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -2813,13 +2813,13 @@ if (typeof version == 'undefined') {
 <section id="reading-json-data" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="reading-json-data"><span class="header-section-number">3.3.3</span> Reading JSON data</h3>
 <p>JSON stands for JavaScript Object Notation, in which the data is stored and transmitted as plain text. Since the format is text only, JSON data can easily be exchanged between web applications, and used by any programming language. Unlinke the <em>csv</em> format, JSON supports a hierarchical data structure, and is easier to integrate with APIs.</p>
-<p>Lets read JSON data on Ted Talks. The <em>Pandas</em> function [read_json] (https://pandas.pydata.org/docs/reference/api/pandas.read_json.html) converts JSON data to a dataframe.</p>
-<div class="cell" data-execution_count="21">
+<p>Lets read JSON data on Ted Talks. The <em>Pandas</em> function <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_json.html">read_json</a> converts JSON data to a dataframe.</p>
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data <span class="op">=</span> pd.read_json(<span class="st">'https://raw.githubusercontent.com/cwkenwaysun/TEDmap/master/data/TED_Talks.json'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="27">
+<div class="cell" data-scrolled="true" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
