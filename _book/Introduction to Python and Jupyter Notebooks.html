@@ -171,7 +171,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Chap 2 Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  <a href="./Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -206,6 +206,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -224,7 +229,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"> <span class="header-section-number">1.2.1</span> Introduction</a></li>
   <li><a href="#writing-and-executing-code" id="toc-writing-and-executing-code" class="nav-link" data-scroll-target="#writing-and-executing-code"> <span class="header-section-number">1.2.2</span> Writing and executing code</a></li>
   <li><a href="#saving-and-loading-notebooks" id="toc-saving-and-loading-notebooks" class="nav-link" data-scroll-target="#saving-and-loading-notebooks"> <span class="header-section-number">1.2.3</span> Saving and loading notebooks</a></li>
+  <li><a href="#rendering-notebook-as-html" id="toc-rendering-notebook-as-html" class="nav-link" data-scroll-target="#rendering-notebook-as-html"> <span class="header-section-number">1.2.4</span> Rendering notebook as HTML</a></li>
   </ul></li>
+  <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In-class exercise</a></li>
   <li><a href="#python-language-basics" id="toc-python-language-basics" class="nav-link" data-scroll-target="#python-language-basics"> <span class="header-section-number">1.3</span> Python language basics</a>
   <ul class="collapse">
   <li><a href="#object-oriented-programming" id="toc-object-oriented-programming" class="nav-link" data-scroll-target="#object-oriented-programming"> <span class="header-section-number">1.3.1</span> Object Oriented Programming</a></li>
@@ -258,15 +265,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This chapter is a very brief introduction to python and Jupyter notebooks. We only discuss the content relevant for applying python to analyze data.</p>
 <section id="installation" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="installation"><span class="header-section-number">1.1</span> Installation</h2>
-<p>If you are new to python, we recommend downloading the <a href="https://docs.anaconda.com/anaconda/install/">Anaconda installer</a> and following the instructions for installation. Once installed, we’ll use the Jupyter Notebook interface to write code.</p>
+<p><strong>Anaconda:</strong> If you are new to python, we recommend downloading the <a href="https://docs.anaconda.com/anaconda/install/">Anaconda installer</a> and following the instructions for installation. Once installed, we’ll use the Jupyter Notebook interface to write code.</p>
+<p><strong>Quarto:</strong> We’ll use Quarto to publish the <em>.ipynb</em> file containing text, python code, and the output. Download and install Quarto from <a href="https://quarto.org/docs/get-started/">here</a>.</p>
 </section>
 <section id="jupyter-notebook" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="jupyter-notebook"><span class="header-section-number">1.2</span> Jupyter notebook</h2>
 <section id="introduction" class="level3" data-number="1.2.1">
 <h3 data-number="1.2.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1.2.1</span> Introduction</h3>
 <p>Jupyter notebook is an interactive platform, where you can write code and text, and make visualizations. You can access Jupyter notebook from the Anaconda Navigator, or directly open the Jupyter Notebook application itself. It should automatically open up in your default browser. The figure below shows a Jupyter Notebook opened with Google Chrome. This page is called the <em>landing page</em> of the notebook.</p>
-<div class="cell" data-execution_count="16">
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <img src="./Datasets/jupyter.jpg" width="700" height="400">
 </div>
 </div>
@@ -296,6 +304,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="1.2.3" class="anchored" data-anchor-id="saving-and-loading-notebooks"><span class="header-section-number">1.2.3</span> Saving and loading notebooks</h3>
 <p>Save the notebook by clicking on <code>File</code>, and selecting <code>Save as</code>, or clicking on the <code>Save and Checkpoint</code> icon (below the <code>File</code> tab). Your notebook will be saved as a file with an exptension <em>ipynb</em>. This file will contain all the code as well as the outputs, and can be loaded and edited by a Jupyter user. To load an existing Jupyter notebook, navigate to the folder of the notebook on the <em>landing page</em>, and then click on the file to open it.</p>
 </section>
+<section id="rendering-notebook-as-html" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="rendering-notebook-as-html"><span class="header-section-number">1.2.4</span> Rendering notebook as HTML</h3>
+<p>We’ll use Quarto to print the **.ipynb* file as HTML. Check the procedure for rendering a notebook as HTML <a href="https://quarto.org/docs/output-formats/html-basics.html">here</a>. You have several options to format the file.</p>
+<p>You will need to open the command prompt, navigate to the directory containing the file, and use the command: <code>quarto render filename.ipynb --to html</code>.</p>
+</section>
+</section>
+<section id="in-class-exercise" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="in-class-exercise">In-class exercise</h2>
+<ol type="1">
+<li>Create a new notebook.</li>
+<li>Save the file as <code>In_class_exercise1</code>.</li>
+<li>Give a heading to the file - <code>First HTML file</code>.</li>
+<li>Print <code>Today is day 1 of class</code>.</li>
+<li>Compute and print the number of hours of this course in the quarter (that will be 10 weeks x 2 classes per week x 1.33 hours per class).</li>
+</ol>
+<p>The HTML file should look like the picture below.</p>
+<div class="cell" data-execution_count="12">
+<div class="cell-output cell-output-display" data-execution_count="12">
+<img src="./Datasets/first_html.jpg" width="800" height="200">
+</div>
+</div>
 </section>
 <section id="python-language-basics" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="python-language-basics"><span class="header-section-number">1.3</span> Python language basics</h2>
