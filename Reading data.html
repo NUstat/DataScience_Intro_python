@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.0.37">
+<meta name="generator" content="quarto-1.1.251">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -11,10 +11,15 @@
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-span.underline{text-decoration: underline;}
-div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -53,7 +58,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -66,7 +71,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -171,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Chap 2 Reading data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  <a href="./Reading data.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -206,6 +211,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Datasets</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
   </div>
 </li>
@@ -214,26 +224,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc">
+        <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#types-of-data---structured-and-unstructured" id="toc-types-of-data---structured-and-unstructured" class="nav-link active" data-scroll-target="#types-of-data---structured-and-unstructured"> <span class="header-section-number">3.1</span> Types of data - structured and unstructured</a></li>
-  <li><a href="#reading-a-csv-file-with-pandas" id="toc-reading-a-csv-file-with-pandas" class="nav-link" data-scroll-target="#reading-a-csv-file-with-pandas"> <span class="header-section-number">3.2</span> Reading a <em>csv</em> file with <em>Pandas</em></a>
+  <li><a href="#types-of-data---structured-and-unstructured" id="toc-types-of-data---structured-and-unstructured" class="nav-link active" data-scroll-target="#types-of-data---structured-and-unstructured"><span class="toc-section-number">3.1</span>  Types of data - structured and unstructured</a></li>
+  <li><a href="#reading-a-csv-file-with-pandas" id="toc-reading-a-csv-file-with-pandas" class="nav-link" data-scroll-target="#reading-a-csv-file-with-pandas"><span class="toc-section-number">3.2</span>  Reading a <em>csv</em> file with <em>Pandas</em></a>
   <ul class="collapse">
-  <li><a href="#using-the-read_csv-function" id="toc-using-the-read_csv-function" class="nav-link" data-scroll-target="#using-the-read_csv-function"> <span class="header-section-number">3.2.1</span> Using the <em>read_csv</em> function</a></li>
-  <li><a href="#specifying-the-working-directory" id="toc-specifying-the-working-directory" class="nav-link" data-scroll-target="#specifying-the-working-directory"> <span class="header-section-number">3.2.2</span> Specifying the working directory</a></li>
-  <li><a href="#data-overview-and-summary-statistics" id="toc-data-overview-and-summary-statistics" class="nav-link" data-scroll-target="#data-overview-and-summary-statistics"> <span class="header-section-number">3.2.3</span> Data overview and summary statistics</a></li>
+  <li><a href="#using-the-read_csv-function" id="toc-using-the-read_csv-function" class="nav-link" data-scroll-target="#using-the-read_csv-function"><span class="toc-section-number">3.2.1</span>  Using the <em>read_csv</em> function</a></li>
+  <li><a href="#specifying-the-working-directory" id="toc-specifying-the-working-directory" class="nav-link" data-scroll-target="#specifying-the-working-directory"><span class="toc-section-number">3.2.2</span>  Specifying the working directory</a></li>
+  <li><a href="#data-overview-and-summary-statistics" id="toc-data-overview-and-summary-statistics" class="nav-link" data-scroll-target="#data-overview-and-summary-statistics"><span class="toc-section-number">3.2.3</span>  Data overview and summary statistics</a></li>
   </ul></li>
-  <li><a href="#reading-other-data-formats---txt-html-json" id="toc-reading-other-data-formats---txt-html-json" class="nav-link" data-scroll-target="#reading-other-data-formats---txt-html-json"> <span class="header-section-number">3.3</span> Reading other data formats - txt, html, json</a>
+  <li><a href="#reading-other-data-formats---txt-html-json" id="toc-reading-other-data-formats---txt-html-json" class="nav-link" data-scroll-target="#reading-other-data-formats---txt-html-json"><span class="toc-section-number">3.3</span>  Reading other data formats - txt, html, json</a>
   <ul class="collapse">
-  <li><a href="#reading-txt-files" id="toc-reading-txt-files" class="nav-link" data-scroll-target="#reading-txt-files"> <span class="header-section-number">3.3.1</span> Reading <em>txt</em> files</a></li>
-  <li><a href="#reading-html-data" id="toc-reading-html-data" class="nav-link" data-scroll-target="#reading-html-data"> <span class="header-section-number">3.3.2</span> Reading HTML data</a></li>
-  <li><a href="#reading-json-data" id="toc-reading-json-data" class="nav-link" data-scroll-target="#reading-json-data"> <span class="header-section-number">3.3.3</span> Reading JSON data</a></li>
-  <li><a href="#reading-data-from-web-apis" id="toc-reading-data-from-web-apis" class="nav-link" data-scroll-target="#reading-data-from-web-apis"> <span class="header-section-number">3.3.4</span> Reading data from web APIs</a></li>
+  <li><a href="#reading-txt-files" id="toc-reading-txt-files" class="nav-link" data-scroll-target="#reading-txt-files"><span class="toc-section-number">3.3.1</span>  Reading <em>txt</em> files</a></li>
+  <li><a href="#reading-html-data" id="toc-reading-html-data" class="nav-link" data-scroll-target="#reading-html-data"><span class="toc-section-number">3.3.2</span>  Reading HTML data</a></li>
+  <li><a href="#reading-json-data" id="toc-reading-json-data" class="nav-link" data-scroll-target="#reading-json-data"><span class="toc-section-number">3.3.3</span>  Reading JSON data</a></li>
+  <li><a href="#reading-data-from-web-apis" id="toc-reading-data-from-web-apis" class="nav-link" data-scroll-target="#reading-data-from-web-apis"><span class="toc-section-number">3.3.4</span>  Reading data from web APIs</a></li>
   </ul></li>
-  <li><a href="#writing-data" id="toc-writing-data" class="nav-link" data-scroll-target="#writing-data"> <span class="header-section-number">3.4</span> Writing data</a></li>
-  <li><a href="#sub-setting-data-loc-and-iloc" id="toc-sub-setting-data-loc-and-iloc" class="nav-link" data-scroll-target="#sub-setting-data-loc-and-iloc"> <span class="header-section-number">3.5</span> Sub-setting data: <code>loc</code> and <code>iloc</code></a></li>
+  <li><a href="#writing-data" id="toc-writing-data" class="nav-link" data-scroll-target="#writing-data"><span class="toc-section-number">3.4</span>  Writing data</a></li>
+  <li><a href="#sub-setting-data-loc-and-iloc" id="toc-sub-setting-data-loc-and-iloc" class="nav-link" data-scroll-target="#sub-setting-data-loc-and-iloc"><span class="toc-section-number">3.5</span>  Sub-setting data: <code>loc</code> and <code>iloc</code></a></li>
   </ul>
 </nav>
     </div>
@@ -264,8 +274,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Untructured data.</li>
 </ol>
 <p>Structured data is typically stored in a tabular form, where rows in the data correspond to “observations” and columns correspond to “variables”. For example, the following dataset contains 5 observations, where each observation (or row) consists of information about a movie. The variables (or columns) contain different pieces of information about a given movie. As all variables for a given row are related to the same movie, the data below is also called as relational data.</p>
-<div class="cell" data-execution_count="15">
-<div class="cell-output cell-output-display" data-execution_count="15">
+<div class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -2808,13 +2818,13 @@ if (typeof version == 'undefined') {
 <section id="reading-json-data" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="reading-json-data"><span class="header-section-number">3.3.3</span> Reading JSON data</h3>
 <p>JSON stands for JavaScript Object Notation, in which the data is stored and transmitted as plain text. Since the format is text only, JSON data can easily be exchanged between web applications, and used by any programming language. Unlinke the <em>csv</em> format, JSON supports a hierarchical data structure, and is easier to integrate with APIs.</p>
-<p>Lets read JSON data on Ted Talks. The <em>Pandas</em> function [read_json] (https://pandas.pydata.org/docs/reference/api/pandas.read_json.html) converts JSON data to a dataframe.</p>
-<div class="cell" data-execution_count="21">
+<p>Lets read JSON data on Ted Talks. The <em>Pandas</em> function <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_json.html">read_json</a> converts JSON data to a dataframe.</p>
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data <span class="op">=</span> pd.read_json(<span class="st">'https://raw.githubusercontent.com/cwkenwaysun/TEDmap/master/data/TED_Talks.json'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="27">
+<div class="cell" data-scrolled="true" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="27">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
@@ -4296,7 +4306,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   for (var i=0; i<noterefs.length; i++) {
     const ref = noterefs[i];
     tippyHover(ref, function() {
-      let href = ref.getAttribute('href');
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
