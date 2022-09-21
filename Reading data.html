@@ -274,8 +274,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Untructured data.</li>
 </ol>
 <p>Structured data is typically stored in a tabular form, where rows in the data correspond to “observations” and columns correspond to “variables”. For example, the following dataset contains 5 observations, where each observation (or row) consists of information about a movie. The variables (or columns) contain different pieces of information about a given movie. As all variables for a given row are related to the same movie, the data below is also called as relational data.</p>
-<div class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell" data-execution_count="1">
+<div class="cell-output cell-output-display" data-execution_count="1">
 
 <div>
 
@@ -363,12 +363,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="using-the-read_csv-function" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="using-the-read_csv-function"><span class="header-section-number">3.2.1</span> Using the <em>read_csv</em> function</h3>
 <p>We will use functions from the <em>Pandas</em> library of <em>Python</em> to read data. Let us import <em>Pandas</em> to use its functions.</p>
-<div class="cell" data-execution_count="22">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that <em>pd</em> is the acronym that we will use to call a <em>Pandas</em> function. This acronym can be anything as desired by the user.</p>
 <p>The function to read a <em>csv</em> file is <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv()</a>. It reads the dataset into an object of type <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">Pandas DataFrame</a>. Let us read the dataset <em>movie_ratings.csv</em> in Python.</p>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>movie_ratings <span class="op">=</span> pd.read_csv(<span class="st">'movie_ratings.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The built-in python function <code>type</code> can be used to check the dataype of an object:</p>
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">'D:/Books/DataScience_Intro_python/Datasets'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can read the dataset from this location without mentioning the entire path as shown below.</p>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>movie_ratings <span class="op">=</span> pd.read_csv(<span class="st">'movie_ratings.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -513,19 +513,19 @@ The bold integers on the left are the indices of the DataFrame. Each index refer
 <p>Collectively, the indices and column names are referred as <strong>axis labels</strong>.</p>
 <p><strong>Shape of DataFrame</strong>:<br>
 For finding the number of rows and columns in the data, you may use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shape.html">shape()</a> function.</p>
-<div class="cell" data-execution_count="179">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the shape of movie_ratings dataset</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>movie_ratings.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="179">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>(2228, 11)</code></pre>
 </div>
 </div>
 <p>The <em>movie_ratings</em> dataset contains 2,809 observations (or rows) and 15 variables (or columns).</p>
-<p>For obtaining summary statistics of data, you may use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html">describe()</a> function.</p>
-<div class="cell" data-execution_count="180">
+<p>For obtaining summary statistics of data, you may use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.describe.html">describe()</a> function with a Pandas DataFrame.</p>
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding summary statistics of movie_ratings dataset</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>movie_ratings.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="180">
+<div class="cell-output cell-output-display" data-execution_count="7">
 
 <div>
 
@@ -2419,6 +2419,27 @@ if (typeof version == 'undefined') {
         
 </div>
 </div>
+<p>The Pandas DataFrame class also has functions such as <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sum.html">sum()</a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.mean.html">mean()</a> to compute sum over rows or columns of a DataFrame.</p>
+<p>Let us compute the mean of all the numeric columns of the data:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>movie_ratings.mean(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>US Gross             5.076370e+07
+Worldwide Gross      1.019370e+08
+Production Budget    3.816055e+07
+IMDB Rating          6.239004e+00
+IMDB Votes           3.358515e+04
+dtype: float64</code></pre>
+</div>
+</div>
+<p>The argument <code>axis=0</code> denotes that the mean is taken over all the rows of the DataFrame. For computing a statistic across column the argumen <code>axis=1</code> should be used.</p>
+<p>If mean over individual columns is desired, then they should be subset from the data. For example, let us compute the mean IMDB rating of all the movies:</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>movie_ratings[<span class="st">'IMDB Rating'</span>].mean(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>6.2390035906642725</code></pre>
+</div>
+</div>
 </div></div></section>
 </section>
 <section id="reading-other-data-formats---txt-html-json" class="level2" data-number="3.3">
@@ -2428,7 +2449,7 @@ if (typeof version == 'undefined') {
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="reading-txt-files"><span class="header-section-number">3.3.1</span> Reading <em>txt</em> files</h3>
 <p>The <em>txt</em> format offers some additional flexibility as compared to the <em>csv</em> format. In the <em>csv</em> format, the delimiter is a comma (or the column values are separated by a comma). However, in a <em>txt</em> file, the delimiter can be anything as desired by the user. Let us read the file <em>movie_ratings.txt</em>, where the variable values are separated by a tab character.</p>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>movie_ratings_txt <span class="op">=</span> pd.read_csv(<span class="st">'movie_ratings.txt'</span>,sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>movie_ratings_txt <span class="op">=</span> pd.read_csv(<span class="st">'movie_ratings.txt'</span>,sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We use the function <em>read_csv</em> to read a <em>txt</em> file. However, we mention the tab character (’) as a separater of variable values.</p>
 <p>Note that there is no need to remember the argument name - <em>sep</em> for specifying the delimiter. You can always refer to the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv()</a> documentation to find the relevant argument.</p>
@@ -2437,29 +2458,29 @@ if (typeof version == 'undefined') {
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="reading-html-data"><span class="header-section-number">3.3.2</span> Reading HTML data</h3>
 <p>The <em>Pandas</em> function <em>read_html</em> searches for tabular data, i.e., data contained within the <em>&lt;table&gt;</em> tags of an html file. Let us read the tables in the GDP per capita <a href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita">page</a> on Wikipedia.</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading all the tables from the Wikipedia page on GDP per capita</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading all the tables from the Wikipedia page on GDP per capita</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>All the tables will be read and stored in the variable named as <em>tables</em>. Let us find the datatype of the variable <em>tables</em>.</p>
 <div class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finidng datatype of the variable - tables</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finidng datatype of the variable - tables</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
 <pre><code>list</code></pre>
 </div>
 </div>
 <p>The variable - tables is a list of all the tables read from the HTML data.</p>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of tables read from the page</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of tables read from the page</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>6</code></pre>
 </div>
 </div>
 <p>The in-built function <em>len</em> can be used to find the length of the list - <em>tables</em> or the number of tables read from the Wikipedia page. Let us check out the first table.</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking out the first table. Note that the index of the first table will be 0.</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking out the first table. Note that the index of the first table will be 0.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
@@ -2487,8 +2508,8 @@ if (typeof version == 'undefined') {
 </div>
 <p>The above table doesn’t seem to be useful. Let us check out the second table.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking out the second table. Note that the index of the first table will be 1.</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking out the second table. Note that the index of the first table will be 1.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
@@ -2645,20 +2666,20 @@ if (typeof version == 'undefined') {
 </div>
 <p>The above table contains the estimated GDP per capita of all countries. This is the table that is likely to be relevant to a user interested in analyzing GDP per capita of countries. Instead of reading all tables of an HTML file, we can focus the search to tables containing certain relevant keywords. Let us try searching all table containing the word ‘Country’.</p>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading all the tables from the Wikipedia page on GDP per capita, containing the word 'Country'</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>, match <span class="op">=</span> <span class="st">'Country'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading all the tables from the Wikipedia page on GDP per capita, containing the word 'Country'</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>, match <span class="op">=</span> <span class="st">'Country'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <em>match</em> argument can be used to specify the kewyords to be present in the table to be read.</p>
 <div class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>1</code></pre>
 </div>
 </div>
 <p>Only one table contains the keyword - ‘Country’. Let us check out the table obtained.</p>
 <div class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Table having the keyword - 'Country' from the HTML page</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Table having the keyword - 'Country' from the HTML page</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 
 <div>
@@ -2820,10 +2841,10 @@ if (typeof version == 'undefined') {
 <p>JSON stands for JavaScript Object Notation, in which the data is stored and transmitted as plain text. Since the format is text only, JSON data can easily be exchanged between web applications, and used by any programming language. Unlinke the <em>csv</em> format, JSON supports a hierarchical data structure, and is easier to integrate with APIs.</p>
 <p>Lets read JSON data on Ted Talks. The <em>Pandas</em> function <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_json.html">read_json</a> converts JSON data to a dataframe.</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data <span class="op">=</span> pd.read_json(<span class="st">'https://raw.githubusercontent.com/cwkenwaysun/TEDmap/master/data/TED_Talks.json'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data <span class="op">=</span> pd.read_json(<span class="st">'https://raw.githubusercontent.com/cwkenwaysun/TEDmap/master/data/TED_Talks.json'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
@@ -3861,14 +3882,14 @@ if (typeof version == 'undefined') {
 <p><a href="https://en.wikipedia.org/wiki/API">API</a>, an acronym for Application programming interface, is a way of transferring information between systems. Many websites have public APIs that provide data via JSON or other formats. For example, the <a href="https://imdb-api.com/">IMDb-API</a> is a web service for receiving movies, serial, and cast information. API results are in the JSON format and include items such as movie specifications, ratings, Wikipedia page content, etc. One of these APIs contains ratings of the top 250 movies on IMDB. Let us read this data using the IMDB API.</p>
 <p>We’ll use the <em>get</em> function from the python library <em>requests</em> to request data from the API and obtain a response code. The response code will let us know if our request to pull data from this API was successful.</p>
 <div class="cell" data-execution_count="124">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the requests library</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests <span class="im">as</span> rq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the requests library</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests <span class="im">as</span> rq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading imdb top 250 movie's data</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://imdb-api.com/en/API/Top250Movies/k_v6gf8ppf'</span> <span class="co">#URL of the API containing top 250 movies based on IMDB ratings</span></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> rq.get(url) <span class="co">#Requesting data from the API</span></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading imdb top 250 movie's data</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://imdb-api.com/en/API/Top250Movies/k_v6gf8ppf'</span> <span class="co">#URL of the API containing top 250 movies based on IMDB ratings</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> rq.get(url) <span class="co">#Requesting data from the API</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>response</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="125">
 <pre><code>&lt;Response [200]&gt;</code></pre>
 </div>
@@ -3876,22 +3897,22 @@ if (typeof version == 'undefined') {
 <p>We have a response code of 200, which indicates that the request was successful.</p>
 <p>The response object’s JSON method will return a dictionary containing JSON parsed into native Python objects.</p>
 <div class="cell" data-execution_count="122">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>movie_data <span class="op">=</span> response.json()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>movie_data <span class="op">=</span> response.json()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="123">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>movie_data.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>movie_data.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="123">
 <pre><code>dict_keys(['items', 'errorMessage'])</code></pre>
 </div>
 </div>
 <p>The <em>movie_data</em> contains only two keys. The <em>items</em> key seems likely to contain information about the top 250 movies. Let us convert the values of the <em>items</em> key (which is list of dictionaries) to a dataframe, so that we can view it in a tabular form.</p>
 <div class="cell" data-execution_count="126">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Converting a list of dictionaries to a dataframe</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>movie_data_df <span class="op">=</span> pd.DataFrame(movie_data[<span class="st">'items'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Converting a list of dictionaries to a dataframe</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>movie_data_df <span class="op">=</span> pd.DataFrame(movie_data[<span class="st">'items'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking the movie data pulled using the API</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking the movie data pulled using the API</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 
 <div>
@@ -3978,8 +3999,8 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 <div class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Rows and columns of the movie data</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Rows and columns of the movie data</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="114">
 <pre><code>(250, 9)</code></pre>
 </div>
@@ -3992,18 +4013,18 @@ if (typeof version == 'undefined') {
 <p>The <em>Pandas</em> function <em>to_csv</em> can be used to write (or export) data to a <em>csv</em> or <em>txt</em> file. Below are some examples.</p>
 <p><strong>Example 1:</strong> Let us export the movies data of the top 250 movies to a <em>csv</em> file.</p>
 <div class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exporting the data of the top 250 movies to a csv file</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.to_csv(<span class="st">'movie_data_exported.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exporting the data of the top 250 movies to a csv file</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.to_csv(<span class="st">'movie_data_exported.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The file <em>movie_data_exported.csv</em> will appear in the working directory.</p>
 <p><strong>Example 2:</strong> Let us export the movies data of the top 250 movies to a <em>txt</em> file with a semi-colon as the delimiter.</p>
 <div class="cell" data-execution_count="131">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>movie_data_df.to_csv(<span class="st">'movie_data_exported.txt'</span>,sep<span class="op">=</span><span class="st">';'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>movie_data_df.to_csv(<span class="st">'movie_data_exported.txt'</span>,sep<span class="op">=</span><span class="st">';'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Example 3:</strong> Let us export the movies data of the top 250 movies to a <em>JSON</em> file.</p>
 <div class="cell" data-execution_count="136">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'movie_data.json'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>    json.dump(movie_data, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'movie_data.json'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>    json.dump(movie_data, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="sub-setting-data-loc-and-iloc" class="level2" data-number="3.5">
@@ -4011,11 +4032,11 @@ if (typeof version == 'undefined') {
 <p>Sometimes we may be interested in working with a subset of rows and columns of the data, instead of working with the entire dataset. The indexing operators <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html">loc</a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html">iloc</a> provide a convenient of selecting a subset of desired rows and columns. The operator <code>loc</code> uses axis labels (row indices and column names) to subset the data, while <code>iloc</code> uses the index (this is different from the row index) corresponding to the position of the row or columns. Note that the index of the position for both the row and column starts from 0.</p>
 <p>Let us read the file <em>movie_IMDBratings_sorted.csv</em>, which has movies sorted in the descending order of their IMDB ratings.</p>
 <div class="cell" data-execution_count="43">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>movies_sorted <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movie_IMDBratings_sorted.csv'</span>,index_col <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>movies_sorted <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movie_IMDBratings_sorted.csv'</span>,index_col <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The argument <code>index_col=0</code> assigns the first column of the file as the row indices of the DataFrame.</p>
 <div class="cell" data-execution_count="44">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>movies_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>movies_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 
 <div>
@@ -4129,9 +4150,9 @@ if (typeof version == 'undefined') {
 </div>
 <p>Let us say, we wish to subset the title, worldwide gross, production budget, and IMDB raring of top 3 movies.</p>
 <div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting the DataFrame by loc - using axis labels</span></span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>movies_subset <span class="op">=</span> movies_sorted.loc[<span class="dv">1</span>:<span class="dv">3</span>,[<span class="st">'Title'</span>,<span class="st">'Worldwide Gross'</span>,<span class="st">'Production Budget'</span>,<span class="st">'IMDB Rating'</span>]]</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>movies_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting the DataFrame by loc - using axis labels</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>movies_subset <span class="op">=</span> movies_sorted.loc[<span class="dv">1</span>:<span class="dv">3</span>,[<span class="st">'Title'</span>,<span class="st">'Worldwide Gross'</span>,<span class="st">'Production Budget'</span>,<span class="st">'IMDB Rating'</span>]]</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>movies_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
 
 <div>
@@ -4181,9 +4202,9 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 <div class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting the DataFrame by iloc - using index of the position of rows and columns</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>movies_subset <span class="op">=</span> movies_sorted.iloc[<span class="dv">0</span>:<span class="dv">3</span>,[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">9</span>]]</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>movies_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting the DataFrame by iloc - using index of the position of rows and columns</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>movies_subset <span class="op">=</span> movies_sorted.iloc[<span class="dv">0</span>:<span class="dv">3</span>,[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">9</span>]]</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>movies_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="49">
 
 <div>
