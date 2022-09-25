@@ -1,0 +1,321 @@
+Year,Ranking,Artist,Album,Worldwide Sales,CDs,Tracks,Album Length,Hours,Minutes,Seconds,Genre
+1990,8,Phil Collins,Serious Hits... Live!,9956520,1,15,1:16:53,1.28,76.88,4613,Rock
+1990,1,Madonna,The Immaculate Collection,30000000,1,17,1:13:32,1.23,73.53,4412,Pop
+1990,10,The Three Tenors,Carreras Domingo Pavarotti In Concert 1990,8533000,1,17,1:07:55,1.13,67.92,4075,Classical
+1990,4,MC Hammer,Please Hammer Don't Hurt Em,18000000,1,13,0:59:04,0.98,59.07,3544,Hip Hop
+1990,6,Movie Soundtrack,Aashiqui,15000000,1,12,0:58:13,0.97,58.22,3493,World
+1990,7,Whitney Houston,I'm Your Baby Tonight,10000000,1,11,0:53:45,0.9,53.75,3225,Pop
+1990,2,New Kids On The Block,Step By Step,20000000,1,12,0:47:44,0.8,47.73,2864,Pop
+1990,5,Mariah Carey,Mariah Carey,15000000,1,11,0:46:46,0.78,46.77,2806,Pop
+1990,9,Enigma,MCMXC A.D.,8838000+,1,7,0:40:16,0.67,40.27,2416,Pop
+1990,3,Garth Brooks,No Fences,18770000,1,10,0:34:34,0.58,34.57,2074,Country
+1991,3,Michael Jackson,Dangerous,27000000,1,14,1:17:03,1.28,77.05,4623,Pop
+1991,4,Queen,Greatest Hits II,19000000,1,17,1:16:32,1.28,76.53,4592,Rock
+1991,8,Guns N Roses,Use Your Illusion I,15000000,1,16,1:16:09,1.27,76.15,4569,Rock
+1991,9,Guns N Roses,Use Your Illusion II,15000000,1,14,1:15:55,1.27,75.92,4555,Rock
+1991,7,Genesis,We Can't Dance,15000000,1,12,1:11:30,1.19,71.5,4290,Rock
+1991,1,Metallica,Metallica,33000000,1,12,1:02:40,1.04,62.67,3760,Rock
+1991,5,U2,Achtung Baby,18000000,1,12,0:55:27,0.92,55.45,3327,Rock
+1991,6,Pearl Jam,Ten,15710000,1,11,0:53:20,0.89,53.33,3200,Rock
+1991,2,Nirvana,Nevermind,30000000,1,13,0:42:36,0.71,42.6,2556,Rock
+1991,10,Garth Brooks,Ropin The Wind,14570000,1,10,0:36:37,0.61,36.62,2197,Country
+1992,2,ABBA,Gold - Greatest Hits,32000000,1,17,1:17:10,1.29,77.17,4630,Pop
+1992,10,ZZ Top,Greatest Hits,6337818,1,18,1:12:43,1.21,72.72,4363,Rock
+1992,5,Kenny G,Breathless,13204140,1,14,1:09:57,1.17,69.95,4197,Jazz
+1992,3,Eric Clapton,Unplugged,26000000,1,14,1:01:47,1.03,61.78,3707,Rock
+1992,1,Whitney Houston,The Bodyguard Soundtrack,45000000,1,13,0:57:44,0.96,57.73,3464,Pop
+1992,8,Stone Temple Pilots,Core,8337500,1,12,0:53:39,0.89,53.65,3219,Rock
+1992,4,R.E.M.,Automatic For The People,18000000,1,12,0:48:31,0.81,48.52,2911,Rock
+1992,6,Garth Brooks,The Chase,10535000,1,11,0:36:59,0.62,36.98,2219,Country
+1992,7,Billy Ray Cyrus,Some Gave All,10439676,1,10,0:35:42,0.6,35.7,2142,Country
+1992,9,Mariah Carey,MTV Unplugged,7000000,1,7,0:28:45,0.48,28.75,1725,Pop
+1993,5,Meat Loaf,Bat Out Of Hell II: Back Into Hell,15000000,1,11,1:15:38,1.26,75.63,4538,Rock
+1993,4,Janet Jackson,Janet.,20000000,1,28,1:15:23,1.26,75.38,4523,R&B
+1993,7,Celine Dion,The Colour Of My Love,12571000,1,15,1:05:39,1.09,65.65,3939,Pop
+1993,6,Metropole Orkest & Tom Petty,Greatest Hits,12972000,1,18,1:05:17,1.09,65.28,3917,Rock
+1993,9,Bryan Adams,So Far So Good,10105328,1,14,1:02:28,1.04,62.47,3748,Rock
+1993,3,Aerosmith,Get A Grip,20000000,1,14,1:02:06,1.04,62.1,3726,Rock
+1993,10,Toni Braxton,Toni Braxton,10000000,1,12,0:53:18,0.89,53.3,3198,R&B
+1993,2,Ace Of Base,Happy Nation / The Sign,25000000,1,13,0:49:21,0.82,49.35,2961,Pop
+1993,1,Mariah Carey,Music Box,30000000,1,10,0:42:01,0.7,42.02,2521,Pop
+1993,8,Garth Brooks,In Pieces,10847500,1,10,0:37:28,0.62,37.47,2248,Country
+1994,3,Bon Jovi,Cross Road,18500000,1,14,1:12:22,1.21,72.37,4342,Rock
+1994,10,Pink Floyd,The Division Bell,12000000,1,11,1:06:23,1.11,66.38,3983,Rock
+1994,8,Boyz II Men,II,13999880,1,13,0:57:38,0.96,57.63,3458,R&B
+1994,6,TLC,CrazySexyCool,14355000,1,16,0:56:10,0.94,56.17,3370,R&B
+1994,9,Nirvana,MTV Unplugged In New York,12529430,1,14,0:53:50,0.9,53.83,3230,Rock
+1994,7,The Cranberries,No Need To Argue,14190000,1,13,0:50:30,0.84,50.5,3030,Rock
+1994,5,Movie Soundtrack,The Lion King,14522893,1,12,0:46:40,0.78,46.67,2800,World
+1994,1,Hootie & The Blowfish,Cracked Rear View,22265000,1,11,0:46:36,0.78,46.6,2796,Rock
+1994,2,Green Day,Dookie,20000000,1,14,0:39:34,0.66,39.57,2374,Rock
+1994,4,Mariah Carey,Merry Christmas,15000000,1,10,0:39:31,0.66,39.52,2371,Pop
+1995,4,Michael Jackson,"History: Past, Present & Future Book I",20000000,2,30,2:28:51,2.48,148.85,8931,Pop
+1995,10,Bruce Springsteen,Greatest Hits,10593328,1,18,1:16:35,1.28,76.58,4595,Rock
+1995,9,Movie Soundtrack,Waiting To Exhale,12000000,1,16,1:12:51,1.21,72.85,4371,R&B
+1995,5,Queen,Made In Heaven,20000000,1,13,1:10:21,1.17,70.35,4221,Rock
+1995,7,No Doubt,Tragic Kingdom,13585000,1,14,0:59:30,0.99,59.5,3570,Rock
+1995,8,Jewel,Pieces Of You,13490000,1,14,0:58:31,0.98,58.52,3511,Pop
+1995,1,Alanis Morissette,Jagged Little Pill,33000000,1,13,0:57:23,0.96,57.38,3443,Rock
+1995,3,Oasis,(What's The Story) Morning Glory?,22000000,1,12,0:50:00,0.83,50,3000,Rock
+1995,6,Shania Twain,The Woman In Me,20000000,1,12,0:48:08,0.8,48.13,2888,Country
+1995,2,Mariah Carey,Daydream,25000000,1,12,0:46:42,0.78,46.7,2802,Pop
+1996,8,Metallica,Load,8061530,1,14,1:19:03,1.32,79.05,4743,Rock
+1996,9,Dave Matthews Band,Crash,7100000,1,12,1:08:51,1.15,68.85,4131,Rock
+1996,1,Celine Dion,Falling Into You,32000000,1,14,1:07:00,1.12,67,4020,Pop
+1996,6,Fugees,The Score,13860000,1,13,1:00:52,1.01,60.87,3652,Hip Hop
+1996,10,George Michael,Older,7051970,1,11,0:58:56,0.98,58.93,3536,Pop
+1996,4,Toni Braxton,Secrets,15000000,1,12,0:54:56,0.92,54.93,3296,R&B
+1996,5,Backstreet Boys,Backstreet Boys,14000000,1,13,0:54:28,0.91,54.47,3268,Pop
+1996,7,Movie Soundtrack,Raja Hindustani,11000000,1,8,0:51:22,0.86,51.37,3082,World
+1996,3,Matchbox Twenty,Yourself Or Someone Like You,15000000,1,12,0:46:43,0.78,46.72,2803,Rock
+1996,2,Spice Girls,Spice,23000000,1,10,0:39:56,0.67,39.93,2396,Pop
+1997,2,Celine Dion,Let's Talk About Love,30000000,1,16,1:14:28,1.24,74.47,4468,Pop
+1997,3,Movie Soundtrack,Titanic,30000000,1,15,1:12:31,1.21,72.52,4351,Classical
+1997,4,Andrea Bocelli,Romanza,20000000,1,15,1:10:13,1.17,70.22,4213,Classical
+1997,1,Shania Twain,Come On Over,40000000,1,16,1:00:06,1,60.1,3606,Country
+1997,9,Buena Vista Social Club,Buena Vista Social Club,12000000,1,14,1:00:00,1,60,3600,World
+1997,8,Movie Soundtrack,Dil To Pagal Hai,12500000,1,11,0:54:34,0.91,54.57,3274,World
+1997,10,Savage Garden,Savage Garden,12000000,1,12,0:49:44,0.83,49.73,2984,Rock
+1997,7,Backstreet Boys,Backstreet's Back,13000000,1,11,0:46:18,0.77,46.3,2778,Pop
+1997,5,Aqua,Aquarium,14000000,1,11,0:40:44,0.68,40.73,2444,Pop
+1997,6,Spice Girls,Spiceworld,14000000,1,10,0:38:37,0.64,38.62,2317,Pop
+1998,9,Garth Brooks,Double Live,10920000,2,26,1:40:11,1.67,100.18,6011,Country
+1998,10,Mariah Carey,#1's,10738067,1,17,1:13:13,1.22,73.22,4393,Pop
+1998,7,Kid Rock,Devil Without A Cause,11467500,1,14,1:11:12,1.19,71.2,4272,Rock
+1998,2,Lauryn Hill,The Miseducation of Lauryn Hill,20000000,1,14,1:09:20,1.16,69.33,4160,R&B
+1998,4,Madonna,Ray of Light,14000000,1,13,1:06:42,1.11,66.7,4002,Pop
+1998,3,Brandy,Never Say Never,15000000,1,16,1:06:36,1.11,66.6,3996,R&B
+1998,6,U2,The Best Of 1980-1990,12418000,1,14,1:05:35,1.09,65.58,3935,Rock
+1998,1,Cher,Believe,20000000,1,10,0:44:00,0.73,44,2640,Pop
+1998,5,Dixie Chicks,Wide Open Spaces,13715000,1,12,0:43:39,0.73,43.65,2619,Country
+1998,8,The Offspring,Americana,11000000,1,13,0:43:37,0.73,43.62,2617,Rock
+1999,3,Santana,Supernatural,25000000,1,13,1:14:59,1.25,74.98,4499,Rock
+1999,4,Celine Dion,All The Way... A Decade Of Song,18513351,1,16,1:11:58,1.2,71.97,4318,Pop
+1999,5,Ricky Martin,Ricky Martin,17000000,1,14,0:59:16,0.99,59.27,3556,Pop
+1999,9,Creed,Human Clay,13195000,1,11,0:56:28,0.94,56.47,3388,Rock
+1999,7,Red Hot Chili Peppers,Californiacation,16000000,1,15,0:56:24,0.94,56.4,3384,Rock
+1999,10,Dido,No Angel,12000000,1,12,0:51:51,0.86,51.85,3111,Pop
+1999,1,Backstreet Boys,Milennium,40000000,1,12,0:48:11,0.8,48.18,2891,Pop
+1999,8,Christina Aguilera,Christina Aguilera,14000000,1,12,0:46:27,0.77,46.45,2787,Pop
+1999,2,Britney Spears,...Baby One More Time,27000000,1,11,0:42:20,0.71,42.33,2540,Pop
+1999,6,Blink-182,Enema Of The State,16000000,1,12,0:35:17,0.59,35.28,2117,Rock
+2000,2,The Beatles,1,32000000,1,27,1:18:39,1.31,78.65,4719,Rock
+2000,1,Eminem,The Marshall Mathers LP,32000000,1,18,1:12:04,1.2,72.07,4324,Hip Hop
+2000,10,Nelly,Country Grammar,10715000,1,17,1:06:35,1.11,66.58,3995,Hip Hop
+2000,9,U2,All That You Can't Leave Behind,12000000,1,11,0:49:05,0.82,49.08,2945,Rock
+2000,4,Backstreet Boys,Black & Blue,24000000,1,13,0:47:53,0.8,47.88,2873,Pop
+2000,6,NSYNC,No Strings Attached,14215547,1,12,0:47:15,0.79,47.25,2835,Pop
+2000,5,Britney Spears,Oops! ... I Did It Again,20000000,1,12,0:44:37,0.74,44.62,2677,Pop
+2000,7,Coldplay,Parachutes,13000000,1,10,0:41:29,0.69,41.48,2489,Rock
+2000,3,Linkin Park,Hybrid Theory,27000000,1,12,0:37:45,0.63,37.75,2265,Rock
+2000,8,Enya,A Day Without Rain,12097445,1,12,0:37:30,0.63,37.5,2250,World
+2001,3,Alicia Keys,Songs In A Minor,12000000,1,16,1:03:04,1.05,63.07,3784,R&B
+2001,10,Gorillaz,Gorillaz,7000000,1,15,1:02:00,1.03,62,3720,Rock
+2001,8,Destiny's Child,Survivor,7235958,1,15,0:59:37,0.99,59.62,3577,R&B
+2001,1,P!NK,M!ssundaztood,15000000,1,14,0:55:11,0.92,55.18,3311,Rock
+2001,4,Enrique Iglesias,Escape,10000000,1,13,0:50:09,0.84,50.15,3009,Pop
+2001,7,Creed,Weathered,7428000,1,11,0:50:05,0.83,50.08,3005,Rock
+2001,2,Shakira,Laundry Service,13000000,1,13,0:49:14,0.82,49.23,2954,Pop
+2001,9,Britney Spears,Britney,7185329,1,12,0:39:47,0.66,39.78,2387,Pop
+2001,5,Nickelback,Silver Side Up,9301500,1,10,0:39:08,0.65,39.13,2348,Rock
+2001,6,Blink-182,Take Off Your Pants And Jacket,8000000,1,13,0:38:56,0.65,38.93,2336,Rock
+2002,6,Nelly,Nellyville,11000000,1,19,1:19:40,1.33,79.67,4780,Hip Hop
+2002,5,Elvis Presley,Elv1s: 30 #1 Hits,11483262,1,31,1:19:34,1.33,79.57,4774,Rock
+2002,10,Christina Aguilera,Stripped,8538166,1,20,1:17:34,1.29,77.57,4654,Pop
+2002,2,Eminem,The Eminem Show,20891750,1,20,1:17:19,1.29,77.32,4639,Hip Hop
+2002,9,Shania Twain,Up!,9530000,1,19,1:12:55,1.22,72.92,4375,Country
+2002,8,Justin Timberlake,Justified,10000000,1,13,1:03:15,1.05,63.25,3795,Pop
+2002,4,Coldplay,A Rush Of Blood To The Dead,11639492,1,11,0:54:08,0.9,54.13,3248,Rock
+2002,3,Avril Lavigne,Let Go,18000000,1,13,0:48:37,0.81,48.62,2917,Rock
+2002,7,Maroon 5,Songs About Jane,10111942,1,12,0:46:06,0.77,46.1,2766,Rock
+2002,1,Norah Jones,Come Away With Me,27000000,1,14,0:45:03,0.75,45.05,2703,Pop
+2003,10,Outkast,Speakerboxxx / The Love Below,7012000,2,39,2:14:39,2.24,134.65,8079,Hip Hop
+2003,4,Michael Jackson,Number Ones,9592405,1,18,1:18:52,1.31,78.87,4732,Pop
+2003,8,Beyonce,Dangerously In Love,7684083,1,15,1:00:52,1.01,60.87,3652,Pop
+2003,7,The Black Eyed Peas,Elephunk,7755057,1,13,0:59:30,0.99,59.5,3570,Hip Hop
+2003,9,Alicia Keys,The Diary Of Alicia Keys,7500000,1,15,0:57:45,0.96,57.75,3465,R&B
+2003,2,50 Cent,Get Rich Or Die Tryin,12000000,1,16,0:53:44,0.9,53.73,3224,Hip Hop
+2003,6,Dido,Life For Rent,7942249,1,12,0:51:57,0.87,51.95,3117,Pop
+2003,1,Evanescence,Fallen,17000000,1,12,0:48:45,0.81,48.75,2925,Rock
+2003,5,Nickelback,The Long Road,8000000,1,11,0:40:27,0.67,40.45,2427,Rock
+2003,3,Linkin Park,Meteora,11287487,1,13,0:36:35,0.61,36.58,2195,Rock
+2004,3,Guns N Roses,Greatest Hits,11646853,1,14,1:19:24,1.32,79.4,4764,Rock
+2004,8,Eminem,Encore,8918504,1,20,1:16:53,1.28,76.88,4613,Hip Hop
+2004,1,Usher,Confessions,20000000,1,17,1:00:30,1.01,60.5,3630,R&B
+2004,2,Green Day,American Idiot,12459000,1,13,0:57:12,0.95,57.2,3432,Rock
+2004,6,U2,How To Dismantle An Atomic Bomb,10000000,1,11,0:49:03,0.82,49.05,2943,Rock
+2004,10,Gwen Stefani,Love. Angel. Music. Baby.,7364944,1,12,0:48:27,0.81,48.45,2907,Rock
+2004,5,Norah Jones,Feels Like Home,10000000,1,13,0:46:26,0.77,46.43,2786,Pop
+2004,7,Kelly Clarkson,Breakaway,9903965,1,12,0:44:47,0.75,44.78,2687,Rock
+2004,9,Avril Lavigne,Under My Skin,8000000,1,12,0:40:47,0.68,40.78,2447,Rock
+2004,4,James Blunt,Back To Bedlam,11124158,1,10,0:39:28,0.66,39.47,2368,Pop
+2005,2,Eminem,Curtain Call: The Hits,12433091,1,17,1:17:55,1.3,77.92,4675,Hip Hop
+2005,7,50 Cent,The Massacre,8033713,1,22,1:17:22,1.29,77.37,4642,Hip Hop
+2005,9,The Black Eyed Peas,Monkey Business,7864434,1,15,1:06:03,1.1,66.05,3963,Hip Hop
+2005,3,Coldplay,X&Y,10000000,1,13,1:02:30,1.04,62.5,3750,Rock
+2005,4,Madonna,Confessions On A Dance Floor,10000000,1,12,0:56:28,0.94,56.47,3388,Pop
+2005,6,Carrie Underwood,Some Hearts,9335000,1,14,0:54:04,0.9,54.07,3244,Country
+2005,10,Robbie Williams,Intensive Care,7000000,1,12,0:53:02,0.88,53.03,3182,Pop
+2005,8,Gorillaz,Demon Days,8000000,1,15,0:50:47,0.85,50.78,3047,Rock
+2005,5,Mariah Carey,The Emancipation Of Mimi,10000000,1,14,0:50:00,0.83,50,3000,Pop
+2005,1,Nickelback,All The Right Reasons,19000000,1,11,0:41:33,0.69,41.55,2493,Rock
+2006,10,Red Hot Chili Peppers,Stadium Arcadium,5180790,2,28,2:02:19,2.04,122.32,7339,Rock
+2006,5,Movie Soundtrack,High School Musical,7749000,1,13,1:38:25,1.64,98.42,5905,Pop
+2006,4,The Beatles,Love,8000000,1,26,1:18:38,1.31,78.63,4718,Rock
+2006,3,Justin Timberlake,Future Sex / Love Sounds,8255866,1,12,1:06:12,1.1,66.2,3972,Pop
+2006,8,Fergie,The Dutchess,6428000,1,13,0:58:00,0.97,58,3480,Hip Hop
+2006,2,Nelly Furtado,Loose,10000000,1,13,0:54:20,0.91,54.33,3260,Pop
+2006,6,Akon,Konvicted,7290000,1,12,0:48:05,0.8,48.08,2885,R&B
+2006,9,Daughtry,Daughtry,6342000,1,12,0:43:20,0.72,43.33,2600,Rock
+2006,7,Taylor Swift,Taylor Swift,7270000,1,11,0:40:28,0.67,40.47,2428,Country
+2006,1,Amy Winehouse,Back To Black,16000000,1,11,0:34:56,0.58,34.93,2096,R&B
+2007,8,Garth Brooks,The Ultimate Hits,5539000,2,34,2:03:05,2.05,123.08,7385,Country
+2007,9,Eagles,Long Road Out Of Eden,5500000,2,20,1:30:46,1.51,90.77,5446,Rock
+2007,7,Alicia Keys,As I Am,6000000,1,14,0:56:04,0.93,56.07,3364,R&B
+2007,2,Josh Groban,Noel,7210000,1,13,0:56:01,0.93,56.02,3361,Pop
+2007,3,Leona Lewis,Spirit,7000000,1,13,0:53:39,0.89,53.65,3219,Pop
+2007,6,Kanye West,Graduation,6060563,1,13,0:51:23,0.86,51.38,3083,Hip Hop
+2007,10,Michael Buble,Call Me Irresponsible,5135000,1,13,0:50:27,0.84,50.45,3027,Pop
+2007,4,Mika,Life In Cartoon Motion,7000000,1,11,0:46:16,0.77,46.27,2776,Pop
+2007,1,Rihanna,Good Girl Gone Bad,10834803,1,12,0:46:02,0.77,46.03,2762,Pop
+2007,5,Linkin Park,Minutes To Midnight,6815000,1,12,0:43:23,0.72,43.38,2603,Rock
+2008,5,Movie Soundtrack,Mamma Mia!,7700000,1,18,1:09:57,1.17,69.95,4197,Pop
+2008,4,AC/DC,Black Ice,8000000,1,15,0:55:38,0.93,55.63,3338,Rock
+2008,2,Taylor Swift,Fearless,11901000,1,13,0:53:41,0.89,53.68,3221,Country
+2008,1,Lady Gaga,The Fame,14340358,1,14,0:50:20,0.84,50.33,3020,Pop
+2008,8,P!NK,Funhouse,7000000,1,12,0:47:02,0.78,47.03,2822,Rock
+2008,3,Coldplay,Viva La Vida Or Death And All His Friends,11209713,1,10,0:45:49,0.76,45.82,2749,Rock
+2008,9,Adele,19,6720293,1,12,0:43:40,0.73,43.67,2620,Pop
+2008,7,Katy Perry,One Of The Boys,7000000,1,12,0:43:36,0.73,43.6,2616,Pop
+2008,6,Kings Of Leon,Only By The Night,7213344,1,11,0:42:55,0.72,42.92,2575,Rock
+2008,10,Beyonce,I Am Sasha Fierce,6603000,1,11,0:41:36,0.69,41.6,2496,Pop
+2009,4,The Black Eyed Peas,The E.N.D.,7365000,1,15,1:07:20,1.12,67.33,4040,Hip Hop
+2009,9,Andrea Bocelli,My Christmas,4060000,1,15,0:59:17,0.99,59.28,3557,Classical
+2009,7,U2,No Line On The Horizon,5000000,1,11,0:53:44,0.9,53.73,3224,Rock
+2009,3,Mumford & Sons,Sigh No More,8000000,1,12,0:48:33,0.81,48.55,2913,Rock
+2009,5,Michael Buble,Crazy Love,6980000,1,13,0:47:34,0.79,47.57,2854,Pop
+2009,8,Florence + The Machine,Lungs,4384500,1,13,0:46:11,0.77,46.18,2771,Rock
+2009,6,Norah Jones,The Fall,5000000,1,13,0:45:49,0.76,45.82,2749,Pop
+2009,1,Susan Boyle,I Dreamed A Dream,8601000,1,12,0:43:00,0.72,43,2580,Pop
+2009,2,Lady Gaga,The Fame Monster,8298000,1,8,0:34:09,0.57,34.15,2049,Pop
+2009,10,Justin Bieber,My World,3980000,1,7,0:25:58,0.43,25.97,1558,Pop
+2010,3,Eminem,Recovery,7740795,1,17,1:16:56,1.28,76.93,4616,Hip Hop
+2010,10,Kanye West,My Beautiful Dark Twisted Fantasy,3588000,1,13,1:08:36,1.14,68.6,4116,Hip Hop
+2010,4,Taylor Swift,Speak Now,6917500,1,14,1:07:29,1.12,67.48,4049,Country
+2010,8,Jason Aldean,My Kinda Party,4115000,1,14,0:56:44,0.95,56.73,3404,Country
+2010,1,Katy Perry,Teenage Dream,11094000,1,12,0:46:44,0.78,46.73,2804,Pop
+2010,5,Rihanna,Loud,6668000,1,11,0:46:39,0.78,46.65,2799,Pop
+2010,9,Ke$ha,Animal,3705000,1,14,0:46:18,0.77,46.3,2778,Pop
+2010,7,Lady Antebellum,Need You Now,4913500,1,11,0:44:10,0.74,44.17,2650,Country
+2010,6,Justin Bieber,My World 2.0,5235395,1,10,0:37:37,0.63,37.62,2257,Pop
+2010,2,Bruno Mars,Doo-Wops & Hooligans,11055000,1,10,0:35:27,0.59,35.45,2127,Pop
+2011,5,Drake,Take Care,6920000,1,18,1:20:18,1.34,80.3,4818,Hip Hop
+2011,4,Lady Gaga,Born This Way,7126944,1,14,1:01:07,1.02,61.12,3667,Pop
+2011,8,Lil Wayne,Tha Carter IV,5110000,1,15,1:00:25,1.01,60.42,3625,Hip Hop
+2011,2,Michael Buble,Christmas,15000000,1,16,0:51:44,0.86,51.73,3104,Pop
+2011,3,Ed Sheeran,Plus,7428000,1,12,0:49:53,0.83,49.88,2993,Pop
+2011,1,Adele,21,30000000,1,11,0:48:01,0.8,48.02,2881,Pop
+2011,7,Jay-Z & Kanye West,Watch The Throne,5530000,1,12,0:46:12,0.77,46.2,2772,Hip Hop
+2011,6,One Direction,Up All Night,5836188,1,13,0:45:56,0.77,45.93,2756,Pop
+2011,10,Coldplay,Mylo Xyloto,4590102,1,14,0:44:09,0.74,44.15,2649,Rock
+2011,9,Rihanna,Talk That Talk,4608000,1,11,0:37:29,0.62,37.48,2249,Pop
+2012,3,Taylor Swift,Red,8819124,1,16,1:05:09,1.09,65.15,3909,Pop
+2012,9,Rihanna,Unapologetic,4377500,1,14,0:55:06,0.92,55.1,3306,Pop
+2012,8,Mumford & Sons,Babel,4391000,1,12,0:52:17,0.87,52.28,3137,Rock
+2012,5,P!NK,The Truth About Love,6231084,1,13,0:50:49,0.85,50.82,3049,Rock
+2012,4,Lana Del Rey,Born To Die,6434983,1,12,0:49:28,0.82,49.47,2968,Pop
+2012,7,Emeli Sande,Our Version Of Events,4600000,1,14,0:48:56,0.82,48.93,2936,R&B
+2012,10,Justin Bieber,Believe,4141507,1,13,0:48:09,0.8,48.15,2889,Pop
+2012,1,Imagine Dragons,Night Visions,9146263,1,11,0:43:51,0.73,43.85,2631,Rock
+2012,6,One Direction,Take Me Home,5914619,1,13,0:42:19,0.71,42.32,2539,Pop
+2012,2,Bruno Mars,Unorthodox Jukebox,8946749,1,10,0:34:51,0.58,34.85,2091,Pop
+2013,2,Eminem,The Marshall Mathers LP 2,5790318,1,16,1:18:28,1.31,78.47,4708,Hip Hop
+2013,7,Justin Timberlake,The 20/20 Experience,4500223,1,10,1:10:01,1.17,70.02,4201,Pop
+2013,1,Movie Soundtrack,Frozen,10000000,1,32,1:09:40,1.16,69.67,4180,Pop
+2013,6,Drake,Nothing Was The Same,4595000,1,13,0:59:22,0.99,59.37,3562,Hip Hop
+2013,10,Miley Cyrus,Bangerz,3702500,1,13,0:50:30,0.84,50.5,3030,Pop
+2013,5,Katy Perry,Prism,4845500,1,13,0:48:29,0.81,48.48,2909,Pop
+2013,3,One Direction,Mignight Memories,5750087,1,14,0:47:41,0.79,47.68,2861,Pop
+2013,4,Avicii,TRUE,5000000,1,10,0:46:55,0.78,46.92,2815,EDM
+2013,8,Luke Bryan,Crash My Party,4160000,1,13,0:44:32,0.74,44.53,2672,Country
+2013,9,Lorde,Pure Heroine,4096198,1,10,0:37:08,0.62,37.13,2228,Pop
+2014,8,J. Cole,2014 Forest Hills Drive,3230000,1,13,1:04:39,1.08,64.65,3879,Hip Hop
+2014,4,Hozier,Hozier,4413503,1,13,0:53:26,0.89,53.43,3206,Blues
+2014,2,Ed Sheeran,Multiply,11879785,1,12,0:50:23,0.84,50.38,3023,Pop
+2014,1,Taylor Swift,1989,14332116,1,13,0:48:41,0.81,48.68,2921,Pop
+2014,10,Movie Soundtrack,Guardians Of The Galaxy,3186458,1,12,0:44:34,0.74,44.57,2674,Rock
+2014,9,One Direction,Four,3200000,1,12,0:43:33,0.73,43.55,2613,Pop
+2014,6,Coldplay,Ghost Stories,3700000,1,9,0:42:37,0.71,42.62,2557,Rock
+2014,7,Ariana Grande,My Everything,3346212,1,12,0:40:34,0.68,40.57,2434,Pop
+2014,5,Maroon 5,V,4230464,1,11,0:40:10,0.67,40.17,2410,Pop
+2014,3,Sam Smith,In The Lonely Hour,9216352,1,10,0:32:47,0.55,32.78,1967,Pop
+2015,6,Broadway Soundtrack,Hamilton,4835000,2,46,2:22:13,2.37,142.22,8533,Hip Hop
+2015,5,The Weeknd,Beauty Behind The Madness,5299588,1,14,1:05:06,1.09,65.1,3906,R&B
+2015,7,Chris Stapleton,Traveller,4147000,1,14,1:03:04,1.05,63.07,3784,Country
+2015,3,Twenty One Pilots,Blurryface,6500000,1,14,0:52:23,0.87,52.38,3143,Hip Hop
+2015,1,Adele,25,23000000,1,11,0:48:24,0.81,48.4,2904,Pop
+2015,2,Justin Bieber,Purpose,14000000,1,14,0:48:13,0.8,48.22,2893,Pop
+2015,4,Coldplay,A Head Full Of Dreams,6000000,1,11,0:45:45,0.76,45.75,2745,Rock
+2015,9,One Direction,Made In The A.M.,3376423,1,13,0:44:39,0.74,44.65,2679,Pop
+2015,10,Sean Mendes,Handwritten,2655000,1,12,0:39:29,0.66,39.48,2369,Pop
+2015,8,Meghan Trainor,Title,3885000,1,11,0:32:27,0.54,32.45,1947,Pop
+2016,1,Drake,Views,7657000,1,20,1:21:14,1.35,81.23,4874,Hip Hop
+2016,10,Movie Soundtrack,Moana,2727078,1,40,1:15:48,1.26,75.8,4548,Pop
+2016,3,The Weeknd,Starboy,4421666,1,18,1:08:40,1.14,68.67,4120,R&B
+2016,2,Post Malone,Stoney,6111355,1,14,0:50:40,0.84,50.67,3040,Hip Hop
+2016,8,Chris Lee,Growing Wild,3418440,1,12,0:47:06,0.79,47.1,2826,Pop
+2016,6,Beyonce,Lemonade,3661560,1,12,0:45:45,0.76,45.75,2745,Pop
+2016,4,Rihanna,Anti,4207235,1,13,0:43:36,0.73,43.6,2616,Pop
+2016,9,Big Bang,Made,3189149,1,11,0:40:53,0.68,40.88,2453,Pop
+2016,7,Ariana Grande,Dangerous Woman,3462374,1,11,0:39:31,0.66,39.52,2371,Pop
+2016,5,Bruno Mars,24k Magic,4170954,1,9,0:33:28,0.56,33.47,2008,Pop
+2017,8,Elton John,Diamonds,3220000,2,34,2:35:47,2.6,155.78,9347,Rock
+2017,3,Taylor Swift,Reputation,5746523,1,15,0:55:38,0.93,55.63,3338,Pop
+2017,5,Kendrick Lamar,Damn.,4070414,1,14,0:54:54,0.92,54.9,3294,Hip Hop
+2017,6,Khalid,American Teen,3681211,1,15,0:54:37,0.91,54.62,3277,R&B
+2017,1,Ed Sheeran,Divide,13430805,1,12,0:46:14,0.77,46.23,2774,Pop
+2017,9,Bryson Tiller,Trapsoul,3190000,1,14,0:44:58,0.75,44.97,2698,R&B
+2017,7,Luke Combs,This One's For You,3371000,1,12,0:42:59,0.72,42.98,2579,Country
+2017,2,Movie Soundtrack,The Greatest Showman,6295619,1,13,0:39:51,0.66,39.85,2391,Pop
+2017,4,Imagine Dragons,Evolve,4790478,1,11,0:39:12,0.65,39.2,2352,Rock
+2017,10,BTS,Love Yourself: Her,3091731,1,9,0:30:33,0.51,30.55,1833,Pop
+2018,4,BTS,Love Yourself: Answer,4866789,2,25,1:39:51,1.66,99.85,5991,Pop
+2018,2,Drake,Scorpion,6133983,2,25,1:29:44,1.5,89.73,5384,Hip Hop
+2018,10,Movie Soundtrack,Bohemian Rhapsody,2585920,1,22,1:19:44,1.33,79.73,4784,Rock
+2018,5,Movie Soundtrack,A Star Is Born,4050810,1,34,1:10:01,1.17,70.02,4201,Pop
+2018,1,Post Malone,Beerbongs & Bentleys,6636118,1,18,1:04:26,1.07,64.43,3866,Hip Hop
+2018,3,Travis Scott,Astroworld,4907811,1,17,0:58:33,0.98,58.55,3513,Hip Hop
+2018,8,Cardi B,Invasion Of Privacy,3376138,1,13,0:48:13,0.8,48.22,2893,Hip Hop
+2018,9,BTS,Love Yourself: Tear,3363039,1,11,0:44:02,0.73,44.03,2642,Pop
+2018,7,Juice Wrld,Goodbye & Good Riddance,3522713,1,15,0:40:13,0.67,40.22,2413,Hip Hop
+2018,6,XXXTentacion,?,3932852,1,18,0:37:27,0.62,37.45,2247,Hip Hop
+2019,8,Arashi,5x20 All The Best!! 1999-2019,3300000,4,67,5:04:02,5.07,304.03,18242,Pop
+2019,4,Taylor Swift,Lover,4787733,1,18,1:01:48,1.03,61.8,3708,Pop
+2019,7,Luke Combs,What You See Is What You Get,3357000,1,17,0:59:42,1,59.7,3582,Country
+2019,2,Post Malone,Hollywood's Bleeding,6243665,1,17,0:50:56,0.85,50.93,3056,Hip Hop
+2019,10,Ed Sheeran,No. 6 Collaborations Project,2551838,1,15,0:49:48,0.83,49.8,2988,Pop
+2019,6,Harry Styles,Fine Line,3646799,1,12,0:46:37,0.78,46.62,2797,Pop
+2019,5,Ariana Grande,"Thank U, Next",3665436,1,12,0:41:11,0.69,41.18,2471,Pop
+2019,1,Billie Eilish,"When We All Fall Asleep, Where Do We Go?",6031516,1,14,0:40:56,0.68,40.93,2456,Pop
+2019,3,BTS,Map Of The Soul: Persona,5670554,1,7,0:26:05,0.43,26.08,1565,Pop
+2019,9,R1SE,Going To Powerfully Burst,3080507,1,7,0:25:22,0.42,25.37,1522,Pop
+2020,1,BTS,Map Of The Soul: 7,6829450,1,20,1:15:00,1.25,75,4500,Pop
+2020,5,Taylor Swift,Folklore,4115487,1,16,1:03:29,1.06,63.48,3809,Pop
+2020,6,Lil Baby,My Turn,3920000,1,20,1:00:54,1.02,60.9,3654,Hip Hop
+2020,8,Juice Wrld,Legends Never Die,3045000,1,22,0:58:50,0.98,58.83,3530,Hip Hop
+2020,3,Pop Smoke,"Shoot For The Stars, Aim For The Moon",4777389,1,19,0:56:41,0.94,56.68,3401,Hip Hop
+2020,4,The Weeknd,After House,4402942,1,14,0:56:19,0.94,56.32,3379,R&B
+2020,7,Dua Lipa,Future Nostalgia,3332300,1,11,0:37:17,0.62,37.28,2237,Pop
+2020,10,Lay,Lit,2741096,1,12,0:35:29,0.59,35.48,2129,Hip Hop
+2020,2,BTS,Be,5397015,1,8,0:28:30,0.48,28.5,1710,Pop
+2020,9,Blackpink,The Album,2947398,1,8,0:24:28,0.41,24.47,1468,Pop
+2021,5,Morgan Wallen,Dangerous: The Double Album,3461000,2,30,1:30:53,1.51,90.88,5453,Country
+2021,9,Drake,Certified Lover Boy,2264500,1,21,1:26:02,1.43,86.03,5162,Hip Hop
+2021,1,Adele,30,4485025,1,12,0:58:14,0.97,58.23,3494,Pop
+2021,7,Justin Bieber,Justice,3051131,1,16,0:45:25,0.76,45.42,2725,Pop
+2021,10,Doja Cat,Planet Her,1909009,1,14,0:44:06,0.74,44.1,2646,Pop
+2021,4,NCT 127,Sticker / Favorite,3498564,1,11,0:38:43,0.65,38.72,2323,Pop
+2021,3,NCT Dream,Hot Sauce,3633287,1,10,0:35:09,0.59,35.15,2109,Pop
+2021,2,Olivia Rodrigo,Sour,3830500,1,11,0:34:41,0.58,34.68,2081,Pop
+2021,6,Cai Xukun,迷,3402981,1,11,0:24:16,0.4,24.27,1456,Hip Hop
+2021,8,Seventeen,Attacca,2401368,1,6,0:19:26,0.32,19.43,1166,Pop
