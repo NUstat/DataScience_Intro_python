@@ -417,23 +417,23 @@ Real part of 'var':  0</code></pre>
 <pre><code>float</code></pre>
 </div>
 </div>
-<p><strong>Date time:</strong> Python as a built-in <a href="https://docs.python.org/3/library/datetime.html">datetime</a> module for handling date/time objects:</p>
-<div class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a date-time object </span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dt_object <span class="op">=</span> dt.datetime(<span class="dv">2022</span>, <span class="dv">9</span>, <span class="dv">20</span>, <span class="dv">11</span>,<span class="dv">30</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Information about date and time can be accessed with the relevant attribute of the <code>datetime</code> object.</p>
 <p><strong>range():</strong> The <code>range()</code> function returns a sequence of evenly-spaced integer values. It is commonly used in <code>for</code> loops to define the sequence of elements over which the iterations are performed.</p>
 <p>Below is an example where the <code>range()</code> function is used to create a sequence of whole numbers upto 10:</p>
 <div class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
 </div>
 </div>
+<p><strong>Date time:</strong> Python as a built-in <a href="https://docs.python.org/3/library/datetime.html">datetime</a> module for handling date/time objects:</p>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a date-time object </span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>dt_object <span class="op">=</span> dt.datetime(<span class="dv">2022</span>, <span class="dv">9</span>, <span class="dv">20</span>, <span class="dv">11</span>,<span class="dv">30</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Information about date and time can be accessed with the relevant attribute of the <code>datetime</code> object.</p>
 <div class="cell" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>dt_object.day</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
