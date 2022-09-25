@@ -235,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#specifying-the-working-directory" id="toc-specifying-the-working-directory" class="nav-link" data-scroll-target="#specifying-the-working-directory"><span class="toc-section-number">3.2.2</span>  Specifying the working directory</a></li>
   <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview"><span class="toc-section-number">3.2.3</span>  Data overview</a></li>
   <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics"><span class="toc-section-number">3.2.4</span>  Summary statistics</a></li>
-  <li><a href="#creating-new-variables-from-existing-variables" id="toc-creating-new-variables-from-existing-variables" class="nav-link" data-scroll-target="#creating-new-variables-from-existing-variables"><span class="toc-section-number">3.2.5</span>  Creating new variables from existing variables</a></li>
+  <li><a href="#creating-new-columns-from-existing-columns" id="toc-creating-new-columns-from-existing-columns" class="nav-link" data-scroll-target="#creating-new-columns-from-existing-columns"><span class="toc-section-number">3.2.5</span>  Creating new columns from existing columns</a></li>
   <li><a href="#datatype-of-variables" id="toc-datatype-of-variables" class="nav-link" data-scroll-target="#datatype-of-variables"><span class="toc-section-number">3.2.6</span>  Datatype of variables</a></li>
   </ul></li>
   <li><a href="#reading-other-data-formats---txt-html-json" id="toc-reading-other-data-formats---txt-html-json" class="nav-link" data-scroll-target="#reading-other-data-formats---txt-html-json"><span class="toc-section-number">3.3</span>  Reading other data formats - txt, html, json</a>
@@ -2472,8 +2472,8 @@ dtype: float64</code></pre>
 </div>
 </section>
 </section>
-<section id="creating-new-variables-from-existing-variables" class="level3" data-number="3.2.5">
-<h3 data-number="3.2.5" class="anchored" data-anchor-id="creating-new-variables-from-existing-variables"><span class="header-section-number">3.2.5</span> Creating new variables from existing variables</h3>
+<section id="creating-new-columns-from-existing-columns" class="level3" data-number="3.2.5">
+<h3 data-number="3.2.5" class="anchored" data-anchor-id="creating-new-columns-from-existing-columns"><span class="header-section-number">3.2.5</span> Creating new columns from existing columns</h3>
 <p>New variables (or columns) can be created based on existing variables, or with external data (we’ll see adding external data later). For example, let us create a new variable <code>ratio_wgross_by_profit</code>, which is the ratio of <code>Worldwide Gross</code> and <code>Production Budget</code> for each movie:</p>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>movie_ratings[<span class="st">'ratio_wgross_by_profit'</span>] <span class="op">=</span> movie_ratings[<span class="st">'Worldwide Gross'</span>]<span class="op">/</span>movie_ratings[<span class="st">'Production Budget'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
