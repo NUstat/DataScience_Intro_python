@@ -2916,7 +2916,7 @@ dtype: object</code></pre>
 </section>
 <section id="reading-a-sub-set-of-data-loc-and-iloc" class="level3" data-number="3.2.9">
 <h3 data-number="3.2.9" class="anchored" data-anchor-id="reading-a-sub-set-of-data-loc-and-iloc"><span class="header-section-number">3.2.9</span> Reading a sub-set of data: <code>loc</code> and <code>iloc</code></h3>
-<p>Sometimes we may be interested in working with a subset of rows and columns of the data, instead of working with the entire dataset. The indexing operators <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html">loc</a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html">iloc</a> provide a convenient of selecting a subset of desired rows and columns. The operator <code>loc</code> uses axis labels (row indices and column names) to subset the data, while <code>iloc</code> uses the position of the row or columns, where position has values 0,1,2,3,…and so on, for rows from top to bottom and columns from left to right. In other words, the first row has position 0, the second row has position 1, the third row has position 2 and so on. Similarly, the first column from left has position 0, the second column from left has position 1, the third column from left has position 2, and so on.</p>
+<p>Sometimes we may be interested in working with a subset of rows and columns of the data, instead of working with the entire dataset. The indexing operators <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html">loc</a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html">iloc</a> provide a convenient way of selecting a subset of desired rows and columns. The operator <code>loc</code> uses axis labels (row indices and column names) to subset the data, while <code>iloc</code> uses the position of rows or columns, where position has values 0,1,2,3,…and so on, for rows from top to bottom and columns from left to right. In other words, the first row has position 0, the second row has position 1, the third row has position 2, and so on. Similarly, the first column from left has position 0, the second column from left has position 1, the third column from left has position 2, and so on.</p>
 <p>Let us read the file <em>movie_IMDBratings_sorted.csv</em>, which has movies sorted in the descending order of their IMDB ratings.</p>
 <div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>movies_sorted <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movie_IMDBratings_sorted.csv'</span>,index_col <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3141,12 +3141,12 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Let us find the movie with the maximum <code>Worldwide Gross</code>.</p>
-<p>We will use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.argmax.html">argmax()</a> function of the Pandas Series class to find the index of the movie with the maximum worldwide gross, and then use the index to find the movie.</p>
+<p>We will use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.argmax.html">argmax()</a> function of the Pandas Series class to find the position of the movie with the maximum worldwide gross, and then use the position to find the movie.</p>
 <div class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>index_max_wgross <span class="op">=</span> movies_sorted[<span class="st">'Worldwide Gross'</span>].argmax()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>position_max_wgross <span class="op">=</span> movies_sorted[<span class="st">'Worldwide Gross'</span>].argmax()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="27">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>movies_sorted.iloc[index_max_wgross,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>movies_sorted.iloc[position_max_wgross,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>Title                             Avatar
 US Gross                       760167650
@@ -3176,7 +3176,7 @@ Name: 59, dtype: object</code></pre>
 </section>
 <section id="section-8" class="level4" data-number="3.2.10.3">
 <h4 data-number="3.2.10.3" class="anchored" data-anchor-id="section-8"><span class="header-section-number">3.2.10.3</span> </h4>
-<p>Which album amongst hip-hop albums has the higest mean sales per year per track, and who is its artist?</p>
+<p>Which album amongst hip-hop has the higest mean sales per year per track, and who is its artist?</p>
 </section>
 </section>
 </section>
