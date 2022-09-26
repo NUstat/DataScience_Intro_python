@@ -1,8 +1,9 @@
 project:
   type: book
 
-book:
-  title: "STAT303-1"
+book:  
+  title: "Introduction to Data Science with Python"
+  image: 'NU_Stat_logo.png'
   author: "Arvind Krishna and Arend Kuyper"
   date: "9/20/2022"
   chapters:
