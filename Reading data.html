@@ -271,9 +271,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#reading-other-data-formats---txt-html-json" id="toc-reading-other-data-formats---txt-html-json" class="nav-link" data-scroll-target="#reading-other-data-formats---txt-html-json"><span class="toc-section-number">3.3</span>  Reading other data formats - txt, html, json</a>
   <ul>
   <li><a href="#reading-txt-files" id="toc-reading-txt-files" class="nav-link" data-scroll-target="#reading-txt-files"><span class="toc-section-number">3.3.1</span>  Reading <em>txt</em> files</a></li>
-  <li><a href="#reading-html-data" id="toc-reading-html-data" class="nav-link" data-scroll-target="#reading-html-data"><span class="toc-section-number">3.3.2</span>  Reading HTML data</a></li>
-  <li><a href="#reading-json-data" id="toc-reading-json-data" class="nav-link" data-scroll-target="#reading-json-data"><span class="toc-section-number">3.3.3</span>  Reading JSON data</a></li>
-  <li><a href="#reading-data-from-web-apis" id="toc-reading-data-from-web-apis" class="nav-link" data-scroll-target="#reading-data-from-web-apis"><span class="toc-section-number">3.3.4</span>  Reading data from web APIs</a></li>
+  <li><a href="#practice-exercise-4" id="toc-practice-exercise-4" class="nav-link" data-scroll-target="#practice-exercise-4"><span class="toc-section-number">3.3.2</span>  Practice exercise 4</a></li>
+  <li><a href="#reading-html-data" id="toc-reading-html-data" class="nav-link" data-scroll-target="#reading-html-data"><span class="toc-section-number">3.3.3</span>  Reading HTML data</a></li>
+  <li><a href="#practice-exercise-5" id="toc-practice-exercise-5" class="nav-link" data-scroll-target="#practice-exercise-5"><span class="toc-section-number">3.3.4</span>  Practice exercise 5</a></li>
+  <li><a href="#reading-json-data" id="toc-reading-json-data" class="nav-link" data-scroll-target="#reading-json-data"><span class="toc-section-number">3.3.5</span>  Reading JSON data</a></li>
+  <li><a href="#practice-exercise-6" id="toc-practice-exercise-6" class="nav-link" data-scroll-target="#practice-exercise-6"><span class="toc-section-number">3.3.6</span>  Practice exercise 6</a></li>
+  <li><a href="#reading-data-from-web-apis" id="toc-reading-data-from-web-apis" class="nav-link" data-scroll-target="#reading-data-from-web-apis"><span class="toc-section-number">3.3.7</span>  Reading data from web APIs</a></li>
   </ul></li>
   <li><a href="#writing-data" id="toc-writing-data" class="nav-link" data-scroll-target="#writing-data"><span class="toc-section-number">3.4</span>  Writing data</a></li>
   </ul>
@@ -3195,8 +3198,12 @@ Name: 59, dtype: object</code></pre>
 <p>We use the function <em>read_csv</em> to read a <em>txt</em> file. However, we mention the tab character (’) as a separater of variable values.</p>
 <p>Note that there is no need to remember the argument name - <em>sep</em> for specifying the delimiter. You can always refer to the <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv()</a> documentation to find the relevant argument.</p>
 </section>
-<section id="reading-html-data" class="level3" data-number="3.3.2">
-<h3 data-number="3.3.2" class="anchored" data-anchor-id="reading-html-data"><span class="header-section-number">3.3.2</span> Reading HTML data</h3>
+<section id="practice-exercise-4" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="practice-exercise-4"><span class="header-section-number">3.3.2</span> Practice exercise 4</h3>
+<p>Read the file <em>bestseller_books.txt</em>. It contains top 50 best-selling books on amazon from 2009 to 2019. Identify the delimiter without opening the file with Notepad or a text-editing software. How many rows and columns are there in the dataset?</p>
+</section>
+<section id="reading-html-data" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="reading-html-data"><span class="header-section-number">3.3.3</span> Reading HTML data</h3>
 <p>The <em>Pandas</em> function <em>read_html</em> searches for tabular data, i.e., data contained within the <em>&lt;table&gt;</em> tags of an html file. Let us read the tables in the GDP per capita <a href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita">page</a> on Wikipedia.</p>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading all the tables from the Wikipedia page on GDP per capita</span></span>
@@ -3577,8 +3584,12 @@ Name: 59, dtype: object</code></pre>
 </div>
 <p>The argument <em>match</em> helps with a more focussed search, and helps us discard irrelevant tables.</p>
 </section>
-<section id="reading-json-data" class="level3" data-number="3.3.3">
-<h3 data-number="3.3.3" class="anchored" data-anchor-id="reading-json-data"><span class="header-section-number">3.3.3</span> Reading JSON data</h3>
+<section id="practice-exercise-5" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="practice-exercise-5"><span class="header-section-number">3.3.4</span> Practice exercise 5</h3>
+<p>Read the table(s) consisting of attendance of spectators in FIFA worlds cup from this <a href="https://en.wikipedia.org/wiki/FIFA_World_Cup">page</a>. Read only those table(s) that have the word <em>‘attendance’</em> in them. How many rows and columns are there in the table(s)?</p>
+</section>
+<section id="reading-json-data" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="reading-json-data"><span class="header-section-number">3.3.5</span> Reading JSON data</h3>
 <p>JSON stands for JavaScript Object Notation, in which the data is stored and transmitted as plain text. Since the format is text only, JSON data can easily be exchanged between web applications, and used by any programming language. Unlinke the <em>csv</em> format, JSON supports a hierarchical data structure, and is easier to integrate with APIs.</p>
 <p>Lets read JSON data on Ted Talks. The <em>Pandas</em> function <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_json.html">read_json</a> converts JSON data to a dataframe.</p>
 <div class="cell" data-execution_count="3">
@@ -4618,8 +4629,12 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 </div></section>
-<section id="reading-data-from-web-apis" class="level3" data-number="3.3.4">
-<h3 data-number="3.3.4" class="anchored" data-anchor-id="reading-data-from-web-apis"><span class="header-section-number">3.3.4</span> Reading data from web APIs</h3>
+<section id="practice-exercise-6" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="practice-exercise-6"><span class="header-section-number">3.3.6</span> Practice exercise 6</h3>
+<p>Read the movies dataset from <a href="https://raw.githubusercontent.com/vega/vega-datasets/master/data/movies.json">here</a>. How many rows and columns are there in the data?</p>
+</section>
+<section id="reading-data-from-web-apis" class="level3" data-number="3.3.7">
+<h3 data-number="3.3.7" class="anchored" data-anchor-id="reading-data-from-web-apis"><span class="header-section-number">3.3.7</span> Reading data from web APIs</h3>
 <p><a href="https://en.wikipedia.org/wiki/API">API</a>, an acronym for Application programming interface, is a way of transferring information between systems. Many websites have public APIs that provide data via JSON or other formats. For example, the <a href="https://imdb-api.com/">IMDb-API</a> is a web service for receiving movies, serial, and cast information. API results are in the JSON format and include items such as movie specifications, ratings, Wikipedia page content, etc. One of these APIs contains ratings of the top 250 movies on IMDB. Let us read this data using the IMDB API.</p>
 <p>We’ll use the <em>get</em> function from the python library <em>requests</em> to request data from the API and obtain a response code. The response code will let us know if our request to pull data from this API was successful.</p>
 <div class="cell" data-execution_count="124">
