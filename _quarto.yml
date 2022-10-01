@@ -4,7 +4,7 @@ project:
 book:  
   title: "Introduction to Data Science with Python"
   logo: 'NU_Stat_logo.png'
-  author: "Arvind Krishna, Arend Kuyper, Emre Besler, and Lizhen Shi"
+  author: "Arvind Krishna, and Arend Kuyper"
   date: "9/20/2022"
   chapters:
     - index.qmd
