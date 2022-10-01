@@ -237,11 +237,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#numpy-arrays-are-memory-efficient" id="toc-numpy-arrays-are-memory-efficient" class="nav-link" data-scroll-target="#numpy-arrays-are-memory-efficient"><span class="toc-section-number">4.1.1</span>  Numpy arrays are memory efficient</a></li>
   <li><a href="#numpy-arrays-are-fast" id="toc-numpy-arrays-are-fast" class="nav-link" data-scroll-target="#numpy-arrays-are-fast"><span class="toc-section-number">4.1.2</span>  NumPy arrays are fast</a></li>
   </ul></li>
-  <li><a href="#vectorized-computation-with-numpy" id="toc-vectorized-computation-with-numpy" class="nav-link" data-scroll-target="#vectorized-computation-with-numpy"><span class="toc-section-number">4.2</span>  Vectorized computation with NumPy</a>
+  <li><a href="#numpy-array-basic-attributes" id="toc-numpy-array-basic-attributes" class="nav-link" data-scroll-target="#numpy-array-basic-attributes"><span class="toc-section-number">4.2</span>  NumPy array: Basic attributes</a></li>
+  <li><a href="#vectorized-computation-with-numpy" id="toc-vectorized-computation-with-numpy" class="nav-link" data-scroll-target="#vectorized-computation-with-numpy"><span class="toc-section-number">4.3</span>  Vectorized computation with NumPy</a>
   <ul class="collapse">
   <li><a href="#in-class-exercise" id="toc-in-class-exercise" class="nav-link" data-scroll-target="#in-class-exercise">In-class exercise</a></li>
   </ul></li>
-  <li><a href="#pseudorandom-number-generation" id="toc-pseudorandom-number-generation" class="nav-link" data-scroll-target="#pseudorandom-number-generation"><span class="toc-section-number">4.3</span>  Pseudorandom number generation</a>
+  <li><a href="#pseudorandom-number-generation" id="toc-pseudorandom-number-generation" class="nav-link" data-scroll-target="#pseudorandom-number-generation"><span class="toc-section-number">4.4</span>  Pseudorandom number generation</a>
   <ul class="collapse">
   <li><a href="#in-class-exercise-1" id="toc-in-class-exercise-1" class="nav-link" data-scroll-target="#in-class-exercise-1">In-class exercise</a></li>
   </ul></li>
@@ -272,27 +273,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <img src="./Datasets/numpy_image.png" width="740" height="280">
 </div>
 </div>
-<p><strong>NumPy</strong>, short for Numerical Python is used to analyze numeric data with Python. NumPy arrays are primarily used to create homogeneous <span class="math inline">\(n\)</span>-dimensional arrays (<span class="math inline">\(n = 1,...,n\)</span>). The NumPy function <em>array()</em> is used to define an array.</p>
-<p>Let us import the NumPy library to use its methods and functions.</p>
+<p><strong>NumPy</strong>, short for Numerical Python is used to analyze numeric data with Python. NumPy arrays are primarily used to create homogeneous <span class="math inline">\(n\)</span>-dimensional arrays (<span class="math inline">\(n = 1,...,n\)</span>). Let us import the NumPy library to use its methods and functions, and the NumPy function <em>array()</em> to define a NumPy array.</p>
 <div class="cell" data-execution_count="60">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>list_ex <span class="op">=</span> [<span class="st">'1'</span>,<span class="st">'2'</span>,<span class="st">'3'</span>,<span class="st">'4'</span>]</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>list_ex.__sizeof__()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="99">
-<pre><code>72</code></pre>
-</div>
-</div>
 <div class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the NumPy function array() to define a NumPy array</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>numpy_array <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>numpy_array</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the NumPy function array() to define a NumPy array</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>numpy_array <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>numpy_array</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <pre><code>array([[1, 2],
        [3, 4]])</code></pre>
 </div>
 </div>
+<div class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(numpy_array)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="123">
+<pre><code>numpy.ndarray</code></pre>
+</div>
+</div>
+<p>The NumPy function <em>array()</em> creates an object of type <code>numpy.ndarray</code>.</p>
 <section id="why-do-we-need-numpy-arrays" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="why-do-we-need-numpy-arrays"><span class="header-section-number">4.1</span> Why do we need NumPy arrays?</h2>
 <p>NumPy arrays can store data just like other data stuctures such as such as lists, tuples, and Pandas DataFrame. Computations performed using NumPy arrays can also be performed with data stored in the other data structures. However, NumPy is preferred for its efficiency, especially when working with large arrays of data.</p>
@@ -391,38 +391,88 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 </div>
 </section>
 </section>
-<section id="vectorized-computation-with-numpy" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="vectorized-computation-with-numpy"><span class="header-section-number">4.2</span> Vectorized computation with NumPy</h2>
+<section id="numpy-array-basic-attributes" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="numpy-array-basic-attributes"><span class="header-section-number">4.2</span> NumPy array: Basic attributes</h2>
+<p>Let us define a NumPy array:</p>
+<div class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>numpy_ex <span class="op">=</span> np.array([[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>],[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>numpy_ex</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+<pre><code>array([[1, 2, 3],
+       [4, 5, 6]])</code></pre>
+</div>
+</div>
+<p>The attributes of <code>numpy_ex</code> can be seen by typing <code>numpy_ex</code> followed by a <code>.</code>, and then pressing the <em>tab</em> key.</p>
+<p>Some of the basic attributes of a NumPy array are the following:</p>
+<ol type="1">
+<li><code>ndim</code>: Shows the number of dimensions (or axes) of the array.</li>
+</ol>
+<div class="cell" data-execution_count="120">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>numpy_ex.ndim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="120">
+<pre><code>2</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li><code>shape</code>: This is a tuple of integers indicating the size of the array in each dimension. For a matrix with <em>n</em> rows and <em>m</em> columns, the shape will be <em>(n,m)</em>. The length of the shape tuple is therefore the rank, or the number of dimensions, <code>ndim</code>.</li>
+</ol>
+<div class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>numpy_ex.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="124">
+<pre><code>(2, 3)</code></pre>
+</div>
+</div>
+<ol start="3" type="1">
+<li><code>size</code>: This is the total number of elements of the array, which is the product of the elements of shape.</li>
+</ol>
+<div class="cell" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>numpy_ex.size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="126">
+<pre><code>6</code></pre>
+</div>
+</div>
+<ol start="4" type="1">
+<li><code>dtype</code>: This is an object describing the type of the elements in the array. One can create or specify dtype’s using standard Python types. NumPy provides many, for example bool_, character, int_, int8, int16, int32, int64, float_, float8, float16, float32, float64, complex_, complex64, object_.</li>
+</ol>
+<div class="cell" data-execution_count="127">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>numpy_ex.dtype</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="127">
+<pre><code>dtype('int32')</code></pre>
+</div>
+</div>
+</section>
+<section id="vectorized-computation-with-numpy" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="vectorized-computation-with-numpy"><span class="header-section-number">4.3</span> Vectorized computation with NumPy</h2>
 <p>Several matrix algebra operations such as multiplications, decompositions, determinants, etc. can be performed convenienetly with NumPy. However, we’ll focus on matrix multiplication as it is very commonly used to avoid python <code>for</code> loops and make computations faster. The <a href="https://numpy.org/doc/stable/reference/generated/numpy.dot.html">dot</a> function is used to multiply matrices:</p>
 <div class="cell" data-execution_count="98">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 2x3 matrix</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 2x3 matrix</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> np.array([[<span class="dv">0</span>,<span class="dv">1</span>],[<span class="dv">3</span>,<span class="dv">4</span>]])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="98">
 <pre><code>array([[0, 1],
        [3, 4]])</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 3x2 matrix</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([[<span class="dv">6</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="dv">2</span>,<span class="dv">1</span>]])</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 3x2 matrix</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.array([[<span class="dv">6</span>,<span class="op">-</span><span class="dv">1</span>],[<span class="dv">2</span>,<span class="dv">1</span>]])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="99">
 <pre><code>array([[ 6, -1],
        [ 2,  1]])</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="100">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Multiplying matrices 'a' and 'b' using the dot function</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>a.dot(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Multiplying matrices 'a' and 'b' using the dot function</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>a.dot(b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="100">
 <pre><code>array([[ 2,  1],
        [26,  1]])</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="101">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that * results in element-wise multiplication</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">*</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Note that * results in element-wise multiplication</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">*</span>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="101">
 <pre><code>array([[ 0, -1],
        [ 6,  4]])</code></pre>
@@ -431,13 +481,13 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 <p><strong>Example 2:</strong> This example will show vectorized computations with NumPy. Vectorized computations help perform computations more efficiently, and also make the code concise.</p>
 <p><strong>Q:</strong> Read the (1) quantities of roll, bun, cake and bread required by 3 people - Ben, Barbara &amp; Beth, from <em>food_quantity.csv</em>, (2) price of these food items in two shops - Target and Kroger, from <em>price.csv</em>. Find out which shop should each person go to minimize their expenses.</p>
 <div class="cell" data-execution_count="32">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading the datasets on food quantity and price</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>food_qty <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/food_quantity.csv'</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/price.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading the datasets on food quantity and price</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>food_qty <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/food_quantity.csv'</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>price <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/price.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="33">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>food_qty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>food_qty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
@@ -484,7 +534,7 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
 
 <div>
@@ -530,20 +580,20 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 </div>
 <p>First, let’s start from a simple problem. We’ll compute the expenses of Ben if he prefers to buy all food items from Target</p>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loop</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>bens_target_expense <span class="op">=</span> <span class="dv">0</span> <span class="co">#Initializing Ben's expenses to 0</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):   <span class="co">#Iterating over all the four desired food items</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    bens_target_expense <span class="op">+=</span> food_qty.iloc[<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,<span class="dv">1</span>] <span class="co">#Total expenses on the kth item</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>bens_target_expense    <span class="co">#Total expenses for Ben if he goes to Target</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loop</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>bens_target_expense <span class="op">=</span> <span class="dv">0</span> <span class="co">#Initializing Ben's expenses to 0</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):   <span class="co">#Iterating over all the four desired food items</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>    bens_target_expense <span class="op">+=</span> food_qty.iloc[<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,<span class="dv">1</span>] <span class="co">#Total expenses on the kth item</span></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>bens_target_expense    <span class="co">#Total expenses for Ben if he goes to Target</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>50.0</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[<span class="dv">0</span>,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting food quantity (for Ben) dataframe to NumPy array</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>].to_numpy()     <span class="co">#Converting price (for Target) dataframe to NumPy array</span></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)   <span class="co">#Matrix multiplication of the quantity vector with the price vector directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[<span class="dv">0</span>,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting food quantity (for Ben) dataframe to NumPy array</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>].to_numpy()     <span class="co">#Converting price (for Target) dataframe to NumPy array</span></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)   <span class="co">#Matrix multiplication of the quantity vector with the price vector directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>50.0</code></pre>
 </div>
@@ -551,14 +601,14 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 <p>Ben will spend $50 if he goes to Target</p>
 <p>Now, let’s add another layer of complication. We’ll compute Ben’s expenses for both stores - Target and Kroger</p>
 <div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing a Series of length two to store the expenses in Target and Kroger for Ben</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>bens_store_expense <span class="op">=</span> pd.Series(<span class="fl">0.0</span>,index<span class="op">=</span>price.columns[<span class="dv">1</span>:<span class="dv">3</span>])</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):      <span class="co">#Iterating over both the stores - Target and Kroger</span></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):        <span class="co">#Iterating over all the four desired food items</span></span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>        bens_store_expense[j] <span class="op">+=</span> food_qty.iloc[<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,j<span class="op">+</span><span class="dv">1</span>]</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>bens_store_expense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing a Series of length two to store the expenses in Target and Kroger for Ben</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>bens_store_expense <span class="op">=</span> pd.Series(<span class="fl">0.0</span>,index<span class="op">=</span>price.columns[<span class="dv">1</span>:<span class="dv">3</span>])</span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):      <span class="co">#Iterating over both the stores - Target and Kroger</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):        <span class="co">#Iterating over all the four desired food items</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a>        bens_store_expense[j] <span class="op">+=</span> food_qty.iloc[<span class="dv">0</span>,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,j<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a>bens_store_expense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>Target    50.0
 Kroger    49.0
@@ -566,10 +616,10 @@ dtype: float64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="39">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[<span class="dv">0</span>,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting food quantity (for Ben) dataframe to NumPy array</span></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>:].to_numpy()    <span class="co">#Converting price dataframe to NumPy array</span></span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)      <span class="co">#Matrix multiplication of the quantity vector with the price matrix directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[<span class="dv">0</span>,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting food quantity (for Ben) dataframe to NumPy array</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>:].to_numpy()    <span class="co">#Converting price dataframe to NumPy array</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)      <span class="co">#Matrix multiplication of the quantity vector with the price matrix directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="39">
 <pre><code>array([50.0, 49.0], dtype=object)</code></pre>
 </div>
@@ -577,13 +627,13 @@ dtype: float64</code></pre>
 <p>Ben will spend \$50 if he goes to Target, and $49 if he goes to Kroger. Thus, he should choose Kroger.</p>
 <p>Now, let’s add the final layer of complication, and solve the problem. We’ll compute everyone’s expenses for both stores - Target and Kroger</p>
 <div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>store_expense <span class="op">=</span> pd.DataFrame(<span class="fl">0.0</span>,index<span class="op">=</span>price.columns[<span class="dv">1</span>:<span class="dv">3</span>],columns <span class="op">=</span> food_qty[<span class="st">'Person'</span>])</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):    <span class="co">#Iterating over all the three people - Ben, Barbara, and Beth</span></span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):     <span class="co">#Iterating over both the stores - Target and Kroger</span></span>
-<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):        <span class="co">#Iterating over all the four desired food items</span></span>
-<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>            store_expense.iloc[j,i] <span class="op">+=</span> food_qty.iloc[i,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,j<span class="op">+</span><span class="dv">1</span>]</span>
-<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>store_expense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>store_expense <span class="op">=</span> pd.DataFrame(<span class="fl">0.0</span>,index<span class="op">=</span>price.columns[<span class="dv">1</span>:<span class="dv">3</span>],columns <span class="op">=</span> food_qty[<span class="st">'Person'</span>])</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):    <span class="co">#Iterating over all the three people - Ben, Barbara, and Beth</span></span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):     <span class="co">#Iterating over both the stores - Target and Kroger</span></span>
+<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):        <span class="co">#Iterating over all the four desired food items</span></span>
+<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a>            store_expense.iloc[j,i] <span class="op">+=</span> food_qty.iloc[i,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,j<span class="op">+</span><span class="dv">1</span>]</span>
+<span id="cb45-7"><a href="#cb45-7" aria-hidden="true" tabindex="-1"></a>store_expense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
 
 <div>
@@ -616,10 +666,10 @@ dtype: float64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[:,<span class="dv">1</span>:].to_numpy() <span class="co">#Converting food quantity dataframe to NumPy array</span></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting price dataframe to NumPy array</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)  <span class="co">#Matrix multiplication of the quantity matrix with the price matrix directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy array</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>food_num <span class="op">=</span> food_qty.iloc[:,<span class="dv">1</span>:].to_numpy() <span class="co">#Converting food quantity dataframe to NumPy array</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>price_num <span class="op">=</span> price.iloc[:,<span class="dv">1</span>:].to_numpy()  <span class="co">#Converting price dataframe to NumPy array</span></span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>food_num.dot(price_num)  <span class="co">#Matrix multiplication of the quantity matrix with the price matrix directly yields the result</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 <pre><code>array([[50. , 49. ],
        [58.5, 61. ],
@@ -634,12 +684,12 @@ Note that, with each layer of complication, the number of for loops keep increas
 <p><strong>Hint:</strong> 1. Create two matrices - one containing the IMDB and Rotten Tomatoes ratings, and the other containing the genre flags (comedy/action/drama/horror). 2. Multiply the two matrices created in 1. 3. Divide each row/column of the resulting matrix by a vector having the number of ratings in each genre to get the average rating for the genre.</p>
 </section>
 </section>
-<section id="pseudorandom-number-generation" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="pseudorandom-number-generation"><span class="header-section-number">4.3</span> Pseudorandom number generation</h2>
+<section id="pseudorandom-number-generation" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="pseudorandom-number-generation"><span class="header-section-number">4.4</span> Pseudorandom number generation</h2>
 <p>Random numbers often need to be generated to analyze processes or systems, especially in cases when these processes or systems are governed by known probability distrbutions. For example, the number of personnel required to answer calls at a call center can be analyzed by simulating occurence and duration of calls.</p>
 <p>NumPy’s <a href="https://numpy.org/doc/stable/reference/random/index.html">random</a> module can be used to generate arrays of random numbers from several different probability distributions. For example, a <code>3x5</code> array of uniformly distributed random numbers can be generated using the <code>uniform</code> function of teh <code>random</code> module.</p>
 <div class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size <span class="op">=</span> (<span class="dv">3</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size <span class="op">=</span> (<span class="dv">3</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <pre><code>array([[0.69256322, 0.69259973, 0.03515058, 0.45186048, 0.43513769],
        [0.07373366, 0.07465425, 0.92195975, 0.72915895, 0.8906299 ],
@@ -654,26 +704,26 @@ Note that, with each layer of complication, the number of for loops keep increas
 <p><strong>What percentage of times the waiting time at Viet nom nom was higher than the waiting time at Mod Pizza?</strong></p>
 <p>Try both approaches: (1) Using loops to generate data, (2) numpy array to generate data. Compare the time taken in both approaches.</p>
 <div class="cell" data-execution_count="82">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing waiting times for 500 ppl over 30 days</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>waiting_times_MOD <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#Mod pizza</span></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>waiting_times_Vnom <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#Viet nom nom</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> rm</span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):  <span class="co">#Iterating over 500 ppl</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>): <span class="co">#Iterating over 30 days</span></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>        waiting_times_Vnom.iloc[i,j] <span class="op">=</span> rm.gauss(<span class="dv">8</span>,<span class="dv">3</span>) <span class="co">#Simulating waiting time in Viet nom nom for the ith person on jth day</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>        waiting_times_MOD.iloc[i,j] <span class="op">=</span> rm.uniform(<span class="dv">5</span>,<span class="dv">25</span>) <span class="co">#Simulating waiting time in Mod pizza for the ith person on jth day</span></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_times_Vnom<span class="op">-</span>waiting_times_MOD</span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,<span class="bu">sum</span>(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>),<span class="st">" days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza"</span>)</span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>().<span class="bu">sum</span>()<span class="op">/</span>(<span class="dv">30</span><span class="op">*</span><span class="dv">500</span>),<span class="st">"%"</span>)</span>
-<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing waiting times for 500 ppl over 30 days</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>waiting_times_MOD <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#Mod pizza</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>waiting_times_Vnom <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#Viet nom nom</span></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> rm</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):  <span class="co">#Iterating over 500 ppl</span></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>): <span class="co">#Iterating over 30 days</span></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>        waiting_times_Vnom.iloc[i,j] <span class="op">=</span> rm.gauss(<span class="dv">8</span>,<span class="dv">3</span>) <span class="co">#Simulating waiting time in Viet nom nom for the ith person on jth day</span></span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>        waiting_times_MOD.iloc[i,j] <span class="op">=</span> rm.uniform(<span class="dv">5</span>,<span class="dv">25</span>) <span class="co">#Simulating waiting time in Mod pizza for the ith person on jth day</span></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_times_Vnom<span class="op">-</span>waiting_times_MOD</span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,<span class="bu">sum</span>(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>),<span class="st">" days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza"</span>)</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>().<span class="bu">sum</span>()<span class="op">/</span>(<span class="dv">30</span><span class="op">*</span><span class="dv">500</span>),<span class="st">"%"</span>)</span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>On  0  days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza
 Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza =  16.58 %
@@ -681,15 +731,15 @@ Time taken =  3.5454351902008057</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="89">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy arrays</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>waiting_time_Vnom <span class="op">=</span> np.random.normal(<span class="dv">8</span>,<span class="dv">3</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in Viet nom nom</span></span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>waiting_time_MOD <span class="op">=</span> np.random.uniform(<span class="dv">5</span>,<span class="dv">25</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in MOD pizza</span></span>
-<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_time_Vnom<span class="op">-</span>waiting_time_MOD</span>
-<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>(),<span class="st">" days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza"</span>)</span>
-<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>()<span class="op">/</span><span class="dv">15000</span>,<span class="st">"%"</span>)</span>
-<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time()</span>
-<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy arrays</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>waiting_time_Vnom <span class="op">=</span> np.random.normal(<span class="dv">8</span>,<span class="dv">3</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in Viet nom nom</span></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>waiting_time_MOD <span class="op">=</span> np.random.uniform(<span class="dv">5</span>,<span class="dv">25</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in MOD pizza</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_time_Vnom<span class="op">-</span>waiting_time_MOD</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>(),<span class="st">" days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza"</span>)</span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>()<span class="op">/</span><span class="dv">15000</span>,<span class="st">"%"</span>)</span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time()</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>On  0  days, the average waiting time at Viet Nom Nom higher than that at Mod Pizza
 Percentage of times waiting time at Viet nom nom was greater than that at Mod Pizza =  16.486666666666668 %
