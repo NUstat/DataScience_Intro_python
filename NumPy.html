@@ -678,7 +678,7 @@ Array 2:
 <p>Note that:</p>
 <ol type="1">
 <li>The <em>Country Name</em> for US is given as <em>United States</em> in the data.</li>
-<li>The ‘closeness’ of capital cities from the US capital is based on their Euclidean distance to the capital, computed using their coordinates (latitude, longitude).</li>
+<li>The ‘closeness’ of capital cities from the US capital is based on the Euclidean distance of their coordinates to those of the US capital.</li>
 </ol>
 <p><strong>Hints:</strong></p>
 <ol type="1">
@@ -934,7 +934,11 @@ Note that, with each layer of complication, the number of for loops keep increas
 <section id="practice-exercise-2" class="level3" data-number="4.7.1">
 <h3 data-number="4.7.1" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">4.7.1</span> Practice exercise 2</h3>
 <p>Use matrix multiplication to find the average IMDB rating and average Rotten tomatoes rating for each genre - comedy, action, drama and horror. Use the data: <em>movies_cleaned.csv</em>. Which is the most preferred genre for IMDB users, and which is the least preferred genre for Rotten Tomatoes users?</p>
-<p><strong>Hint:</strong> 1. Create two matrices - one containing the IMDB and Rotten Tomatoes ratings, and the other containing the genre flags (comedy/action/drama/horror). 2. Multiply the two matrices created in 1. 3. Divide each row/column of the resulting matrix by a vector having the number of ratings in each genre to get the average rating for the genre.</p>
+<p><strong>Hint:</strong> 1. Create two matrices - one containing the IMDB and Rotten Tomatoes ratings, and the other containing the genre flags (comedy/action/drama/horror).</p>
+<ol start="2" type="1">
+<li><p>Multiply the two matrices created in 1.</p></li>
+<li><p>Divide each row/column of the resulting matrix by a vector having the number of ratings in each genre to get the average rating for the genre.</p></li>
+</ol>
 </section>
 </section>
 <section id="pseudorandom-number-generation" class="level2" data-number="4.8">
