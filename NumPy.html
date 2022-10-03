@@ -450,7 +450,7 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 </section>
 <section id="arithematic-operations" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="arithematic-operations"><span class="header-section-number">4.3</span> Arithematic operations</h2>
-<p>Numpy arrays support arithmetic operators like <code>+</code>, <code>-</code>, <code>*</code>, etc. You can perform an arithmetic operation on an array either with a single number (also called scalar) or with another array of the same shape. However, you cannot perform an arithematic operation on an array with an array of a different shape.</p>
+<p>Numpy arrays support arithmetic operators like <code>+</code>, <code>-</code>, <code>*</code>, etc. We can perform an arithmetic operation on an array either with a single number (also called scalar) or with another array of the same shape. However, we cannot perform an arithematic operation on an array with an array of a different shape.</p>
 <p>Below are some examples of arithematic operations on arrays.</p>
 <div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining two arrays of the same shape</span></span>
@@ -462,7 +462,7 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 <span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                 [<span class="dv">19</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Elementwise summation of arrays</span></span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Element-wise summation of arrays</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">+</span> arr2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>array([[12, 14, 16, 18],
@@ -518,9 +518,10 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 </section>
 <section id="broadcasting" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="broadcasting"><span class="header-section-number">4.4</span> Broadcasting</h2>
-<p>Broadcasting allows arithmetic operations between two arrays with different numbers of dimensions but compatible shapes. Let’s look at an example to see how it works.</p>
-<p>The <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Broadcasting documentation</a> explains it as the following:</p>
+<p>Broadcasting allows arithmetic operations between two arrays with different numbers of dimensions but compatible shapes.</p>
+<p>The <a href="https://numpy.org/doc/stable/user/basics.broadcasting.html">Broadcasting documentation</a> succinctly explains it as the following:</p>
 <p>“The term broadcasting describes how NumPy treats arrays with different shapes during arithmetic operations. Subject to certain constraints, the smaller array is <em>broadcast</em> across the larger array so that they have compatible shapes. Broadcasting provides a means of vectorizing array operations so that looping occurs in C instead of Python. It does this without making needless copies of data and usually leads to efficient algorithm implementations.”</p>
+<p>The example below shows the broadcasting of two arrays.</p>
 <div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>], </span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>                 [<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>], </span>
