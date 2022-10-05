@@ -241,17 +241,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#arithematic-operations" id="toc-arithematic-operations" class="nav-link" data-scroll-target="#arithematic-operations"><span class="toc-section-number">4.3</span>  Arithematic operations</a></li>
   <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="toc-section-number">4.4</span>  Broadcasting</a></li>
   <li><a href="#comparison" id="toc-comparison" class="nav-link" data-scroll-target="#comparison"><span class="toc-section-number">4.5</span>  Comparison</a></li>
-  <li><a href="#concatenating-arrays" id="toc-concatenating-arrays" class="nav-link" data-scroll-target="#concatenating-arrays"><span class="toc-section-number">4.6</span>  Concatenating arrays</a>
+  <li><a href="#concatenating-arrays" id="toc-concatenating-arrays" class="nav-link" data-scroll-target="#concatenating-arrays"><span class="toc-section-number">4.6</span>  Concatenating arrays</a></li>
+  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">4.7</span>  Practice exercise 1</a></li>
+  <li><a href="#vectorized-computation-with-numpy" id="toc-vectorized-computation-with-numpy" class="nav-link" data-scroll-target="#vectorized-computation-with-numpy"><span class="toc-section-number">4.8</span>  Vectorized computation with NumPy</a>
   <ul class="collapse">
-  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">4.6.1</span>  Practice exercise 1</a></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">4.8.1</span>  Practice exercise 2</a></li>
   </ul></li>
-  <li><a href="#vectorized-computation-with-numpy" id="toc-vectorized-computation-with-numpy" class="nav-link" data-scroll-target="#vectorized-computation-with-numpy"><span class="toc-section-number">4.7</span>  Vectorized computation with NumPy</a>
+  <li><a href="#pseudorandom-number-generation" id="toc-pseudorandom-number-generation" class="nav-link" data-scroll-target="#pseudorandom-number-generation"><span class="toc-section-number">4.9</span>  Pseudorandom number generation</a>
   <ul class="collapse">
-  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">4.7.1</span>  Practice exercise 2</a></li>
-  </ul></li>
-  <li><a href="#pseudorandom-number-generation" id="toc-pseudorandom-number-generation" class="nav-link" data-scroll-target="#pseudorandom-number-generation"><span class="toc-section-number">4.8</span>  Pseudorandom number generation</a>
-  <ul class="collapse">
-  <li><a href="#practice-exercise-3" id="toc-practice-exercise-3" class="nav-link" data-scroll-target="#practice-exercise-3"><span class="toc-section-number">4.8.1</span>  Practice exercise 3</a></li>
+  <li><a href="#practice-exercise-3" id="toc-practice-exercise-3" class="nav-link" data-scroll-target="#practice-exercise-3"><span class="toc-section-number">4.9.1</span>  Practice exercise 3</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -281,7 +279,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p><strong>NumPy</strong>, short for Numerical Python is used to analyze numeric data with Python. NumPy arrays are primarily used to create homogeneous <span class="math inline">\(n\)</span>-dimensional arrays (<span class="math inline">\(n = 1,...,n\)</span>). Let us import the NumPy library to use its methods and functions, and the NumPy function <em>array()</em> to define a NumPy array.</p>
-<div class="cell" data-execution_count="60">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="103">
@@ -550,7 +548,7 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([<span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="24">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Broadcasting cannot happed when the broadcasting rules are violated</span></span>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Broadcasting will not happen when the broadcasting rules are violated</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">+</span> arr2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>ValueError: operands could not be broadcast together with shapes (3,4) (3,) </code></pre>
@@ -604,7 +602,7 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 <h2 data-number="4.6" class="anchored" data-anchor-id="concatenating-arrays"><span class="header-section-number">4.6</span> Concatenating arrays</h2>
 <p>Arrays can be concatenated along an axis with NumPy’s <a href="https://numpy.org/doc/stable/reference/generated/numpy.concatenate.html">concatenate</a> function. The <code>axis</code> argument specifies the dimension for concatenation. The arrays should have the same number of dimensions, and the same length along each axis except the axis used for concatenation.</p>
 <p>The examples below show concatenation of arrays.</p>
-<div class="cell" data-execution_count="34">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>arr1 <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>]])</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>arr2 <span class="op">=</span> np.array([[<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>], [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">5</span>]])</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Array 1:</span><span class="ch">\n</span><span class="st">"</span>,arr1)</span>
@@ -618,20 +616,20 @@ Array 2:
  [1 2 5]]</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Concatenating the arrays along the default axis: axis=0</span></span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>np.concatenate((arr1,arr2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>array([[1, 2, 3],
        [3, 4, 5],
        [2, 2, 3],
        [1, 2, 5]])</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="35">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Concatenating the arrays along axis = 1</span></span>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>np.concatenate((arr1,arr2),axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>array([[1, 2, 3, 2, 2, 3],
        [3, 4, 5, 1, 2, 5]])</code></pre>
 </div>
@@ -670,10 +668,11 @@ Array 2:
        [2, 2, 3]])</code></pre>
 </div>
 </div>
-<section id="practice-exercise-1" class="level3" data-number="4.6.1">
-<h3 data-number="4.6.1" class="anchored" data-anchor-id="practice-exercise-1"><span class="header-section-number">4.6.1</span> Practice exercise 1</h3>
-<section id="section" class="level4" data-number="4.6.1.1">
-<h4 data-number="4.6.1.1" class="anchored" data-anchor-id="section"><span class="header-section-number">4.6.1.1</span> </h4>
+</section>
+<section id="practice-exercise-1" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="practice-exercise-1"><span class="header-section-number">4.7</span> Practice exercise 1</h2>
+<section id="section" class="level4" data-number="4.7.0.1">
+<h4 data-number="4.7.0.1" class="anchored" data-anchor-id="section"><span class="header-section-number">4.7.0.1</span> </h4>
 <p>Read the coordinates of the capital cities of the world from http://techslides.com/list-of-countries-and-capitals . Use NumPy to print the name and coordinates of the capital city closest to the US capital - Washington DC.</p>
 <p>Note that:</p>
 <ol type="1">
@@ -687,15 +686,18 @@ Array 2:
 <li>Use <em>broadcasting</em> to compute the euclidean distance of capital cities from Washington DC.</li>
 </ol>
 </section>
-<section id="section-1" class="level4" data-number="4.6.1.2">
-<h4 data-number="4.6.1.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">4.6.1.2</span> </h4>
-<p>Use NumPy to: 1. Print the names of the countries of the top 10 capital cities closest to the US capital - Washington DC. 2. Create and print a NumPy array containing the coordinates of the top 10 cities.</p>
+<section id="section-1" class="level4" data-number="4.7.0.2">
+<h4 data-number="4.7.0.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">4.7.0.2</span> </h4>
+<p>Use NumPy to:</p>
+<ol type="1">
+<li><p>Print the names of the countries of the top 10 capital cities closest to the US capital - Washington DC.</p></li>
+<li><p>Create and print a NumPy array containing the coordinates of the top 10 cities.</p></li>
+</ol>
 <p><strong>Hint:</strong> Use the <em>concatenate()</em> function from the <em>NumPy</em> library to stack the coordinates of the top 10 cities.</p>
 </section>
 </section>
-</section>
-<section id="vectorized-computation-with-numpy" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="vectorized-computation-with-numpy"><span class="header-section-number">4.7</span> Vectorized computation with NumPy</h2>
+<section id="vectorized-computation-with-numpy" class="level2" data-number="4.8">
+<h2 data-number="4.8" class="anchored" data-anchor-id="vectorized-computation-with-numpy"><span class="header-section-number">4.8</span> Vectorized computation with NumPy</h2>
 <p>Several matrix algebra operations such as multiplications, decompositions, determinants, etc. can be performed conveniently with NumPy. However, we’ll focus on matrix multiplication as it is very commonly used to avoid python <code>for</code> loops and make computations faster. The <a href="https://numpy.org/doc/stable/reference/generated/numpy.dot.html">dot</a> function is used to multiply matrices:</p>
 <div class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 2x3 matrix</span></span>
@@ -931,8 +933,8 @@ dtype: float64</code></pre>
 </div>
 <p>Based on the above table, Ben should go to Kroger, Barbara to Target and Beth can go to either store.<br>
 Note that, with each layer of complication, the number of for loops keep increasing, thereby increasing the complexity of Method 1, while the method with NumPy array does not change much. Vectorized computations with arrays are much more efficient.</p>
-<section id="practice-exercise-2" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">4.7.1</span> Practice exercise 2</h3>
+<section id="practice-exercise-2" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">4.8.1</span> Practice exercise 2</h3>
 <p>Use matrix multiplication to find the average IMDB rating and average Rotten tomatoes rating for each genre - comedy, action, drama and horror. Use the data: <em>movies_cleaned.csv</em>. Which is the most preferred genre for IMDB users, and which is the least preferred genre for Rotten Tomatoes users?</p>
 <p><strong>Hint:</strong> 1. Create two matrices - one containing the IMDB and Rotten Tomatoes ratings, and the other containing the genre flags (comedy/action/drama/horror).</p>
 <ol start="2" type="1">
@@ -941,10 +943,10 @@ Note that, with each layer of complication, the number of for loops keep increas
 </ol>
 </section>
 </section>
-<section id="pseudorandom-number-generation" class="level2" data-number="4.8">
-<h2 data-number="4.8" class="anchored" data-anchor-id="pseudorandom-number-generation"><span class="header-section-number">4.8</span> Pseudorandom number generation</h2>
+<section id="pseudorandom-number-generation" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="pseudorandom-number-generation"><span class="header-section-number">4.9</span> Pseudorandom number generation</h2>
 <p>Random numbers often need to be generated to analyze processes or systems, especially in cases when these processes or systems are governed by known probability distrbutions. For example, the number of personnel required to answer calls at a call center can be analyzed by simulating occurence and duration of calls.</p>
-<p>NumPy’s <a href="https://numpy.org/doc/stable/reference/random/index.html">random</a> module can be used to generate arrays of random numbers from several different probability distributions. For example, a <code>3x5</code> array of uniformly distributed random numbers can be generated using the <code>uniform</code> function of teh <code>random</code> module.</p>
+<p>NumPy’s <a href="https://numpy.org/doc/stable/reference/random/index.html">random</a> module can be used to generate arrays of random numbers from several different probability distributions. For example, a <code>3x5</code> array of uniformly distributed random numbers can be generated using the <code>uniform</code> function of the <code>random</code> module.</p>
 <div class="cell" data-execution_count="81">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size <span class="op">=</span> (<span class="dv">3</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
@@ -955,8 +957,8 @@ Note that, with each layer of complication, the number of for loops keep increas
 </div>
 <p>Random numbers can also be generated by Python’s built-in <a href="https://docs.python.org/3/library/random.html">random</a> module. However, it generates one random number at a time, which makes it much slower than NumPy’s random module.</p>
 <p><strong>Example:</strong> Suppose 500 people eat at Food cart 1, and another 500 eat at Food cart 2, everyday.</p>
-<p>The waiting time at Viet nom nom has a normal distribution with mean 8 minutes and standard deviation 3 minutes, while the waiting time at Food cart 1 has a uniform distribution with minimum 5 minutes and maximum 25 minutes.</p>
-<p>Simulate a dataset containing waiting times for 500 ppl for 30 days in each of the food joints. Assume that the waiting time is meansured simultaneously at a certain time in both places, i.e., the observations are paired.</p>
+<p>The waiting time at Food cart 2 has a normal distribution with mean 8 minutes and standard deviation 3 minutes, while the waiting time at Food cart 1 has a uniform distribution with minimum 5 minutes and maximum 25 minutes.</p>
+<p>Simulate a dataset containing waiting times for 500 ppl for 30 days in each of the food joints. Assume that the waiting times are measured simultaneously at a certain time in both places, i.e., the observations are paired.</p>
 <p><strong>On how many days is the average waiting time at Food cart 2 higher than that at Food cart 1?</strong></p>
 <p><strong>What percentage of times the waiting time at Food cart 2 was higher than the waiting time at Food cart 1?</strong></p>
 <p>Try both approaches: (1) Using loops to generate data, (2) numpy array to generate data. Compare the time taken in both approaches.</p>
@@ -1004,9 +1006,9 @@ Time taken =  0.008000850677490234</code></pre>
 </div>
 </div>
 <p>The approach with NumPy is much faster than the one with loops.</p>
-<section id="practice-exercise-3" class="level3" data-number="4.8.1">
-<h3 data-number="4.8.1" class="anchored" data-anchor-id="practice-exercise-3"><span class="header-section-number">4.8.1</span> Practice exercise 3</h3>
-<p><strong>Bootstrapping:</strong> Find the 95% confidence interval of Profit for ‘Action’ movies, using Bootstrapping.</p>
+<section id="practice-exercise-3" class="level3" data-number="4.9.1">
+<h3 data-number="4.9.1" class="anchored" data-anchor-id="practice-exercise-3"><span class="header-section-number">4.9.1</span> Practice exercise 3</h3>
+<p><strong>Bootstrapping:</strong> Find the 95% confidence interval of mean profit for ‘Action’ movies, using Bootstrapping.</p>
 <p>Bootstrapping is a non-parametric method for obtaining confidence interval. Use the algorithm below to find the confidence interval:</p>
 <ol type="1">
 <li>Find the profit for each of the ‘Action’ movies. Suppose there are <em>N</em> such movies. We will have a <em>Profit</em> column with <em>N</em> values.<br>
