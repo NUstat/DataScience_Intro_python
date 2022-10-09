@@ -3489,7 +3489,7 @@ Name: genres, dtype: int64</code></pre>
 <h4 data-number="5.5.4.4" class="anchored" data-anchor-id="section-3"><span class="header-section-number">5.5.4.4</span> </h4>
 <p>Rename the following columns again:</p>
 <ol type="1">
-<li><p>Rename <code>do_you_smoke</code> to `smoke’.</p></li>
+<li><p>Rename <code>do_you_smoke</code> to <code>smoke</code>.</p></li>
 <li><p>Rename <code>are_you_an_introvert_or_extrovert</code> to <code>introvert_extrovert</code>.</p></li>
 </ol>
 <p><strong>Hint:</strong> Use the function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html">rename()</a></p>
@@ -3500,7 +3500,7 @@ Name: genres, dtype: int64</code></pre>
 </section>
 <section id="section-5" class="level4" data-number="5.5.4.6">
 <h4 data-number="5.5.4.6" class="anchored" data-anchor-id="section-5"><span class="header-section-number">5.5.4.6</span> </h4>
-<p>Among the people who go more than 4 parties a month, what proportion of them are introverts?</p>
+<p>Among the people who go to more than 4 parties a month, what proportion of them are introverts?</p>
 </section>
 <section id="section-6" class="level4" data-number="5.5.4.7">
 <h4 data-number="5.5.4.7" class="anchored" data-anchor-id="section-6"><span class="header-section-number">5.5.4.7</span> </h4>
@@ -3508,23 +3508,27 @@ Name: genres, dtype: int64</code></pre>
 </section>
 <section id="section-7" class="level4" data-number="5.5.4.8">
 <h4 data-number="5.5.4.8" class="anchored" data-anchor-id="section-7"><span class="header-section-number">5.5.4.8</span> </h4>
-<p>Among the people who go more than 4 parties a month, what proportion of them are either <code>Pretty happy</code> or <code>Very happy</code>?</p>
-<p>Examine the column <code>num_insta_followers</code>. Some numbers in the column contain a comma(<code>,</code>) or a tilde(<code>~</code>). Remove both these characters from the numbers in the column. You may use the function <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.replace.html">str.replace()</a> of the Pandas Series class.</p>
+<p>Among the people who go to more than 4 parties a month, what proportion of them are either <code>Pretty happy</code> or <code>Very happy</code>?</p>
 </section>
 <section id="section-8" class="level4" data-number="5.5.4.9">
 <h4 data-number="5.5.4.9" class="anchored" data-anchor-id="section-8"><span class="header-section-number">5.5.4.9</span> </h4>
-<p>Convert the column <code>num_insta_followers</code> to numeric. Coerce the errors.</p>
+<p>Examine the column <code>num_insta_followers</code>. Some numbers in the column contain a comma(<code>,</code>) or a tilde(<code>~</code>). Remove both these characters from the numbers in the column.</p>
+<p><strong>Hint:</strong> You may use the function <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.replace.html">str.replace()</a> of the Pandas Series class.</p>
 </section>
 <section id="section-9" class="level4" data-number="5.5.4.10">
 <h4 data-number="5.5.4.10" class="anchored" data-anchor-id="section-9"><span class="header-section-number">5.5.4.10</span> </h4>
-<p>Drop the observations consisting of missing values for <code>num_insta_followers</code>. Report the number of observations dropped.</p>
+<p>Convert the column <code>num_insta_followers</code> to numeric. Coerce the errors.</p>
 </section>
 <section id="section-10" class="level4" data-number="5.5.4.11">
 <h4 data-number="5.5.4.11" class="anchored" data-anchor-id="section-10"><span class="header-section-number">5.5.4.11</span> </h4>
-<p>What is the mean <code>internet_hours_per_day</code> for the top 45 people in terms of number of instagram followers?</p>
+<p>Drop the observations consisting of missing values for <code>num_insta_followers</code>. Report the number of observations dropped.</p>
 </section>
 <section id="section-11" class="level4" data-number="5.5.4.12">
 <h4 data-number="5.5.4.12" class="anchored" data-anchor-id="section-11"><span class="header-section-number">5.5.4.12</span> </h4>
+<p>What is the mean <code>internet_hours_per_day</code> for the top 45 people with the most instagram followers?</p>
+</section>
+<section id="section-12" class="level4" data-number="5.5.4.13">
+<h4 data-number="5.5.4.13" class="anchored" data-anchor-id="section-12"><span class="header-section-number">5.5.4.13</span> </h4>
 <p>What is the mean <code>internet_hours_per_day</code> for the remaining people?</p>
 </section>
 </section>
