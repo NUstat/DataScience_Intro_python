@@ -250,6 +250,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#sub-setting-data" id="toc-sub-setting-data" class="nav-link" data-scroll-target="#sub-setting-data"><span class="toc-section-number">5.5.1</span>  Sub-setting data</a></li>
   <li><a href="#sorting-data" id="toc-sorting-data" class="nav-link" data-scroll-target="#sorting-data"><span class="toc-section-number">5.5.2</span>  Sorting data</a></li>
   <li><a href="#unique-values-value-counts-and-membership" id="toc-unique-values-value-counts-and-membership" class="nav-link" data-scroll-target="#unique-values-value-counts-and-membership"><span class="toc-section-number">5.5.3</span>  Unique values, value counts and membership</a></li>
+  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">5.5.4</span>  Practice exercise 1</a></li>
   </ul></li>
   <li><a href="#operations-between-dataframe-and-series" id="toc-operations-between-dataframe-and-series" class="nav-link" data-scroll-target="#operations-between-dataframe-and-series"><span class="toc-section-number">5.6</span>  Operations between DataFrame and Series</a></li>
   <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5.7</span>  Correlation</a></li>
@@ -3466,9 +3467,66 @@ Name: genres, dtype: int64</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="151">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/STAT303-1 survey for data analysis.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="practice-exercise-1" class="level3" data-number="5.5.4">
+<h3 data-number="5.5.4" class="anchored" data-anchor-id="practice-exercise-1"><span class="header-section-number">5.5.4</span> Practice exercise 1</h3>
+<section id="section" class="level4" data-number="5.5.4.1">
+<h4 data-number="5.5.4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">5.5.4.1</span> </h4>
+<p>Read the file <em>STAT303-1 survey for data analysis.csv</em>.</p>
+</section>
+<section id="section-1" class="level4" data-number="5.5.4.2">
+<h4 data-number="5.5.4.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">5.5.4.2</span> </h4>
+<p>How many observations and variables are there in the data?</p>
+</section>
+<section id="section-2" class="level4" data-number="5.5.4.3">
+<h4 data-number="5.5.4.3" class="anchored" data-anchor-id="section-2"><span class="header-section-number">5.5.4.3</span> </h4>
+<p>Rename all the columns of the data, except the first two columns, with the shorter names in the list <code>new_col_names</code> given below. The order of column names in the list is the same as the order in which the columns are to be renamed starting with the third column from the left.</p>
+<div class="cell" data-execution_count="256">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>new_col_names <span class="op">=</span> [<span class="st">'parties_per_month'</span>, <span class="st">'do_you_smoke'</span>, <span class="st">'weed'</span>, <span class="st">'are_you_an_introvert_or_extrovert'</span>, <span class="st">'love_first_sight'</span>, <span class="st">'learning_style'</span>, <span class="st">'left_right_brained'</span>, <span class="st">'personality_type'</span>, <span class="st">'social_media'</span>, <span class="st">'num_insta_followers'</span>, <span class="st">'streaming_platforms'</span>, <span class="st">'expected_marriage_age'</span>, <span class="st">'expected_starting_salary'</span>, <span class="st">'fav_sport'</span>, <span class="st">'minutes_ex_per_week'</span>, <span class="st">'sleep_hours_per_day'</span>, <span class="st">'how_happy'</span>, <span class="st">'farthest_distance_travelled'</span>, <span class="st">'fav_number'</span>, <span class="st">'fav_letter'</span>, <span class="st">'internet_hours_per_day'</span>, <span class="st">'only_child'</span>, <span class="st">'birthdate_odd_even'</span>, <span class="st">'birth_month'</span>, <span class="st">'fav_season'</span>, <span class="st">'living_location_on_campus'</span>, <span class="st">'major'</span>, <span class="st">'num_majors_minors'</span>, <span class="st">'high_school_GPA'</span>, <span class="st">'NU_GPA'</span>, <span class="st">'age'</span>, <span class="st">'height'</span>, <span class="st">'height_father'</span>, <span class="st">'height_mother'</span>, <span class="st">'school_year'</span>, <span class="st">'procrastinator'</span>, <span class="st">'num_clubs'</span>, <span class="st">'student_athlete'</span>, <span class="st">'AP_stats'</span>, <span class="st">'used_python_before'</span>, <span class="st">'dominant_hand'</span>, <span class="st">'childhood_in_US'</span>, <span class="st">'gender'</span>, <span class="st">'region_of_residence'</span>, <span class="st">'political_affliation'</span>, <span class="st">'cant_change_math_ability'</span>, <span class="st">'can_change_math_ability'</span>, <span class="st">'math_is_genetic'</span>, <span class="st">'much_effort_is_lack_of_talent'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="section-3" class="level4" data-number="5.5.4.4">
+<h4 data-number="5.5.4.4" class="anchored" data-anchor-id="section-3"><span class="header-section-number">5.5.4.4</span> </h4>
+<p>Rename the following columns again:</p>
+<ol type="1">
+<li><p>Rename <code>do_you_smoke</code> to `smoke’.</p></li>
+<li><p>Rename <code>are_you_an_introvert_or_extrovert</code> to <code>introvert_extrovert</code>.</p></li>
+</ol>
+<p><strong>Hint:</strong> Use the function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html">rename()</a></p>
+</section>
+<section id="section-4" class="level4" data-number="5.5.4.5">
+<h4 data-number="5.5.4.5" class="anchored" data-anchor-id="section-4"><span class="header-section-number">5.5.4.5</span> </h4>
+<p>Find the proportion of people going to more than 4 parties per month. Use the variable <code>parties_per_month</code>.</p>
+</section>
+<section id="section-5" class="level4" data-number="5.5.4.6">
+<h4 data-number="5.5.4.6" class="anchored" data-anchor-id="section-5"><span class="header-section-number">5.5.4.6</span> </h4>
+<p>Among the people who go more than 4 parties a month, what proportion of them are introverts?</p>
+</section>
+<section id="section-6" class="level4" data-number="5.5.4.7">
+<h4 data-number="5.5.4.7" class="anchored" data-anchor-id="section-6"><span class="header-section-number">5.5.4.7</span> </h4>
+<p>Find the proportion of people in each category of the variable <code>how_happy</code>.</p>
+</section>
+<section id="section-7" class="level4" data-number="5.5.4.8">
+<h4 data-number="5.5.4.8" class="anchored" data-anchor-id="section-7"><span class="header-section-number">5.5.4.8</span> </h4>
+<p>Among the people who go more than 4 parties a month, what proportion of them are either <code>Pretty happy</code> or <code>Very happy</code>?</p>
+<p>Examine the column <code>num_insta_followers</code>. Some numbers in the column contain a comma(<code>,</code>) or a tilde(<code>~</code>). Remove both these characters from the numbers in the column. You may use the function <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.str.replace.html">str.replace()</a> of the Pandas Series class.</p>
+</section>
+<section id="section-8" class="level4" data-number="5.5.4.9">
+<h4 data-number="5.5.4.9" class="anchored" data-anchor-id="section-8"><span class="header-section-number">5.5.4.9</span> </h4>
+<p>Convert the column <code>num_insta_followers</code> to numeric. Coerce the errors.</p>
+</section>
+<section id="section-9" class="level4" data-number="5.5.4.10">
+<h4 data-number="5.5.4.10" class="anchored" data-anchor-id="section-9"><span class="header-section-number">5.5.4.10</span> </h4>
+<p>Drop the observations consisting of missing values for <code>num_insta_followers</code>. Report the number of observations dropped.</p>
+</section>
+<section id="section-10" class="level4" data-number="5.5.4.11">
+<h4 data-number="5.5.4.11" class="anchored" data-anchor-id="section-10"><span class="header-section-number">5.5.4.11</span> </h4>
+<p>What is the mean <code>internet_hours_per_day</code> for the top 45 people in terms of number of instagram followers?</p>
+</section>
+<section id="section-11" class="level4" data-number="5.5.4.12">
+<h4 data-number="5.5.4.12" class="anchored" data-anchor-id="section-11"><span class="header-section-number">5.5.4.12</span> </h4>
+<p>What is the mean <code>internet_hours_per_day</code> for the remaining people?</p>
+</section>
 </section>
 </section>
 <section id="operations-between-dataframe-and-series" class="level2" data-number="5.6">
