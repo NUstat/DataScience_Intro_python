@@ -240,7 +240,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#transforming-in-built-data-structures" id="toc-transforming-in-built-data-structures" class="nav-link" data-scroll-target="#transforming-in-built-data-structures"><span class="toc-section-number">5.3.2</span>  Transforming in-built data structures</a></li>
   <li><a href="#importing-data-from-files" id="toc-importing-data-from-files" class="nav-link" data-scroll-target="#importing-data-from-files"><span class="toc-section-number">5.3.3</span>  Importing data from files</a></li>
   </ul></li>
-  <li><a href="#attributes-of-a-pandas-dataframe" id="toc-attributes-of-a-pandas-dataframe" class="nav-link" data-scroll-target="#attributes-of-a-pandas-dataframe"><span class="toc-section-number">5.4</span>  Attributes of a Pandas DataFrame</a></li>
+  <li><a href="#attributes-and-methods-of-a-pandas-dataframe" id="toc-attributes-and-methods-of-a-pandas-dataframe" class="nav-link" data-scroll-target="#attributes-and-methods-of-a-pandas-dataframe"><span class="toc-section-number">5.4</span>  Attributes and Methods of a Pandas DataFrame</a>
+  <ul class="collapse">
+  <li><a href="#attributes-of-a-pandas-dataframe" id="toc-attributes-of-a-pandas-dataframe" class="nav-link" data-scroll-target="#attributes-of-a-pandas-dataframe"><span class="toc-section-number">5.4.1</span>  Attributes of a Pandas DataFrame</a></li>
+  <li><a href="#methods-of-a-pandas-dataframe" id="toc-methods-of-a-pandas-dataframe" class="nav-link" data-scroll-target="#methods-of-a-pandas-dataframe"><span class="toc-section-number">5.4.2</span>  Methods of a Pandas DataFrame</a></li>
+  </ul></li>
   <li><a href="#data-manipulations-with-pandas" id="toc-data-manipulations-with-pandas" class="nav-link" data-scroll-target="#data-manipulations-with-pandas"><span class="toc-section-number">5.5</span>  Data manipulations with Pandas</a>
   <ul class="collapse">
   <li><a href="#sub-setting-data" id="toc-sub-setting-data" class="nav-link" data-scroll-target="#sub-setting-data"><span class="toc-section-number">5.5.1</span>  Sub-setting data</a></li>
@@ -624,14 +628,23 @@ dtype: int64</code></pre>
 <p>In the real world, a Pandas DataFrame will typically be created by loading the datasets from existing storage such as SQL Database, CSV file, Excel file, text files, HTML files, etc., as we learned in the third chapter of the book on Reading data.</p>
 </section>
 </section>
-<section id="attributes-of-a-pandas-dataframe" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="attributes-of-a-pandas-dataframe"><span class="header-section-number">5.4</span> Attributes of a Pandas DataFrame</h2>
-<p>The Pandas DataFrame class has the following commonly used attributes.</p>
+<section id="attributes-and-methods-of-a-pandas-dataframe" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="attributes-and-methods-of-a-pandas-dataframe"><span class="header-section-number">5.4</span> Attributes and Methods of a Pandas DataFrame</h2>
+<p>All attributes and methods of a Pandas DataFrame object can be viewed with the python’s built-in <a href="https://docs.python.org/3/library/functions.html#dir">dir()</a> function.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#List of attributes and methods of a Pandas DataFrame</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#This code is not executed as the list is too long</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">dir</span>(spotify_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Although we’ll see examples of attributes and methods of a Pandas DataFrame, please note that most of these attributes and methods are also applicable to the Pandas Series object.</p>
+<section id="attributes-of-a-pandas-dataframe" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="attributes-of-a-pandas-dataframe"><span class="header-section-number">5.4.1</span> Attributes of a Pandas DataFrame</h3>
+<p>Some of the attributes of the Pandas DataFrame class are the following.</p>
 <ol type="1">
 <li><code>dtypes</code>: This attribute is a Series consisting the datatypes of columns of a Pandas DataFrame.</li>
 </ol>
 <div class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>spotify_data.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>spotify_data.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
 <pre><code>artist_followers       int64
 genres                object
@@ -657,7 +670,7 @@ time_signature         int64
 dtype: object</code></pre>
 </div>
 </div>
-<p>Table <span class="quarto-unresolved-ref">?tbl-dtype</span> below describes the datatypes of columns in a Pandas DataFrame.</p>
+<p>The table below describes the datatypes of columns in a Pandas DataFrame.</p>
 <table class="table">
 <thead>
 <tr class="header">
@@ -693,7 +706,7 @@ dtype: object</code></pre>
 <li><code>columns</code>: This atrribute consists of the column labels (or column names) of a Pandas DataFrame.</li>
 </ol>
 <div class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>spotify_data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>spotify_data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="88">
 <pre><code>Index(['artist_followers', 'genres', 'artist_name', 'artist_popularity',
        'track_name', 'track_popularity', 'duration_ms', 'explicit',
@@ -707,7 +720,7 @@ dtype: object</code></pre>
 <li><code>index</code>: This attribute consists of the row lables (or row indices) of a Pandas DataFrame.</li>
 </ol>
 <div class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>spotify_data.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>spotify_data.index</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="94">
 <pre><code>RangeIndex(start=0, stop=243190, step=1)</code></pre>
 </div>
@@ -716,7 +729,7 @@ dtype: object</code></pre>
 <li><code>axes</code>: This is a list of length two, where the first element is the row labels, and the second element is the columns labels. In other words, this attribute combines the information in the attributes - <code>index</code> and <code>columns</code>.</li>
 </ol>
 <div class="cell" data-execution_count="93">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>spotify_data.axes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>spotify_data.axes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="93">
 <pre><code>[RangeIndex(start=0, stop=243190, step=1),
  Index(['artist_followers', 'genres', 'artist_name', 'artist_popularity',
@@ -731,7 +744,7 @@ dtype: object</code></pre>
 <li><code>ndim</code>: As in NumPy, this attribute specifies the number of dimensions. However, unlike NumPy, a Pandas DataFrame has a fixed dimenstion of 2, and a Pandas Series has a fixed dimesion of 1.</li>
 </ol>
 <div class="cell" data-execution_count="102">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>spotify_data.ndim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>spotify_data.ndim</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="102">
 <pre><code>2</code></pre>
 </div>
@@ -740,7 +753,7 @@ dtype: object</code></pre>
 <li><code>size</code>: This attribute specifies the number of elements in a DataFrame. Its value is the product of the number of rows and columns.</li>
 </ol>
 <div class="cell" data-execution_count="103">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>spotify_data.size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>spotify_data.size</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <pre><code>5106990</code></pre>
 </div>
@@ -749,7 +762,7 @@ dtype: object</code></pre>
 <li><code>shape</code>: This is a tuple consisting of the number of rwos and columns in a Pandas DataFrame.</li>
 </ol>
 <div class="cell" data-execution_count="112">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>spotify_data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>spotify_data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="112">
 <pre><code>(243190, 21)</code></pre>
 </div>
@@ -758,7 +771,7 @@ dtype: object</code></pre>
 <li><code>values</code>: This provides a NumPy representation of a Pandas DataFrame.</li>
 </ol>
 <div class="cell" data-execution_count="119">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>spotify_data.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>spotify_data.values</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="119">
 <pre><code>array([[16996777, 'rap', 'Juice WRLD', ..., 0.203, 161.991, 4],
        [16996777, 'rap', 'Juice WRLD', ..., 0.218, 83.903, 4],
@@ -771,6 +784,662 @@ dtype: object</code></pre>
 </div>
 </div>
 </section>
+<section id="methods-of-a-pandas-dataframe" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="methods-of-a-pandas-dataframe"><span class="header-section-number">5.4.2</span> Methods of a Pandas DataFrame</h3>
+<p>Some of the commonly used methods of the Pandas DataFrame class are the following.</p>
+<ol type="1">
+<li><code>head()</code>: Prints the first <em>n</em> rows of a DataFrame.</li>
+</ol>
+<div class="cell" data-execution_count="124">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>spotify_data.head(<span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="124">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>All Girls Are The Same</td>
+      <td>0</td>
+      <td>165820</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.673</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-7.226</td>
+      <td>1</td>
+      <td>0.306</td>
+      <td>0.0769</td>
+      <td>0.000338</td>
+      <td>0.0856</td>
+      <td>0.203</td>
+      <td>161.991</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Lucid Dreams</td>
+      <td>0</td>
+      <td>239836</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.511</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-7.230</td>
+      <td>0</td>
+      <td>0.200</td>
+      <td>0.3490</td>
+      <td>0.000000</td>
+      <td>0.3400</td>
+      <td>0.218</td>
+      <td>83.903</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>2 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li><code>tail</code>: Prints the last <em>n</em> rows of a DataFrame.</li>
+</ol>
+<div class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>spotify_data.tail(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>243187</th>
+      <td>2256652</td>
+      <td>jazz</td>
+      <td>Louis Armstrong</td>
+      <td>74</td>
+      <td>When It's Sleepy Time Down South</td>
+      <td>4</td>
+      <td>200200</td>
+      <td>0</td>
+      <td>1923</td>
+      <td>0.527</td>
+      <td>...</td>
+      <td>3</td>
+      <td>-14.814</td>
+      <td>1</td>
+      <td>0.0793</td>
+      <td>0.989</td>
+      <td>0.00001</td>
+      <td>0.1040</td>
+      <td>0.370</td>
+      <td>105.093</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>243188</th>
+      <td>2256652</td>
+      <td>jazz</td>
+      <td>Louis Armstrong</td>
+      <td>74</td>
+      <td>On The Sunny Side Of The Street - Part 2</td>
+      <td>4</td>
+      <td>185973</td>
+      <td>0</td>
+      <td>1923</td>
+      <td>0.559</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-9.804</td>
+      <td>1</td>
+      <td>0.0512</td>
+      <td>0.989</td>
+      <td>0.84700</td>
+      <td>0.4480</td>
+      <td>0.576</td>
+      <td>101.279</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>243189</th>
+      <td>2256652</td>
+      <td>jazz</td>
+      <td>Louis Armstrong</td>
+      <td>74</td>
+      <td>My Sweet</td>
+      <td>4</td>
+      <td>195960</td>
+      <td>0</td>
+      <td>1923</td>
+      <td>0.741</td>
+      <td>...</td>
+      <td>3</td>
+      <td>-10.406</td>
+      <td>1</td>
+      <td>0.0505</td>
+      <td>0.927</td>
+      <td>0.07880</td>
+      <td>0.0633</td>
+      <td>0.816</td>
+      <td>105.840</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li><code>describe</code>: Print summary statistics of a Pandas DataFrame, as seen in chapter 3 on Reading Data.</li>
+</ol>
+<div class="cell" data-execution_count="126">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>spotify_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="126">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>artist_popularity</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>energy</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>2.431900e+05</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>2.431900e+05</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+      <td>243190.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.960931e+06</td>
+      <td>65.342633</td>
+      <td>36.080772</td>
+      <td>2.263209e+05</td>
+      <td>0.050039</td>
+      <td>1992.475258</td>
+      <td>0.568357</td>
+      <td>0.580633</td>
+      <td>5.240326</td>
+      <td>-9.432548</td>
+      <td>0.670928</td>
+      <td>0.111984</td>
+      <td>0.383938</td>
+      <td>0.071169</td>
+      <td>0.223756</td>
+      <td>0.552302</td>
+      <td>119.335060</td>
+      <td>3.884177</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>5.028746e+06</td>
+      <td>10.289182</td>
+      <td>16.476836</td>
+      <td>9.973214e+04</td>
+      <td>0.218026</td>
+      <td>18.481463</td>
+      <td>0.159444</td>
+      <td>0.236631</td>
+      <td>3.532546</td>
+      <td>4.449731</td>
+      <td>0.469877</td>
+      <td>0.198068</td>
+      <td>0.321142</td>
+      <td>0.209555</td>
+      <td>0.198076</td>
+      <td>0.250017</td>
+      <td>29.864219</td>
+      <td>0.458082</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>2.300000e+01</td>
+      <td>51.000000</td>
+      <td>0.000000</td>
+      <td>3.344000e+03</td>
+      <td>0.000000</td>
+      <td>1923.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>-60.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.832620e+05</td>
+      <td>57.000000</td>
+      <td>25.000000</td>
+      <td>1.776670e+05</td>
+      <td>0.000000</td>
+      <td>1980.000000</td>
+      <td>0.462000</td>
+      <td>0.405000</td>
+      <td>2.000000</td>
+      <td>-11.990000</td>
+      <td>0.000000</td>
+      <td>0.033200</td>
+      <td>0.070000</td>
+      <td>0.000000</td>
+      <td>0.098100</td>
+      <td>0.353000</td>
+      <td>96.099250</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>5.352520e+05</td>
+      <td>64.000000</td>
+      <td>36.000000</td>
+      <td>2.188670e+05</td>
+      <td>0.000000</td>
+      <td>1994.000000</td>
+      <td>0.579000</td>
+      <td>0.591000</td>
+      <td>5.000000</td>
+      <td>-8.645000</td>
+      <td>1.000000</td>
+      <td>0.043100</td>
+      <td>0.325000</td>
+      <td>0.000011</td>
+      <td>0.141000</td>
+      <td>0.560000</td>
+      <td>118.002000</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.587332e+06</td>
+      <td>72.000000</td>
+      <td>48.000000</td>
+      <td>2.645465e+05</td>
+      <td>0.000000</td>
+      <td>2008.000000</td>
+      <td>0.685000</td>
+      <td>0.776000</td>
+      <td>8.000000</td>
+      <td>-6.131000</td>
+      <td>1.000000</td>
+      <td>0.075300</td>
+      <td>0.671000</td>
+      <td>0.002220</td>
+      <td>0.292000</td>
+      <td>0.760000</td>
+      <td>137.929000</td>
+      <td>4.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>7.890023e+07</td>
+      <td>100.000000</td>
+      <td>99.000000</td>
+      <td>4.995083e+06</td>
+      <td>1.000000</td>
+      <td>2021.000000</td>
+      <td>0.988000</td>
+      <td>1.000000</td>
+      <td>11.000000</td>
+      <td>3.744000</td>
+      <td>1.000000</td>
+      <td>0.969000</td>
+      <td>0.996000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>1.000000</td>
+      <td>243.507000</td>
+      <td>5.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li><code>max()/min()</code>: Returns the max/min values of numeric columns If the function is applied on non-numeric columns, it will return the maximum/minimum value based on the order of the alphabet.</li>
+</ol>
+<div class="cell" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The max() method applied on a Series</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>spotify_data[<span class="st">'artist_popularity'</span>].<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="133">
+<pre><code>100</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The max() method applied on a DataFrame</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>spotify_data.<span class="bu">max</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="134">
+<pre><code>artist_followers                    78900234
+genres                                  rock
+artist_name                          高爾宣 OSN
+artist_popularity                        100
+track_name           행복했던 날들이었다 days gone by
+track_popularity                          99
+duration_ms                          4995083
+explicit                                   1
+release_year                            2021
+danceability                           0.988
+energy                                   1.0
+key                                       11
+loudness                               3.744
+mode                                       1
+speechiness                            0.969
+acousticness                           0.996
+instrumentalness                         1.0
+liveness                                 1.0
+valence                                  1.0
+tempo                                243.507
+time_signature                             5
+dtype: object</code></pre>
+</div>
+</div>
+<ol start="5" type="1">
+<li><code>mean()/median()</code>: Returns the mean/median values of numeric columns.</li>
+</ol>
+<div class="cell" data-execution_count="135">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>spotify_data.median()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="135">
+<pre><code>artist_followers     535252.000000
+artist_popularity        64.000000
+track_popularity         36.000000
+duration_ms          218867.000000
+explicit                  0.000000
+release_year           1994.000000
+danceability              0.579000
+energy                    0.591000
+key                       5.000000
+loudness                 -8.645000
+mode                      1.000000
+speechiness               0.043100
+acousticness              0.325000
+instrumentalness          0.000011
+liveness                  0.141000
+valence                   0.560000
+tempo                   118.002000
+time_signature            4.000000
+dtype: float64</code></pre>
+</div>
+</div>
+<ol start="6" type="1">
+<li><code>std()</code>: Returns the standard deviation of numeric columns.</li>
+</ol>
+<div class="cell" data-execution_count="137">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>spotify_data.std()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="137">
+<pre><code>artist_followers     5.028746e+06
+artist_popularity    1.028918e+01
+track_popularity     1.647684e+01
+duration_ms          9.973214e+04
+explicit             2.180260e-01
+release_year         1.848146e+01
+danceability         1.594436e-01
+energy               2.366309e-01
+key                  3.532546e+00
+loudness             4.449731e+00
+mode                 4.698771e-01
+speechiness          1.980684e-01
+acousticness         3.211417e-01
+instrumentalness     2.095551e-01
+liveness             1.980759e-01
+valence              2.500172e-01
+tempo                2.986422e+01
+time_signature       4.580822e-01
+dtype: float64</code></pre>
+</div>
+</div>
+<ol start="7" type="1">
+<li><code>sample(n)</code>: Returns <em>n</em> random observations from a Pandas DataFrame.</li>
+</ol>
+<div class="cell" data-execution_count="138">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>spotify_data.sample(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="138">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>42809</th>
+      <td>385756</td>
+      <td>rock</td>
+      <td>Saxon</td>
+      <td>56</td>
+      <td>Never Surrender - 2009 Remastered Version</td>
+      <td>2</td>
+      <td>195933</td>
+      <td>0</td>
+      <td>2012</td>
+      <td>0.506</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-7.847</td>
+      <td>1</td>
+      <td>0.0633</td>
+      <td>0.0535</td>
+      <td>0.00001</td>
+      <td>0.3330</td>
+      <td>0.536</td>
+      <td>90.989</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>25730</th>
+      <td>810526</td>
+      <td>hip hop</td>
+      <td>Froid</td>
+      <td>68</td>
+      <td>Pseudosocial</td>
+      <td>54</td>
+      <td>135963</td>
+      <td>0</td>
+      <td>2016</td>
+      <td>0.644</td>
+      <td>...</td>
+      <td>7</td>
+      <td>-9.098</td>
+      <td>0</td>
+      <td>0.3280</td>
+      <td>0.8270</td>
+      <td>0.00001</td>
+      <td>0.1630</td>
+      <td>0.886</td>
+      <td>117.170</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>147392</th>
+      <td>479209</td>
+      <td>jazz</td>
+      <td>Sarah Vaughan</td>
+      <td>59</td>
+      <td>Love Dance</td>
+      <td>14</td>
+      <td>204400</td>
+      <td>0</td>
+      <td>1982</td>
+      <td>0.386</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-23.819</td>
+      <td>1</td>
+      <td>0.0372</td>
+      <td>0.8970</td>
+      <td>0.00000</td>
+      <td>0.0943</td>
+      <td>0.102</td>
+      <td>110.981</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>233189</th>
+      <td>1201905</td>
+      <td>rock</td>
+      <td>Grateful Dead</td>
+      <td>72</td>
+      <td>Cold Rain and Snow - 2013 Remaster</td>
+      <td>29</td>
+      <td>151702</td>
+      <td>0</td>
+      <td>1967</td>
+      <td>0.412</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-10.476</td>
+      <td>0</td>
+      <td>0.0487</td>
+      <td>0.4090</td>
+      <td>0.58300</td>
+      <td>0.1630</td>
+      <td>0.875</td>
+      <td>168.803</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>4 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<ol start="8" type="1">
+<li><code>dropna()</code>: Drops all observations with at least one missing value.</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This code is not executed to avoid prining a large table</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>spotify_data.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
 <section id="data-manipulations-with-pandas" class="level2" data-number="5.5">
 <h2 data-number="5.5" class="anchored" data-anchor-id="data-manipulations-with-pandas"><span class="header-section-number">5.5</span> Data manipulations with Pandas</h2>
 <section id="sub-setting-data" class="level3" data-number="5.5.1">
@@ -780,9 +1449,9 @@ dtype: object</code></pre>
 <strong>A:</strong> Rows, as songs correspond to rows, while features of songs correspond to columns.</p>
 <p>As we need to subset rows, the filter must be applied at the starting index. As we don’t need to subset any specific features of the songs, there is no subsetting to be done on the columns. A <code>:</code> at the ending index means that all columns need to selected.</p>
 <div class="cell" data-execution_count="125">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting spotify songs that have track popularity score of more than 50</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>popular_songs <span class="op">=</span> spotify_data.loc[spotify_data.track_popularity<span class="op">&gt;=</span><span class="dv">50</span>,:]</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>popular_songs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting spotify songs that have track popularity score of more than 50</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>popular_songs <span class="op">=</span> spotify_data.loc[spotify_data.track_popularity<span class="op">&gt;=</span><span class="dv">50</span>,:]</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>popular_songs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="125">
 
 <div>
@@ -943,8 +1612,8 @@ dtype: object</code></pre>
 </div>
 <p>Suppose we wish to analyze only <em>track_name, release year</em> and <em>track_popularity</em> of songs. Then, we can subset the revelant columns:</p>
 <div class="cell" data-execution_count="129">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>relevant_columns <span class="op">=</span> spotify_data.loc[:,[<span class="st">'track_name'</span>,<span class="st">'release_year'</span>,<span class="st">'track_popularity'</span>]]</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>relevant_columns.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>relevant_columns <span class="op">=</span> spotify_data.loc[:,[<span class="st">'track_name'</span>,<span class="st">'release_year'</span>,<span class="st">'track_popularity'</span>]]</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>relevant_columns.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="129">
 
 <div>
@@ -999,8 +1668,8 @@ dtype: object</code></pre>
 <h3 data-number="5.5.2" class="anchored" data-anchor-id="sorting-data"><span class="header-section-number">5.5.2</span> Sorting data</h3>
 <p>Sorting dataset is a very common operation. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html">sort_values()</a> function of Pandas can be used to sort a Pandas DataFrame or Series. Let us sort the spotify data in decreasing order of <em>track_popularity</em>:</p>
 <div class="cell" data-execution_count="133">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>spotify_sorted <span class="op">=</span> spotify_data.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>spotify_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>spotify_sorted <span class="op">=</span> spotify_data.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>spotify_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="133">
 
 <div>
@@ -2069,7 +2738,7 @@ if (typeof version == 'undefined') {
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="unique-values-value-counts-and-membership"><span class="header-section-number">5.5.3</span> Unique values, value counts and membership</h3>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.unique.html">unique</a> provides the unique values of a Series. For example, let us find the number of unique genres of songs in the spotify dataset:</p>
 <div class="cell" data-execution_count="149">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="149">
 <pre><code>array(['rap', 'pop', 'miscellaneous', 'metal', 'hip hop', 'rock',
        'pop &amp; rock', 'hoerspiel', 'folk', 'electronic', 'jazz', 'country',
@@ -2078,7 +2747,7 @@ if (typeof version == 'undefined') {
 </div>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.value_counts.html">value_counts()</a> provides the number of observations of each value of a Series. For example, let us find the number of songs of each genre in the spotify dataset:</p>
 <div class="cell" data-execution_count="153">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="153">
 <pre><code>pop              70441
 rock             49785
@@ -2099,8 +2768,8 @@ Name: genres, dtype: int64</code></pre>
 <p>More than half the songs in the dataset are <em>pop, rock</em> or <em>pop &amp; rock</em>.</p>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isin.html">isin()</a> provides a boolean Series indicating the position of certain values in a Series. The function is helpful in sub-setting data. For example, let us subset the songs that are either <em>latin, rap,</em> or <em>metal</em>:</p>
 <div class="cell" data-execution_count="155">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>latin_rap_metal_songs <span class="op">=</span> spotify_data.loc[spotify_data.genres.isin([<span class="st">'latin'</span>,<span class="st">'rap'</span>,<span class="st">'metal'</span>]),:]</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>latin_rap_metal_songs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>latin_rap_metal_songs <span class="op">=</span> spotify_data.loc[spotify_data.genres.isin([<span class="st">'latin'</span>,<span class="st">'rap'</span>,<span class="st">'metal'</span>]),:]</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>latin_rap_metal_songs.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="155">
 
 <div>
@@ -2267,7 +2936,7 @@ Name: genres, dtype: int64</code></pre>
 <p><strong>Example:</strong> Spotify recommends songs based on songs listened by the user. Suppose you have listned to the song <em>drivers license</em>. Spotify intends to recommend you 5 songs that are <em>similar</em> to <em>drivers license</em>. Which songs should it recommend?</p>
 <p>Let us see what information do we have about songs that can help us identify songs similar to drivers license. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.columns.html">columns</a> attribute of DataFrame will display all the columns names. The description of some of the column names relating to audio features is <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features">here</a>.</p>
 <div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>spotify_data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>spotify_data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>Index(['artist_followers', 'genres', 'artist_name', 'artist_popularity',
        'track_name', 'track_popularity', 'duration_ms', 'explicit',
@@ -2283,11 +2952,11 @@ Name: genres, dtype: int64</code></pre>
 <p>where the subscript <em>DL</em> stands for <em>drivers license</em> and <em>S</em> stands for any song. The top 5 songs with the least value of <span class="math inline">\(Similarity_{DL-S}\)</span> will be the most similar to <em>drivers lincense</em> and should be recommended.</p>
 <p>Let us subset the columns that we need to use to compute the Euclidean distance.</p>
 <div class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>audio_features <span class="op">=</span> spotify_data[[<span class="st">'danceability'</span>, <span class="st">'energy'</span>, <span class="st">'key'</span>, <span class="st">'loudness'</span>,<span class="st">'mode'</span>,<span class="st">'speechiness'</span>,</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'acousticness'</span>, <span class="st">'instrumentalness'</span>, <span class="st">'liveness'</span>,<span class="st">'valence'</span>, <span class="st">'tempo'</span>, <span class="st">'time_signature'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>audio_features <span class="op">=</span> spotify_data[[<span class="st">'danceability'</span>, <span class="st">'energy'</span>, <span class="st">'key'</span>, <span class="st">'loudness'</span>,<span class="st">'mode'</span>,<span class="st">'speechiness'</span>,</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'acousticness'</span>, <span class="st">'instrumentalness'</span>, <span class="st">'liveness'</span>,<span class="st">'valence'</span>, <span class="st">'tempo'</span>, <span class="st">'time_signature'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>audio_features.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>audio_features.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="111">
 
 <div>
@@ -2392,8 +3061,8 @@ Name: genres, dtype: int64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="112">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of values of audio_features</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>audio_features.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of values of audio_features</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>audio_features.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="112">
 
 <div>
@@ -2546,10 +3215,10 @@ Name: genres, dtype: int64</code></pre>
 <p>Let us scale the value of each column to a standard uniform distribtion: <span class="math inline">\(U[0,1]\)</span>.</p>
 <p>For scaling the values of a column to <span class="math inline">\(U[0,1]\)</span>, we need to subtract the minimum value of the column from each value, and divide by the range of values of the column. For example, <em>danceability</em> can be standardized as follows:</p>
 <div class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling danceability to U[0,1]</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>danceability_value_range <span class="op">=</span> audio_features.danceability.<span class="bu">max</span>()<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>()</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>danceability_std <span class="op">=</span> (audio_features.danceability<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>())<span class="op">/</span>danceability_value_range</span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>danceability_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling danceability to U[0,1]</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>danceability_value_range <span class="op">=</span> audio_features.danceability.<span class="bu">max</span>()<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>()</span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>danceability_std <span class="op">=</span> (audio_features.danceability<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>())<span class="op">/</span>danceability_value_range</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>danceability_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <pre><code>0         0.681174
 1         0.517206
@@ -2567,22 +3236,22 @@ Name: danceability, Length: 243190, dtype: float64</code></pre>
 </div>
 <p>However, it will be cumbersome to repeat the above code for each audio feature. We can instead write a function that scales values of a column to <span class="math inline">\(U[0,1]\)</span>, and apply the function on all the audio features.</p>
 <div class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Function to scale a column to U[0,1]</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale_uniform(x):</span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Function to scale a column to U[0,1]</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale_uniform(x):</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will use the Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html">apply()</a> to apply the above function to the DataFrame <code>audio_features</code>.</p>
 <div class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling all audio features to U[0,1]</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(scale_uniform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling all audio features to U[0,1]</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(scale_uniform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>lambda function:</strong> Note that one line functions can be conveniently written as lambda functions in Python. These functions do not require a name, and can be defined using the keyword <code>lambda</code>. The above two blocks of code can be concisely written as:</p>
 <div class="cell" data-execution_count="156">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="116">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#All the audio features are scaled to U[0,1]</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#All the audio features are scaled to U[0,1]</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="116">
 
 <div>
@@ -2733,16 +3402,16 @@ Name: danceability, Length: 243190, dtype: float64</code></pre>
 </div>
 <p>Since we need to find the Euclidean distance from the song <em>drivers license</em>, let us find the index of the row containing features of *drivers license.</p>
 <div class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>drivers_license_index <span class="op">=</span> spotify_data[spotify_data.track_name<span class="op">==</span><span class="st">'drivers license'</span>].index[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>drivers_license_index <span class="op">=</span> spotify_data[spotify_data.track_name<span class="op">==</span><span class="st">'drivers license'</span>].index[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we’ll subtract the audio features of <em>drivers license</em> from all other songs:</p>
 <div class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL <span class="op">=</span> audio_features_scaled<span class="op">-</span>audio_features_scaled.loc[drivers_license_index,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL <span class="op">=</span> audio_features_scaled<span class="op">-</span>audio_features_scaled.loc[drivers_license_index,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let us square the difference computed above. We’ll use the in-built python function <code>pow()</code> to square the difference:</p>
 <div class="cell" data-execution_count="119">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq <span class="op">=</span> songs_minus_DL.<span class="bu">pow</span>(<span class="dv">2</span>)</span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq <span class="op">=</span> songs_minus_DL.<span class="bu">pow</span>(<span class="dv">2</span>)</span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="119">
 
 <div>
@@ -2848,8 +3517,8 @@ Name: danceability, Length: 243190, dtype: float64</code></pre>
 </div>
 <p>Now, we’ll sum the squares of differences from all audio features to compute the similarity of all songs to <em>drivers license</em>.</p>
 <div class="cell" data-execution_count="120">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>distance_squared <span class="op">=</span> songs_minus_DL_sq.<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>distance_squared.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>distance_squared <span class="op">=</span> songs_minus_DL_sq.<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>distance_squared.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="120">
 <pre><code>0    1.337163
 1    1.438935
@@ -2861,8 +3530,8 @@ dtype: float64</code></pre>
 </div>
 <p>Now, we’ll sort these distances to find the top 5 songs closest to drivers’s license.</p>
 <div class="cell" data-execution_count="121">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>distances_sorted <span class="op">=</span> distance_squared.sort_values()</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>distances_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>distances_sorted <span class="op">=</span> distance_squared.sort_values()</span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>distances_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="121">
 <pre><code>2398      0.000000
 81844     0.008633
@@ -2874,7 +3543,7 @@ dtype: float64</code></pre>
 </div>
 <p>Using the indices of the top 5 distances, we will identify the top 5 songs most similar to <em>drivers license</em>:</p>
 <div class="cell" data-scrolled="true" data-execution_count="122">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>spotify_data.loc[distances_sorted.index[<span class="dv">0</span>:<span class="dv">6</span>],:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>spotify_data.loc[distances_sorted.index[<span class="dv">0</span>:<span class="dv">6</span>],:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="122">
 
 <div>
@@ -3064,8 +3733,8 @@ dtype: float64</code></pre>
 <p>Correlation may refer to any kind of association between two random variables. However, in this book, we will always consider correlation as the linear association between two random variables, or the Pearson’s correlation coefficient. Note that correlation does not imply causalty and vice-versa.</p>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html">corr()</a> provides the pairwise correlation between all columns of a DataFrame, or between two Series. The function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html#pandas.DataFrame.corrwith">corrwith()</a> provides the pairwise correlation of a DataFrame with another DataFrame or Series.</p>
 <div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pairwise correlation amongst all columns</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>spotify_data.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pairwise correlation amongst all columns</span></span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>spotify_data.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="159">
 
 <div>
@@ -3480,7 +4149,7 @@ dtype: float64</code></pre>
 </div>
 <p><strong>Q:</strong> Which audio feature is the most correlated with <em>track_popularity</em>?</p>
 <div class="cell" data-execution_count="168">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>spotify_data.corrwith(spotify_data.track_popularity).sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>spotify_data.corrwith(spotify_data.track_popularity).sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="168">
 <pre><code>track_popularity     1.000000
 release_year         0.568329
