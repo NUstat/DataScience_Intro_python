@@ -232,15 +232,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#pandas-data-stuctures---series-and-dataframe" id="toc-pandas-data-stuctures---series-and-dataframe" class="nav-link active" data-scroll-target="#pandas-data-stuctures---series-and-dataframe"><span class="toc-section-number">5.1</span>  Pandas data stuctures - Series and DataFrame</a></li>
-  <li><a href="#data-manipulations-with-pandas" id="toc-data-manipulations-with-pandas" class="nav-link" data-scroll-target="#data-manipulations-with-pandas"><span class="toc-section-number">5.2</span>  Data manipulations with Pandas</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="toc-section-number">5.1</span>  Introduction</a></li>
+  <li><a href="#pandas-data-stuctures---series-and-dataframe" id="toc-pandas-data-stuctures---series-and-dataframe" class="nav-link" data-scroll-target="#pandas-data-stuctures---series-and-dataframe"><span class="toc-section-number">5.2</span>  Pandas data stuctures - Series and DataFrame</a></li>
+  <li><a href="#data-manipulations-with-pandas" id="toc-data-manipulations-with-pandas" class="nav-link" data-scroll-target="#data-manipulations-with-pandas"><span class="toc-section-number">5.3</span>  Data manipulations with Pandas</a>
   <ul class="collapse">
-  <li><a href="#sub-setting-data" id="toc-sub-setting-data" class="nav-link" data-scroll-target="#sub-setting-data"><span class="toc-section-number">5.2.1</span>  Sub-setting data</a></li>
-  <li><a href="#sorting-data" id="toc-sorting-data" class="nav-link" data-scroll-target="#sorting-data"><span class="toc-section-number">5.2.2</span>  Sorting data</a></li>
-  <li><a href="#unique-values-value-counts-and-membership" id="toc-unique-values-value-counts-and-membership" class="nav-link" data-scroll-target="#unique-values-value-counts-and-membership"><span class="toc-section-number">5.2.3</span>  Unique values, value counts and membership</a></li>
+  <li><a href="#sub-setting-data" id="toc-sub-setting-data" class="nav-link" data-scroll-target="#sub-setting-data"><span class="toc-section-number">5.3.1</span>  Sub-setting data</a></li>
+  <li><a href="#sorting-data" id="toc-sorting-data" class="nav-link" data-scroll-target="#sorting-data"><span class="toc-section-number">5.3.2</span>  Sorting data</a></li>
+  <li><a href="#unique-values-value-counts-and-membership" id="toc-unique-values-value-counts-and-membership" class="nav-link" data-scroll-target="#unique-values-value-counts-and-membership"><span class="toc-section-number">5.3.3</span>  Unique values, value counts and membership</a></li>
   </ul></li>
-  <li><a href="#operations-between-dataframe-and-series" id="toc-operations-between-dataframe-and-series" class="nav-link" data-scroll-target="#operations-between-dataframe-and-series"><span class="toc-section-number">5.3</span>  Operations between DataFrame and Series</a></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5.4</span>  Correlation</a></li>
+  <li><a href="#operations-between-dataframe-and-series" id="toc-operations-between-dataframe-and-series" class="nav-link" data-scroll-target="#operations-between-dataframe-and-series"><span class="toc-section-number">5.4</span>  Operations between DataFrame and Series</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5.5</span>  Correlation</a></li>
   </ul>
 </nav>
     </div>
@@ -263,19 +264,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<section id="introduction" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">5.1</span> Introduction</h2>
 <p>The Pandas library contains several methods and functions for cleaning, manipulating and analyzing data. While NumPy is suited for working with homogenous numerical array data, Pandas is designed for working with tabular or heterogenous data.</p>
-<p>Let is import the Pandas library to use its methods and functions.</p>
+<p>Pandas is built on top of the NumPy package. Thus, there are some similarities between the two libraries. Like NumPy, Pandas provides the basic mathematical functionalities like addition, subtraction, conditional operations and broadcasting. However, unlike NumPy library which provides objects for multi-dimensional arrays, Pandas provides the 2D table object called Dataframe.</p>
+<p>Data in pandas is often used to feed statistical analysis in&nbsp;SciPy, plotting functions from&nbsp;Matplotlib, and machine learning algorithms in&nbsp;Scikit-learn.</p>
+<p>Typically, the Pandas library is used for:</p>
+<ul>
+<li>Cleaning the data by tasks such as removing missing values, filtering rows / columns, aggregating data, mutating data, etc.</li>
+<li>Computing summary statistics such as the mean, median, max, min, standard deviation, etc.</li>
+<li>Computing correlation among columns in the data</li>
+<li>Computing the data distribtion</li>
+<li>Visualizing the data with help from the Matplotlib library</li>
+<li>Storing the cleaned, transformed data back into a CSV, other file or database</li>
+</ul>
+<p>Let’s import the Pandas library to use its methods and functions.</p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="pandas-data-stuctures---series-and-dataframe" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="pandas-data-stuctures---series-and-dataframe"><span class="header-section-number">5.1</span> Pandas data stuctures - Series and DataFrame</h2>
+</section>
+<section id="pandas-data-stuctures---series-and-dataframe" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="pandas-data-stuctures---series-and-dataframe"><span class="header-section-number">5.2</span> Pandas data stuctures - Series and DataFrame</h2>
+<p>There are two core components of the Pandas library - Series and DataFrame.</p>
 <p>A DataFrame is a two-dimensional object - conmprising of tabular data organized in rows and columns, where individual columns can be of different value types (numeric / string / boolean etc.). A DataFrame has row indices which refer to individual rows, and column names that refer to indvidual columns. By default, the row indices are integers starting from zero. However, both the row indices and column names can be customized by the user.</p>
 <p>Let us read the spotify data - <em>spotify_data.csv</em>, using the Pandas function <code>read_csv()</code>.</p>
-<div class="cell" data-execution_count="109">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spotify_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/spotify_data.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>spotify_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="109">
+<div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
 
@@ -468,10 +484,10 @@ Name: track_name, Length: 245623, dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="data-manipulations-with-pandas" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="data-manipulations-with-pandas"><span class="header-section-number">5.2</span> Data manipulations with Pandas</h2>
-<section id="sub-setting-data" class="level3" data-number="5.2.1">
-<h3 data-number="5.2.1" class="anchored" data-anchor-id="sub-setting-data"><span class="header-section-number">5.2.1</span> Sub-setting data</h3>
+<section id="data-manipulations-with-pandas" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="data-manipulations-with-pandas"><span class="header-section-number">5.3</span> Data manipulations with Pandas</h2>
+<section id="sub-setting-data" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="sub-setting-data"><span class="header-section-number">5.3.1</span> Sub-setting data</h3>
 <p>In the chapter on reading data, we learned about operators <code>loc</code> and <code>iloc</code> that can be used to subset data based on axis labels and position of rows/columns respectively. However, usually we are not aware of the relevant row indices, and we may want to subset data based on some condition(s). For example, suppose we wish to analyze only those songs whose track popularity is higher than 50.</p>
 <p><strong>Q:</strong> Do we need to subset rows or columns in this case?<br>
 <strong>A:</strong> Rows, as songs correspond to rows, while features of songs correspond to columns.</p>
@@ -691,8 +707,8 @@ Name: track_name, Length: 245623, dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="sorting-data" class="level3" data-number="5.2.2">
-<h3 data-number="5.2.2" class="anchored" data-anchor-id="sorting-data"><span class="header-section-number">5.2.2</span> Sorting data</h3>
+<section id="sorting-data" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="sorting-data"><span class="header-section-number">5.3.2</span> Sorting data</h3>
 <p>Sorting dataset is a very common operation. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html">sort_values()</a> function of Pandas can be used to sort a Pandas DataFrame or Series. Let us sort the spotify data in decreasing order of <em>track_popularity</em>:</p>
 <div class="cell" data-execution_count="133">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>spotify_sorted <span class="op">=</span> spotify_data.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
@@ -1761,8 +1777,8 @@ if (typeof version == 'undefined') {
 </div>
 </div>
 </div></section>
-<section id="unique-values-value-counts-and-membership" class="level3" data-number="5.2.3">
-<h3 data-number="5.2.3" class="anchored" data-anchor-id="unique-values-value-counts-and-membership"><span class="header-section-number">5.2.3</span> Unique values, value counts and membership</h3>
+<section id="unique-values-value-counts-and-membership" class="level3" data-number="5.3.3">
+<h3 data-number="5.3.3" class="anchored" data-anchor-id="unique-values-value-counts-and-membership"><span class="header-section-number">5.3.3</span> Unique values, value counts and membership</h3>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.unique.html">unique</a> provides the unique values of a Series. For example, let us find the number of unique genres of songs in the spotify dataset:</p>
 <div class="cell" data-execution_count="149">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.unique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1957,8 +1973,8 @@ Name: genres, dtype: int64</code></pre>
 </div>
 </section>
 </section>
-<section id="operations-between-dataframe-and-series" class="level2" data-number="5.3">
-<h2 data-number="5.3" class="anchored" data-anchor-id="operations-between-dataframe-and-series"><span class="header-section-number">5.3</span> Operations between DataFrame and Series</h2>
+<section id="operations-between-dataframe-and-series" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="operations-between-dataframe-and-series"><span class="header-section-number">5.4</span> Operations between DataFrame and Series</h2>
 <p>Let us learn arithematic operations between DataFrame and Series with the help of an example.</p>
 <p><strong>Example:</strong> Spotify recommends songs based on songs listened by the user. Suppose you have listned to the song <em>drivers license</em>. Spotify intends to recommend you 5 songs that are <em>similar</em> to <em>drivers license</em>. Which songs should it recommend?</p>
 <p>Let us see what information do we have about songs that can help us identify songs similar to drivers license. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.columns.html">columns</a> attribute of DataFrame will display all the columns names. The description of some of the column names relating to audio features is <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features">here</a>.</p>
@@ -2755,8 +2771,8 @@ dtype: float64</code></pre>
 </div>
 <p>We can see the top 5 songs most similar to <em>drivers license</em> in the <em>track_name</em> column above. Interestingly, three of the five songs are Asian! These songs indeed sound similart to <em>drivers license</em>!</p>
 </section>
-<section id="correlation" class="level2" data-number="5.4">
-<h2 data-number="5.4" class="anchored" data-anchor-id="correlation"><span class="header-section-number">5.4</span> Correlation</h2>
+<section id="correlation" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="correlation"><span class="header-section-number">5.5</span> Correlation</h2>
 <p>Correlation may refer to any kind of association between two random variables. However, in this book, we will always consider correlation as the linear association between two random variables, or the Pearson’s correlation coefficient. Note that correlation does not imply causalty and vice-versa.</p>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html">corr()</a> provides the pairwise correlation between all columns of a DataFrame, or between two Series. The function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html#pandas.DataFrame.corrwith">corrwith()</a> provides the pairwise correlation of a DataFrame with another DataFrame or Series.</p>
 <div class="cell" data-execution_count="159">
