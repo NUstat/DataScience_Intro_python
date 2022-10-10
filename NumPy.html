@@ -995,6 +995,211 @@ Note that, with each layer of complication, the number of for loops keep increas
 <li><p>Multiply the two matrices created in 1.</p></li>
 <li><p>Divide each row/column of the resulting matrix by a vector having the number of ratings in each genre to get the average rating for the genre.</p></li>
 </ol>
+<p><strong>Solution:</strong></p>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movies_cleaned.csv'</span>)</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>IMDB Rating</th>
+      <th>Rotten Tomatoes Rating</th>
+      <th>Running Time min</th>
+      <th>Release Date</th>
+      <th>US Gross</th>
+      <th>Worldwide Gross</th>
+      <th>Production Budget</th>
+      <th>comedy</th>
+      <th>Action</th>
+      <th>drama</th>
+      <th>horror</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Broken Arrow</td>
+      <td>5.8</td>
+      <td>55</td>
+      <td>108</td>
+      <td>Feb 09 1996</td>
+      <td>70645997</td>
+      <td>148345997</td>
+      <td>65000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Brazil</td>
+      <td>8.0</td>
+      <td>98</td>
+      <td>136</td>
+      <td>Dec 18 1985</td>
+      <td>9929135</td>
+      <td>9929135</td>
+      <td>15000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>The Cable Guy</td>
+      <td>5.8</td>
+      <td>52</td>
+      <td>95</td>
+      <td>Jun 14 1996</td>
+      <td>60240295</td>
+      <td>102825796</td>
+      <td>47000000</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Chain Reaction</td>
+      <td>5.2</td>
+      <td>13</td>
+      <td>106</td>
+      <td>Aug 02 1996</td>
+      <td>21226204</td>
+      <td>60209334</td>
+      <td>55000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Clash of the Titans</td>
+      <td>5.9</td>
+      <td>65</td>
+      <td>108</td>
+      <td>Jun 12 1981</td>
+      <td>30000000</td>
+      <td>30000000</td>
+      <td>15000000</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting ratings of all movies</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>drating <span class="op">=</span> data[[<span class="st">'IMDB Rating'</span>,<span class="st">'Rotten Tomatoes Rating'</span>]]</span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>drating_num <span class="op">=</span> drating.to_numpy() <span class="co">#Converting the data to NumPy array</span></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>drating_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>array([[ 5.8, 55. ],
+       [ 8. , 98. ],
+       [ 5.8, 52. ],
+       ...,
+       [ 7. , 65. ],
+       [ 5.7, 26. ],
+       [ 6.7, 82. ]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Getting the matrix indicating the genre of all movies</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>dgenre <span class="op">=</span> data.iloc[:,<span class="dv">8</span>:<span class="dv">12</span>]</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>dgenre_num <span class="op">=</span> dgenre.to_numpy() <span class="co">#Converting the data to NumPy array</span></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>dgenre_num</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="6">
+<pre><code>array([[0, 1, 0, 0],
+       [1, 0, 0, 0],
+       [1, 0, 0, 0],
+       ...,
+       [1, 0, 0, 0],
+       [0, 1, 0, 0],
+       [0, 1, 0, 0]], dtype=int64)</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Total IMDB and Rotten tomatoes ratings for each genre</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>ratings_sum_genre <span class="op">=</span> drating_num.T.dot(dgenre_num)</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>ratings_sum_genre</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>array([[ 1785.6,  1673.1,  1630.3,   946.2],
+       [14119. , 13725. , 14535. ,  6533. ]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of movies in the data will be stored in 'rows', and number of columns stored in 'cols'</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>rows, cols <span class="op">=</span> data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Getting number of movies in each genre</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>movies_count_genre <span class="op">=</span> dgenre_num.T.dot(np.ones(rows))</span>
+<span id="cb105-3"><a href="#cb105-3" aria-hidden="true" tabindex="-1"></a>movies_count_genre</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>array([302., 264., 239., 154.])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the average IMDB and average Rotten tomatoes ratings for each genre</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>ratings_sum_genre<span class="op">/</span>movies_count_genre</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>array([[ 5.91258278,  6.3375    ,  6.82133891,  6.14415584],
+       [46.75165563, 51.98863636, 60.81589958, 42.42207792]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(ratings_sum_genre<span class="op">/</span>movies_count_genre,columns <span class="op">=</span> [<span class="st">'comedy'</span>,<span class="st">'Action'</span>,<span class="st">'drama'</span>,<span class="st">'horror'</span>],</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>             index <span class="op">=</span> [<span class="st">'IMDB Rating'</span>,<span class="st">'Rotten Tomatoes Rating'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="14">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>comedy</th>
+      <th>Action</th>
+      <th>drama</th>
+      <th>horror</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>IMDB Rating</th>
+      <td>5.912583</td>
+      <td>6.337500</td>
+      <td>6.821339</td>
+      <td>6.144156</td>
+    </tr>
+    <tr>
+      <th>Rotten Tomatoes Rating</th>
+      <td>46.751656</td>
+      <td>51.988636</td>
+      <td>60.815900</td>
+      <td>42.422078</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>IMDB users prefer <em>drama</em>, and are amused the least by <em>comedy</em> movies, on an average. However, Rotten tomatoes critics would rather watch <em>comedy</em> than <em>horror</em> movies, on an average.</p>
 </section>
 </section>
 <section id="pseudorandom-number-generation" class="level2" data-number="4.9">
@@ -1002,7 +1207,7 @@ Note that, with each layer of complication, the number of for loops keep increas
 <p>Random numbers often need to be generated to analyze processes or systems, especially in cases when these processes or systems are governed by known probability distrbutions. For example, the number of personnel required to answer calls at a call center can be analyzed by simulating occurence and duration of calls.</p>
 <p>NumPy’s <a href="https://numpy.org/doc/stable/reference/random/index.html">random</a> module can be used to generate arrays of random numbers from several different probability distributions. For example, a <code>3x5</code> array of uniformly distributed random numbers can be generated using the <code>uniform</code> function of the <code>random</code> module.</p>
 <div class="cell" data-execution_count="81">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size <span class="op">=</span> (<span class="dv">3</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size <span class="op">=</span> (<span class="dv">3</span>,<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="81">
 <pre><code>array([[0.69256322, 0.69259973, 0.03515058, 0.45186048, 0.43513769],
        [0.07373366, 0.07465425, 0.92195975, 0.72915895, 0.8906299 ],
@@ -1017,26 +1222,26 @@ Note that, with each layer of complication, the number of for loops keep increas
 <p><strong>What percentage of times the waiting time at Food cart 2 was higher than the waiting time at Food cart 1?</strong></p>
 <p>Try both approaches: (1) Using loops to generate data, (2) numpy array to generate data. Compare the time taken in both approaches.</p>
 <div class="cell" data-execution_count="49">
-<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing waiting times for 500 ppl over 30 days</span></span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>waiting_times_FoodCart1 <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#FoodCart1</span></span>
-<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>waiting_times_FoodCart2 <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#FoodCart2</span></span>
-<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> rm</span>
-<span id="cb100-8"><a href="#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):  <span class="co">#Iterating over 500 ppl</span></span>
-<span id="cb100-9"><a href="#cb100-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>): <span class="co">#Iterating over 30 days</span></span>
-<span id="cb100-10"><a href="#cb100-10" aria-hidden="true" tabindex="-1"></a>        waiting_times_FoodCart2.iloc[i,j] <span class="op">=</span> rm.gauss(<span class="dv">8</span>,<span class="dv">3</span>) <span class="co">#Simulating waiting time in FoodCart2 for the ith person on jth day</span></span>
-<span id="cb100-11"><a href="#cb100-11" aria-hidden="true" tabindex="-1"></a>        waiting_times_FoodCart1.iloc[i,j] <span class="op">=</span> rm.uniform(<span class="dv">5</span>,<span class="dv">25</span>) <span class="co">#Simulating waiting time in FoodCart1 for the ith person on jth day</span></span>
-<span id="cb100-12"><a href="#cb100-12" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_times_FoodCart2<span class="op">-</span>waiting_times_FoodCart1</span>
-<span id="cb100-13"><a href="#cb100-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb100-14"><a href="#cb100-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,<span class="bu">sum</span>(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>),<span class="st">" days, the average waiting time at FoodCart2 higher than that at FoodCart1"</span>)</span>
-<span id="cb100-15"><a href="#cb100-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at FoodCart2 was greater than that at FoodCart1 = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>().<span class="bu">sum</span>()<span class="op">/</span>(<span class="dv">30</span><span class="op">*</span><span class="dv">500</span>),<span class="st">"%"</span>)</span>
-<span id="cb100-16"><a href="#cb100-16" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
-<span id="cb100-17"><a href="#cb100-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Using loops</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Initializing waiting times for 500 ppl over 30 days</span></span>
+<span id="cb113-5"><a href="#cb113-5" aria-hidden="true" tabindex="-1"></a>waiting_times_FoodCart1 <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#FoodCart1</span></span>
+<span id="cb113-6"><a href="#cb113-6" aria-hidden="true" tabindex="-1"></a>waiting_times_FoodCart2 <span class="op">=</span> pd.DataFrame(<span class="dv">0</span>,index<span class="op">=</span><span class="bu">range</span>(<span class="dv">500</span>),columns<span class="op">=</span><span class="bu">range</span>(<span class="dv">30</span>)) <span class="co">#FoodCart2</span></span>
+<span id="cb113-7"><a href="#cb113-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> random <span class="im">as</span> rm</span>
+<span id="cb113-8"><a href="#cb113-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">500</span>):  <span class="co">#Iterating over 500 ppl</span></span>
+<span id="cb113-9"><a href="#cb113-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">30</span>): <span class="co">#Iterating over 30 days</span></span>
+<span id="cb113-10"><a href="#cb113-10" aria-hidden="true" tabindex="-1"></a>        waiting_times_FoodCart2.iloc[i,j] <span class="op">=</span> rm.gauss(<span class="dv">8</span>,<span class="dv">3</span>) <span class="co">#Simulating waiting time in FoodCart2 for the ith person on jth day</span></span>
+<span id="cb113-11"><a href="#cb113-11" aria-hidden="true" tabindex="-1"></a>        waiting_times_FoodCart1.iloc[i,j] <span class="op">=</span> rm.uniform(<span class="dv">5</span>,<span class="dv">25</span>) <span class="co">#Simulating waiting time in FoodCart1 for the ith person on jth day</span></span>
+<span id="cb113-12"><a href="#cb113-12" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_times_FoodCart2<span class="op">-</span>waiting_times_FoodCart1</span>
+<span id="cb113-13"><a href="#cb113-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-14"><a href="#cb113-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,<span class="bu">sum</span>(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>),<span class="st">" days, the average waiting time at FoodCart2 higher than that at FoodCart1"</span>)</span>
+<span id="cb113-15"><a href="#cb113-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at FoodCart2 was greater than that at FoodCart1 = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>().<span class="bu">sum</span>()<span class="op">/</span>(<span class="dv">30</span><span class="op">*</span><span class="dv">500</span>),<span class="st">"%"</span>)</span>
+<span id="cb113-16"><a href="#cb113-16" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time() <span class="co">#Current system time</span></span>
+<span id="cb113-17"><a href="#cb113-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>On  0  days, the average waiting time at FoodCart2 higher than that at FoodCart1
 Percentage of times waiting time at FoodCart2 was greater than that at FoodCart1 =  16.226666666666667 %
@@ -1044,15 +1249,15 @@ Time taken =  4.521248817443848</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="53">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy arrays</span></span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>waiting_time_FoodCart2 <span class="op">=</span> np.random.normal(<span class="dv">8</span>,<span class="dv">3</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in FoodCart2</span></span>
-<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>waiting_time_FoodCart1 <span class="op">=</span> np.random.uniform(<span class="dv">5</span>,<span class="dv">25</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in FoodCart1</span></span>
-<span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_time_FoodCart2<span class="op">-</span>waiting_time_FoodCart1</span>
-<span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>(),<span class="st">" days, the average waiting time at FoodCart2 higher than that at FoodCart1"</span>)</span>
-<span id="cb102-7"><a href="#cb102-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at FoodCart2 was greater than that at FoodCart1 = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>()<span class="op">/</span><span class="dv">15000</span>,<span class="st">"%"</span>)</span>
-<span id="cb102-8"><a href="#cb102-8" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time()</span>
-<span id="cb102-9"><a href="#cb102-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: Using NumPy arrays</span></span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>waiting_time_FoodCart2 <span class="op">=</span> np.random.normal(<span class="dv">8</span>,<span class="dv">3</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in FoodCart2</span></span>
+<span id="cb115-4"><a href="#cb115-4" aria-hidden="true" tabindex="-1"></a>waiting_time_FoodCart1 <span class="op">=</span> np.random.uniform(<span class="dv">5</span>,<span class="dv">25</span>,size <span class="op">=</span> (<span class="dv">500</span>,<span class="dv">30</span>)) <span class="co">#Simultaneously generating the waiting times of 500 ppl over 30 days in FoodCart1</span></span>
+<span id="cb115-5"><a href="#cb115-5" aria-hidden="true" tabindex="-1"></a>time_diff <span class="op">=</span> waiting_time_FoodCart2<span class="op">-</span>waiting_time_FoodCart1</span>
+<span id="cb115-6"><a href="#cb115-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"On "</span>,(time_diff.mean()<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>(),<span class="st">" days, the average waiting time at FoodCart2 higher than that at FoodCart1"</span>)</span>
+<span id="cb115-7"><a href="#cb115-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Percentage of times waiting time at FoodCart2 was greater than that at FoodCart1 = "</span>,<span class="dv">100</span><span class="op">*</span>(time_diff<span class="op">&gt;</span><span class="dv">0</span>).<span class="bu">sum</span>()<span class="op">/</span><span class="dv">15000</span>,<span class="st">"%"</span>)</span>
+<span id="cb115-8"><a href="#cb115-8" aria-hidden="true" tabindex="-1"></a>end_time <span class="op">=</span> tm.time()</span>
+<span id="cb115-9"><a href="#cb115-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken = "</span>, end_time<span class="op">-</span>start_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>On  0  days, the average waiting time at FoodCart2 higher than that at FoodCart1
 Percentage of times waiting time at FoodCart2 was greater than that at FoodCart1 =  16.52 %
@@ -1076,6 +1281,32 @@ Time taken =  0.008000850677490234</code></pre>
 <li>The 95% Confidence interval is the range between the 2.5% and 97.5% percentile values of the 1000 means obtained in (c)<br>
 Use the <em>movies_cleaned.csv</em> dataset.</li>
 </ol>
+<p><strong>Solution:</strong></p>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading data</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movies_cleaned.csv'</span>)</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtering action movies</span></span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>movies_action <span class="op">=</span> movies.loc[data[<span class="st">'Action'</span>]<span class="op">==</span><span class="dv">1</span>,:]</span>
+<span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Computing profit of movies</span></span>
+<span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a>movies_action.loc[:,<span class="st">'Profit'</span>] <span class="op">=</span> movies_action.loc[:,<span class="st">'Worldwide Gross'</span>] <span class="op">-</span> movies_action.loc[:,<span class="st">'Production Budget'</span>]</span>
+<span id="cb117-9"><a href="#cb117-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-10"><a href="#cb117-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting the profit column</span></span>
+<span id="cb117-11"><a href="#cb117-11" aria-hidden="true" tabindex="-1"></a>profit_vec <span class="op">=</span> movies_action[<span class="st">'Profit'</span>]</span>
+<span id="cb117-12"><a href="#cb117-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-13"><a href="#cb117-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a matrix of 1000 samples with replacement from the profit column</span></span>
+<span id="cb117-14"><a href="#cb117-14" aria-hidden="true" tabindex="-1"></a>bootstrap_samples<span class="op">=</span>np.random.choice(profit_vec,size <span class="op">=</span> (<span class="dv">1000</span>,<span class="bu">len</span>(profit_vec)))</span>
+<span id="cb117-15"><a href="#cb117-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-16"><a href="#cb117-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Computing the mean of each of the 1000 samples</span></span>
+<span id="cb117-17"><a href="#cb117-17" aria-hidden="true" tabindex="-1"></a>bootstrap_sample_means <span class="op">=</span> bootstrap_samples.mean(axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb117-18"><a href="#cb117-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-19"><a href="#cb117-19" aria-hidden="true" tabindex="-1"></a><span class="co">#The confidence interval is the 2.5th and 97.5th percentile of the mean of the 1000 samples</span></span>
+<span id="cb117-20"><a href="#cb117-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence interval = ["</span>,np.percentile(bootstrap_sample_means,<span class="fl">2.5</span>),<span class="st">", "</span>,np.percentile(bootstrap_sample_means,<span class="fl">97.5</span>),<span class="st">" ]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Confidence interval = [ 131965917.39384471 ,  182667460.74782196  ]</code></pre>
+</div>
+</div>
 
 
 </section>
