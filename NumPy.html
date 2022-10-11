@@ -1287,7 +1287,7 @@ Use the <em>movies_cleaned.csv</em> dataset.</li>
 <span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>movies <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movies_cleaned.csv'</span>)</span>
 <span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtering action movies</span></span>
-<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>movies_action <span class="op">=</span> movies.loc[data[<span class="st">'Action'</span>]<span class="op">==</span><span class="dv">1</span>,:]</span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a>movies_action <span class="op">=</span> movies.loc[movies[<span class="st">'Action'</span>]<span class="op">==</span><span class="dv">1</span>,:]</span>
 <span id="cb117-6"><a href="#cb117-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb117-7"><a href="#cb117-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Computing profit of movies</span></span>
 <span id="cb117-8"><a href="#cb117-8" aria-hidden="true" tabindex="-1"></a>movies_action.loc[:,<span class="st">'Profit'</span>] <span class="op">=</span> movies_action.loc[:,<span class="st">'Worldwide Gross'</span>] <span class="op">-</span> movies_action.loc[:,<span class="st">'Production Budget'</span>]</span>
