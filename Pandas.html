@@ -297,7 +297,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#section-12" id="toc-section-12" class="nav-link" data-scroll-target="#section-12"><span class="toc-section-number">5.5.4.13</span>  </a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#operations-between-dataframe-and-series" id="toc-operations-between-dataframe-and-series" class="nav-link" data-scroll-target="#operations-between-dataframe-and-series"><span class="toc-section-number">5.6</span>  Operations between DataFrame and Series</a></li>
+  <li><a href="#arithematic-operations" id="toc-arithematic-operations" class="nav-link" data-scroll-target="#arithematic-operations"><span class="toc-section-number">5.6</span>  Arithematic operations</a>
+  <ul>
+  <li><a href="#arithematic-operations-between-dataframes" id="toc-arithematic-operations-between-dataframes" class="nav-link" data-scroll-target="#arithematic-operations-between-dataframes"><span class="toc-section-number">5.6.1</span>  Arithematic operations between DataFrames</a></li>
+  <li><a href="#arithematic-operations-between-a-series-and-a-dataframe" id="toc-arithematic-operations-between-a-series-and-a-dataframe" class="nav-link" data-scroll-target="#arithematic-operations-between-a-series-and-a-dataframe"><span class="toc-section-number">5.6.2</span>  Arithematic operations between a Series and a DataFrame</a></li>
+  <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study"><span class="toc-section-number">5.6.3</span>  Case study</a></li>
+  </ul></li>
   <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5.7</span>  Correlation</a></li>
   </ul>
 </nav>
@@ -4219,13 +4224,405 @@ Name: how_happy, dtype: float64</code></pre>
 </section>
 </section>
 </section>
-<section id="operations-between-dataframe-and-series" class="level2" data-number="5.6">
-<h2 data-number="5.6" class="anchored" data-anchor-id="operations-between-dataframe-and-series"><span class="header-section-number">5.6</span> Operations between DataFrame and Series</h2>
-<p>Let us learn arithematic operations between DataFrame and Series with the help of an example.</p>
-<p><strong>Example:</strong> Spotify recommends songs based on songs listened by the user. Suppose you have listened to the song <em>drivers license</em>. Spotify intends to recommend you 5 songs that are <em>similar</em> to <em>drivers license</em>. Which songs should it recommend?</p>
-<p>Let us see what information do we have about songs that can help us identify songs similar to drivers license. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.columns.html">columns</a> attribute of DataFrame will display all the columns names. The description of some of the column names relating to audio features is <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features">here</a>.</p>
+<section id="arithematic-operations" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="arithematic-operations"><span class="header-section-number">5.6</span> Arithematic operations</h2>
+<section id="arithematic-operations-between-dataframes" class="level3" data-number="5.6.1">
+<h3 data-number="5.6.1" class="anchored" data-anchor-id="arithematic-operations-between-dataframes"><span class="header-section-number">5.6.1</span> Arithematic operations between DataFrames</h3>
+<p>Let us create two toy DataFrames:</p>
 <div class="cell" data-execution_count="54">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>spotify_data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating two toy DataFrames</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>toy_df1 <span class="op">=</span> pd.DataFrame([(<span class="dv">1</span>,<span class="dv">2</span>),(<span class="dv">3</span>,<span class="dv">4</span>),(<span class="dv">5</span>,<span class="dv">6</span>)], columns<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>])</span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>toy_df2 <span class="op">=</span> pd.DataFrame([(<span class="dv">100</span>,<span class="dv">200</span>),(<span class="dv">300</span>,<span class="dv">400</span>),(<span class="dv">500</span>,<span class="dv">600</span>)], columns<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#DataFrame 1</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>toy_df1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>3</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>5</td>
+      <td>6</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="57">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co">#DataFrame 2</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>toy_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="57">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>300</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>500</td>
+      <td>600</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Element by element operations between two DataFrames can be performed with the operators <code>+</code>, <code>-</code>, <code>*</code>,<code>/</code>,<code>**</code>, and <code>%</code>. Below is an example of element-by-element addition of two DataFrames:</p>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Element-by-element arithmetic addition of the two DataFrames</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>toy_df1 <span class="op">+</span> toy_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="55">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>101</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>303</td>
+      <td>404</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>505</td>
+      <td>606</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Note that these operations create problems when the row indices and/or column names of the two DataFrames do not match. See the example below:</p>
+<div class="cell" data-execution_count="72">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating another toy example of a DataFrame</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>toy_df3 <span class="op">=</span> pd.DataFrame([(<span class="dv">100</span>,<span class="dv">200</span>),(<span class="dv">300</span>,<span class="dv">400</span>),(<span class="dv">500</span>,<span class="dv">600</span>)], columns<span class="op">=</span>[<span class="st">'a'</span>,<span class="st">'b'</span>], index<span class="op">=</span>[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>])</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>toy_df3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="72">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>100</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>300</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>500</td>
+      <td>600</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="73">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding DataFrames with some unmatching row indices</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>toy_df1 <span class="op">+</span> toy_df3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="73">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>103.0</td>
+      <td>204.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>305.0</td>
+      <td>406.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Note that the rows whose indices match between the two DataFrames are added up. The rest of the values are missing (or <code>NaN</code>) because only one of the DataFrames has that index.</p>
+<p>As in the case of row indices, missing values will also appear in the case of unmatching column names, as shown in the example below.</p>
+<div class="cell" data-execution_count="76">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>toy_df4 <span class="op">=</span> pd.DataFrame([(<span class="dv">100</span>,<span class="dv">200</span>),(<span class="dv">300</span>,<span class="dv">400</span>),(<span class="dv">500</span>,<span class="dv">600</span>)], columns<span class="op">=</span>[<span class="st">'b'</span>,<span class="st">'c'</span>])</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>toy_df4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="76">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>b</th>
+      <th>c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>100</td>
+      <td>200</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>300</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>500</td>
+      <td>600</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="77">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Adding DataFrames with some unmatching column names</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>toy_df1 <span class="op">+</span> toy_df4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="77">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+      <th>c</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>NaN</td>
+      <td>102</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>NaN</td>
+      <td>304</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>NaN</td>
+      <td>506</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="arithematic-operations-between-a-series-and-a-dataframe" class="level3" data-number="5.6.2">
+<h3 data-number="5.6.2" class="anchored" data-anchor-id="arithematic-operations-between-a-series-and-a-dataframe"><span class="header-section-number">5.6.2</span> Arithematic operations between a Series and a DataFrame</h3>
+<p><strong>Broadcasting:</strong> As in NumPy, we can <strong>broadcast</strong> a Series to match the shape of another DataFrame:</p>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Broadcasting: The row [1,2] (a Series) is added on every row in df2 </span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>toy_df1.iloc[<span class="dv">0</span>,:] <span class="op">+</span> toy_df2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>101</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>301</td>
+      <td>402</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>501</td>
+      <td>602</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Note that the <code>+</code> operator is used to add values of a Series to a DataFrame based on column names. For adding a Series to a DataFrame based on row indices, we cannot use the <code>+</code> operator. Instead, we’ll need to use the <code>add()</code> function as explained below.</p>
+<p><strong>Broadcasting based on row/column labels:</strong> We can use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.add.html">add()</a> function to broadcast a Series to a DataFrame. By default the Series adds based on column names, as in the case of the <code>+</code> operator.</p>
+<div class="cell" data-execution_count="70">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add the first row of df1 (a Series) to every row in df2 </span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>toy_df2.add(toy_df1.iloc[<span class="dv">0</span>,:])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="70">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>101</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>301</td>
+      <td>402</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>501</td>
+      <td>602</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>For broadcasting based on row indices, we use the <code>axis</code> argument of the <code>add()</code> function.</p>
+<div class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The second column of df1 (a Series) is added to every col in df2</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>toy_df2.add(toy_df1.iloc[:,<span class="dv">1</span>],axis<span class="op">=</span><span class="st">'index'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="102">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>a</th>
+      <th>b</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>102</td>
+      <td>202</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>304</td>
+      <td>404</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>506</td>
+      <td>606</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="case-study" class="level3" data-number="5.6.3">
+<h3 data-number="5.6.3" class="anchored" data-anchor-id="case-study"><span class="header-section-number">5.6.3</span> Case study</h3>
+<p>To see the application of arithematic operations on DataFrames, let us see the case study below.</p>
+<p><strong>Song recommendation:</strong> Spotify recommends songs based on songs listened by the user. Suppose you have listened to the song <em>drivers license</em>. Spotify intends to recommend you 5 songs that are <em>similar</em> to <em>drivers license</em>. Which songs should it recommend?</p>
+<p>Let us see the available song information that can help us identify songs similar to <em>drivers license</em>. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.columns.html">columns</a> attribute of DataFrame will display all the columns names. The description of some of the column names relating to audio features is <a href="https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features">here</a>.</p>
+<div class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>spotify_data.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="54">
 <pre><code>Index(['artist_followers', 'genres', 'artist_name', 'artist_popularity',
        'track_name', 'track_popularity', 'duration_ms', 'explicit',
@@ -4240,12 +4637,12 @@ Name: how_happy, dtype: float64</code></pre>
 <p><span class="math display">\[Similarity_{DL-S} = \sqrt{(danceability_{DL}-danceability_{S})^2+(energy_{DL}-energy_{S})^2 +...+ (tempo_{DL}-tempo_{S})^2)},\]</span></p>
 <p>where the subscript <em>DL</em> stands for <em>drivers license</em> and <em>S</em> stands for any song. The top 5 songs with the least value of <span class="math inline">\(Similarity_{DL-S}\)</span> will be the most similar to <em>drivers lincense</em> and should be recommended.</p>
 <p>Let us subset the columns that we need to use to compute the Euclidean distance.</p>
-<div class="cell" data-execution_count="110">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>audio_features <span class="op">=</span> spotify_data[[<span class="st">'danceability'</span>, <span class="st">'energy'</span>, <span class="st">'key'</span>, <span class="st">'loudness'</span>,<span class="st">'mode'</span>,<span class="st">'speechiness'</span>,</span>
-<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'acousticness'</span>, <span class="st">'instrumentalness'</span>, <span class="st">'liveness'</span>,<span class="st">'valence'</span>, <span class="st">'tempo'</span>, <span class="st">'time_signature'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>audio_features <span class="op">=</span> spotify_data[[<span class="st">'danceability'</span>, <span class="st">'energy'</span>, <span class="st">'key'</span>, <span class="st">'loudness'</span>,<span class="st">'mode'</span>,<span class="st">'speechiness'</span>,</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>                               <span class="st">'acousticness'</span>, <span class="st">'instrumentalness'</span>, <span class="st">'liveness'</span>,<span class="st">'valence'</span>, <span class="st">'tempo'</span>, <span class="st">'time_signature'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>audio_features.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>audio_features.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="111">
 
 <div>
@@ -4350,8 +4747,8 @@ Name: how_happy, dtype: float64</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="112">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of values of audio_features</span></span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a>audio_features.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Distribution of values of audio_features</span></span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>audio_features.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="112">
 
 <div>
@@ -4504,10 +4901,10 @@ Name: how_happy, dtype: float64</code></pre>
 <p>Let us scale the value of each column to a standard uniform distribution: <span class="math inline">\(U[0,1]\)</span>.</p>
 <p>For scaling the values of a column to <span class="math inline">\(U[0,1]\)</span>, we need to subtract the minimum value of the column from each value, and divide by the range of values of the column. For example, <em>danceability</em> can be standardized as follows:</p>
 <div class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling danceability to U[0,1]</span></span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>danceability_value_range <span class="op">=</span> audio_features.danceability.<span class="bu">max</span>()<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>()</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>danceability_std <span class="op">=</span> (audio_features.danceability<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>())<span class="op">/</span>danceability_value_range</span>
-<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>danceability_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling danceability to U[0,1]</span></span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>danceability_value_range <span class="op">=</span> audio_features.danceability.<span class="bu">max</span>()<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>()</span>
+<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>danceability_std <span class="op">=</span> (audio_features.danceability<span class="op">-</span>audio_features.danceability.<span class="bu">min</span>())<span class="op">/</span>danceability_value_range</span>
+<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>danceability_std</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <pre><code>0         0.681174
 1         0.517206
@@ -4525,22 +4922,22 @@ Name: danceability, Length: 243190, dtype: float64</code></pre>
 </div>
 <p>However, it will be cumbersome to repeat the above code for each audio feature. We can instead write a function that scales values of a column to <span class="math inline">\(U[0,1]\)</span>, and apply the function on all the audio features.</p>
 <div class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Function to scale a column to U[0,1]</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale_uniform(x):</span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Function to scale a column to U[0,1]</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> scale_uniform(x):</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We will use the Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.apply.html">apply()</a> to apply the above function to the DataFrame <code>audio_features</code>.</p>
 <div class="cell" data-execution_count="115">
-<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling all audio features to U[0,1]</span></span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(scale_uniform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling all audio features to U[0,1]</span></span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(scale_uniform)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>lambda function:</strong> Note that one line functions can be conveniently written as lambda functions in Python. These functions do not require a name, and can be defined using the keyword <code>lambda</code>. The above two blocks of code can be concisely written as:</p>
-<div class="cell" data-execution_count="156">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The above two blocks of code can be concisely written with the <code>lambda</code> function as:</p>
+<div class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>audio_features_scaled <span class="op">=</span> audio_features.<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="116">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co">#All the audio features are scaled to U[0,1]</span></span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co">#All the audio features are scaled to U[0,1]</span></span>
+<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>audio_features_scaled.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="116">
 
 <div>
@@ -4689,18 +5086,21 @@ Name: danceability, Length: 243190, dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<p>Since we need to find the Euclidean distance from the song <em>drivers license</em>, let us find the index of the row containing features of *drivers license.</p>
+<p>Since we need to find the Euclidean distance from the song <em>drivers license</em>, let us find the index of the row containing features of <em>drivers license.</em></p>
 <div class="cell" data-execution_count="117">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>drivers_license_index <span class="op">=</span> spotify_data[spotify_data.track_name<span class="op">==</span><span class="st">'drivers license'</span>].index[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Index of the row consisting of drivers license can be found with the index attribute</span></span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>drivers_license_index <span class="op">=</span> spotify_data[spotify_data.track_name<span class="op">==</span><span class="st">'drivers license'</span>].index[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Note that the object returned by the <code>index</code> attribute is of type <code>pandas.core.indexes.numeric.Int64Index</code>. The elements of this object can be retrieved like the elements of a python list. That is why the object is sliced with <code>[0]</code> to return the first element of the object. As there is only one observation with the <code>track_name</code> as <em>drivers license</em>, we sliced the first element. If there were multiple observations with <code>track_name</code> as <em>drivers license</em>, we will obtain the indices of all those observations with the <code>index</code> attribute.</p>
 <p>Now, we’ll subtract the audio features of <em>drivers license</em> from all other songs:</p>
 <div class="cell" data-execution_count="118">
-<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL <span class="op">=</span> audio_features_scaled<span class="op">-</span>audio_features_scaled.loc[drivers_license_index,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Audio features of drivers license are being subtracted from audio features of all songs by broadcasting</span></span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>songs_minus_DL <span class="op">=</span> audio_features_scaled<span class="op">-</span>audio_features_scaled.loc[drivers_license_index,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let us square the difference computed above. We’ll use the in-built python function <code>pow()</code> to square the difference:</p>
 <div class="cell" data-execution_count="119">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq <span class="op">=</span> songs_minus_DL.<span class="bu">pow</span>(<span class="dv">2</span>)</span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq <span class="op">=</span> songs_minus_DL.<span class="bu">pow</span>(<span class="dv">2</span>)</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>songs_minus_DL_sq.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="119">
 
 <div>
@@ -4806,8 +5206,8 @@ Name: danceability, Length: 243190, dtype: float64</code></pre>
 </div>
 <p>Now, we’ll sum the squares of differences from all audio features to compute the similarity of all songs to <em>drivers license</em>.</p>
 <div class="cell" data-execution_count="120">
-<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>distance_squared <span class="op">=</span> songs_minus_DL_sq.<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>distance_squared.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>distance_squared <span class="op">=</span> songs_minus_DL_sq.<span class="bu">sum</span>(axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>distance_squared.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="120">
 <pre><code>0    1.337163
 1    1.438935
@@ -4819,8 +5219,8 @@ dtype: float64</code></pre>
 </div>
 <p>Now, we’ll sort these distances to find the top 5 songs closest to drivers’s license.</p>
 <div class="cell" data-execution_count="121">
-<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>distances_sorted <span class="op">=</span> distance_squared.sort_values()</span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>distances_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>distances_sorted <span class="op">=</span> distance_squared.sort_values()</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>distances_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="121">
 <pre><code>2398      0.000000
 81844     0.008633
@@ -4832,7 +5232,7 @@ dtype: float64</code></pre>
 </div>
 <p>Using the indices of the top 5 distances, we will identify the top 5 songs most similar to <em>drivers license</em>:</p>
 <div class="cell" data-scrolled="true" data-execution_count="122">
-<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>spotify_data.loc[distances_sorted.index[<span class="dv">0</span>:<span class="dv">6</span>],:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>spotify_data.loc[distances_sorted.index[<span class="dv">0</span>:<span class="dv">6</span>],:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="122">
 
 <div>
@@ -5015,15 +5415,16 @@ dtype: float64</code></pre>
 </div>
 </div>
 </div>
-<p>We can see the top 5 songs most similar to <em>drivers license</em> in the <em>track_name</em> column above. Interestingly, three of the five songs are Asian! These songs indeed sound similart to <em>drivers license</em>!</p>
+<p>We can see the top 5 songs most similar to <em>drivers license</em> in the <em>track_name</em> column above. Interestingly, three of the five songs are Asian! These songs indeed sound similar to <em>drivers license</em>!</p>
+</section>
 </section>
 <section id="correlation" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="correlation"><span class="header-section-number">5.7</span> Correlation</h2>
 <p>Correlation may refer to any kind of association between two random variables. However, in this book, we will always consider correlation as the linear association between two random variables, or the Pearson’s correlation coefficient. Note that correlation does not imply causalty and vice-versa.</p>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html">corr()</a> provides the pairwise correlation between all columns of a DataFrame, or between two Series. The function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html#pandas.DataFrame.corrwith">corrwith()</a> provides the pairwise correlation of a DataFrame with another DataFrame or Series.</p>
 <div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pairwise correlation amongst all columns</span></span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>spotify_data.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pairwise correlation amongst all columns</span></span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>spotify_data.corr()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="159">
 
 <div>
@@ -5438,7 +5839,7 @@ dtype: float64</code></pre>
 </div>
 <p><strong>Q:</strong> Which audio feature is the most correlated with <em>track_popularity</em>?</p>
 <div class="cell" data-execution_count="168">
-<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a>spotify_data.corrwith(spotify_data.track_popularity).sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>spotify_data.corrwith(spotify_data.track_popularity).sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="168">
 <pre><code>track_popularity     1.000000
 release_year         0.568329
