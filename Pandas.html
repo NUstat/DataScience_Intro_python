@@ -303,7 +303,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#arithematic-operations-between-a-series-and-a-dataframe" id="toc-arithematic-operations-between-a-series-and-a-dataframe" class="nav-link" data-scroll-target="#arithematic-operations-between-a-series-and-a-dataframe"><span class="toc-section-number">5.6.2</span>  Arithematic operations between a Series and a DataFrame</a></li>
   <li><a href="#case-study" id="toc-case-study" class="nav-link" data-scroll-target="#case-study"><span class="toc-section-number">5.6.3</span>  Case study</a></li>
   </ul></li>
-  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5.7</span>  Correlation</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="toc-section-number">5.7</span>  Correlation</a>
+  <ul>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">5.7.1</span>  Practice exercise 2</a>
+  <ul class="collapse">
+  <li><a href="#section-13" id="toc-section-13" class="nav-link" data-scroll-target="#section-13"><span class="toc-section-number">5.7.1.1</span>  </a></li>
+  <li><a href="#section-14" id="toc-section-14" class="nav-link" data-scroll-target="#section-14"><span class="toc-section-number">5.7.1.2</span>  </a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -1532,6 +1539,7 @@ release_year               98
 dtype: int64</code></pre>
 </div>
 </div>
+<p>Note that the Series object also has an <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.apply.html">apply()</a> method associated with it. The method can be used to apply a function to each value of a Series.</p>
 </section>
 <section id="map" class="level4" data-number="5.4.2.10">
 <h4 data-number="5.4.2.10" class="anchored" data-anchor-id="map"><span class="header-section-number">5.4.2.10</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.map.html"><code>map()</code></a></h4>
@@ -4089,14 +4097,14 @@ if (typeof version == 'undefined') {
 <section id="section" class="level4" data-number="5.5.4.1">
 <h4 data-number="5.5.4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">5.5.4.1</span> </h4>
 <p>Read the file <em>STAT303-1 survey for data analysis.csv</em>.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>survey_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/STAT303-1 survey for data analysis.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-1" class="level4" data-number="5.5.4.2">
 <h4 data-number="5.5.4.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">5.5.4.2</span> </h4>
 <p>How many observations and variables are there in the data?</p>
-<div class="cell" data-execution_count="4">
+<div class="cell" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The data has "</span>,survey_data.shape[<span class="dv">0</span>],<span class="st">"observations, and"</span>, survey_data.shape[<span class="dv">1</span>], <span class="st">"columns"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The data has  192 observations, and 51 columns</code></pre>
@@ -4106,10 +4114,10 @@ if (typeof version == 'undefined') {
 <section id="section-2" class="level4" data-number="5.5.4.3">
 <h4 data-number="5.5.4.3" class="anchored" data-anchor-id="section-2"><span class="header-section-number">5.5.4.3</span> </h4>
 <p>Rename all the columns of the data, except the first two columns, with the shorter names in the list <code>new_col_names</code> given below. The order of column names in the list is the same as the order in which the columns are to be renamed starting with the third column from the left.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="127">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>new_col_names <span class="op">=</span> [<span class="st">'parties_per_month'</span>, <span class="st">'do_you_smoke'</span>, <span class="st">'weed'</span>, <span class="st">'are_you_an_introvert_or_extrovert'</span>, <span class="st">'love_first_sight'</span>, <span class="st">'learning_style'</span>, <span class="st">'left_right_brained'</span>, <span class="st">'personality_type'</span>, <span class="st">'social_media'</span>, <span class="st">'num_insta_followers'</span>, <span class="st">'streaming_platforms'</span>, <span class="st">'expected_marriage_age'</span>, <span class="st">'expected_starting_salary'</span>, <span class="st">'fav_sport'</span>, <span class="st">'minutes_ex_per_week'</span>, <span class="st">'sleep_hours_per_day'</span>, <span class="st">'how_happy'</span>, <span class="st">'farthest_distance_travelled'</span>, <span class="st">'fav_number'</span>, <span class="st">'fav_letter'</span>, <span class="st">'internet_hours_per_day'</span>, <span class="st">'only_child'</span>, <span class="st">'birthdate_odd_even'</span>, <span class="st">'birth_month'</span>, <span class="st">'fav_season'</span>, <span class="st">'living_location_on_campus'</span>, <span class="st">'major'</span>, <span class="st">'num_majors_minors'</span>, <span class="st">'high_school_GPA'</span>, <span class="st">'NU_GPA'</span>, <span class="st">'age'</span>, <span class="st">'height'</span>, <span class="st">'height_father'</span>, <span class="st">'height_mother'</span>, <span class="st">'school_year'</span>, <span class="st">'procrastinator'</span>, <span class="st">'num_clubs'</span>, <span class="st">'student_athlete'</span>, <span class="st">'AP_stats'</span>, <span class="st">'used_python_before'</span>, <span class="st">'dominant_hand'</span>, <span class="st">'childhood_in_US'</span>, <span class="st">'gender'</span>, <span class="st">'region_of_residence'</span>, <span class="st">'political_affliation'</span>, <span class="st">'cant_change_math_ability'</span>, <span class="st">'can_change_math_ability'</span>, <span class="st">'math_is_genetic'</span>, <span class="st">'much_effort_is_lack_of_talent'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div class="cell" data-execution_count="128">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>survey_data.columns <span class="op">=</span> <span class="bu">list</span>(survey_data.columns[<span class="dv">0</span>:<span class="dv">2</span>])<span class="op">+</span>new_col_names</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -4121,17 +4129,17 @@ if (typeof version == 'undefined') {
 <li><p>Rename <code>are_you_an_introvert_or_extrovert</code> to <code>introvert_extrovert</code>.</p></li>
 </ol>
 <p><strong>Hint:</strong> Use the function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rename.html">rename()</a></p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>survey_data.rename(columns<span class="op">=</span>{<span class="st">'do_you_smoke'</span>:<span class="st">'smoke'</span>,<span class="st">'are_you_an_introvert_or_extrovert'</span>:<span class="st">'introvert_extrovert'</span>},inplace<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-4" class="level4" data-number="5.5.4.5">
 <h4 data-number="5.5.4.5" class="anchored" data-anchor-id="section-4"><span class="header-section-number">5.5.4.5</span> </h4>
 <p>Find the proportion of people going to more than 4 parties per month. Use the variable <code>parties_per_month</code>.</p>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>survey_data[<span class="st">'parties_per_month'</span>]<span class="op">=</span>pd.to_numeric(survey_data.parties_per_month,errors<span class="op">=</span><span class="st">'coerce'</span>)</span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>survey_data.loc[survey_data[<span class="st">'parties_per_month'</span>]<span class="op">&gt;</span><span class="dv">4</span>,:].shape[<span class="dv">0</span>]<span class="op">/</span>survey_data.shape[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="130">
 <pre><code>0.3385416666666667</code></pre>
 </div>
 </div>
@@ -5420,7 +5428,7 @@ dtype: float64</code></pre>
 </section>
 <section id="correlation" class="level2" data-number="5.7">
 <h2 data-number="5.7" class="anchored" data-anchor-id="correlation"><span class="header-section-number">5.7</span> Correlation</h2>
-<p>Correlation may refer to any kind of association between two random variables. However, in this book, we will always consider correlation as the linear association between two random variables, or the Pearson’s correlation coefficient. Note that correlation does not imply causalty and vice-versa.</p>
+<p>Correlation may refer to any kind of association between two random variables. However, in this book, we will always consider correlation as the linear association between two random variables, or the Pearson’s correlation coefficient. Note that correlation does not imply causality and vice-versa.</p>
 <p>The Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html">corr()</a> provides the pairwise correlation between all columns of a DataFrame, or between two Series. The function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corrwith.html#pandas.DataFrame.corrwith">corrwith()</a> provides the pairwise correlation of a DataFrame with another DataFrame or Series.</p>
 <div class="cell" data-execution_count="159">
 <div class="sourceCode cell-code" id="cb123"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pairwise correlation amongst all columns</span></span>
@@ -5863,8 +5871,84 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>Loudness is the audio feature having the highest correlation with <em>track_popularity</em>.</p>
+<p><strong>Q:</strong> Which audio feature is the most weakly correlated with <em>track_popularity</em>?</p>
+<section id="practice-exercise-2" class="level3" data-number="5.7.1">
+<h3 data-number="5.7.1" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">5.7.1</span> Practice exercise 2</h3>
+<section id="section-13" class="level4" data-number="5.7.1.1">
+<h4 data-number="5.7.1.1" class="anchored" data-anchor-id="section-13"><span class="header-section-number">5.7.1.1</span> </h4>
+<p>Use the updated dataset from Practice exercise 1.</p>
+<p>The last four variables in the dataset are:</p>
+<ol type="1">
+<li><p><code>cant_change_math_ability</code></p></li>
+<li><p><code>can_change_math_ability</code></p></li>
+<li><p><code>math_is_genetic</code></p></li>
+<li><p><code>much_effort_is_lack_of_talent</code></p></li>
+</ol>
+<p>Each of the above variables has values - <code>Agree</code> / <code>Disagree</code>. Replace <code>Agree</code> with <code>1</code> and <code>Disagree</code> with <code>0</code>.</p>
+<p><strong>Hint :</strong> You can do it with any one of the following methods:</p>
+<ol type="1">
+<li><p>Use the map() function</p></li>
+<li><p>Use the apply() function with the lambda function</p></li>
+<li><p>Use the replace() function</p></li>
+</ol>
+<p>One of the above methods avoids a <code>for</code>-loop. Which one?</p>
+</section>
+<section id="section-14" class="level4" data-number="5.7.1.2">
+<h4 data-number="5.7.1.2" class="anchored" data-anchor-id="section-14"><span class="header-section-number">5.7.1.2</span> </h4>
+<p>Among the four variables, which one is the most negatively correlated with <code>can_change_math_ability</code>?</p>
+<div class="cell" data-execution_count="156">
+<div class="cell-output cell-output-display" data-execution_count="156">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>cant_change_math_ability</th>
+      <th>can_change_math_ability</th>
+      <th>math_is_genetic</th>
+      <th>much_effort_is_lack_of_talent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>cant_change_math_ability</th>
+      <td>1.000000</td>
+      <td>-0.672777</td>
+      <td>0.294544</td>
+      <td>0.101835</td>
+    </tr>
+    <tr>
+      <th>can_change_math_ability</th>
+      <td>-0.672777</td>
+      <td>1.000000</td>
+      <td>-0.361546</td>
+      <td>-0.131047</td>
+    </tr>
+    <tr>
+      <th>math_is_genetic</th>
+      <td>0.294544</td>
+      <td>-0.361546</td>
+      <td>1.000000</td>
+      <td>0.154083</td>
+    </tr>
+    <tr>
+      <th>much_effort_is_lack_of_talent</th>
+      <td>0.101835</td>
+      <td>-0.131047</td>
+      <td>0.154083</td>
+      <td>1.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
