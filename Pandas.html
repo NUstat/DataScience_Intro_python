@@ -348,7 +348,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Writing the cleaned and transformed data into a CSV file or other database formats</li>
 </ul>
 <p>Let’s import the Pandas library to use its methods and functions.</p>
-<div class="cell" data-execution_count="34">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -4097,7 +4097,7 @@ if (typeof version == 'undefined') {
 <section id="section" class="level4" data-number="5.5.4.1">
 <h4 data-number="5.5.4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">5.5.4.1</span> </h4>
 <p>Read the file <em>STAT303-1 survey for data analysis.csv</em>.</p>
-<div class="cell" data-execution_count="125">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>survey_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/STAT303-1 survey for data analysis.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
@@ -5890,12 +5890,277 @@ dtype: float64</code></pre>
 <li><p>Use the map() function</p></li>
 <li><p>Use the apply() function with the lambda function</p></li>
 <li><p>Use the replace() function</p></li>
+<li><p>Use the applymap() function</p></li>
 </ol>
-<p>One of the above methods avoids a <code>for</code>-loop. Which one?</p>
+<p>Two of the above methods avoid a <code>for</code>-loop. Which ones?</p>
+<p><strong>Solution:</strong></p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a copy of data to avoid changing the original data. </span></span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>survey_data_copy <span class="op">=</span> survey_data.copy()</span>
+<span id="cb126-3"><a href="#cb126-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the map function</span></span>
+<span id="cb126-5"><a href="#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">47</span>,<span class="dv">51</span>):</span>
+<span id="cb126-6"><a href="#cb126-6" aria-hidden="true" tabindex="-1"></a>    survey_data_copy.iloc[:,i] <span class="op">=</span> survey_data_copy.iloc[:,i].<span class="bu">map</span>({<span class="st">'Agree'</span>:<span class="dv">1</span>,<span class="st">'Disagree'</span>:<span class="dv">0</span>})</span>
+<span id="cb126-7"><a href="#cb126-7" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>cant_change_math_ability</th>
+      <th>can_change_math_ability</th>
+      <th>math_is_genetic</th>
+      <th>much_effort_is_lack_of_talent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a copy of data to avoid changing the original data. </span></span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>survey_data_copy <span class="op">=</span> survey_data.copy()</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the lambda function with apply()</span></span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">47</span>,<span class="dv">51</span>):</span>
+<span id="cb127-6"><a href="#cb127-6" aria-hidden="true" tabindex="-1"></a>    survey_data_copy.iloc[:,i] <span class="op">=</span> survey_data_copy.iloc[:,i].<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="cf">if</span> x<span class="op">==</span><span class="st">'Agree'</span> <span class="cf">else</span> <span class="dv">0</span>)</span>
+<span id="cb127-7"><a href="#cb127-7" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>cant_change_math_ability</th>
+      <th>can_change_math_ability</th>
+      <th>math_is_genetic</th>
+      <th>much_effort_is_lack_of_talent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a copy of data to avoid changing the original data. </span></span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>survey_data_copy <span class="op">=</span> survey_data.copy()</span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the replace() function</span></span>
+<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>] <span class="op">=</span> survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].replace(<span class="st">'Agree'</span>,<span class="st">'1'</span>)</span>
+<span id="cb128-6"><a href="#cb128-6" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>] <span class="op">=</span> survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].replace(<span class="st">'Disagree'</span>,<span class="st">'0'</span>)</span>
+<span id="cb128-7"><a href="#cb128-7" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>cant_change_math_ability</th>
+      <th>can_change_math_ability</th>
+      <th>math_is_genetic</th>
+      <th>much_effort_is_lack_of_talent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a copy of data to avoid changing the original data. </span></span>
+<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a>survey_data_copy <span class="op">=</span> survey_data.copy()</span>
+<span id="cb129-3"><a href="#cb129-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb129-4"><a href="#cb129-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the lambda function with applymap()</span></span>
+<span id="cb129-5"><a href="#cb129-5" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>] <span class="op">=</span> survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].applymap(<span class="kw">lambda</span> x: <span class="dv">1</span> <span class="cf">if</span> x<span class="op">==</span><span class="st">'Agree'</span> <span class="cf">else</span> <span class="dv">0</span>)</span>
+<span id="cb129-6"><a href="#cb129-6" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>cant_change_math_ability</th>
+      <th>can_change_math_ability</th>
+      <th>math_is_genetic</th>
+      <th>much_effort_is_lack_of_talent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="section-14" class="level4" data-number="5.7.1.2">
 <h4 data-number="5.7.1.2" class="anchored" data-anchor-id="section-14"><span class="header-section-number">5.7.1.2</span> </h4>
-<p>Among the four variables, which one is the most negatively correlated with <code>can_change_math_ability</code>?</p>
+<p>Among the four variables, which one is the most negatively correlated with <code>math_is_genetic</code>?</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Computing correlation</span></span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>survey_data_copy.iloc[:,<span class="dv">47</span>:<span class="dv">51</span>].corrwith(survey_data_copy.math_is_genetic)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+<pre><code>cant_change_math_ability         0.294544
+can_change_math_ability         -0.361546
+math_is_genetic                  1.000000
+much_effort_is_lack_of_talent    0.154083
+dtype: float64</code></pre>
+</div>
+</div>
+<p>The variable <code>can_change_math_ability</code> is the most negatively correlated wtih <code>math_is_genetic</code>.</p>
 
 
 </section>
