@@ -357,10 +357,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are two core components of the Pandas library - Series and DataFrame.</p>
 <p>A DataFrame is a two-dimensional object - comprising of tabular data organized in rows and columns, where individual columns can be of different value types (numeric / string / boolean etc.). A DataFrame has row labels (also called row indices) which refer to individual rows, and column labels (also called column names) that refer to individual columns. By default, the row indices are integers starting from zero. However, both the row indices and column names can be customized by the user.</p>
 <p>Let us read the spotify data - <em>spotify_data.csv</em>, using the Pandas function <code>read_csv()</code>.</p>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>spotify_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/spotify_data.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>spotify_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -2857,10 +2857,10 @@ Name: genres, dtype: int64</code></pre>
 <section id="sorting-data" class="level3" data-number="5.5.2">
 <h3 data-number="5.5.2" class="anchored" data-anchor-id="sorting-data"><span class="header-section-number">5.5.2</span> Sorting data</h3>
 <p>Sorting dataset is a very common operation. The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_values.html">sort_values()</a> function of Pandas can be used to sort a Pandas DataFrame or Series. Let us sort the spotify data in decreasing order of <em>track_popularity</em>:</p>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>spotify_sorted <span class="op">=</span> spotify_data.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>, ascending <span class="op">=</span> <span class="va">False</span>)</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>spotify_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
@@ -2879,6 +2879,7 @@ Name: genres, dtype: int64</code></pre>
       <th>release_year</th>
       <th>danceability</th>
       <th>...</th>
+      <th>key</th>
       <th>loudness</th>
       <th>mode</th>
       <th>speechiness</th>
@@ -2888,7 +2889,6 @@ Name: genres, dtype: int64</code></pre>
       <th>valence</th>
       <th>tempo</th>
       <th>time_signature</th>
-      <th>modality</th>
     </tr>
   </thead>
   <tbody>
@@ -2905,6 +2905,7 @@ Name: genres, dtype: int64</code></pre>
       <td>2021</td>
       <td>0.585</td>
       <td>...</td>
+      <td>10</td>
       <td>-8.761</td>
       <td>1</td>
       <td>0.0601</td>
@@ -2914,7 +2915,6 @@ Name: genres, dtype: int64</code></pre>
       <td>0.132</td>
       <td>143.874</td>
       <td>4</td>
-      <td>major</td>
     </tr>
     <tr>
       <th>2442</th>
@@ -2929,6 +2929,7 @@ Name: genres, dtype: int64</code></pre>
       <td>2021</td>
       <td>0.778</td>
       <td>...</td>
+      <td>4</td>
       <td>-6.865</td>
       <td>0</td>
       <td>0.0913</td>
@@ -2938,7 +2939,6 @@ Name: genres, dtype: int64</code></pre>
       <td>0.472</td>
       <td>149.996</td>
       <td>4</td>
-      <td>minor</td>
     </tr>
     <tr>
       <th>3133</th>
@@ -2953,6 +2953,7 @@ Name: genres, dtype: int64</code></pre>
       <td>2020</td>
       <td>0.653</td>
       <td>...</td>
+      <td>11</td>
       <td>-9.016</td>
       <td>0</td>
       <td>0.0502</td>
@@ -2962,7 +2963,6 @@ Name: genres, dtype: int64</code></pre>
       <td>0.553</td>
       <td>83.970</td>
       <td>4</td>
-      <td>minor</td>
     </tr>
     <tr>
       <th>6702</th>
@@ -2977,6 +2977,7 @@ Name: genres, dtype: int64</code></pre>
       <td>2020</td>
       <td>0.680</td>
       <td>...</td>
+      <td>0</td>
       <td>-5.487</td>
       <td>1</td>
       <td>0.0309</td>
@@ -2986,7 +2987,6 @@ Name: genres, dtype: int64</code></pre>
       <td>0.644</td>
       <td>118.051</td>
       <td>4</td>
-      <td>major</td>
     </tr>
     <tr>
       <th>6703</th>
@@ -3001,6 +3001,7 @@ Name: genres, dtype: int64</code></pre>
       <td>2020</td>
       <td>0.514</td>
       <td>...</td>
+      <td>1</td>
       <td>-5.934</td>
       <td>1</td>
       <td>0.0598</td>
@@ -3010,11 +3011,10 @@ Name: genres, dtype: int64</code></pre>
       <td>0.334</td>
       <td>171.005</td>
       <td>4</td>
-      <td>major</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 22 columns</p>
+<p>5 rows × 21 columns</p>
 </div>
 </div>
 </div>
@@ -3928,11 +3928,11 @@ if (typeof version == 'undefined') {
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="ranking-data"><span class="header-section-number">5.5.3</span> Ranking data</h3>
 <p>With the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rank.html">rank()</a> function, we can rank the observations.</p>
 <p>For example, let us add a new column to the spotify data that provides the rank of the <code>track_poularity</code> column:</p>
-<div class="cell" data-execution_count="52">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>spotify_ranked <span class="op">=</span> spotify_data.copy()</span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>spotify_ranked[<span class="st">'track_poularity_rank'</span>]<span class="op">=</span>spotify_sorted[<span class="st">'track_popularity'</span>].rank()</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>spotify_ranked[<span class="st">'track_popularity_rank'</span>]<span class="op">=</span>spotify_sorted[<span class="st">'track_popularity'</span>].rank()</span>
 <span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>spotify_ranked.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="52">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -3951,6 +3951,7 @@ if (typeof version == 'undefined') {
       <th>release_year</th>
       <th>danceability</th>
       <th>...</th>
+      <th>loudness</th>
       <th>mode</th>
       <th>speechiness</th>
       <th>acousticness</th>
@@ -3959,8 +3960,7 @@ if (typeof version == 'undefined') {
       <th>valence</th>
       <th>tempo</th>
       <th>time_signature</th>
-      <th>modality</th>
-      <th>track_poularity_rank</th>
+      <th>track_popularity_rank</th>
     </tr>
   </thead>
   <tbody>
@@ -3977,6 +3977,7 @@ if (typeof version == 'undefined') {
       <td>2021</td>
       <td>0.673</td>
       <td>...</td>
+      <td>-7.226</td>
       <td>1</td>
       <td>0.3060</td>
       <td>0.0769</td>
@@ -3985,7 +3986,6 @@ if (typeof version == 'undefined') {
       <td>0.203</td>
       <td>161.991</td>
       <td>4</td>
-      <td>major</td>
       <td>963.5</td>
     </tr>
     <tr>
@@ -4001,6 +4001,7 @@ if (typeof version == 'undefined') {
       <td>2021</td>
       <td>0.511</td>
       <td>...</td>
+      <td>-7.230</td>
       <td>0</td>
       <td>0.2000</td>
       <td>0.3490</td>
@@ -4009,7 +4010,6 @@ if (typeof version == 'undefined') {
       <td>0.218</td>
       <td>83.903</td>
       <td>4</td>
-      <td>minor</td>
       <td>963.5</td>
     </tr>
     <tr>
@@ -4025,6 +4025,7 @@ if (typeof version == 'undefined') {
       <td>2021</td>
       <td>0.699</td>
       <td>...</td>
+      <td>-3.997</td>
       <td>0</td>
       <td>0.1060</td>
       <td>0.3080</td>
@@ -4033,7 +4034,6 @@ if (typeof version == 'undefined') {
       <td>0.499</td>
       <td>88.933</td>
       <td>4</td>
-      <td>minor</td>
       <td>963.5</td>
     </tr>
     <tr>
@@ -4049,6 +4049,7 @@ if (typeof version == 'undefined') {
       <td>2021</td>
       <td>0.708</td>
       <td>...</td>
+      <td>-5.181</td>
       <td>1</td>
       <td>0.0442</td>
       <td>0.3480</td>
@@ -4057,7 +4058,6 @@ if (typeof version == 'undefined') {
       <td>0.543</td>
       <td>79.993</td>
       <td>4</td>
-      <td>major</td>
       <td>963.5</td>
     </tr>
     <tr>
@@ -4073,6 +4073,7 @@ if (typeof version == 'undefined') {
       <td>2021</td>
       <td>0.753</td>
       <td>...</td>
+      <td>-8.469</td>
       <td>1</td>
       <td>0.2920</td>
       <td>0.0477</td>
@@ -4081,12 +4082,11 @@ if (typeof version == 'undefined') {
       <td>0.616</td>
       <td>76.997</td>
       <td>4</td>
-      <td>major</td>
       <td>963.5</td>
     </tr>
   </tbody>
 </table>
-<p>5 rows × 23 columns</p>
+<p>5 rows × 22 columns</p>
 </div>
 </div>
 </div>
