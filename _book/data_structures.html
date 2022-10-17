@@ -1477,7 +1477,7 @@ if (typeof version == 'undefined') {
 </section>
 <section id="concatenating-lists" class="level3" data-number="2.2.4">
 <h3 data-number="2.2.4" class="anchored" data-anchor-id="concatenating-lists"><span class="header-section-number">2.2.4</span> Concatenating lists</h3>
-<p>As in tuples, lists can be concatenated using the + operator:</p>
+<p>As in tuples, lists can be concatenated using the <code>+</code> operator:</p>
 <div class="cell" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time <span class="im">as</span> tm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -1489,7 +1489,7 @@ if (typeof version == 'undefined') {
 <pre><code>[5, 'hi', 4, None, '7', 9]</code></pre>
 </div>
 </div>
-<p>For adding elements to a list, the <code>extend</code> method is preferred over the <code>+</code> operator. This is because the <code>+</code> operator creates a new list, while the <code>extend</code> method adds elements to an existing list. Thus, the <code>+</code> operator is more memory efficient.</p>
+<p>For adding elements to a list, the <code>extend</code> method is preferred over the <code>+</code> operator. This is because the <code>+</code> operator creates a new list, while the <code>extend</code> method adds elements to an existing list. Thus, the <code>extend</code> operator is more memory efficient.</p>
 <div class="cell" data-execution_count="91">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>list_example4 <span class="op">=</span> [<span class="dv">5</span>,<span class="st">'hi'</span>,<span class="dv">4</span>]</span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>list_example4.extend([<span class="va">None</span>, <span class="st">'7'</span>, <span class="dv">9</span>])</span>
@@ -1551,7 +1551,7 @@ if (typeof version == 'undefined') {
 <pre><code>[1, 5]</code></pre>
 </div>
 </div>
-<p>An extra colon (‘:’) can be used to slice every ith element of a list.</p>
+<p>An extra colon (‘:’) can be used to slice every <span class="math inline">\(n\)</span>th element of a list.</p>
 <div class="cell" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Selecting every 3rd element of a list</span></span>
 <span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>list_example6[::<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
