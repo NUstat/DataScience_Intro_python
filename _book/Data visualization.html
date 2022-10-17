@@ -231,7 +231,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#matplotlib-object-hierarchy" id="toc-matplotlib-object-hierarchy" class="nav-link" data-scroll-target="#matplotlib-object-hierarchy"> <span class="header-section-number">6.1.1</span> Matplotlib: Object hierarchy</a></li>
   <li><a href="#scatterplots-and-trendline" id="toc-scatterplots-and-trendline" class="nav-link" data-scroll-target="#scatterplots-and-trendline"> <span class="header-section-number">6.1.2</span> Scatterplots and trendline</a></li>
   <li><a href="#subplots" id="toc-subplots" class="nav-link" data-scroll-target="#subplots"> <span class="header-section-number">6.1.3</span> Subplots</a></li>
-  <li><a href="#overlapping-plots-with-legend" id="toc-overlapping-plots-with-legend" class="nav-link" data-scroll-target="#overlapping-plots-with-legend"> <span class="header-section-number">6.1.4</span> Overlapping plots with legend</a></li>
+  <li><a href="#practice-problem-1" id="toc-practice-problem-1" class="nav-link" data-scroll-target="#practice-problem-1"> <span class="header-section-number">6.1.4</span> Practice problem 1</a></li>
+  <li><a href="#overlapping-plots-with-legend" id="toc-overlapping-plots-with-legend" class="nav-link" data-scroll-target="#overlapping-plots-with-legend"> <span class="header-section-number">6.1.5</span> Overlapping plots with legend</a></li>
   </ul></li>
   <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"> <span class="header-section-number">6.2</span> Pandas</a>
   <ul class="collapse">
@@ -488,8 +489,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We observe that for each continent, except Africa, initially life expectancy increases rapidly with increasing GDP per capita. However, after a certain threshold of GDP per capita, life expectancy increases slowly. Several countries in Europe enjoy a relatively high GDP per capita as well as high life expectancy. Some countries in Asia have an extremely high GDP per capita, but a relatively low life expectancy. It will be interesting to see the proportion of GDP associated with healthcare for these outlying Asian countries, and European countries.</p>
 <p>We used the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplot.html">subplot</a> function of matplotlib to define the 2x2 grid of subplots. The function <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots_adjust.html">subplots_adjust()</a> can be used to adjust white spaces around the plot. We used a <code>for</code> loop to iterate over each subplot. The <code>axes</code> object returned by the <code>subplot()</code> function was used to refer to individual subplots.</p>
 </section>
-<section id="overlapping-plots-with-legend" class="level3" data-number="6.1.4">
-<h3 data-number="6.1.4" class="anchored" data-anchor-id="overlapping-plots-with-legend"><span class="header-section-number">6.1.4</span> Overlapping plots with legend</h3>
+<section id="practice-problem-1" class="level3" data-number="6.1.4">
+<h3 data-number="6.1.4" class="anchored" data-anchor-id="practice-problem-1"><span class="header-section-number">6.1.4</span> Practice problem 1</h3>
+<p>Is <code>NU_GPA</code> associated with <code>parties_per_month</code>? Analayze the association seperately for <em>Sophomores, Juniors, and Seniors</em> (categories of the variable <code>school_year</code>.</p>
+<p>Make scatterplots of <code>NU_GPA</code> vs <code>parties_per_month</code> in a 1 x 3 grid, where each grid is for a distinct <code>school_year</code>. Plot the trendline as well for each scatterplot. Use the file <em>survey_data_clean.csv</em>.</p>
+</section>
+<section id="overlapping-plots-with-legend" class="level3" data-number="6.1.5">
+<h3 data-number="6.1.5" class="anchored" data-anchor-id="overlapping-plots-with-legend"><span class="header-section-number">6.1.5</span> Overlapping plots with legend</h3>
 <p>We can also have the scatterplot of all the continents on the sample plot, with a distinct color for each continent. A legend will be required to identify the continent’s color.</p>
 <div class="cell" data-execution_count="57">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>continents <span class="op">=</span> np.array([[<span class="st">'Asia'</span>, <span class="st">'Europe'</span>], [<span class="st">'Africa'</span>, <span class="st">'Americas'</span>]])</span>
@@ -507,7 +513,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;matplotlib.legend.Legend at 0x1d09bf00040&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-12-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -524,10 +530,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='gdpPercap', ylabel='lifeExp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-13-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Note that with matplolib, it will take 3 lines to make the same plot - one for the scatterplot, and two for the axis titles.</p>
+<p>Note that with matplotlib, it will take 3 lines to make the same plot - one for the scatterplot, and two for the axis titles.</p>
 <p>Let us re-arrange the data to show other benefits of the Pandas <code>plot()</code> function. Note that data resphaping is explained in Chapter 8 of the book, so you may ignore the code block below that uses the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pivot_table()</a> function.</p>
 <div class="cell" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You may ignore this code block until Chapter 8.</span></span>
@@ -610,7 +616,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='year', ylabel='GDP per capita'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We observe that the mean GDP per capita of of Europe and Oceania have increased rapidly, while that for Africa is incresing very slowly.</p>
@@ -722,7 +728,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:ylabel='Number of complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that most of the complaints come from residential buildings and houses, as one may expect.</p>
@@ -734,7 +740,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:ylabel='Number of complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-18-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Try executing the code without <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html">sort_index()</a> to figure out the purpose of using the function.</p>
@@ -827,7 +833,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='Month_of_the_year', ylabel='Number of complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The above plots gives the insights about location and day of the year simultaneously that were previously separately obtained by the individual plots.</p>
@@ -915,7 +921,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='Hour_of_the_day', ylabel='complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that most of the complaints are made around midnight. However, interestingly, there are some complaints at each hour of the day.</p>
@@ -935,7 +941,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e52ff580&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-24-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-25-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we get a couple of interesting insights: 1. For Queens and Staten Island, most of the complaints occur in summer, for Manhattan and Bronx it is mostly during late spring, while Brooklyn has a spike of complaints in early Fall. 2. In most of the Boroughs, the majority complaints always occur in residential areas. However, for Manhattan, the number of street/sidewalk complaints in the summer are comparable to those from residential areas.</p>
@@ -1117,7 +1123,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e77b0610&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-27-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Humidity tends to be higher when it is going to rain the next day. However, the correlation is much more pronounced for Syndey. In case it is not raining on the current day, humidity seems to be slightly negatively correlated with temperature.</p>
@@ -1134,7 +1140,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0ec989e50&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-29-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperture.</p>
@@ -1145,7 +1151,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-29-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
@@ -1157,7 +1163,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;matplotlib.legend.Legend at 0x1d0eb6b9790&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The Seaborn function <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">histplot()</a> can be used to make a density plot overlapping on a histogram.</p>
@@ -1177,7 +1183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-32-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-33-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. The maximum temperature of the day, on an average, is lower if it rained on the day. 2. Sydney and Meloboure have some extremly high outlying values of maximum temperature.</p>
