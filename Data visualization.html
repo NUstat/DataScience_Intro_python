@@ -513,7 +513,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Is <code>NU_GPA</code> associated with <code>parties_per_month</code>? Analayze the association separately for <em>Sophomores, Juniors, and Seniors</em> (categories of the variable <code>school_year</code>).</p>
 <p>Make scatterplots of <code>NU_GPA</code> vs <code>parties_per_month</code> in a 1 x 3 grid, where each grid is for a distinct <code>school_year</code>. Plot the trendline as well for each scatterplot. Use the file <em>survey_data_clean.csv</em>.</p>
 <p><strong>Solution:</strong></p>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="51">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>survey_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/survey_data_clean.csv'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> NU_GPA_vs_parties_per_month(data):</span>
@@ -532,8 +532,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        axes[i].plot(x,y,<span class="st">'o'</span>,label <span class="op">=</span> school_years[i]) </span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        axes[i].set_xlim([data.parties_per_month.<span class="bu">min</span>(), data.parties_per_month.<span class="bu">max</span>()])</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        axes[i].set_ylim([data.NU_GPA.<span class="bu">min</span>(), data.NU_GPA.<span class="bu">max</span>()])</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        axes[i].set_xlabel(<span class="st">'parties_per_month'</span>)  </span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        axes[i].set_ylabel(<span class="st">'NU_GPA'</span>) </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        axes[i].set_xlabel(<span class="st">'Parties per month'</span>)  </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        axes[i].set_ylabel(<span class="st">'NU GPA'</span>) </span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        axes[i].set_title(school_years[i])</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        slope_intercept_trendline <span class="op">=</span> np.polyfit(x[idx_non_missing],y[idx_non_missing],<span class="dv">1</span>)   <span class="co">#Finding the slope and intercept for the trendline</span></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        compute_y_given_x <span class="op">=</span> np.poly1d(slope_intercept_trendline) <span class="co">#Defining a function that computes the 'y' given 'x' for the trendline</span></span>
