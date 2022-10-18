@@ -408,7 +408,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p>We’ll plot the figure in both ways.</p>
 <div class="cell" data-execution_count="28">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Object-oriented style</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Object-oriented style</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co">#Create a figure and an axes</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gdp_data.gdpPercap </span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gdp_data.lifeExp</span>
@@ -424,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="29">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#pyplot style</span></span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: pyplot style</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gdp_data.gdpPercap</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gdp_data.lifeExp</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.plot(x,y,<span class="st">'o'</span>) <span class="co">#By default, the plot() function makes a lineplot. The 'o' arguments specifies a scatterplot</span></span>
@@ -469,10 +469,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.1.3" class="anchored" data-anchor-id="subplots"><span class="header-section-number">6.1.3</span> Subplots</h3>
 <p>There is often a need to make a few plots together to compare them. See the example below.</p>
 <p><strong>Q:</strong> Make scatterplots of life expectancy vs GDP per capita separately for each of the 4 continents of Asia, Europe, Africa and America. Arrange the plots in a 2 x 2 grid.</p>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 2x2 grid of subplots</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">15</span>,<span class="dv">10</span>))</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.4</span>) <span class="co">#adjusting white space between individual plots</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">10</span>))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.2</span>) <span class="co">#adjusting white space between individual plots</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a scatterplot of Life expectancy vs GDP per capita for each continent</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>continents <span class="op">=</span> np.array([[<span class="st">'Asia'</span>, <span class="st">'Europe'</span>], [<span class="st">'Africa'</span>, <span class="st">'Americas'</span>]])</span>
@@ -480,13 +480,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Looping over the 2x2 grid</span></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].gdpPercap</span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].lifeExp</span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        axes[i,j].plot(x,y,<span class="st">'o'</span>) </span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlim([gdp_data.gdpPercap.<span class="bu">min</span>(), gdp_data.gdpPercap.<span class="bu">max</span>()])</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylim([gdp_data.lifeExp.<span class="bu">min</span>(), gdp_data.lifeExp.<span class="bu">max</span>()])</span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlabel(<span class="st">'GDP per capita for '</span><span class="op">+</span> continents[i,j])  </span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylabel(<span class="st">'Life expectancy for '</span><span class="op">+</span> continents[i,j]) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Getting the GDP per capita and life expectancy of the countries of the (i,j)th continent</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>        x <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].gdpPercap</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>        y <span class="op">=</span> gdp_data.loc[gdp_data.continent<span class="op">==</span>continents[i,j],:].lifeExp</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Making the scatterplot</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>        axes[i,j].plot(x,y,<span class="st">'o'</span>) </span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Setting limits on the 'x' and 'y' axes</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlim([gdp_data.gdpPercap.<span class="bu">min</span>(), gdp_data.gdpPercap.<span class="bu">max</span>()])</span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylim([gdp_data.lifeExp.<span class="bu">min</span>(), gdp_data.lifeExp.<span class="bu">max</span>()])</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Labelling the 'x' and 'y' axes</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlabel(<span class="st">'GDP per capita for '</span><span class="op">+</span> continents[i,j],fontsize <span class="op">=</span> <span class="dv">14</span>, fontname<span class="op">=</span><span class="st">'Sans MS'</span>)  </span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylabel(<span class="st">'Life expectancy for '</span><span class="op">+</span> continents[i,j],fontsize <span class="op">=</span> <span class="dv">14</span>, fontname<span class="op">=</span><span class="st">'Sans MS'</span>)</span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Putting a dollar sign, and thousand-comma separator on x-axis labels</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        axes[i,j].xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Increasing font size of axis labels</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        axes[i,j].tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
