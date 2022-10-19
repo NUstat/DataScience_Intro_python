@@ -252,6 +252,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#histogram-and-density-plots-with-seaborn" id="toc-histogram-and-density-plots-with-seaborn" class="nav-link" data-scroll-target="#histogram-and-density-plots-with-seaborn"><span class="toc-section-number">6.3.3</span>  Histogram and density plots with Seaborn</a></li>
   <li><a href="#boxplots-with-seaborn" id="toc-boxplots-with-seaborn" class="nav-link" data-scroll-target="#boxplots-with-seaborn"><span class="toc-section-number">6.3.4</span>  Boxplots with Seaborn</a></li>
   <li><a href="#heatmaps-with-seaborn" id="toc-heatmaps-with-seaborn" class="nav-link" data-scroll-target="#heatmaps-with-seaborn"><span class="toc-section-number">6.3.5</span>  Heatmaps with Seaborn</a></li>
+  <li><a href="#pairplots-with-seaborn" id="toc-pairplots-with-seaborn" class="nav-link" data-scroll-target="#pairplots-with-seaborn"><span class="toc-section-number">6.3.6</span>  Pairplots with Seaborn</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -321,14 +322,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Let’s visualize the life expectancy of different countries with GDP per capita. We’ll read the data file <em>gdp_lifeExpectancy.csv</em>, which contains the GDP per capita and life expectancy of countries from 1952 to 2007.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="192">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="193">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gdp_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="193">
 
 <div>
 
@@ -1215,10 +1216,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A density plot uses a kernel density estimate to approximate the distribution of random variable.</p>
 <p>We can use the Seaborn <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">displot()</a> function to make both kinds of plots - histogram or density plot.</p>
 <p><strong>Example:</strong> Make a histogram showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
-<div class="cell" data-execution_count="157">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="157">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231b3f8deb0&gt;</code></pre>
+<div class="cell" data-execution_count="188">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="188">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2319fbeabb0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
@@ -1275,10 +1279,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.3.5" class="anchored" data-anchor-id="heatmaps-with-seaborn"><span class="header-section-number">6.3.5</span> Heatmaps with Seaborn</h3>
 <p><strong>Purpose:</strong> Heatmaps help us visualize the correlation between all variable-pairs.</p>
 <p>Below is a heatmap visualizing the pairwise correlation of all the numerical variables of <code>survey_data_clean</code>. With a heatmap it becomes easier to see strongly correlated variables.</p>
-<div class="cell" data-execution_count="169">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="fl">11.7</span>,<span class="fl">8.27</span>)})</span>
+<div class="cell" data-execution_count="173">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="169">
+<div class="cell-output cell-output-display" data-execution_count="173">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1289,6 +1293,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>student athlete</code> is strongly postively correlated with <code>minutes_ex_per_week</code></li>
 <li><code>procrastinator</code> is strongly negatively correlated with <code>NU_GPA</code></li>
+</ul>
+</section>
+<section id="pairplots-with-seaborn" class="level3" data-number="6.3.6">
+<h3 data-number="6.3.6" class="anchored" data-anchor-id="pairplots-with-seaborn"><span class="header-section-number">6.3.6</span> Pairplots with Seaborn</h3>
+<p><strong>Purpose:</strong> Pairplots are used to visualize the association between all variable-pairs in the data. In other words, pairplots simultaneously visualize the scatterplots between all variable-pairs.</p>
+<p>Let us visualize the pair-wise association of nutrition variables in the starbucks drinks data.</p>
+<div class="cell" data-execution_count="210">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="210">
+<pre><code>&lt;seaborn.axisgrid.PairGrid at 0x231831dc940&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-37-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>In the above pairplot, note that:</p>
+<ul>
+<li>The histograms on the diagonal of the grid show the distribution of each of the variables.</li>
+<li>Instead of a histogram, we can visualize the density plot with the argument <em>kde = True</em>.</li>
+<li>The scatterplots in the rest of the grid are the pair-wise plots of all the variables.</li>
+</ul>
+<p>From the above plot, we observe that:</p>
+<ul>
+<li>Almost all the variable pairs have a positive correlation, i.e., if one of the nutrients increase in a drink, others also are likely to increase.</li>
+<li>The number of calories seem to be strong positively correlated with the amount of carbs in the drink.</li>
+<li>From the density plots we can see that there is a lot of choice for consumers to buy a drink that has a zero value for any of the nutrients - fat, protein, fiber, or sodium.</li>
 </ul>
 
 
