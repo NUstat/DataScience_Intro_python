@@ -305,7 +305,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="matplotlib-object-hierarchy" class="level3" data-number="6.1.1">
 <h3 data-number="6.1.1" class="anchored" data-anchor-id="matplotlib-object-hierarchy"><span class="header-section-number">6.1.1</span> Matplotlib: Object hierarchy</h3>
 <p>A <em>hierarchy</em> means that there is a tree-like structure of matplotlib objects underlying each plot.</p>
-<p>A <em>Figure</em> object is the outermost container for a matplotlib graphic, which can contain multiple <em>Axes</em> objects. Note that an <em>Axes</em> actually translates into what we think of as an individual plot or graph (rather than the plural of<em>axis</em> as we might expect).</p>
+<p>A <em>Figure</em> object is the outermost container for a matplotlib graphic, which can contain multiple <em>Axes</em> objects. Note that an <em>Axes</em> actually translates into what we think of as an individual plot or graph (rather than the plural of <em>axis</em> as we might expect).</p>
 <p>The <em>Figure</em> object is a box-like container holding one or more Axes (actual plots), as shown in <a href="#fig-hierarchy">Figure&nbsp;<span>6.1</span></a>. Below the <em>Axes</em> in the hierarchy are smaller objects such as <em>tick marks, individual lines, legends, and text boxes</em>. Almost every <em>element</em> of a chart is its own manipulable Python object, all the way down to the <em>ticks</em> and <em>labels</em>.</p>
 <div class="cell" data-execution_count="12">
 <div id="fig-hierarchy" class="quarto-figure quarto-figure-center anchored">
@@ -325,14 +325,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Let’s visualize the life expectancy of different countries with GDP per capita. We’ll read the data file <em>gdp_lifeExpectancy.csv</em>, which contains the GDP per capita and life expectancy of countries from 1952 to 2007.</p>
-<div class="cell" data-execution_count="192">
+<div class="cell" data-execution_count="285">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="193">
+<div class="cell" data-execution_count="286">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gdp_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="193">
+<div class="cell-output cell-output-display" data-execution_count="286">
 
 <div>
 
@@ -404,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="scatterplots-and-trendline-with-matplotlib"><span class="header-section-number">6.1.2</span> Scatterplots and trendline with Matplotlib</h3>
 <p><strong>Purpose of scatterplots:</strong> Scatterplots (with or without a trendline) allow us visualize the relationship between two numerical variables.</p>
 <p>We’ll import the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.html">pyplot</a> module of matplotlib to make plots. We’ll use the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plot()</a> function to make the scatter plot, and the functions <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xlabel.html">xlabel()</a> and <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.ylabel.html">ylabel()</a> for lablelling the plot axes.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="287">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Q:</strong> Make a scatterplot of Life expectancy vs GDP per capita.</p>
@@ -414,7 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>Letting pyplot implicitly track the plot that it wants to reference. Simple functions are used to add plot elements (lines, images, text, etc.) to the current axes in the current figure <em>(pyplot-style)</em>.</p></li>
 </ol>
 <p>We’ll plot the figure in both ways.</p>
-<div class="cell" data-execution_count="28">
+<div class="cell" data-execution_count="288">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 1: Object-oriented style</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots() <span class="co">#Create a figure and an axes</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gdp_data.gdpPercap </span>
@@ -423,14 +423,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'GDP per capita'</span>)    <span class="co">#Add an x-label to the axes</span></span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Life expectancy'</span>)   <span class="co">#Add a y-label to the axes</span></span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">'Life expectancy vs GDP per capita from 1952 to 2007'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="28">
+<div class="cell-output cell-output-display" data-execution_count="288">
 <pre><code>Text(0.5, 1.0, 'Life expectancy vs GDP per capita from 1952 to 2007')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-8-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-execution_count="289">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Method 2: pyplot style</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gdp_data.gdpPercap</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gdp_data.lifeExp</span>
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'GDP per capita'</span>)  <span class="co">#Labelling the horizontal X-axis</span></span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Life expectancy'</span>) <span class="co">#Labelling the verical Y-axis</span></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Life expectancy vs GDP per capita from 1952 to 2007'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="289">
 <pre><code>Text(0.5, 1.0, 'Life expectancy vs GDP per capita from 1952 to 2007')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -448,12 +448,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Both the plotting styles - object-oriented style and the pyplot style are perfectly valid and have their pros and cons.</p>
 <ul>
 <li><p>Pyplot style is easier for simple plots</p></li>
-<li><p>Object-oritented style is slightly more complicated but more powerful as it allows for greater control over the axes in figure. This proves to be quite useful when we are dealing with a figure with multiple axes.</p></li>
+<li><p>Object-oriented style is slightly more complicated but more powerful as it allows for greater control over the axes in figure. This proves to be quite useful when we are dealing with a figure with multiple axes.</p></li>
 </ul>
 <p>From the above plot, we observe that life expectancy seems to be positively correlated with the GDP per capita of the country, as one may expect. However, there are a few outliers in the data - which are countries having extremely high GDP per capita, but not a correspondingly high life expectancy.</p>
-<p>Sometimes it is difficult to get an idea of the overall trend (positive or negative correlation). In such cases, it may help to add a trendline to the scatter plot. In the plot below we add a trendline over the scatterplot showing that the life expectancy on an average increases with increasing GDP per capita. The trendline is actually a linear regression of life expectancy on GDP per capita. However, we’ll not discuss linear regression is this book.</p>
+<p>Sometimes it is difficult to get an idea of the overall trend (positive or negative correlation). In such cases, it may help to add a trendline to the scatter plot. In the plot below we add a trendline over the scatterplot showing that the life expectancy on an average increases with increasing GDP per capita. The trendline is actually a linear regression of life expectancy on GDP per capita. However, we’ll not discuss linear regression in this book.</p>
 <p><strong>Q:</strong> Add a trendline over the scatterplot of life expectancy vs GDP per capita.</p>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="290">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making a scatterplot of Life expectancy vs GDP per capita</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> gdp_data.gdpPercap</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> gdp_data.lifeExp</span>
@@ -476,7 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.1.3" class="anchored" data-anchor-id="subplots"><span class="header-section-number">6.1.3</span> Subplots</h3>
 <p>There is often a need to make a few plots together to compare them. See the example below.</p>
 <p><strong>Q:</strong> Make scatterplots of life expectancy vs GDP per capita separately for each of the 4 continents of Asia, Europe, Africa and America. Arrange the plots in a 2 x 2 grid.</p>
-<div class="cell" data-execution_count="50">
+<div class="cell" data-execution_count="275">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a 2x2 grid of subplots</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">2</span>,<span class="dv">2</span>,figsize<span class="op">=</span>(<span class="dv">16</span>,<span class="dv">10</span>))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(wspace<span class="op">=</span><span class="fl">0.2</span>) <span class="co">#adjusting white space between individual plots</span></span>
@@ -500,8 +500,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylim([gdp_data.lifeExp.<span class="bu">min</span>(), gdp_data.lifeExp.<span class="bu">max</span>()])</span>
 <span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Labelling the 'x' and 'y' axes</span></span>
-<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlabel(<span class="st">'GDP per capita for '</span><span class="op">+</span> continents[i,j],fontsize <span class="op">=</span> <span class="dv">14</span>, fontname<span class="op">=</span><span class="st">'Sans MS'</span>)  </span>
-<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylabel(<span class="st">'Life expectancy for '</span><span class="op">+</span> continents[i,j],fontsize <span class="op">=</span> <span class="dv">14</span>, fontname<span class="op">=</span><span class="st">'Sans MS'</span>)</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_xlabel(<span class="st">'GDP per capita for '</span><span class="op">+</span> continents[i,j],fontsize <span class="op">=</span> <span class="dv">14</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>        axes[i,j].set_ylabel(<span class="st">'Life expectancy for '</span><span class="op">+</span> continents[i,j],fontsize <span class="op">=</span> <span class="dv">14</span>)</span>
 <span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Putting a dollar sign, and thousand-comma separator on x-axis labels</span></span>
 <span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>        axes[i,j].xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
@@ -520,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Is <code>NU_GPA</code> associated with <code>parties_per_month</code>? Analayze the association separately for <em>Sophomores, Juniors, and Seniors</em> (categories of the variable <code>school_year</code>).</p>
 <p>Make scatterplots of <code>NU_GPA</code> vs <code>parties_per_month</code> in a 1 x 3 grid, where each grid is for a distinct <code>school_year</code>. Plot the trendline as well for each scatterplot. Use the file <em>survey_data_clean.csv</em>.</p>
 <p><strong>Solution:</strong></p>
-<div class="cell" data-execution_count="58">
+<div class="cell" data-execution_count="272">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>survey_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/survey_data_clean.csv'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> NU_GPA_vs_parties_per_month(data):</span>
@@ -553,7 +553,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Note that the trendline in the above plots seems to be influenced by a few points having extreme values of <code>parties_per_month</code>. These points have a <em>high leverage</em> (a concept we’ll learn in a future course on linear regression) in influencing the trendline. So, we should visualize the trend by removing or capping these <em>high-leverage</em> points, to avoid the distortion of the trend by a few points.</p>
 <p>Let us cap the the values of <code>parties_per_month</code> to 30, and make the visualizations again.</p>
-<div class="cell" data-execution_count="59">
+<div class="cell" data-execution_count="273">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>survey_data_parties_capped <span class="op">=</span> survey_data.copy()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>survey_data_parties_capped.parties_per_month <span class="op">=</span> survey_data.parties_per_month.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">min</span>(<span class="dv">30</span>,x))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>NU_GPA_vs_parties_per_month(survey_data_parties_capped)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -566,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="overlapping-plots-with-legend" class="level3" data-number="6.1.5">
 <h3 data-number="6.1.5" class="anchored" data-anchor-id="overlapping-plots-with-legend"><span class="header-section-number">6.1.5</span> Overlapping plots with legend</h3>
 <p>We can also have the scatterplot of all the continents on the sample plot, with a distinct color for each continent. A legend will be required to identify the continent’s color.</p>
-<div class="cell" data-execution_count="63">
+<div class="cell" data-execution_count="291">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>continents <span class="op">=</span> np.array([[<span class="st">'Asia'</span>, <span class="st">'Europe'</span>], [<span class="st">'Africa'</span>, <span class="st">'Americas'</span>]])</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">9</span>,<span class="dv">6</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>):</span>
@@ -579,8 +579,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        plt.xlabel(<span class="st">'GDP per capita'</span>)  </span>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        plt.ylabel(<span class="st">'Life expectancy'</span>) </span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="63">
-<pre><code>&lt;matplotlib.legend.Legend at 0x231d9a5b970&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="291">
+<pre><code>&lt;matplotlib.legend.Legend at 0x2320d6d70a0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
@@ -594,14 +594,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Matplotlib is low-level tool, in which different components of the plot, such as points, legend, axis titles, etc. need to be specified separately. The Pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">plot()</a> function can be used directly with a DataFrame or Series to make plots.</p>
 <section id="scatterplots-with-pandas" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="scatterplots-with-pandas"><span class="header-section-number">6.2.1</span> Scatterplots with Pandas</h3>
-<div class="cell" data-execution_count="73">
+<div class="cell" data-execution_count="304">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting life expectancy vs GDP per capita using the Pandas plot() function</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> gdp_data.plot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, kind <span class="op">=</span> <span class="st">'scatter'</span>,figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>),xlabel <span class="op">=</span> <span class="st">'GDP per capita'</span>, </span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>              ylabel <span class="op">=</span> <span class="st">'Life expectancy'</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>*c* argument looks like a single numeric RGB or RGBA sequence, which should be avoided as value-mapping will have precedence in case its length matches with *x* &amp; *y*.  Please use the *color* keyword-argument or provide a 2-D array with a single row if you intend to specify the same RGB or RGBA value for all points.</code></pre>
+</div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>In the above plot, note that:</p>
@@ -610,7 +612,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>The object <code>ax</code> is of type <em>matplotlib.axes._subplots.AxesSubplot (check the code below)</em>. This means we can use the attributes and methods associated with the <code>axes</code> object of Matplotlib. If you see the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">documentation</a> of the Pandas <code>plot()</code> function, you will find that under the <code>kwargs**</code> argument, you have <em>Options to pass to matplotlib plotting method.</em> Thus, you get the convenience of using the Pandas <code>plot()</code> function, while also having the attributes and methods associated with Matplotlib.</li>
 </ul>
 <div class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
 <pre><code>matplotlib.axes._subplots.AxesSubplot</code></pre>
 </div>
@@ -621,9 +623,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose of lineplots:</strong> Lineplots show the relationship between two numerical variables when the variable on the x-axis, also called the <em>explanatory variable</em>, is of a sequential nature; in other words there is an inherent ordering to the variable. The most common example of lineplots have some notion of time on the x-axis (or the horizontal axis): hours, days, weeks, years, etc. Since time is sequential, we connect consecutive observations of the variable on the y-axis with a line. Lineplots that have some notion of time on the x-axis are also called time series plots. Lineplots should be avoided when there is not a clear sequential ordering to the variable on the x-axis.</p>
 <p>Let us re-arrange the data to show other benefits of the Pandas <code>plot()</code> function. Note that data resphaping is explained in Chapter 8 of the book, so you may ignore the code block below that uses the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pivot_table()</a> function.</p>
 <div class="cell" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You may ignore this code block until Chapter 8.</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita <span class="op">=</span> gdp_data.pivot_table(index <span class="op">=</span> <span class="st">'year'</span>, columns <span class="op">=</span> <span class="st">'continent'</span>,values <span class="op">=</span> <span class="st">'gdpPercap'</span>)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You may ignore this code block until Chapter 8.</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita <span class="op">=</span> gdp_data.pivot_table(index <span class="op">=</span> <span class="st">'year'</span>, columns <span class="op">=</span> <span class="st">'continent'</span>,values <span class="op">=</span> <span class="st">'gdpPercap'</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
 
 <div>
@@ -696,8 +698,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have reshaped the data to obtain the mean GDP per capita of each continent for each year.</p>
 <p>The pandas <code>plot()</code> function can be directly used with this DataFrame to create line plots showing mean GDP per capita of each continent with year.</p>
 <div class="cell" data-execution_count="88">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> mean_gdp_per_capita.plot(ylabel <span class="op">=</span> <span class="st">'GDP per capita'</span>,figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">6</span>),marker<span class="op">=</span><span class="st">'o'</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> mean_gdp_per_capita.plot(ylabel <span class="op">=</span> <span class="st">'GDP per capita'</span>,figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">6</span>),marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
@@ -712,8 +714,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Bar plots can be made using the pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.bar.html">bar</a> function with the DataFrame or Series, just like the line plots and scatterplots.</p>
 <p>Below, we are reading the dataset of noise complaints of type <em>Loud music/Party</em> received the police in New York City in 2016.</p>
 <div class="cell" data-scrolled="true" data-execution_count="95">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/party_nyc.csv'</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/party_nyc.csv'</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="95">
 
 <div>
@@ -807,9 +809,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Let us visualise the locations from where the the complaints are coming.</p>
 <div class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pandas function bar() to create bar plot</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> nyc_party_complaints[<span class="st">'Location Type'</span>].value_counts().plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>)</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pandas function bar() to create bar plot</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> nyc_party_complaints[<span class="st">'Location Type'</span>].value_counts().plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
@@ -817,10 +819,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>From the above plot, we observe that most of the complaints come from residential buildings and houses, as one may expect.</p>
 <p>Let is visualize the time of the year when most complaints occur.</p>
 <div class="cell" data-execution_count="101">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pandas function bar() to create bar plot</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> nyc_party_complaints[<span class="st">'Month_of_the_year'</span>].value_counts().sort_index().plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                                                                              xlabel <span class="op">=</span> <span class="st">"Month"</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the pandas function bar() to create bar plot</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> nyc_party_complaints[<span class="st">'Month_of_the_year'</span>].value_counts().sort_index().plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                                                                              xlabel <span class="op">=</span> <span class="st">"Month"</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
@@ -829,9 +831,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>From the above plot, we observe that most of the complaints occur during summer and early Fall.</p>
 <p>Let us create a stacked bar chart that combines both the above plots into a single plot. You may ignore the code used for re-shaping the data until Chapter 8. The purpose here is to show the utility of the pandas <code>bar()</code> function.</p>
 <div class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reshaping the data to make it suitable for a stacked barplot - ignore this code until chapter 8</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>complaints_location<span class="op">=</span>pd.crosstab(nyc_party_complaints.Month_of_the_year, nyc_party_complaints[<span class="st">'Location Type'</span>])</span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>complaints_location.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reshaping the data to make it suitable for a stacked barplot - ignore this code until chapter 8</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>complaints_location<span class="op">=</span>pd.crosstab(nyc_party_complaints.Month_of_the_year, nyc_party_complaints[<span class="st">'Location Type'</span>])</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>complaints_location.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="104">
 
 <div>
@@ -909,10 +911,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacked bar plot showing number of complaints at different months of the year, and from different locations</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(stacked<span class="op">=</span><span class="va">True</span>,ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacked bar plot showing number of complaints at different months of the year, and from different locations</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(stacked<span class="op">=</span><span class="va">True</span>,ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div id="fig-stacked" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
@@ -925,10 +927,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The above plots gives the insights about location and day of the year simultaneously that were previously separately obtained by the individual plots.</p>
 <p>An alternative to stacked barplots are <em>side-by-side</em> barplots, as shown below.</p>
 <div class="cell" data-execution_count="253">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Side-by-side bar plot showing number of complaints at different months of the year, and from different locations</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Side-by-side bar plot showing number of complaints at different months of the year, and from different locations</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
@@ -940,16 +942,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="6.3" class="anchored" data-anchor-id="seaborn"><span class="header-section-number">6.3</span> Seaborn</h2>
 <p>Seaborn offers the flexibility of simultaneously visualizing multiple variables in a single plot, and offers several themes to develop plots.</p>
 <div class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the seaborn library</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the seaborn library</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="bar-plots-with-confidence-intervals-with-seaborn" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="bar-plots-with-confidence-intervals-with-seaborn"><span class="header-section-number">6.3.1</span> Bar plots with confidence intervals with Seaborn</h3>
 <p>We’ll group the data to obtain the total complaints for each <em>Location Type, Borough, Month_of_the_year, and Hour_of_the_day</em>. Note that you’ll learn grouping data in Chapter 9, so you may ignore the next code block. The grouping is done to shape the data in a suitable form for visualization.</p>
 <div class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data to make it suitable for visualization using Seaborn. Ignore this code block until learn chapter 9.</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped <span class="op">=</span> nyc_party_complaints[[<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Latitude'</span>,<span class="st">'Hour_of_the_day'</span>]].groupby([<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Hour_of_the_day'</span>])[<span class="st">'Latitude'</span>].agg([(<span class="st">'complaints'</span>,<span class="st">'count'</span>)]).reset_index()</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data to make it suitable for visualization using Seaborn. Ignore this code block until learn chapter 9.</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped <span class="op">=</span> nyc_party_complaints[[<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Latitude'</span>,<span class="st">'Hour_of_the_day'</span>]].groupby([<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Hour_of_the_day'</span>])[<span class="st">'Latitude'</span>].agg([(<span class="st">'complaints'</span>,<span class="st">'count'</span>)]).reset_index()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="111">
 
 <div>
@@ -1013,8 +1015,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Let us create a bar plot visualizing the average number of complaints with the time of the day.</p>
 <div class="cell" data-execution_count="127">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">"Hour_of_the_day"</span>, y <span class="op">=</span> <span class="st">'complaints'</span>,  data<span class="op">=</span>nyc_complaints_grouped)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ax.figure.set_figwidth(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">"Hour_of_the_day"</span>, y <span class="op">=</span> <span class="st">'complaints'</span>,  data<span class="op">=</span>nyc_complaints_grouped)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ax.figure.set_figwidth(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
@@ -1028,11 +1030,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Q:</strong> Visualize the mean number of complaints with <em>Month_of_the_year, Location Type,</em> and <em>Borough</em>.</p>
 <p>The seaborn class <a href="https://seaborn.pydata.org/generated/seaborn.FacetGrid.html">FacetGrid</a> is used to design the plot, i.e., specify the way the data will be divided in mutually exclusive subsets for visualization. Then the [map] function of the <code>FacetGrid</code> class is used to apply a plotting function to each subset of the data.</p>
 <div class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the number of complaints with Month_of_the_year, Location Type, and Borough.</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(nyc_complaints_grouped, hue <span class="op">=</span> <span class="st">'Location Type'</span>, col <span class="op">=</span> <span class="st">'Borough'</span>,col_wrap<span class="op">=</span><span class="dv">3</span>,height<span class="op">=</span><span class="fl">3.5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'Month_of_the_year'</span>,<span class="st">'complaints'</span>)</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Month of the year"</span>, <span class="st">"Complaints"</span>)</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the number of complaints with Month_of_the_year, Location Type, and Borough.</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(nyc_complaints_grouped, hue <span class="op">=</span> <span class="st">'Location Type'</span>, col <span class="op">=</span> <span class="st">'Borough'</span>,col_wrap<span class="op">=</span><span class="dv">3</span>,height<span class="op">=</span><span class="fl">3.5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'Month_of_the_year'</span>,<span class="st">'complaints'</span>)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Month of the year"</span>, <span class="st">"Complaints"</span>)</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="146">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231afeafac0&gt;</code></pre>
 </div>
@@ -1044,8 +1046,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We have visualized 4 variables simultaneously in the above plot.</p>
 <p>Let us consider another example, where we will visualize the weather in a few cities of Australia. The file <em>Australia_weather.csv</em> consists of weather details of Syndey, Canberra, and Melbourne from 2007 to 2017.</p>
 <div class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>aussie_weather <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Australia_weather.csv'</span>)</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>aussie_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>aussie_weather <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Australia_weather.csv'</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>aussie_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="148">
 
 <div>
@@ -1205,18 +1207,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="149">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>aussie_weather.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>aussie_weather.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="149">
 <pre><code>(4666, 24)</code></pre>
 </div>
 </div>
 <p><strong>Q:</strong> Visualize if it rains the next day (<em>RainTomorrow</em>) given whether it has rained today (<em>RainToday</em>), the current day’s humidity (<em>Humidity9am</em>), maximum temperature (<em>MaxTemp</em>) and the city (<em>Location</em>).</p>
 <div class="cell" data-execution_count="156">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(aussie_weather,col<span class="op">=</span><span class="st">'Location'</span>,row<span class="op">=</span><span class="st">'RainToday'</span>,height <span class="op">=</span> <span class="dv">4</span>,aspect <span class="op">=</span> <span class="dv">1</span>,hue <span class="op">=</span> <span class="st">'RainTomorrow'</span>)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(plt.scatter,<span class="st">'MaxTemp'</span>,<span class="st">'Humidity9am'</span>)</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Humidity at 9 am"</span>)</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>, row_template<span class="op">=</span><span class="st">"Rain today: </span><span class="sc">{row_name}</span><span class="st">"</span>)</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(aussie_weather,col<span class="op">=</span><span class="st">'Location'</span>,row<span class="op">=</span><span class="st">'RainToday'</span>,height <span class="op">=</span> <span class="dv">4</span>,aspect <span class="op">=</span> <span class="dv">1</span>,hue <span class="op">=</span> <span class="st">'RainTomorrow'</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(plt.scatter,<span class="st">'MaxTemp'</span>,<span class="st">'Humidity9am'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Humidity at 9 am"</span>)</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>, row_template<span class="op">=</span><span class="st">"Rain today: </span><span class="sc">{row_name}</span><span class="st">"</span>)</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="156">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231b57e51c0&gt;</code></pre>
 </div>
@@ -1244,10 +1246,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can use the Seaborn <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">displot()</a> function to make both kinds of plots - histogram or density plot.</p>
 <p><strong>Example:</strong> Make a histogram showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
 <div class="cell" data-execution_count="188">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
-<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="188">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2319fbeabb0&gt;</code></pre>
 </div>
@@ -1258,7 +1260,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperture.</p>
 <p><strong>Example:</strong> Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
 <div class="cell" data-execution_count="262">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="262">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
 </div>
@@ -1268,10 +1270,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
 <div class="cell" data-execution_count="158">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="158">
 <pre><code>Text(0.5, 0, 'Temperature')</code></pre>
 </div>
@@ -1291,7 +1293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><strong>Example:</strong> Make a boxplot comparing the distributions of maximum temperatures of Sydney, Canberra and Melbourne, given whether or not it has rained on the day.</p>
 <div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="159">
 <pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
 </div>
@@ -1306,8 +1308,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.3.6" class="anchored" data-anchor-id="scatterplots-with-seaborn"><span class="header-section-number">6.3.6</span> Scatterplots with Seaborn</h3>
 <p>We made scatterplots with Matplotlib and Pandas earlier. With Seaborn, the <code>regplot()</code> function allows us to plot a trendline over the scatterplot, along with a 95% confidence interval for the trendline. Note that this is much easier than making a trendline with Matplotlib.</p>
 <div class="cell" data-execution_count="262">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot and trendline with seaborn</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, data <span class="op">=</span> gdp_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot and trendline with seaborn</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, data <span class="op">=</span> gdp_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="262">
 <pre><code>&lt;AxesSubplot:xlabel='gdpPercap', ylabel='lifeExp'&gt;</code></pre>
 </div>
@@ -1322,8 +1324,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Heatmaps help us visualize the correlation between all variable-pairs.</p>
 <p>Below is a heatmap visualizing the pairwise correlation of all the numerical variables of <code>survey_data_clean</code>. With a heatmap it becomes easier to see strongly correlated variables.</p>
 <div class="cell" data-execution_count="173">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="173">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
@@ -1342,8 +1344,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Pairplots are used to visualize the association between all variable-pairs in the data. In other words, pairplots simultaneously visualize the scatterplots between all variable-pairs.</p>
 <p>Let us visualize the pair-wise association of nutrition variables in the starbucks drinks data.</p>
 <div class="cell" data-execution_count="210">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="210">
 <pre><code>&lt;seaborn.axisgrid.PairGrid at 0x231831dc940&gt;</code></pre>
 </div>
