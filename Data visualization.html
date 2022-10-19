@@ -909,10 +909,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="cell" data-scrolled="true" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacked bar plot showing number of complaints at different months of the year, and from different locations</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-lab</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(stacked<span class="op">=</span><span class="va">True</span>,ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-stacked_barplot</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Stacked bar plot with Pandas</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(stacked<span class="op">=</span><span class="va">True</span>,ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
 </div>
@@ -1008,8 +1009,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="facetgrid-multi-plot-grid-for-plotting-conditional-relationships" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="facetgrid-multi-plot-grid-for-plotting-conditional-relationships"><span class="header-section-number">6.3.2</span> Facetgrid: Multi-plot grid for plotting conditional relationships</h3>
-<p>With pandas, we simultaneously visualized the number of complaints with month of the year and location type. We’ll use Seaborn to add another variable - Borough to the visualization.</p>
-<p><strong>Q:</strong> Visualize the number of complaints with <em>Month_of_the_year, Location Type,</em> and <em>Borough</em>.</p>
+<p>With pandas, we simultaneously visualized the number of complaints with month of the year and location type in <span class="quarto-unresolved-ref">?fig-stacked_barplot</span>. We’ll use Seaborn to add another variable - Borough to the visualization.</p>
+<p><strong>Q:</strong> Visualize the mean number of complaints with <em>Month_of_the_year, Location Type,</em> and <em>Borough</em>.</p>
 <p>The seaborn class <a href="https://seaborn.pydata.org/generated/seaborn.FacetGrid.html">FacetGrid</a> is used to design the plot, i.e., specify the way the data will be divided in mutually exclusive subsets for visualization. Then the [map] function of the <code>FacetGrid</code> class is used to apply a plotting function to each subset of the data.</p>
 <div class="cell" data-execution_count="146">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the number of complaints with Month_of_the_year, Location Type, and Borough.</span></span>
@@ -1212,11 +1213,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="practice-exercise-2" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">6.3.3</span> Practice exercise 2</h3>
-<p>How does the expected marriage age of the people of STAT303-1 depend on their characteristics? We’ll use visualizations to explore the answer to this question. Use data from the file <em>survey_data_clean.csv.</em> Proceed as follows:</p>
+<p>How does the expected marriage age of the people of STAT303-1 depend on their characteristics? We’ll use visualizations to answer this question. Use data from the file <em>survey_data_clean.csv.</em> Proceed as follows:</p>
 <ol type="1">
 <li><p>Make a visualization that compares the mean <code>expected_marriage_age</code> of introverts and extroverts <em>(use the variable <code>introvert_extrovert</code>)</em>. What insights do you obtain?</p></li>
-<li><p>Does the mean <code>expected_marriage_age</code> of introverts and extrovert depend on whether they believe in love in first sight <em>(variable name: love_first_sight)</em>? Update the previous visualization to answer the question.</p></li>
-<li><p>In addition to <code>love_first_sight</code>, does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they are a procrastinator <em>(variable name: procrastinator)</em>? Update the previous visualization to answer the question.</p></li>
+<li><p>Does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they believe in love in first sight <em>(variable name: <code>love_first_sight</code>)</em>? Update the previous visualization to answer the question.</p></li>
+<li><p>In addition to <code>love_first_sight</code>, does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they are a procrastinator <em>(variable name: <code>procrastinator</code>)</em>? Update the previous visualization to answer the question.</p></li>
 <li><p>Is there any critical information missing in the above visualizations that, if revealed, may cast doubts on the patterns observed in them?</p></li>
 </ol>
 </section>
