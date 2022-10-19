@@ -127,6 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -908,33 +909,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="cell" data-scrolled="true" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacked bar plot showing number of complaints at different months of the year, and from different locations</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-stacked_barplot</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: Stacked bar plot with Pandas</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(stacked<span class="op">=</span><span class="va">True</span>,ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(stacked<span class="op">=</span><span class="va">True</span>,ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-23-output-1.png" class="img-fluid"></p>
+<div id="fig-stacked" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="Data%20visualization_files/figure-html/fig-stacked-output-1.png" class="img-fluid figure-img"></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;6.3: Stacked bar plot with Pandas</figcaption><p></p>
+</figure>
+</div>
 </div>
 </div>
 <p>The above plots gives the insights about location and day of the year simultaneously that were previously separately obtained by the individual plots.</p>
+<p>An alternative to stacked barplots are <em>side-by-side</em> barplots, as shown below.</p>
+<div class="cell" data-execution_count="253">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Side-by-side bar plot showing number of complaints at different months of the year, and from different locations</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> complaints_location.plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>,figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>), xlabel <span class="op">=</span> <span class="st">'Month'</span>)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p><span class="math inline">\(\color{red}{\text{Q1}}\)</span> In which scenarios should we use a stacked barplot instead of a side-by-side barplot and vice-versa?</p>
 </section>
 </section>
 <section id="seaborn" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="seaborn"><span class="header-section-number">6.3</span> Seaborn</h2>
 <p>Seaborn offers the flexibility of simultaneously visualizing multiple variables in a single plot, and offers several themes to develop plots.</p>
 <div class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the seaborn library</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the seaborn library</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="bar-plots-with-confidence-intervals-with-seaborn" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="bar-plots-with-confidence-intervals-with-seaborn"><span class="header-section-number">6.3.1</span> Bar plots with confidence intervals with Seaborn</h3>
 <p>We’ll group the data to obtain the total complaints for each <em>Location Type, Borough, Month_of_the_year, and Hour_of_the_day</em>. Note that you’ll learn grouping data in Chapter 9, so you may ignore the next code block. The grouping is done to shape the data in a suitable form for visualization.</p>
 <div class="cell" data-execution_count="111">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data to make it suitable for visualization using Seaborn. Ignore this code block until learn chapter 9.</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped <span class="op">=</span> nyc_party_complaints[[<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Latitude'</span>,<span class="st">'Hour_of_the_day'</span>]].groupby([<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Hour_of_the_day'</span>])[<span class="st">'Latitude'</span>].agg([(<span class="st">'complaints'</span>,<span class="st">'count'</span>)]).reset_index()</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data to make it suitable for visualization using Seaborn. Ignore this code block until learn chapter 9.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped <span class="op">=</span> nyc_party_complaints[[<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Latitude'</span>,<span class="st">'Hour_of_the_day'</span>]].groupby([<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Hour_of_the_day'</span>])[<span class="st">'Latitude'</span>].agg([(<span class="st">'complaints'</span>,<span class="st">'count'</span>)]).reset_index()</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="111">
 
 <div>
@@ -998,10 +1012,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Let us create a bar plot visualizing the average number of complaints with the time of the day.</p>
 <div class="cell" data-execution_count="127">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">"Hour_of_the_day"</span>, y <span class="op">=</span> <span class="st">'complaints'</span>,  data<span class="op">=</span>nyc_complaints_grouped)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>ax.figure.set_figwidth(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">"Hour_of_the_day"</span>, y <span class="op">=</span> <span class="st">'complaints'</span>,  data<span class="op">=</span>nyc_complaints_grouped)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ax.figure.set_figwidth(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-26-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that most of the complaints are made around midnight. However, interestingly, there are some complaints at each hour of the day.</p>
@@ -1009,28 +1023,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="facetgrid-multi-plot-grid-for-plotting-conditional-relationships" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="facetgrid-multi-plot-grid-for-plotting-conditional-relationships"><span class="header-section-number">6.3.2</span> Facetgrid: Multi-plot grid for plotting conditional relationships</h3>
-<p>With pandas, we simultaneously visualized the number of complaints with month of the year and location type in <span class="quarto-unresolved-ref">?fig-stacked_barplot</span>. We’ll use Seaborn to add another variable - Borough to the visualization.</p>
+<p>With pandas, we simultaneously visualized the number of complaints with month of the year and location type in <a href="#fig-stacked">Figure&nbsp;<span>6.3</span></a>. We’ll use Seaborn to add another variable - Borough to the visualization.</p>
 <p><strong>Q:</strong> Visualize the mean number of complaints with <em>Month_of_the_year, Location Type,</em> and <em>Borough</em>.</p>
 <p>The seaborn class <a href="https://seaborn.pydata.org/generated/seaborn.FacetGrid.html">FacetGrid</a> is used to design the plot, i.e., specify the way the data will be divided in mutually exclusive subsets for visualization. Then the [map] function of the <code>FacetGrid</code> class is used to apply a plotting function to each subset of the data.</p>
 <div class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the number of complaints with Month_of_the_year, Location Type, and Borough.</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(nyc_complaints_grouped, hue <span class="op">=</span> <span class="st">'Location Type'</span>, col <span class="op">=</span> <span class="st">'Borough'</span>,col_wrap<span class="op">=</span><span class="dv">3</span>,height<span class="op">=</span><span class="fl">3.5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'Month_of_the_year'</span>,<span class="st">'complaints'</span>)</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Month of the year"</span>, <span class="st">"Complaints"</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the number of complaints with Month_of_the_year, Location Type, and Borough.</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(nyc_complaints_grouped, hue <span class="op">=</span> <span class="st">'Location Type'</span>, col <span class="op">=</span> <span class="st">'Borough'</span>,col_wrap<span class="op">=</span><span class="dv">3</span>,height<span class="op">=</span><span class="fl">3.5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'Month_of_the_year'</span>,<span class="st">'complaints'</span>)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Month of the year"</span>, <span class="st">"Complaints"</span>)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="146">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231afeafac0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-27-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we get a couple of interesting insights: 1. For Queens and Staten Island, most of the complaints occur in summer, for Manhattan and Bronx it is mostly during late spring, while Brooklyn has a spike of complaints in early Fall. 2. In most of the Boroughs, the majority complaints always occur in residential areas. However, for Manhattan, the number of street/sidewalk complaints in the summer are comparable to those from residential areas.</p>
 <p>We have visualized 4 variables simultaneously in the above plot.</p>
 <p>Let us consider another example, where we will visualize the weather in a few cities of Australia. The file <em>Australia_weather.csv</em> consists of weather details of Syndey, Canberra, and Melbourne from 2007 to 2017.</p>
 <div class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>aussie_weather <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Australia_weather.csv'</span>)</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>aussie_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>aussie_weather <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Australia_weather.csv'</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>aussie_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="148">
 
 <div>
@@ -1190,23 +1204,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div class="cell" data-execution_count="149">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>aussie_weather.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>aussie_weather.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="149">
 <pre><code>(4666, 24)</code></pre>
 </div>
 </div>
 <p><strong>Q:</strong> Visualize if it rains the next day (<em>RainTomorrow</em>) given whether it has rained today (<em>RainToday</em>), the current day’s humidity (<em>Humidity9am</em>), maximum temperature (<em>MaxTemp</em>) and the city (<em>Location</em>).</p>
 <div class="cell" data-execution_count="156">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(aussie_weather,col<span class="op">=</span><span class="st">'Location'</span>,row<span class="op">=</span><span class="st">'RainToday'</span>,height <span class="op">=</span> <span class="dv">4</span>,aspect <span class="op">=</span> <span class="dv">1</span>,hue <span class="op">=</span> <span class="st">'RainTomorrow'</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(plt.scatter,<span class="st">'MaxTemp'</span>,<span class="st">'Humidity9am'</span>)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Humidity at 9 am"</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>, row_template<span class="op">=</span><span class="st">"Rain today: </span><span class="sc">{row_name}</span><span class="st">"</span>)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(aussie_weather,col<span class="op">=</span><span class="st">'Location'</span>,row<span class="op">=</span><span class="st">'RainToday'</span>,height <span class="op">=</span> <span class="dv">4</span>,aspect <span class="op">=</span> <span class="dv">1</span>,hue <span class="op">=</span> <span class="st">'RainTomorrow'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(plt.scatter,<span class="st">'MaxTemp'</span>,<span class="st">'Humidity9am'</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Humidity at 9 am"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>, row_template<span class="op">=</span><span class="st">"Rain today: </span><span class="sc">{row_name}</span><span class="st">"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="156">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231b57e51c0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Humidity tends to be higher when it is going to rain the next day. However, the correlation is much more pronounced for Syndey. In case it is not raining on the current day, humidity seems to be slightly negatively correlated with temperature.</p>
@@ -1229,39 +1243,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can use the Seaborn <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">displot()</a> function to make both kinds of plots - histogram or density plot.</p>
 <p><strong>Example:</strong> Make a histogram showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
 <div class="cell" data-execution_count="188">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="188">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2319fbeabb0&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-34-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperture.</p>
-<p><strong>Example:</strong> Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
-<div class="cell" data-execution_count="262">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="262">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
 </div>
 </div>
+<p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperture.</p>
+<p><strong>Example:</strong> Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
+<div class="cell" data-execution_count="262">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="262">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-36-output-2.png" class="img-fluid"></p>
+</div>
+</div>
 <p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
 <div class="cell" data-execution_count="158">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="158">
 <pre><code>Text(0.5, 0, 'Temperature')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-36-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-37-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The Seaborn function <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">histplot()</a> can be used to make a density plot overlapping on a histogram.</p>
@@ -1276,12 +1290,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><strong>Example:</strong> Make a boxplot comparing the distributions of maximum temperatures of Sydney, Canberra and Melbourne, given whether or not it has rained on the day.</p>
 <div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="159">
 <pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-38-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-39-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. The maximum temperature of the day, on an average, is lower if it rained on the day. 2. Sydney and Melbourne have some extremly high outlying values of maximum temperature.</p>
@@ -1292,13 +1306,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Heatmaps help us visualize the correlation between all variable-pairs.</p>
 <p>Below is a heatmap visualizing the pairwise correlation of all the numerical variables of <code>survey_data_clean</code>. With a heatmap it becomes easier to see strongly correlated variables.</p>
 <div class="cell" data-execution_count="173">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="173">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-39-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above map, we can see that:</p>
@@ -1312,13 +1326,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Pairplots are used to visualize the association between all variable-pairs in the data. In other words, pairplots simultaneously visualize the scatterplots between all variable-pairs.</p>
 <p>Let us visualize the pair-wise association of nutrition variables in the starbucks drinks data.</p>
 <div class="cell" data-execution_count="210">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="210">
 <pre><code>&lt;seaborn.axisgrid.PairGrid at 0x231831dc940&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-41-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>In the above pairplot, note that:</p>
