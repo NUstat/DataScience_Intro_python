@@ -587,23 +587,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Matplotlib is low-level tool, in which different components of the plot, such as points, legend, axis titles, etc. need to be specified separately. The Pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">plot()</a> function can be used directly with a DataFrame or Series to make plots.</p>
 <section id="scatterplots-and-lineplots" class="level3" data-number="6.2.1">
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="scatterplots-and-lineplots"><span class="header-section-number">6.2.1</span> Scatterplots and lineplots</h3>
-<div class="cell" data-execution_count="62">
+<div class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting life expectancy vs GDP per capita using the Pandas plot() function</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gdp_data.plot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, kind <span class="op">=</span> <span class="st">'scatter'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="62">
-<pre><code>&lt;AxesSubplot:xlabel='gdpPercap', ylabel='lifeExp'&gt;</code></pre>
-</div>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> gdp_data.plot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, kind <span class="op">=</span> <span class="st">'scatter'</span>,figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">6</span>),xlabel <span class="op">=</span> <span class="st">'GDP per capita'</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>              ylabel <span class="op">=</span> <span class="st">'Life expectancy'</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-15-output-1.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Note that with matplotlib, it will take 3 lines to make the same plot - one for the scatterplot, and two for the axis titles.</p>
-<p>Let us re-arrange the data to show other benefits of the Pandas <code>plot()</code> function. Note that data resphaping is explained in Chapter 8 of the book, so you may ignore the code block below that uses the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pivot_table()</a> function.</p>
+<p>In the above plot, note that:</p>
+<ul>
+<li>With matplotlib, it will take 3 lines to make the same plot - one for the scatterplot, and two for the axis titles.</li>
+<li>The object <code>ax</code> is of type <em>matplotlib.axes._subplots.AxesSubplot (check the code below)</em>. This means we can use the attributes and methods associated with the <code>axes</code> object of Matplotlib. If you see the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html">documentation</a> of the Pandas <code>plot()</code> function, you will find that under the <code>kwargs**</code> argument, you have <em>Options to pass to matplotlib plotting method.</em> Thus, you get the convenience of using the Pandas <code>plot()</code> function, while also having the attributes and methods associated with Matplotlib.</li>
+</ul>
 <div class="cell" data-execution_count="75">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You may ignore this code block until Chapter 8.</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita <span class="op">=</span> gdp_data.pivot_table(index <span class="op">=</span> <span class="st">'year'</span>, columns <span class="op">=</span> <span class="st">'continent'</span>,values <span class="op">=</span> <span class="st">'gdpPercap'</span>)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(ax)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="75">
+<pre><code>matplotlib.axes._subplots.AxesSubplot</code></pre>
+</div>
+</div>
+<p>Let us re-arrange the data to show other benefits of the Pandas <code>plot()</code> function. Note that data resphaping is explained in Chapter 8 of the book, so you may ignore the code block below that uses the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pivot_table()</a> function.</p>
+<div class="cell" data-execution_count="79">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#You may ignore this code block until Chapter 8.</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita <span class="op">=</span> gdp_data.pivot_table(index <span class="op">=</span> <span class="st">'year'</span>, columns <span class="op">=</span> <span class="st">'continent'</span>,values <span class="op">=</span> <span class="st">'gdpPercap'</span>)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="79">
 
 <div>
 
@@ -674,13 +684,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>We have reshaped the data to obtain the mean GDP per capita of each continent for each year.</p>
 <p>The pandas <code>plot()</code> function can be directly used with this DataFrame to create line plots showing mean GDP per capita of each continent with year.</p>
-<div class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.plot(ylabel <span class="op">=</span> <span class="st">'GDP per capita'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="104">
-<pre><code>&lt;AxesSubplot:xlabel='year', ylabel='GDP per capita'&gt;</code></pre>
-</div>
+<div class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> mean_gdp_per_capita.plot(ylabel <span class="op">=</span> <span class="st">'GDP per capita'</span>,figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">6</span>),marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We observe that the mean GDP per capita of of Europe and Oceania have increased rapidly, while that for Africa is incresing very slowly.</p>
@@ -792,7 +800,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:ylabel='Number of complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-19-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that most of the complaints come from residential buildings and houses, as one may expect.</p>
@@ -804,7 +812,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:ylabel='Number of complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-21-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Try executing the code without <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html">sort_index()</a> to figure out the purpose of using the function.</p>
@@ -897,7 +905,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='Month_of_the_year', ylabel='Number of complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-23-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The above plots gives the insights about location and day of the year simultaneously that were previously separately obtained by the individual plots.</p>
@@ -985,7 +993,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='Hour_of_the_day', ylabel='complaints'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-25-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that most of the complaints are made around midnight. However, interestingly, there are some complaints at each hour of the day.</p>
@@ -1005,7 +1013,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e52ff580&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-26-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-27-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we get a couple of interesting insights: 1. For Queens and Staten Island, most of the complaints occur in summer, for Manhattan and Bronx it is mostly during late spring, while Brooklyn has a spike of complaints in early Fall. 2. In most of the Boroughs, the majority complaints always occur in residential areas. However, for Manhattan, the number of street/sidewalk complaints in the summer are comparable to those from residential areas.</p>
@@ -1187,7 +1195,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e77b0610&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-29-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Humidity tends to be higher when it is going to rain the next day. However, the correlation is much more pronounced for Syndey. In case it is not raining on the current day, humidity seems to be slightly negatively correlated with temperature.</p>
@@ -1204,7 +1212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0ec989e50&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-30-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperture.</p>
@@ -1215,7 +1223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-32-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
@@ -1227,7 +1235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;matplotlib.legend.Legend at 0x1d0eb6b9790&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-32-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-33-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The Seaborn function <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">histplot()</a> can be used to make a density plot overlapping on a histogram.</p>
@@ -1247,7 +1255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-34-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. The maximum temperature of the day, on an average, is lower if it rained on the day. 2. Sydney and Meloboure have some extremly high outlying values of maximum temperature.</p>
