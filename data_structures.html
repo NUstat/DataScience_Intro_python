@@ -2539,10 +2539,10 @@ if (typeof version == 'undefined') {
 </div>
 <p>Now that we have learned about lists and tuples, let us compare them.</p>
 <p><span class="math inline">\(\color{red}{\text{Q2}}\)</span>: A list seems to be much more flexible than tuple, and can replace a tuple almost everywhere. Then why use tuple at all?</p>
-<p><span class="math inline">\(\color{blue}{\text{A2}}\)</span>: The additional flexibility of a list comes at the cost of efficiency. Some of the advatages of a tuple over a list are as follows:</p>
+<p><span class="math inline">\(\color{blue}{\text{A2}}\)</span>: The additional flexibility of a list comes at the cost of efficiency. Some of the advantages of a tuple over a list are as follows:</p>
 <ol type="1">
 <li><p>Since a list can be extended, space is over-allocated when creating a list. A tuple takes less storage space as compared to a list of the same length.</p></li>
-<li><p>Tuples are not copied. If a tuple is assigned to another tuple, both tuples point to the same memory location. However, if a list is assigned to another list, a new list is created consuming the same memory space as the orignial list.</p></li>
+<li><p>Tuples are not copied. If a tuple is assigned to another tuple, both tuples point to the same memory location. However, if a list is assigned to another list, a new list is created consuming the same memory space as the original list.</p></li>
 <li><p>Tuples refer to their element directly, while in a list, there is an extra layer of pointers that refers to their elements. Thus it is faster to retrieve elements from a tuple.</p></li>
 </ol>
 <p>The examples below illustrate the above advantages of a tuple.</p>
