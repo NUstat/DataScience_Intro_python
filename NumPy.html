@@ -476,7 +476,7 @@ Time take to multiply numbers in a NumPy array =  0.0</code></pre>
 <pre><code>(2, 3)</code></pre>
 </div>
 </div>
-<p>To multiple the above matrices the number of columns of the one of the matrices must be the same as the number of rows of the other matrix. With the current matrices, this is not true as the number of columns of the first matrix is 3, and the the number of rows of the second matrix is 2 (no matter which matrix is considered to be the first one).</p>
+<p>To multiply the above matrices the number of columns of the one of the matrices must be the same as the number of rows of the other matrix. With the current matrices, this is not true as the number of columns of the first matrix is 3, and the the number of rows of the second matrix is 2 (no matter which matrix is considered to be the first one).</p>
 <p>However, if we transpose one of the matrices, their shapes will be compatible for multiplication. Let’s transpose <code>matrix_to_multiply</code>:</p>
 <div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>matrix_to_multiply_transpose <span class="op">=</span> matrix_to_multiply.T</span>
