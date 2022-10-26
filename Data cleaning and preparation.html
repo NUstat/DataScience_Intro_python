@@ -260,7 +260,7 @@ div.csl-indent {
   <li><a href="#missing-at-random-mar" id="toc-missing-at-random-mar" class="nav-link" data-scroll-target="#missing-at-random-mar"><span class="toc-section-number">7.1.2.2</span>  Missing at Random (MAR)</a></li>
   <li><a href="#missing-not-at-random-mnar" id="toc-missing-not-at-random-mnar" class="nav-link" data-scroll-target="#missing-not-at-random-mnar"><span class="toc-section-number">7.1.2.3</span>  Missing Not at Random (MNAR)</a></li>
   </ul></li>
-  <li><a href="#dropping-observations-with-missing-values-dropna" id="toc-dropping-observations-with-missing-values-dropna" class="nav-link" data-scroll-target="#dropping-observations-with-missing-values-dropna"><span class="toc-section-number">7.1.3</span>  Dropping observations with missing values <code>dropna()</code></a></li>
+  <li><a href="#dropping-observations-with-missing-values-dropna" id="toc-dropping-observations-with-missing-values-dropna" class="nav-link" data-scroll-target="#dropping-observations-with-missing-values-dropna"><span class="toc-section-number">7.1.3</span>  Dropping observations with missing values (<code>dropna()</code>)</a></li>
   <li><a href="#some-methods-to-impute-missing-values" id="toc-some-methods-to-impute-missing-values" class="nav-link" data-scroll-target="#some-methods-to-impute-missing-values"><span class="toc-section-number">7.1.4</span>  Some methods to impute missing values</a>
   <ul class="collapse">
   <li><a href="#method-1-naive-method" id="toc-method-1-naive-method" class="nav-link" data-scroll-target="#method-1-naive-method"><span class="toc-section-number">7.1.4.1</span>  Method 1: Naive Method</a></li>
@@ -291,13 +291,15 @@ div.csl-indent {
 <section id="handling-missing-data" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="handling-missing-data"><span class="header-section-number">7.1</span> Handling missing data</h2>
 <p>Missing values in a dataset can occur due to several reasons such as breakdown of measuring equipment, accidental removal of observations, lack of response by respondents, error on the part of the reearcher, etc.</p>
-<p>Let us read the dataset <em>GDP_missing_data.csv</em>, in which some of the columns have missing values.</p>
-<div class="cell" data-execution_count="35">
+<p>Let us read the dataset <em>GDP_missing_data.csv</em>, in which we have randomly removed some values, or put missing values in some of the columns.</p>
+<p>We’ll also read <em>GDP_complete_data.csv</em>, in which we have not removed any values. We’ll use this data later to assess the accuracy of our guess or estimate of missing values in <em>GDP_missing_data.csv</em>.</p>
+<div class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn <span class="im">as</span> sk</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gdp_complete_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_complete_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -579,7 +581,7 @@ dtype: int64</code></pre>
 </section>
 </section>
 <section id="dropping-observations-with-missing-values-dropna" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="dropping-observations-with-missing-values-dropna"><span class="header-section-number">7.1.3</span> Dropping observations with missing values <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html"><code>dropna()</code></a></h3>
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="dropping-observations-with-missing-values-dropna"><span class="header-section-number">7.1.3</span> Dropping observations with missing values (<a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html"><code>dropna()</code></a>)</h3>
 <p>Sometimes our analysis requires that there should be no missing values in the dataset. For example, while building statistical models, we may require the values of all the predictor variables. The quickest way is to use the <code>dropna()</code> method, which drops the observations that even have a single missing value, and leaves only complete observations in the data.</p>
 <p>Let us drop the rows containing even a single value from <code>gdp_missing_values_data</code>.</p>
 <div class="cell" data-execution_count="30">
@@ -614,6 +616,59 @@ dtype: int64</code></pre>
 <div class="cell" data-execution_count="37">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filling missing values: Method 1- Naive way</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.fillna(method <span class="op">=</span> <span class="st">'ffill'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking if any missing values are remaining</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<pre><code>economicActivityFemale    0
+country                   0
+lifeMale                  0
+infantMortality           0
+gdpPerCapita              0
+economicActivityMale      0
+illiteracyMale            1
+illiteracyFemale          0
+lifeFemale                0
+geographic_location       0
+continent                 0
+dtype: int64</code></pre>
+</div>
+</div>
+<p>After imputing missing values, note there is still one missing value for <em>illiteracyMale</em>. Can you guess why one missing value remained?</p>
+<p>Let us check how good is this method in imputing missing values. We’ll compare the imputed values of <code>gdpPerCapita</code> with the actual values. Recall that we had randomly put some missing values in <code>gdp_missing_values_data</code>, and we have the actual values in <code>gdp_complete_data</code>.</p>
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Index of rows with missing values for GDP per capita</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>null_ind_gdpPC <span class="op">=</span> gdp_missing_values_data.index[gdp_missing_values_data.gdpPerCapita.isnull()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="91">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function to plot the imputed values vs actual values </span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_actual_vs_predicted():</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    plt.rc(<span class="st">'xtick'</span>, labelsize<span class="op">=</span><span class="dv">15</span>) </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    plt.rc(<span class="st">'ytick'</span>, labelsize<span class="op">=</span><span class="dv">15</span>) </span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> gdp_complete_data.loc[null_ind_gdpPC,<span class="st">'gdpPerCapita'</span>]</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> gdp_imputed_data.loc[null_ind_gdpPC,<span class="st">'gdpPerCapita'</span>]</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x,y)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>np.polyfit(x,y,<span class="dv">1</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>    p<span class="op">=</span>np.poly1d(z)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    plt.plot(x,x,color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Actual GDP per capita'</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Imputed GDP per capita'</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>    rmse <span class="op">=</span> np.sqrt(((x<span class="op">-</span>y).<span class="bu">pow</span>(<span class="dv">2</span>)).mean())</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"RMSE="</span>,rmse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="92">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Plot comparing imputed values with actual values, and computing the Root mean square error (RMSE) of the imputed values</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE= 34843.91091137732</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+</div>
 </div>
 
 
