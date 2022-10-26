@@ -462,7 +462,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Life expectancy'</span>) <span class="co">#Labelling the verical Y-axis</span></span>
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co">#Plotting a trendline (linear regression) on the scatterplot</span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>slope_intercept_trendline <span class="op">=</span> np.polyfit(x,y,<span class="dv">2</span>)   <span class="co">#Finding the slope and intercept for the trendline</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>slope_intercept_trendline <span class="op">=</span> np.polyfit(x,y,<span class="dv">1</span>)   <span class="co">#Finding the slope and intercept for the trendline</span></span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>compute_y_given_x <span class="op">=</span> np.poly1d(slope_intercept_trendline) <span class="co">#Defining a function that computes the 'y' given 'x' for the trendline</span></span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.plot(x,compute_y_given_x(x)) <span class="co">#Plotting the trendline</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
@@ -509,7 +509,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a>        <span class="co">#Increasing font size of axis labels</span></span>
 <span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>        axes[i,j].tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">14</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-11-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We observe that for each continent, except Africa, initially life expectancy increases rapidly with increasing GDP per capita. However, after a certain threshold of GDP per capita, life expectancy increases slowly. Several countries in Europe enjoy a relatively high GDP per capita as well as high life expectancy. Some countries in Asia have an extremely high GDP per capita, but a relatively low life expectancy. It will be interesting to see the proportion of GDP associated with healthcare for these outlying Asian countries, and European countries.</p>
@@ -548,7 +548,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>NU_GPA_vs_parties_per_month(survey_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-12-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that the trendline in the above plots seems to be influenced by a few points having extreme values of <code>parties_per_month</code>. These points have a <em>high leverage</em> (a concept we’ll learn in a future course on linear regression) in influencing the trendline. So, we should visualize the trend by removing or capping these <em>high-leverage</em> points, to avoid the distortion of the trend by a few points.</p>
@@ -558,7 +558,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>survey_data_parties_capped.parties_per_month <span class="op">=</span> survey_data.parties_per_month.<span class="bu">apply</span>(<span class="kw">lambda</span> x: <span class="bu">min</span>(<span class="dv">30</span>,x))</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>NU_GPA_vs_parties_per_month(survey_data_parties_capped)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-14-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-13-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We see that the trend didn’t change much after removing the <em>high leverage</em> points. <em>(Note that although the high leverage points have the leverage to influence the trendline, they need not necessarily influence it)</em>. From the visualization, <code>NU_GPA</code> doesn’t seem to be associated with <code>parties_per_month</code> for students of any of the school years.</p>
@@ -583,7 +583,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;matplotlib.legend.Legend at 0x2320d6d70a0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that a disadvantage of the above plot is overplotting. The data points corresponding to the <em>Americas</em> are hiding the data points of other continents. However, if the data points corresponding to different categories are spread apart, then it may be convenient to visualize all the categories on the same plot.</p>
@@ -603,7 +603,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>*c* argument looks like a single numeric RGB or RGBA sequence, which should be avoided as value-mapping will have precedence in case its length matches with *x* &amp; *y*.  Please use the *color* keyword-argument or provide a 2-D array with a single row if you intend to specify the same RGB or RGBA value for all points.</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-15-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>In the above plot, note that:</p>
@@ -701,7 +701,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> mean_gdp_per_capita.plot(ylabel <span class="op">=</span> <span class="st">'GDP per capita'</span>,figsize <span class="op">=</span> (<span class="dv">10</span>,<span class="dv">6</span>),marker<span class="op">=</span><span class="st">'o'</span>)</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-19-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-18-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We observe that the mean GDP per capita of of Europe and Oceania have increased rapidly, while that for Africa is increasing very slowly.</p>
@@ -813,7 +813,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> nyc_party_complaints[<span class="st">'Location Type'</span>].value_counts().plot.bar(ylabel <span class="op">=</span> <span class="st">'Number of complaints'</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-20-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that most of the complaints come from residential buildings and houses, as one may expect.</p>
@@ -824,7 +824,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                                                                              xlabel <span class="op">=</span> <span class="st">"Month"</span>)</span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-22-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-21-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Try executing the code without <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sort_index.html">sort_index()</a> to figure out the purpose of using the function.</p>
@@ -932,7 +932,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>ax.tick_params(axis <span class="op">=</span> <span class="st">'both'</span>,labelsize<span class="op">=</span><span class="dv">15</span>)</span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'{x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-25-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-24-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><span class="math inline">\(\color{red}{\text{Q1}}\)</span> In which scenarios should we use a stacked barplot instead of a side-by-side barplot and vice-versa?</p>
@@ -1018,7 +1018,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>ax <span class="op">=</span> sns.barplot(x<span class="op">=</span><span class="st">"Hour_of_the_day"</span>, y <span class="op">=</span> <span class="st">'complaints'</span>,  data<span class="op">=</span>nyc_complaints_grouped)</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ax.figure.set_figwidth(<span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-27-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that most of the complaints are made around midnight. However, interestingly, there are some complaints at each hour of the day.</p>
@@ -1039,7 +1039,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231afeafac0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-29-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we get a couple of interesting insights: 1. For Queens and Staten Island, most of the complaints occur in summer, for Manhattan and Bronx it is mostly during late spring, while Brooklyn has a spike of complaints in early Fall. 2. In most of the Boroughs, the majority complaints always occur in residential areas. However, for Manhattan, the number of street/sidewalk complaints in the summer are comparable to those from residential areas.</p>
@@ -1223,7 +1223,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231b57e51c0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-32-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Humidity tends to be higher when it is going to rain the next day. However, the correlation is much more pronounced for Syndey. In case it is not raining on the current day, humidity seems to be slightly negatively correlated with temperature.</p>
@@ -1254,7 +1254,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2319fbeabb0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-36-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperature.</p>
@@ -1265,7 +1265,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-37-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-36-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
@@ -1278,7 +1278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>Text(0.5, 0, 'Temperature')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-38-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-37-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The Seaborn function <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">histplot()</a> can be used to make a density plot overlapping on a histogram.</p>
@@ -1298,7 +1298,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-39-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. The maximum temperature of the day, on an average, is lower if it rained on the day. 2. Sydney and Melbourne have some extremely high outlying values of maximum temperature.</p>
@@ -1314,7 +1314,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:xlabel='gdpPercap', ylabel='lifeExp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-41-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that the confidence interval of the trendline broadens as we move farther away from most of the data points. In other words, there is more uncertainty about the trend as we move to a domain space farther away from the data.</p>
@@ -1330,7 +1330,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-41-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above map, we can see that:</p>
@@ -1350,7 +1350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>&lt;seaborn.axisgrid.PairGrid at 0x231831dc940&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-43-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>In the above pairplot, note that:</p>

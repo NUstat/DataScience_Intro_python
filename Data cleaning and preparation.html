@@ -146,6 +146,7 @@ div.csl-indent {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -271,6 +272,8 @@ div.csl-indent {
   <li><a href="#method-1-naive-method" id="toc-method-1-naive-method" class="nav-link" data-scroll-target="#method-1-naive-method"><span class="toc-section-number">7.1.5.1</span>  Method 1: Naive Method</a></li>
   <li><a href="#method-2-imputing-missing-values-as-the-mean-of-non-missing-values" id="toc-method-2-imputing-missing-values-as-the-mean-of-non-missing-values" class="nav-link" data-scroll-target="#method-2-imputing-missing-values-as-the-mean-of-non-missing-values"><span class="toc-section-number">7.1.5.2</span>  Method 2: Imputing missing values as the mean of non-missing values</a></li>
   <li><a href="#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data" id="toc-method-3-imputing-missing-values-based-on-correlated-variables-in-the-data" class="nav-link" data-scroll-target="#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data"><span class="toc-section-number">7.1.5.3</span>  Method 3: Imputing missing values based on correlated variables in the data</a></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">7.1.5.4</span>  Practice exercise 2</a></li>
+  <li><a href="#method-4-knn-k-nearest-neighbor" id="toc-method-4-knn-k-nearest-neighbor" class="nav-link" data-scroll-target="#method-4-knn-k-nearest-neighbor"><span class="toc-section-number">7.1.5.5</span>  Method 4: KNN: K-nearest neighbor</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -300,7 +303,7 @@ div.csl-indent {
 <p>Missing values in a dataset can occur due to several reasons such as breakdown of measuring equipment, accidental removal of observations, lack of response by respondents, error on the part of the reearcher, etc.</p>
 <p>Let us read the dataset <em>GDP_missing_data.csv</em>, in which we have randomly removed some values, or put missing values in some of the columns.</p>
 <p>We’ll also read <em>GDP_complete_data.csv</em>, in which we have not removed any values. We’ll use this data later to assess the accuracy of our guess or estimate of missing values in <em>GDP_missing_data.csv</em>.</p>
-<div class="cell" data-execution_count="97">
+<div class="cell" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -745,31 +748,249 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of missing data to impute missing values</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Replacing missing GDP per capita with the mean GDP per capita for the corresponding continent</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> gdp_imputed_data.continent.unique():    </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    ind_miss <span class="op">=</span> np.where(data_imputed.index.isin(null_ind_gdpPC) <span class="op">&amp;</span> data_imputed.continent.isin([i]))</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    data_imputed.iloc[ind_miss[<span class="dv">0</span>],<span class="dv">4</span>] <span class="op">=</span> avg_gdpPerCapita[i]</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>data_imputed</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    ind_miss <span class="op">=</span> np.where(gdp_imputed_data.index.isin(null_ind_gdpPC) <span class="op">&amp;</span> gdp_imputed_data.continent.isin([i]))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    gdp_imputed_data.iloc[ind_miss[<span class="dv">0</span>],<span class="dv">4</span>] <span class="op">=</span> avg_gdpPerCapita[i]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data</span>
 <span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE= 25473.20645170116</code></pre>
 </div>
-<p>Let us identify the variable highly correlated with GDP per capita.</p>
-<div class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.corrwith(gdp_missing_values_data.gdpPerCapita)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="99">
-<pre><code>economicActivityFemale    0.078332
-lifeMale                  0.579850
-infantMortality          -0.572201
-gdpPerCapita              1.000000
-economicActivityMale     -0.134108
-illiteracyMale           -0.479143
-illiteracyFemale         -0.448273
-lifeFemale                0.615954
-contraception             0.057923
-dtype: float64</code></pre>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p>The variable <em>lifeFemale</em> has the strongest correlation with GDP per capita. Let us use it to impute missing values of GDP per capita.</p>
+<p>Note that the imputed values are closer to the actual values, and the RMSE has further reduced as expected.</p>
+</section>
+<section id="practice-exercise-2" class="level4" data-number="7.1.5.4">
+<h4 data-number="7.1.5.4" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">7.1.5.4</span> Practice exercise 2</h4>
+<p>Find the numeric variable most strongly correlated with GDP per capita, and use it to impute its missing values.</p>
+</section>
+<section id="method-4-knn-k-nearest-neighbor" class="level4" data-number="7.1.5.5">
+<h4 data-number="7.1.5.5" class="anchored" data-anchor-id="method-4-knn-k-nearest-neighbor"><span class="header-section-number">7.1.5.5</span> Method 4: KNN: K-nearest neighbor</h4>
+<p>In this method, we’ll impute the missing value of the variable as the mean value of the <span class="math inline">\(K\)</span>-nearest neighbors having non-missing values for that variable, where the neighbors are based on the Euclidean distance in terms of other variables in the data.</p>
+<div class="cell" data-execution_count="125">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Toy example</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>nan <span class="op">=</span> np.nan</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">2</span>, nan], [<span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">3</span>], [nan, <span class="dv">6</span>, <span class="dv">5</span>], [<span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">7</span>]])</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="125">
+<pre><code>array([[ 1.,  2., nan],
+       [ 3.,  4.,  3.],
+       [nan,  6.,  5.],
+       [ 8.,  8.,  7.]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="140">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> impute</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="131">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#This is the distance matrix containng the distance of the ith observation from the jth observation at the (i,j) position in the matrix</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>metrics.pairwise.nan_euclidean_distances(X,X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="131">
+<pre><code>array([[ 0.        ,  3.46410162,  6.92820323, 11.29158979],
+       [ 3.46410162,  0.        ,  3.46410162,  7.54983444],
+       [ 6.92820323,  3.46410162,  0.        ,  3.46410162],
+       [11.29158979,  7.54983444,  3.46410162,  0.        ]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="132">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#imputing missing values with 2 nearest neighbors, where the neighbors have equal weights</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>imputer <span class="op">=</span> impute.KNNImputer(n_neighbors<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>imputer.fit_transform(X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="132">
+<pre><code>array([[1. , 2. , 4. ],
+       [3. , 4. , 3. ],
+       [5.5, 6. , 5. ],
+       [8. , 8. , 7. ]])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="133">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Considering numeric columns in the data to use KNN</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>num_cols <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">1</span>))<span class="op">+</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">2</span>,<span class="dv">9</span>))</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>num_cols</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="133">
+<pre><code>[0, 2, 3, 4, 5, 6, 7, 8]</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="134">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling data to compute equally weighted distances from the 'k' nearest neighbors</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> sk.preprocessing.MinMaxScaler()</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>scaled_data <span class="op">=</span> pd.DataFrame(scaler.fit_transform(data_missing.iloc[:,num_cols]))</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>scaled_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="134">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>0</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0.059752</td>
+      <td>0.217391</td>
+      <td>0.909639</td>
+      <td>0.013954</td>
+      <td>0.868421</td>
+      <td>NaN</td>
+      <td>0.936123</td>
+      <td>0.157534</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0.066516</td>
+      <td>0.760870</td>
+      <td>0.246988</td>
+      <td>0.087408</td>
+      <td>0.602871</td>
+      <td>0.370213</td>
+      <td>0.561674</td>
+      <td>0.712329</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.444194</td>
+      <td>0.811594</td>
+      <td>0.114458</td>
+      <td>NaN</td>
+      <td>0.598086</td>
+      <td>0.053901</td>
+      <td>0.041850</td>
+      <td>0.860731</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.564825</td>
+      <td>0.753623</td>
+      <td>0.132530</td>
+      <td>0.105487</td>
+      <td>0.330144</td>
+      <td>NaN</td>
+      <td>0.005507</td>
+      <td>0.796804</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.585118</td>
+      <td>NaN</td>
+      <td>0.018072</td>
+      <td>0.443715</td>
+      <td>NaN</td>
+      <td>0.014184</td>
+      <td>0.011013</td>
+      <td>0.961187</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>150</th>
+      <td>0.872604</td>
+      <td>0.712560</td>
+      <td>0.210843</td>
+      <td>0.015365</td>
+      <td>0.894737</td>
+      <td>0.495234</td>
+      <td>0.510661</td>
+      <td>0.694064</td>
+    </tr>
+    <tr>
+      <th>151</th>
+      <td>0.443067</td>
+      <td>0.821256</td>
+      <td>0.108434</td>
+      <td>0.036124</td>
+      <td>0.739234</td>
+      <td>0.116312</td>
+      <td>0.106828</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>152</th>
+      <td>0.813980</td>
+      <td>NaN</td>
+      <td>0.204819</td>
+      <td>0.089409</td>
+      <td>0.727273</td>
+      <td>0.049645</td>
+      <td>0.096916</td>
+      <td>0.696347</td>
+    </tr>
+    <tr>
+      <th>153</th>
+      <td>0.000000</td>
+      <td>0.516908</td>
+      <td>0.463855</td>
+      <td>0.009445</td>
+      <td>0.703349</td>
+      <td>0.459660</td>
+      <td>0.765991</td>
+      <td>0.440639</td>
+    </tr>
+    <tr>
+      <th>154</th>
+      <td>0.505073</td>
+      <td>0.280193</td>
+      <td>0.391566</td>
+      <td>0.015791</td>
+      <td>0.633971</td>
+      <td>0.136170</td>
+      <td>0.221366</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>155 rows × 8 columns</p>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="139">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Imputed scaled array</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>imputer <span class="op">=</span> impute.KNNImputer(n_neighbors<span class="op">=</span><span class="dv">3</span>, weights<span class="op">=</span><span class="st">"uniform"</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>imputed_arr <span class="op">=</span> imputer.fit_transform(scaled_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="141">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling back the scaled array to obtain the data at the actual scale</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>unscaled_data <span class="op">=</span> scaler.inverse_transform(imputed_arr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="144">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Imputed missing values</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.loc[:,<span class="st">'gdpPerCapita'</span>] <span class="op">=</span> unscaled_data[:,<span class="dv">3</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE= 16804.195967740387</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Note the the RMSE is the lowest in this method. It is because this method imputes missing values as the weighted average of the values of “similar” observations, which is smarter and more robust than the previous methods.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
