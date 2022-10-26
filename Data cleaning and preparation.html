@@ -770,7 +770,7 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 </section>
 <section id="method-4-knn-k-nearest-neighbor" class="level4" data-number="7.1.5.5">
 <h4 data-number="7.1.5.5" class="anchored" data-anchor-id="method-4-knn-k-nearest-neighbor"><span class="header-section-number">7.1.5.5</span> Method 4: KNN: K-nearest neighbor</h4>
-<p>In this method, we’ll impute the missing value of the variable as the mean value of the <span class="math inline">\(K\)</span>-nearest neighbors having non-missing values for that variable, where the neighbors are based on the Euclidean distance in terms of other variables in the data.</p>
+<p>In this method, we’ll impute the missing value of the variable as the mean value of the <span class="math inline">\(K\)</span>-nearest neighbors having non-missing values for that variable. The neighbors to a data-point are identified based on their Euclidean distance to the point in terms of the standardized values of rest of the variables in the data.</p>
 <div class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Toy example</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>nan <span class="op">=</span> np.nan</span>
