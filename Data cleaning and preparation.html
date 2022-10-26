@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
@@ -79,7 +142,11 @@ div.csl-indent {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -186,10 +253,12 @@ div.csl-indent {
   <ul>
   <li><a href="#handling-missing-data" id="toc-handling-missing-data" class="nav-link active" data-scroll-target="#handling-missing-data"><span class="toc-section-number">7.1</span>  Handling missing data</a>
   <ul class="collapse">
-  <li><a href="#types-of-missing-values" id="toc-types-of-missing-values" class="nav-link" data-scroll-target="#types-of-missing-values"><span class="toc-section-number">7.1.1</span>  Types of missing values</a></li>
-  <li><a href="#missing-completely-at-random-mcar" id="toc-missing-completely-at-random-mcar" class="nav-link" data-scroll-target="#missing-completely-at-random-mcar"><span class="toc-section-number">7.1.2</span>  Missing Completely at Random (MCAR)</a></li>
-  <li><a href="#missing-at-random-mar" id="toc-missing-at-random-mar" class="nav-link" data-scroll-target="#missing-at-random-mar"><span class="toc-section-number">7.1.3</span>  Missing at Random (MAR)</a></li>
-  <li><a href="#missing-not-at-random-mnar" id="toc-missing-not-at-random-mnar" class="nav-link" data-scroll-target="#missing-not-at-random-mnar"><span class="toc-section-number">7.1.4</span>  Missing Not at Random (MNAR)</a></li>
+  <li><a href="#isnull" id="toc-isnull" class="nav-link" data-scroll-target="#isnull"><span class="toc-section-number">7.1.1</span>  <code>isnull()</code></a></li>
+  <li><a href="#types-of-missing-values" id="toc-types-of-missing-values" class="nav-link" data-scroll-target="#types-of-missing-values"><span class="toc-section-number">7.1.2</span>  Types of missing values</a></li>
+  <li><a href="#missing-completely-at-random-mcar" id="toc-missing-completely-at-random-mcar" class="nav-link" data-scroll-target="#missing-completely-at-random-mcar"><span class="toc-section-number">7.1.3</span>  Missing Completely at Random (MCAR)</a></li>
+  <li><a href="#missing-at-random-mar" id="toc-missing-at-random-mar" class="nav-link" data-scroll-target="#missing-at-random-mar"><span class="toc-section-number">7.1.4</span>  Missing at Random (MAR)</a></li>
+  <li><a href="#missing-not-at-random-mnar" id="toc-missing-not-at-random-mnar" class="nav-link" data-scroll-target="#missing-not-at-random-mnar"><span class="toc-section-number">7.1.5</span>  Missing Not at Random (MNAR)</a></li>
+  <li><a href="#dropna" id="toc-dropna" class="nav-link" data-scroll-target="#dropna"><span class="toc-section-number">7.1.6</span>  <code>dropna()</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -216,23 +285,318 @@ div.csl-indent {
 <section id="handling-missing-data" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="handling-missing-data"><span class="header-section-number">7.1</span> Handling missing data</h2>
 <p>Missing values in a dataset can occur due to several reasons such as breakdown of measuring equipment, accidental removal of observations, lack of response by respondents, error on the part of the reearcher, etc.</p>
-<p>Removing all rows / columns with even a single missing value results in loss of data that is non-missing in the respective rows/columns. In this section, we’ll see how to make a smart guess for the missing values, so that we can (hopefully) maximize the information that can be extracted from the data.</p>
-<section id="types-of-missing-values" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="types-of-missing-values"><span class="header-section-number">7.1.1</span> Types of missing values</h3>
-<p><span class="citation" data-cites="rubin1976inference">Rubin (<a href="references.html#ref-rubin1976inference" role="doc-biblioref">1976</a>)</span> classified missing values into three categories, depending on how the values could have been missing.</p>
+<p>Let us read the dataset <em>GDP_missing_data.csv</em>, in which some of the columns have missing values.</p>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn <span class="im">as</span> sk</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>economicActivityFemale</th>
+      <th>country</th>
+      <th>lifeMale</th>
+      <th>infantMortality</th>
+      <th>gdpPerCapita</th>
+      <th>economicActivityMale</th>
+      <th>illiteracyMale</th>
+      <th>illiteracyFemale</th>
+      <th>lifeFemale</th>
+      <th>geographic_location</th>
+      <th>contraception</th>
+      <th>continent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>7.2</td>
+      <td>Afghanistan</td>
+      <td>45.0</td>
+      <td>154.0</td>
+      <td>2474.0</td>
+      <td>87.5</td>
+      <td>NaN</td>
+      <td>85.0</td>
+      <td>46.0</td>
+      <td>Southern Asia</td>
+      <td>NaN</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>7.8</td>
+      <td>Algeria</td>
+      <td>67.5</td>
+      <td>44.0</td>
+      <td>11433.0</td>
+      <td>76.4</td>
+      <td>26.1</td>
+      <td>51.0</td>
+      <td>70.3</td>
+      <td>Northern Africa</td>
+      <td>NaN</td>
+      <td>Africa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>41.3</td>
+      <td>Argentina</td>
+      <td>69.6</td>
+      <td>22.0</td>
+      <td>NaN</td>
+      <td>76.2</td>
+      <td>3.8</td>
+      <td>3.8</td>
+      <td>76.8</td>
+      <td>South America</td>
+      <td>NaN</td>
+      <td>South America</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>52.0</td>
+      <td>Armenia</td>
+      <td>67.2</td>
+      <td>25.0</td>
+      <td>13638.0</td>
+      <td>65.0</td>
+      <td>NaN</td>
+      <td>0.5</td>
+      <td>74.0</td>
+      <td>Western Asia</td>
+      <td>NaN</td>
+      <td>Asia</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>53.8</td>
+      <td>Australia</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>54891.0</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>81.2</td>
+      <td>Oceania</td>
+      <td>NaN</td>
+      <td>Oceania</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Observe that the <code>gdp_missing_values_data</code> dataset consists of some missing values shown as NaN (Not a Number).</p>
+<section id="isnull" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="isnull"><span class="header-section-number">7.1.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isnull.html"><code>isnull()</code></a></h3>
+<p>Missing values in a Pandas DataFrame can be identified with the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isnull.html"><code>isnull()</code></a> method. The Pandas Series object also consists of the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.isnull.html"><code>isnull()</code></a> method. For finding the number of missing values in each column of <code>gdp_missing_values_data</code>, we will sum up the missing values in each column of the dataset:</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>economicActivityFemale    10
+country                    0
+lifeMale                  10
+infantMortality           10
+gdpPerCapita              10
+economicActivityMale      10
+illiteracyMale            10
+illiteracyFemale          10
+lifeFemale                10
+geographic_location        0
+contraception             71
+continent                  0
+dtype: int64</code></pre>
+</div>
+</div>
+<p>Note that the descriptive statistics methods associated with Pandas objects ignore missing values by defaulty. Consider the summary statistics of <code>gdp_missing_values_data</code>:</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>economicActivityFemale</th>
+      <th>lifeMale</th>
+      <th>infantMortality</th>
+      <th>gdpPerCapita</th>
+      <th>economicActivityMale</th>
+      <th>illiteracyMale</th>
+      <th>illiteracyFemale</th>
+      <th>lifeFemale</th>
+      <th>contraception</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>145.000000</td>
+      <td>145.000000</td>
+      <td>145.000000</td>
+      <td>145.000000</td>
+      <td>145.000000</td>
+      <td>145.000000</td>
+      <td>145.000000</td>
+      <td>145.000000</td>
+      <td>84.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>45.935172</td>
+      <td>65.491724</td>
+      <td>37.158621</td>
+      <td>24193.482759</td>
+      <td>76.563448</td>
+      <td>13.570028</td>
+      <td>21.448897</td>
+      <td>70.615862</td>
+      <td>51.773810</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>16.875922</td>
+      <td>9.099256</td>
+      <td>34.465699</td>
+      <td>22748.764444</td>
+      <td>7.854730</td>
+      <td>16.497954</td>
+      <td>25.497045</td>
+      <td>9.923791</td>
+      <td>31.930026</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>1.900000</td>
+      <td>36.000000</td>
+      <td>3.000000</td>
+      <td>772.000000</td>
+      <td>51.200000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>39.100000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>35.500000</td>
+      <td>62.900000</td>
+      <td>10.000000</td>
+      <td>6837.000000</td>
+      <td>72.000000</td>
+      <td>1.000000</td>
+      <td>2.300000</td>
+      <td>67.500000</td>
+      <td>17.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>47.600000</td>
+      <td>67.800000</td>
+      <td>24.000000</td>
+      <td>15184.000000</td>
+      <td>77.300000</td>
+      <td>6.600000</td>
+      <td>9.720000</td>
+      <td>73.900000</td>
+      <td>65.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>55.900000</td>
+      <td>72.400000</td>
+      <td>54.000000</td>
+      <td>35957.000000</td>
+      <td>81.600000</td>
+      <td>19.500000</td>
+      <td>30.200000</td>
+      <td>78.100000</td>
+      <td>77.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>90.600000</td>
+      <td>77.400000</td>
+      <td>169.000000</td>
+      <td>122740.000000</td>
+      <td>93.000000</td>
+      <td>70.500000</td>
+      <td>90.800000</td>
+      <td>82.900000</td>
+      <td>79.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Observe that the <code>count</code> statistics reports the number of non-missing values of each column in the data, as the number of rows in the data (see code below) are more than the number of non-missing values of all the variables in the above table. Similarly, for the rest of the statistics, such as <code>mean</code>, <code>std</code>, etc., the missing values are ignored.</p>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The dataset gdp_missing_values_data has 155 rows</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.shape[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="26">
+<pre><code>155</code></pre>
+</div>
+</div>
 </section>
-<section id="missing-completely-at-random-mcar" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="missing-completely-at-random-mcar"><span class="header-section-number">7.1.2</span> Missing Completely at Random (MCAR)</h3>
-<p>If the probablity that a random variable’s value is missing is the same for all the observations, then the data is said to be missing completely at random. An example of MCAR is a weighing scale that ran out of batteries. Some of the data will be missing simply because of bad luck.</p>
+<section id="types-of-missing-values" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="types-of-missing-values"><span class="header-section-number">7.1.2</span> Types of missing values</h3>
+<p>Now that we know how to identify missing values in the dataset, let us learn about the types of missing values that can be there. <span class="citation" data-cites="rubin1976inference">Rubin (<a href="references.html#ref-rubin1976inference" role="doc-biblioref">1976</a>)</span> classified missing values in three categories.</p>
 </section>
-<section id="missing-at-random-mar" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="missing-at-random-mar"><span class="header-section-number">7.1.3</span> Missing at Random (MAR)</h3>
+<section id="missing-completely-at-random-mcar" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="missing-completely-at-random-mcar"><span class="header-section-number">7.1.3</span> Missing Completely at Random (MCAR)</h3>
+<p>If the probability of being missing is the same for all cases, then the data are said to be missing completely at random. An example of MCAR is a weighing scale that ran out of batteries. Some of the data will be missing simply because of bad luck.</p>
+</section>
+<section id="missing-at-random-mar" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="missing-at-random-mar"><span class="header-section-number">7.1.4</span> Missing at Random (MAR)</h3>
 <p>If the probability of being missing is the same only within groups defined by the observed data, then the data are missing at random (MAR). MAR is a much broader class than MCAR. For example, when placed on a soft surface, a weighing scale may produce more missing values than when placed on a hard surface. Such data are thus not MCAR. If, however, we know surface type and if we can assume MCAR within the type of surface, then the data are MAR</p>
 </section>
-<section id="missing-not-at-random-mnar" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="missing-not-at-random-mnar"><span class="header-section-number">7.1.4</span> Missing Not at Random (MNAR)</h3>
+<section id="missing-not-at-random-mnar" class="level3" data-number="7.1.5">
+<h3 data-number="7.1.5" class="anchored" data-anchor-id="missing-not-at-random-mnar"><span class="header-section-number">7.1.5</span> Missing Not at Random (MNAR)</h3>
 <p>MNAR means that the probability of being missing varies for reasons that are unknown to us. For example, the weighing scale mechanism may wear out over time, producing more missing data as time progresses, but we may fail to note this. If the heavier objects are measured later in time, then we obtain a distribution of the measurements that will be distorted. MNAR includes the possibility that the scale produces more missing values for the heavier objects (as above), a situation that might be difficult to recognize and handle.</p>
 <p><em>Source: https://stefvanbuuren.name/fimd/sec-MCAR.html</em></p>
+<p><span class="math inline">\(\color{red}{\text{Q1}}\)</span>: In which of the above scenarios can we ignore the observations corresponding to missing values without the risk of skewing the analysis/trends in the data?</p>
+<p><span class="math inline">\(\color{red}{\text{Q2}}\)</span>: In which of the above scenario will it be the most risky to impute or estimate missing values?</p>
+</section>
+<section id="dropna" class="level3" data-number="7.1.6">
+<h3 data-number="7.1.6" class="anchored" data-anchor-id="dropna"><span class="header-section-number">7.1.6</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html"><code>dropna()</code></a></h3>
+<p>Sometimes our analysis requires that there should be no missing values in the dataset. For example, while building statistical models, we may require the values of all the predictor variables. The quickest way is to use the <code>dropna()</code> method, which drops the observations that even have a single missing value, and leaves only complete observations in the data.</p>
+<p>Let us drop the rows containing even a single value from <code>gdp_missing_values_data</code>.</p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>gdp_no_missing_data <span class="op">=</span> gdp_missing_values_data.dropna()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Shape of gdp_no_missing_data</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gdp_no_missing_data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+<pre><code>(42, 12)</code></pre>
+</div>
+</div>
+<p>Dropping rows with even a single missing value has reduced the number of rows from 155 to 42! However, earlier we saw that all the columns except <code>contraception</code> had at most 10 missing values. Removing all rows / columns with even a single missing value results in loss of data that is non-missing in the respective rows/columns. Thus, it is typically a bad idea to drop observations with even a single missing value, except in cases where we have a very small number of missing-value observations.</p>
+<p>If a few values of a column are missing, we can possibly estimate them using the rest of the data, so that we can (hopefully) maximize the information that can be extracted from the data. However, if most of the values of a column are missing, it may be harder to estimate its values.</p>
+<p>In this case, we see that around 50% values of the <code>contraception</code> column is missing. Thus, we’ll drop the column as it may be hard to impute its values based on a relatively small number of non-missing values.</p>
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Deleting column with missing values in almost half of the observations</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.drop([<span class="st">'contraception'</span>],axis<span class="op">=</span><span class="dv">1</span>,inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
+<pre><code>(155, 11)</code></pre>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
