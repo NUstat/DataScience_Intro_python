@@ -1,0 +1,156 @@
+economicActivityFemale,country,lifeMale,infantMortality,gdpPerCapita,economicActivityMale,illiteracyMale,illiteracyFemale,lifeFemale,geographic_location,contraception,continent
+7.2,Afghanistan,45,154,2474,87.5,,85,46,Southern Asia,,Asia
+7.8,Algeria,67.5,44,11433,76.4,26.1,51,70.3,Northern Africa,,Africa
+41.3,Argentina,69.6,22,,76.2,3.8,3.8,76.8,South America,,South America
+52,Armenia,67.2,25,13638,65,,0.5,74,Western Asia,,Asia
+53.8,Australia,,6,54891,,1,1,81.2,Oceania,,Oceania
+47.7,Austria,73.7,6,57891,69.5,1,1,80.1,Western Europe,,Europe
+67,Bahamas,70.5,14,34046,81.2,1.5,2,77.1,North America,,North America
+29.2,Bahrain,71.1,18,50284,88.2,10.9,20.6,75.3,Western Asia,,Asia
+55.9,Bangladesh,58.1,78,5812,88.8,50.6,73.9,58.2,Southern Asia,,Asia
+61.4,Barbados,73.6,9,14329,73.4,2,3.2,78.7,North America,,North America
+61.3,Belarus,64.4,15,20578,76.4,0.3,0.6,74.8,Eastern Europe,,Europe
+34,Belize,73.4,30,6133,79,21.252,23.472,76.1,North America,79,North America
+57.8,Benin,,,3573,90,51.3,74.2,57.2,Western Africa,79,Africa
+56.3,Bolivia,,66,8832,74.1,9.5,24,63.2,South America,79,South America
+41.7,Botswana,48.9,56,18113,75.4,19.5,40.1,51.7,Southern Africa,,Africa
+53.6,Brazil,63.4,42,15643,84,16.7,16.8,71.2,South America,,South America
+46.4,Brunei,73.4,9,64405,82.2,7.4,16.6,78.1,South-eastern Asia,79,Asia
+53.8,Bulgaria,67.8,16,25471,60.7,0.924,2.376,74.9,Eastern Europe,79,Europe
+,Burkina Faso,45.1,97,2334,88.9,70.5,90.8,47,Western Africa,79,Africa
+90.6,Burundi,45.5,114,772,90.1,50.7,77.5,48.8,Eastern Africa,,Africa
+84.7,Cambodia,52.6,102,4930,77.3,19.5,13.5,55.4,South-eastern Asia,,Asia
+57.6,Canada,76.1,6,51713,72.4,1,35,81.8,Northern America,,North America
+41.1,Cape Verde,65.5,41,6837,85.1,18.6,36.2,67.5,Western Africa,79,Africa
+68.8,Central African Republic,46.4,96,1013,87,31.5,,51,Middle Africa,79,Africa
+25.3,Chad,46.3,115,,91.2,37.9,65.3,49.3,Middle Africa,,Africa
+34.5,Chile,72.3,,24928,75.5,4.6,5,78.3,South America,,South America
+,China,68.2,38,18931,84.9,10.1,,71.7,Eastern Asia,79,Asia
+50.2,Colombia,68.2,24,15184,79,8.8,8.6,,South America,,South America
+49.2,Congo,48.6,90,,68.4,,,53.4,Middle Africa,,Africa
+43.6,Cook Islands,67,26,10466,71.4,,4.104,73,Oceania,79,Oceania
+33.3,Costa Rica,74.5,12,20667,79.2,5.3,5,79.2,North America,79,North America
+44,Croatia,68.1,10,29777,64.1,0.924,4.32,,Southern Europe,79,Europe
+41.2,Cuba,74.2,9,9099,72.6,3.8,4.7,78,North America,79,North America
+47.6,Cyprus,75.4,,41595,78,2.046,9,79.8,Western Asia,79,Asia
+52.1,Czech Republic,69.8,,42956,,1,1,76,Eastern Europe,79,Europe
+72.3,Denmark,73,7,61478,83.2,1,,78.3,Northern Europe,79,Europe
+42.9,Dominican Republic,68.9,34,19799,82.6,18,17.8,73.1,North America,,North America
+48.4,Ecuador,67.3,46,11331,79.7,8,11.8,72.5,South America,,South America
+21.6,Egypt,64.7,54,13083,73.4,36.4,61.2,67.3,Northern Africa,,Africa
+40.6,El Salvador,,39,8891,79.8,26.5,30.2,,North America,79,North America
+42.4,Equatorial Guinea,48.4,107,18236,89.1,10.4,31.9,51.6,Middle Africa,79,Africa
+,Estonia,63.9,12,39729,71.5,0.2,0.2,75,Northern Europe,79,Europe
+58.4,Ethiopia,48.4,107,2973,84.7,54.5,74.7,51.6,Eastern Africa,79,Africa
+23.3,Fiji,70.6,20,12298,85.4,6.2,10.7,74.9,Oceania,,Oceania
+55.4,Finland,73,5,51867,66.9,0,0,80.1,Northern Europe,,Europe
+48.4,France,74.6,7,,62.7,1,1,82.9,Western Europe,77,Europe
+48.5,French Polynesia,69.8,10,19766,74.2,2,2,75.3,Oceania,77,Oceania
+44.8,Gambia,45.4,,2384,70.2,,75.1,48.7,Western Africa,77,Africa
+,Georgia,68.5,23,15709,75,0.3,0.6,76.7,Western Asia,77,Asia
+47.3,Germany,73.4,6,56956,,1,1,79.9,Western Europe,77,Europe
+36.1,Greece,75.5,8,30495,64.7,1.7,4.7,80.6,Southern Europe,77,Europe
+52.3,Guadeloupe,72.1,8,9145,66.9,9.768,9.576,78.8,North America,77,North America
+60,Guam,72.7,,18000,,1.4,1.2,76.8,Oceania,,Oceania
+18.4,Guatemala,64.7,40,8648,84,37.5,51.4,69.8,North America,77,North America
+44.9,Guinea,46,124,2731,79.9,50.1,78.1,47,Western Africa,,Africa
+39.3,Guyana,61.1,58,23258,81.2,1.4,2.5,67.9,South America,77,South America
+49,Haiti,52.8,82,2962,80.3,52,57.8,56,North America,77,North America
+34.7,Honduras,67.5,35,,,27.4,27.3,72.3,North America,77,North America
+47.8,Hong Kong,76.1,5,62839,,4,11.8,81.8,Eastern Asia,,Asia
+43.4,Hungary,64.5,,35088,61.1,0.7,1,,Eastern Europe,,Europe
+76.8,Iceland,77.4,5,58151,86.2,,1,81.2,Northern Europe,77,Europe
+33.7,India,62.1,72,7333,80.4,34.5,,62.7,Southern Asia,77,Asia
+51.3,Indonesia,63.3,48,12882,84.8,10.4,22,67,South-eastern Asia,77,Asia
+9.9,Iran,68.5,39,13513,79.8,22.3,40.7,70,Southern Asia,,Asia
+10.3,Iraq,60.9,95,10038,74,29.3,55,63.9,Western Asia,,Asia
+41.1,Ireland,74,6,99239,67.8,1,,79.4,Northern Europe,,Europe
+45.6,Israel,75.7,7,42570,62.1,2.442,,79.5,Western Asia,77,Asia
+34.6,Italy,75.1,7,43376,61.6,,2.4,81.4,Southern Europe,77,Europe
+42,Ivory Coast,50,86,5642,88.7,50.1,70,52.2,Western Africa,77,Africa
+,Jamaica,72.4,12,10294,74,19.2,10.9,76.8,North America,77,North America
+50,Japan,76.9,4,44585,77.7,1,1,82.9,Eastern Asia,77,Asia
+12.7,Jordan,67.7,30,10590,72.5,6.6,20.6,71.8,Western Asia,,Asia
+62.8,Kazakhstan,62.8,34,27560,78.5,0.3,0.5,72.5,Central Asia,,Asia
+68,Kiribati,,65,2242,84,2.7,2.7,63,Oceania,,Oceania
+34.3,Kuwait,74.1,14,41507,80.1,17.8,25.1,78.2,Western Asia,77,Asia
+60,Kyrgyzstan,63.4,39,5323,75,0.3,0.5,71.9,Central Asia,,Asia
+51.5,Latvia,62.5,,33394,69.8,0.2,0.3,74.3,Northern Europe,77,Europe
+65.1,Lithuania,64.9,13,40784,75.7,0.4,0.7,76,Northern Europe,77,Europe
+37.3,Luxembourg,73.1,6,122740,65.7,1,1,79.7,Western Europe,,Europe
+56.4,Macau,75.1,8,90606,81.1,5.412,14.616,80.1,Eastern Asia,,Asia
+42.9,Macedonia,70.3,23,5888,67,2.2,3.2,74.7,Eastern Europe,0,Europe
+75.3,Malawi,40.3,142,1005,80.6,28.1,58.2,,Eastern Africa,53,Africa
+42.2,Malaysia,69.9,11,29340,,10.9,21.9,74.3,South-eastern Asia,53,Asia
+20.2,Maldives,,49,23343,77.3,6.7,7,63.3,Southern Asia,53,Asia
+27.4,Malta,74.6,8,45042,74.1,10.758,11.088,79.1,Southern Europe,53,Europe
+30,Marshall Islands,59.1,26,3767,77,5.94,9.72,63,Oceania,53,Oceania
+54.1,Martinique,73.7,7,12717,65.7,7.656,6.48,80.3,North America,53,North America
+38.8,Mauritius,68.3,15,22030,80.1,12.9,21.2,75,Eastern Africa,53,Africa
+37.4,Mexico,69.5,31,20266,83.9,8.2,,75.5,North America,53,North America
+33,Micronesia,64.4,20,3372,65,15.378,22.176,68.8,Oceania,53,Oceania
+61.6,Moldova,63.5,26,13879,74.9,1.122,4.896,71.5,Eastern Europe,53,Europe
+25.1,Morocco,,51,8027,74.9,43.4,69,68.5,Northern Africa,53,Africa
+86.5,Mozambique,45.5,110,,88.2,42.3,76.7,48.4,Eastern Africa,,Africa
+38.9,Myanmar,58.5,78,4831,73.8,11.3,22.3,61.8,South-eastern Asia,53,Asia
+49,Namibia,54.7,60,9542,68.6,17.688,25.2,56.6,Southern Africa,,Africa
+,Nepal,57.6,82,4199,79.8,59.1,86,57.1,Southern Asia,,Asia
+60.2,Netherlands,75,6,60461,81.1,1,1,80.6,Western Europe,53,Europe
+51.1,Netherlands Antilles,73.4,10,52304,69.8,4.752,6.12,,Western Europe,53,Europe
+49.9,New Caledonia,70.9,18,19450,80.8,5.346,7.776,75.9,Oceania,53,Oceania
+,New Zealand,74.7,7,44226,74.4,1,1,79.7,Oceania,,Oceania
+,Nicaragua,65.8,44,5648,84.5,35.4,33.4,70.6,North America,53,North America
+37.2,Nigeria,50.8,77,5280,78.3,,52.7,54,Western Africa,53,Africa
+65.9,Norway,74.8,,69171,,0,0,80.6,Northern Europe,53,Europe
+15.8,Oman,68.9,25,30404,84.1,3.01,7.31,73.3,Western Asia,53,Asia
+,Pakistan,62.9,74,5224,82.3,50,75.6,65.1,Southern Asia,,Asia
+53,Palau,65,25,12862,72,1.386,3.096,69,Oceania,,Oceania
+42.5,Panama,71.8,21,30388,81.3,8.6,9.8,76.4,North America,0,North America
+26.1,Paraguay,67.5,39,13454,85.7,6.5,9.4,72,South America,,South America
+33.9,Peru,65.9,45,12985,51.2,5.5,17,70.9,South America,0,South America
+49,Philippines,66.6,35,9061,82.7,5,5.7,,South-eastern Asia,0,Asia
+51,Poland,66.7,13,35957,66.2,0.3,0.3,75.7,Eastern Europe,,Europe
+49.2,Portugal,71.8,8,36079,67,7.5,13,78.9,Southern Europe,,Europe
+35.1,Puerto Rico,72.5,9,,64,7.788,9.936,80.5,North America,0,North America
+27.5,Qatar,70,17,97262,93,,20.1,75.4,Western Asia,,Asia
+41.9,Reunion,70.9,7,11854,62.6,21.912,20.304,79.8,Eastern Africa,0,Africa
+57.4,Romania,66,24,32950,72.7,,3.1,73.2,Eastern Europe,,Europe
+50.4,Russia,58,19,29485,68.1,0.3,0.6,71.5,Eastern Europe,,Europe
+48.5,Saint Lucia,68,18,13942,78.9,10.5,9.4,,North America,0,North America
+40.2,Samoa,67.5,58,5260,77.3,1.848,1.656,71.1,Oceania,17,Oceania
+6.9,Saudi Arabia,69.9,23,48099,,28.5,49.8,73.4,Western Asia,17,Asia
+24.3,Senegal,50.3,62,3625,83.1,57,76.8,52.3,Western Africa,,Africa
+57,Seychelles,65.3,12,26119,78.8,15.18,15.12,74.1,Eastern Africa,17,Africa
+76,Sierra Leone,36,169,1771,80,54.6,81.8,39.1,Western Africa,17,Africa
+51.5,Singapore,75.1,5,,78.7,4.1,13.7,79.5,South-eastern Asia,,Asia
+51.4,Slovakia,67,12,34815,68.2,0.3,3.4,75.8,Eastern Europe,,Europe
+51.3,Slovenia,69.2,7,,64.5,0.264,0.432,77.8,Southern Europe,0,Europe
+85,Solomon Islands,69.6,23,,87,16.3,31,73.9,Oceania,0,Oceania
+50.4,South Africa,,48,12442,79.6,18.1,,68.3,Southern Africa,0,Africa
+48.7,South Korea,68.8,9,47027,76.1,0.7,3.3,76,Eastern Asia,,Asia
+37,Spain,74.5,7,41546,63.1,1.8,3.9,81.5,Southern Europe,,Europe
+35.5,Sri Lanka,70.9,15,13909,75.6,6.6,12.8,75.4,Southern Asia,,Asia
+25.9,Sudan,53.6,71,4082,74.6,42.3,65.4,56.4,Northern Africa,,Africa
+32.6,Suriname,69,24,14703,64.2,4.9,9,74,South America,,South America
+27.7,Swaziland,57.7,65,3415,64.3,22,24.4,62.3,Southern Africa,,Africa
+75.6,Sweden,76.2,5,55566,80,1,1,80.8,Northern Europe,,Europe
+56.8,Switzerland,,5,75880,78.5,1,1,81.8,Western Europe,0,Europe
+60,Tajikistan,64.2,56,3856,75,0.3,,70.2,Central Asia,,Asia
+65.2,Thailand,66.3,30,19004,83.8,4,8.4,72.3,South-eastern Asia,0,Asia
+50.8,Togo,48.8,86,2261,77.5,33,63,51.5,Western Africa,0,Africa
+45.4,Tonga,67,3,6156,74.2,0.264,0.504,71,Oceania,0,Oceania
+44.9,Trinidad and Tobago,71.5,14,25883,75.5,1.2,3,76.2,North America,,North America
+20.3,Tunisia,68.4,37,10594,75.4,21.4,45.4,70.7,Northern Africa,,Africa
+30.6,Turkey,66.5,44,32278,,8.3,27.6,71.7,Western Asia,0,Asia
+62,Turkmenistan,61.2,57,17415,78,0.2,0.4,68,Central Asia,,Asia
+57.1,Ukraine,63.6,18,13943,69.1,0.33,2.16,74,Eastern Europe,0,Europe
+24.2,United Arab.Emirates,73.9,15,43103,92.5,21.1,20.2,76.5,Western Asia,,Asia
+53.5,United Kingdom,74.5,,47089,71.9,1,1,79.8,Northern Europe,,Europe
+59.3,United States,73.4,7,68309,74.9,2.244,2.232,80.1,Northern America,0,North America
+46.7,Uruguay,69.6,17,23474,74,3.1,2.3,76.1,South America,,South America
+,Uzbekistan,64.3,43,7830,75,0.2,0.4,70.7,Central Asia,,Asia
+79.3,Vanuatu,65.5,38,2646,88.6,34.914,46.368,69.5,Oceania,,Oceania
+41.2,Venezuela,70,21,5178,82.1,8.2,9.7,,South America,,South America
+74.1,Vietnam,,37,11677,81.6,3.5,8.8,69.6,South-eastern Asia,0,Asia
+1.9,Yemen,57.4,80,1924,80.6,32.406,69.552,58.4,Western Asia,0,Asia
+46.7,Zimbabwe,47.6,68,2698,77.7,9.6,20.1,,Eastern Africa,,Africa
