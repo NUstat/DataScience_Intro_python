@@ -303,7 +303,7 @@ div.csl-indent {
 <p>Missing values in a dataset can occur due to several reasons such as breakdown of measuring equipment, accidental removal of observations, lack of response by respondents, error on the part of the researcher, etc.</p>
 <p>Let us read the dataset <em>GDP_missing_data.csv</em>, in which we have randomly removed some values, or put missing values in some of the columns.</p>
 <p>We’ll also read <em>GDP_complete_data.csv</em>, in which we have not removed any values. We’ll use this data later to assess the accuracy of our guess or estimate of missing values in <em>GDP_missing_data.csv</em>.</p>
-<div class="cell" data-execution_count="122">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -312,9 +312,9 @@ div.csl-indent {
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gdp_complete_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_complete_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="2">
 
 <div>
 
@@ -621,11 +621,11 @@ dtype: int64</code></pre>
 <p>Dropping rows with even a single missing value has reduced the number of rows from 155 to 42! However, earlier we saw that all the columns except <code>contraception</code> had at most 10 missing values. Removing all rows / columns with even a single missing value results in loss of data that is non-missing in the respective rows/columns. Thus, it is typically a bad idea to drop observations with even a single missing value, except in cases where we have a very small number of missing-value observations.</p>
 <p>If a few values of a column are missing, we can possibly estimate them using the rest of the data, so that we can (hopefully) maximize the information that can be extracted from the data. However, if most of the values of a column are missing, it may be harder to estimate its values.</p>
 <p>In this case, we see that around 50% values of the <code>contraception</code> column is missing. Thus, we’ll drop the column as it may be hard to impute its values based on a relatively small number of non-missing values.</p>
-<div class="cell" data-execution_count="36">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Deleting column with missing values in almost half of the observations</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.drop([<span class="st">'contraception'</span>],axis<span class="op">=</span><span class="dv">1</span>,inplace<span class="op">=</span><span class="va">True</span>)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="36">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>(155, 11)</code></pre>
 </div>
 </div>
@@ -661,11 +661,11 @@ dtype: int64</code></pre>
 </div>
 <p>After imputing missing values, note there is still one missing value for <em>illiteracyMale</em>. Can you guess why one missing value remained?</p>
 <p>Let us check how good is this method in imputing missing values. We’ll compare the imputed values of <code>gdpPerCapita</code> with the actual values. Recall that we had randomly put some missing values in <code>gdp_missing_values_data</code>, and we have the actual values in <code>gdp_complete_data</code>.</p>
-<div class="cell" data-execution_count="44">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Index of rows with missing values for GDP per capita</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>null_ind_gdpPC <span class="op">=</span> gdp_missing_values_data.index[gdp_missing_values_data.gdpPerCapita.isnull()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="91">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function to plot the imputed values vs actual values </span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_actual_vs_predicted():</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
@@ -699,11 +699,11 @@ dtype: int64</code></pre>
 <section id="method-2-imputing-missing-values-as-the-mean-of-non-missing-values" class="level4" data-number="7.1.5.2">
 <h4 data-number="7.1.5.2" class="anchored" data-anchor-id="method-2-imputing-missing-values-as-the-mean-of-non-missing-values"><span class="header-section-number">7.1.5.2</span> Method 2: Imputing missing values as the mean of non-missing values</h4>
 <p>Let us impute missing values in the column as the average of the non-missing values of the column. The sum of squared differences between actual values and the imputed values is likely to be smaller if we impute using the mean. However, this may not be true in cases other than MCAR (Missing completely at random).</p>
-<div class="cell" data-execution_count="93">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filling missing values: Method 2</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.fillna(gdp_missing_values_data.mean())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="94">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 30793.549983587087</code></pre>
@@ -731,7 +731,7 @@ dtype: int64</code></pre>
 <p>We observe that there is a distinct difference between the GDPs per capita of some of the contents. Let us impute the missing GDP per capita of a country as the mean GDP per capita of the corresponding continent. This imputation should be better than imputing the missing GDP per capita as the mean of all the non-missing values, as the GDP per capita of a country is likely to be closer to the mean GDP per capita of the continent, rather the mean GDP per capita of the whole world.</p>
 <div class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean GDP per capita of the continent - please differ the understanding of this code to chapter 9.</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita <span class="op">=</span> gdp_missing_values_data[<span class="st">'gdpPerCapita'</span>].groupby(data_missing[<span class="st">'continent'</span>]).mean()</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita <span class="op">=</span> gdp_missing_values_data[<span class="st">'gdpPerCapita'</span>].groupby(gdp_missing_values_data[<span class="st">'continent'</span>]).mean()</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="103">
 <pre><code>continent
@@ -819,7 +819,7 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <div class="cell" data-execution_count="134">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling data to compute equally weighted distances from the 'k' nearest neighbors</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> sk.preprocessing.MinMaxScaler()</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>scaled_data <span class="op">=</span> pd.DataFrame(scaler.fit_transform(data_missing.iloc[:,num_cols]))</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>scaled_data <span class="op">=</span> pd.DataFrame(scaler.fit_transform(gdp_missing_values_data.iloc[:,num_cols]))</span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>scaled_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="134">
 
