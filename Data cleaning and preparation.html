@@ -300,13 +300,14 @@ div.csl-indent {
 <p>Missing values in a dataset can occur due to several reasons such as breakdown of measuring equipment, accidental removal of observations, lack of response by respondents, error on the part of the reearcher, etc.</p>
 <p>Let us read the dataset <em>GDP_missing_data.csv</em>, in which we have randomly removed some values, or put missing values in some of the columns.</p>
 <p>We’ll also read <em>GDP_complete_data.csv</em>, in which we have not removed any values. We’ll use this data later to assess the accuracy of our guess or estimate of missing values in <em>GDP_missing_data.csv</em>.</p>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="97">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sklearn <span class="im">as</span> sk</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gdp_complete_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_complete_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gdp_complete_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_complete_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -712,10 +713,63 @@ dtype: int64</code></pre>
 </section>
 <section id="method-3-imputing-missing-values-based-on-correlated-variables-in-the-data" class="level4" data-number="7.1.5.3">
 <h4 data-number="7.1.5.3" class="anchored" data-anchor-id="method-3-imputing-missing-values-based-on-correlated-variables-in-the-data"><span class="header-section-number">7.1.5.3</span> Method 3: Imputing missing values based on correlated variables in the data</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filling missing values: Method 3 - Imputing missing GDP per capita as the mean GDP per capita of the continent</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita <span class="op">=</span> gdp_missing_values_data[<span class="st">'gdpPerCapita'</span>].groupby(data_missing[<span class="st">'continent'</span>]).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If a variable is highly correlated with another variable in the dataset, we can approximate its missing values using the trendline with the highly correlated variable.</p>
+<p>Let us visualize the distribution of GDP per capita for different continents.</p>
+<div class="cell" data-execution_count="102">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">12</span>,<span class="dv">6</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>sns.boxplot(x <span class="op">=</span> <span class="st">'continent'</span>,y<span class="op">=</span><span class="st">'gdpPerCapita'</span>,data <span class="op">=</span> gdp_missing_values_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="102">
+<pre><code>&lt;AxesSubplot:xlabel='continent', ylabel='gdpPerCapita'&gt;</code></pre>
 </div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>We observe that there is a disinct difference the GDP per capita’s of some of the contents. Let us impute the missing GDP per capita of a country as the mean GDP per capita of the corresponding continent. This imputation should be better than imputing the missing GDP per capita as the mean of all the non-missing values, as the GDP per capita of a country is likely to be closer to the mean GDP per capita of the continent, rather the mean GDP per capita of the whole world.</p>
+<div class="cell" data-execution_count="103">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean GDP per capita of the continent - please differ the understanding of this code to chapter 9.</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita <span class="op">=</span> gdp_missing_values_data[<span class="st">'gdpPerCapita'</span>].groupby(data_missing[<span class="st">'continent'</span>]).mean()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="103">
+<pre><code>continent
+Africa            7638.178571
+Asia             25922.750000
+Europe           45455.303030
+North America    19625.210526
+Oceania          15385.857143
+South America    15360.909091
+Name: gdpPerCapita, dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="105">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of missing data to impute missing values</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Replacing missing GDP per capita with the mean GDP per capita for the corresponding continent</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> gdp_imputed_data.continent.unique():    </span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    ind_miss <span class="op">=</span> np.where(data_imputed.index.isin(null_ind_gdpPC) <span class="op">&amp;</span> data_imputed.continent.isin([i]))</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    data_imputed.iloc[ind_miss[<span class="dv">0</span>],<span class="dv">4</span>] <span class="op">=</span> avg_gdpPerCapita[i]</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>data_imputed</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Let us identify the variable highly correlated with GDP per capita.</p>
+<div class="cell" data-execution_count="99">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.corrwith(gdp_missing_values_data.gdpPerCapita)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="99">
+<pre><code>economicActivityFemale    0.078332
+lifeMale                  0.579850
+infantMortality          -0.572201
+gdpPerCapita              1.000000
+economicActivityMale     -0.134108
+illiteracyMale           -0.479143
+illiteracyFemale         -0.448273
+lifeFemale                0.615954
+contraception             0.057923
+dtype: float64</code></pre>
+</div>
+</div>
+<p>The variable <em>lifeFemale</em> has the strongest correlation with GDP per capita. Let us use it to impute missing values of GDP per capita.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
