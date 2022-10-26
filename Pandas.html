@@ -3927,7 +3927,7 @@ if (typeof version == 'undefined') {
 <section id="ranking-data" class="level3" data-number="5.5.3">
 <h3 data-number="5.5.3" class="anchored" data-anchor-id="ranking-data"><span class="header-section-number">5.5.3</span> Ranking data</h3>
 <p>With the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.rank.html">rank()</a> function, we can rank the observations.</p>
-<p>For example, let us add a new column to the spotify data that provides the rank of the <code>track_poularity</code> column:</p>
+<p>For example, let us add a new column to the spotify data that provides the rank of the <code>track_popularity</code> column:</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>spotify_ranked <span class="op">=</span> spotify_data.copy()</span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>spotify_ranked[<span class="st">'track_popularity_rank'</span>]<span class="op">=</span>spotify_sorted[<span class="st">'track_popularity'</span>].rank()</span>
