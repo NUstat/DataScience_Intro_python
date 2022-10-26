@@ -252,13 +252,19 @@ div.csl-indent {
    
   <ul>
   <li><a href="#handling-missing-data" id="toc-handling-missing-data" class="nav-link active" data-scroll-target="#handling-missing-data"><span class="toc-section-number">7.1</span>  Handling missing data</a>
+  <ul>
+  <li><a href="#identifying-missing-values-isnull" id="toc-identifying-missing-values-isnull" class="nav-link" data-scroll-target="#identifying-missing-values-isnull"><span class="toc-section-number">7.1.1</span>  Identifying missing values (<code>isnull()</code>)</a></li>
+  <li><a href="#types-of-missing-values" id="toc-types-of-missing-values" class="nav-link" data-scroll-target="#types-of-missing-values"><span class="toc-section-number">7.1.2</span>  Types of missing values</a>
   <ul class="collapse">
-  <li><a href="#isnull" id="toc-isnull" class="nav-link" data-scroll-target="#isnull"><span class="toc-section-number">7.1.1</span>  <code>isnull()</code></a></li>
-  <li><a href="#types-of-missing-values" id="toc-types-of-missing-values" class="nav-link" data-scroll-target="#types-of-missing-values"><span class="toc-section-number">7.1.2</span>  Types of missing values</a></li>
-  <li><a href="#missing-completely-at-random-mcar" id="toc-missing-completely-at-random-mcar" class="nav-link" data-scroll-target="#missing-completely-at-random-mcar"><span class="toc-section-number">7.1.3</span>  Missing Completely at Random (MCAR)</a></li>
-  <li><a href="#missing-at-random-mar" id="toc-missing-at-random-mar" class="nav-link" data-scroll-target="#missing-at-random-mar"><span class="toc-section-number">7.1.4</span>  Missing at Random (MAR)</a></li>
-  <li><a href="#missing-not-at-random-mnar" id="toc-missing-not-at-random-mnar" class="nav-link" data-scroll-target="#missing-not-at-random-mnar"><span class="toc-section-number">7.1.5</span>  Missing Not at Random (MNAR)</a></li>
-  <li><a href="#dropna" id="toc-dropna" class="nav-link" data-scroll-target="#dropna"><span class="toc-section-number">7.1.6</span>  <code>dropna()</code></a></li>
+  <li><a href="#missing-completely-at-random-mcar" id="toc-missing-completely-at-random-mcar" class="nav-link" data-scroll-target="#missing-completely-at-random-mcar"><span class="toc-section-number">7.1.2.1</span>  Missing Completely at Random (MCAR)</a></li>
+  <li><a href="#missing-at-random-mar" id="toc-missing-at-random-mar" class="nav-link" data-scroll-target="#missing-at-random-mar"><span class="toc-section-number">7.1.2.2</span>  Missing at Random (MAR)</a></li>
+  <li><a href="#missing-not-at-random-mnar" id="toc-missing-not-at-random-mnar" class="nav-link" data-scroll-target="#missing-not-at-random-mnar"><span class="toc-section-number">7.1.2.3</span>  Missing Not at Random (MNAR)</a></li>
+  </ul></li>
+  <li><a href="#dropping-observations-with-missing-values-dropna" id="toc-dropping-observations-with-missing-values-dropna" class="nav-link" data-scroll-target="#dropping-observations-with-missing-values-dropna"><span class="toc-section-number">7.1.3</span>  Dropping observations with missing values <code>dropna()</code></a></li>
+  <li><a href="#some-methods-to-impute-missing-values" id="toc-some-methods-to-impute-missing-values" class="nav-link" data-scroll-target="#some-methods-to-impute-missing-values"><span class="toc-section-number">7.1.4</span>  Some methods to impute missing values</a>
+  <ul class="collapse">
+  <li><a href="#method-1-naive-method" id="toc-method-1-naive-method" class="nav-link" data-scroll-target="#method-1-naive-method"><span class="toc-section-number">7.1.4.1</span>  Method 1: Naive Method</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -399,8 +405,8 @@ div.csl-indent {
 </div>
 </div>
 <p>Observe that the <code>gdp_missing_values_data</code> dataset consists of some missing values shown as NaN (Not a Number).</p>
-<section id="isnull" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="isnull"><span class="header-section-number">7.1.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isnull.html"><code>isnull()</code></a></h3>
+<section id="identifying-missing-values-isnull" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="identifying-missing-values-isnull"><span class="header-section-number">7.1.1</span> Identifying missing values (<a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isnull.html"><code>isnull()</code></a>)</h3>
 <p>Missing values in a Pandas DataFrame can be identified with the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.isnull.html"><code>isnull()</code></a> method. The Pandas Series object also consists of the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.isnull.html"><code>isnull()</code></a> method. For finding the number of missing values in each column of <code>gdp_missing_values_data</code>, we will sum up the missing values in each column of the dataset:</p>
 <div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.isnull().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -556,24 +562,24 @@ dtype: int64</code></pre>
 <section id="types-of-missing-values" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="types-of-missing-values"><span class="header-section-number">7.1.2</span> Types of missing values</h3>
 <p>Now that we know how to identify missing values in the dataset, let us learn about the types of missing values that can be there. <span class="citation" data-cites="rubin1976inference">Rubin (<a href="references.html#ref-rubin1976inference" role="doc-biblioref">1976</a>)</span> classified missing values in three categories.</p>
-</section>
-<section id="missing-completely-at-random-mcar" class="level3" data-number="7.1.3">
-<h3 data-number="7.1.3" class="anchored" data-anchor-id="missing-completely-at-random-mcar"><span class="header-section-number">7.1.3</span> Missing Completely at Random (MCAR)</h3>
+<section id="missing-completely-at-random-mcar" class="level4" data-number="7.1.2.1">
+<h4 data-number="7.1.2.1" class="anchored" data-anchor-id="missing-completely-at-random-mcar"><span class="header-section-number">7.1.2.1</span> Missing Completely at Random (MCAR)</h4>
 <p>If the probability of being missing is the same for all cases, then the data are said to be missing completely at random. An example of MCAR is a weighing scale that ran out of batteries. Some of the data will be missing simply because of bad luck.</p>
 </section>
-<section id="missing-at-random-mar" class="level3" data-number="7.1.4">
-<h3 data-number="7.1.4" class="anchored" data-anchor-id="missing-at-random-mar"><span class="header-section-number">7.1.4</span> Missing at Random (MAR)</h3>
+<section id="missing-at-random-mar" class="level4" data-number="7.1.2.2">
+<h4 data-number="7.1.2.2" class="anchored" data-anchor-id="missing-at-random-mar"><span class="header-section-number">7.1.2.2</span> Missing at Random (MAR)</h4>
 <p>If the probability of being missing is the same only within groups defined by the observed data, then the data are missing at random (MAR). MAR is a much broader class than MCAR. For example, when placed on a soft surface, a weighing scale may produce more missing values than when placed on a hard surface. Such data are thus not MCAR. If, however, we know surface type and if we can assume MCAR within the type of surface, then the data are MAR</p>
 </section>
-<section id="missing-not-at-random-mnar" class="level3" data-number="7.1.5">
-<h3 data-number="7.1.5" class="anchored" data-anchor-id="missing-not-at-random-mnar"><span class="header-section-number">7.1.5</span> Missing Not at Random (MNAR)</h3>
+<section id="missing-not-at-random-mnar" class="level4" data-number="7.1.2.3">
+<h4 data-number="7.1.2.3" class="anchored" data-anchor-id="missing-not-at-random-mnar"><span class="header-section-number">7.1.2.3</span> Missing Not at Random (MNAR)</h4>
 <p>MNAR means that the probability of being missing varies for reasons that are unknown to us. For example, the weighing scale mechanism may wear out over time, producing more missing data as time progresses, but we may fail to note this. If the heavier objects are measured later in time, then we obtain a distribution of the measurements that will be distorted. MNAR includes the possibility that the scale produces more missing values for the heavier objects (as above), a situation that might be difficult to recognize and handle.</p>
 <p><em>Source: https://stefvanbuuren.name/fimd/sec-MCAR.html</em></p>
 <p><span class="math inline">\(\color{red}{\text{Q1}}\)</span>: In which of the above scenarios can we ignore the observations corresponding to missing values without the risk of skewing the analysis/trends in the data?</p>
 <p><span class="math inline">\(\color{red}{\text{Q2}}\)</span>: In which of the above scenario will it be the most risky to impute or estimate missing values?</p>
 </section>
-<section id="dropna" class="level3" data-number="7.1.6">
-<h3 data-number="7.1.6" class="anchored" data-anchor-id="dropna"><span class="header-section-number">7.1.6</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html"><code>dropna()</code></a></h3>
+</section>
+<section id="dropping-observations-with-missing-values-dropna" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="dropping-observations-with-missing-values-dropna"><span class="header-section-number">7.1.3</span> Dropping observations with missing values <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dropna.html"><code>dropna()</code></a></h3>
 <p>Sometimes our analysis requires that there should be no missing values in the dataset. For example, while building statistical models, we may require the values of all the predictor variables. The quickest way is to use the <code>dropna()</code> method, which drops the observations that even have a single missing value, and leaves only complete observations in the data.</p>
 <p>Let us drop the rows containing even a single value from <code>gdp_missing_values_data</code>.</p>
 <div class="cell" data-execution_count="30">
@@ -597,6 +603,18 @@ dtype: int64</code></pre>
 <pre><code>(155, 11)</code></pre>
 </div>
 </div>
+</section>
+<section id="some-methods-to-impute-missing-values" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="some-methods-to-impute-missing-values"><span class="header-section-number">7.1.4</span> Some methods to impute missing values</h3>
+<p>There are an unlimited number of ways to impute missing values. Some imputation methods are provided in the <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/missing_data.html">Pandas documentation</a>.</p>
+<p>The best way to impute them will depend on the problem, and the assumptions taken. Below are just a few examples.</p>
+<section id="method-1-naive-method" class="level4" data-number="7.1.4.1">
+<h4 data-number="7.1.4.1" class="anchored" data-anchor-id="method-1-naive-method"><span class="header-section-number">7.1.4.1</span> Method 1: Naive Method</h4>
+<p>Filling the missing value of a column by copying the value of the previous non-missing observation.</p>
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Filling missing values: Method 1- Naive way</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.fillna(method <span class="op">=</span> <span class="st">'ffill'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -604,6 +622,7 @@ dtype: int64</code></pre>
 Rubin, Donald B. 1976. <span>“Inference and Missing Data.”</span> <em>Biometrika</em> 63 (3): 581–92.
 </div>
 </div>
+</section>
 </section>
 </section>
 
