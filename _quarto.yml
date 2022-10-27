@@ -18,6 +18,7 @@ book:
     - Data wrangling.ipynb
     - Data aggregation.ipynb
     - Datasets.ipynb
+    - Assignment 4 (Data Visualization).ipynb
     - references.qmd
 
 bibliography: references.bib
