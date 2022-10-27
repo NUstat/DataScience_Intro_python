@@ -325,14 +325,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <p>Let’s visualize the life expectancy of different countries with GDP per capita. We’ll read the data file <em>gdp_lifeExpectancy.csv</em>, which contains the GDP per capita and life expectancy of countries from 1952 to 2007.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gdp_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="13">
 
 <div>
 
@@ -404,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.1.2" class="anchored" data-anchor-id="scatterplots-and-trendline-with-matplotlib"><span class="header-section-number">6.1.2</span> Scatterplots and trendline with Matplotlib</h3>
 <p><strong>Purpose of scatterplots:</strong> Scatterplots (with or without a trendline) allow us to visualize the relationship between two numerical variables.</p>
 <p>We’ll import the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.html">pyplot</a> module of matplotlib to make plots. We’ll use the <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">plot()</a> function to make the scatter plot, and the functions <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xlabel.html">xlabel()</a> and <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.ylabel.html">ylabel()</a> for labeling the plot axes.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Q:</strong> Make a scatterplot of Life expectancy vs GDP per capita.</p>
@@ -520,7 +520,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Is <code>NU_GPA</code> associated with <code>parties_per_month</code>? Analyze the association separately for <em>Sophomores, Juniors, and Seniors</em> (categories of the variable <code>school_year</code>).</p>
 <p>Make scatterplots of <code>NU_GPA</code> vs <code>parties_per_month</code> in a 1 x 3 grid, where each grid is for a distinct <code>school_year</code>. Plot the trendline as well for each scatterplot. Use the file <em>survey_data_clean.csv</em>.</p>
 <p><strong>Solution:</strong></p>
-<div class="cell" data-execution_count="272">
+<div class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>survey_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/survey_data_clean.csv'</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> NU_GPA_vs_parties_per_month(data):</span>
@@ -539,8 +539,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>        axes[i].plot(x,y,<span class="st">'o'</span>,label <span class="op">=</span> school_years[i]) </span>
 <span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>        axes[i].set_xlim([data.parties_per_month.<span class="bu">min</span>(), data.parties_per_month.<span class="bu">max</span>()])</span>
 <span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>        axes[i].set_ylim([data.NU_GPA.<span class="bu">min</span>(), data.NU_GPA.<span class="bu">max</span>()])</span>
-<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        axes[i].set_xlabel(<span class="st">'Parties per month'</span>,fontsize <span class="op">=</span> <span class="dv">14</span>, fontname<span class="op">=</span><span class="st">'Sans MS'</span>)  </span>
-<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        axes[i].set_ylabel(<span class="st">'NU GPA'</span>,fontsize <span class="op">=</span> <span class="dv">14</span>, fontname<span class="op">=</span><span class="st">'Sans MS'</span>) </span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>        axes[i].set_xlabel(<span class="st">'Parties per month'</span>,fontsize <span class="op">=</span> <span class="dv">14</span>)  </span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>        axes[i].set_ylabel(<span class="st">'NU GPA'</span>,fontsize <span class="op">=</span> <span class="dv">14</span>) </span>
 <span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>        axes[i].set_title(school_years[i],fontsize <span class="op">=</span> <span class="dv">15</span>)</span>
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>        slope_intercept_trendline <span class="op">=</span> np.polyfit(x[idx_non_missing],y[idx_non_missing],<span class="dv">1</span>)   <span class="co">#Finding the slope and intercept for the trendline</span></span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>        compute_y_given_x <span class="op">=</span> np.poly1d(slope_intercept_trendline) <span class="co">#Defining a function that computes the 'y' given 'x' for the trendline</span></span>
@@ -713,10 +713,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose of bar plots:</strong> Barplots are used to visualize any aggregate statistics of a continuous variable with respect to the categories or levels of a categorical variable. For example, we may visualize the average IMDB rating <em>(aggregate statistics)</em> of movies based on their genre <em>(the categorical variable)</em>.</p>
 <p>Bar plots can be made using the pandas <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.bar.html">bar</a> function with the DataFrame or Series, just like the line plots and scatterplots.</p>
 <p>Below, we are reading the dataset of noise complaints of type <em>Loud music/Party</em> received the police in New York City in 2016.</p>
-<div class="cell" data-scrolled="true" data-execution_count="95">
+<div class="cell" data-scrolled="true" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/party_nyc.csv'</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="95">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -941,18 +941,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="seaborn" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="seaborn"><span class="header-section-number">6.3</span> Seaborn</h2>
 <p>Seaborn offers the flexibility of simultaneously visualizing multiple variables in a single plot, and offers several themes to develop plots.</p>
-<div class="cell" data-execution_count="108">
+<div class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the seaborn library</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="bar-plots-with-confidence-intervals-with-seaborn" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="bar-plots-with-confidence-intervals-with-seaborn"><span class="header-section-number">6.3.1</span> Bar plots with confidence intervals with Seaborn</h3>
 <p>We’ll group the data to obtain the total complaints for each <em>Location Type, Borough, Month_of_the_year, and Hour_of_the_day</em>. Note that you’ll learn grouping data in Chapter 9, so you may ignore the next code block. The grouping is done to shape the data in a suitable form for visualization.</p>
-<div class="cell" data-execution_count="111">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data to make it suitable for visualization using Seaborn. Ignore this code block until learn chapter 9.</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped <span class="op">=</span> nyc_party_complaints[[<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Latitude'</span>,<span class="st">'Hour_of_the_day'</span>]].groupby([<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Hour_of_the_day'</span>])[<span class="st">'Latitude'</span>].agg([(<span class="st">'complaints'</span>,<span class="st">'count'</span>)]).reset_index()</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="111">
+<div class="cell-output cell-output-display" data-execution_count="10">
 
 <div>
 
@@ -1232,11 +1232,126 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">6.3.3</span> Practice exercise 2</h3>
 <p>How does the expected marriage age of the people of STAT303-1 depend on their characteristics? We’ll use visualizations to answer this question. Use data from the file <em>survey_data_clean.csv.</em> Proceed as follows:</p>
 <ol type="1">
-<li><p>Make a visualization that compares the mean <code>expected_marriage_age</code> of introverts and extroverts <em>(use the variable <code>introvert_extrovert</code>)</em>. What insights do you obtain?</p></li>
-<li><p>Does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they believe in love in first sight <em>(variable name: <code>love_first_sight</code>)</em>? Update the previous visualization to answer the question.</p></li>
-<li><p>In addition to <code>love_first_sight</code>, does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they are a procrastinator <em>(variable name: <code>procrastinator</code>)</em>? Update the previous visualization to answer the question.</p></li>
-<li><p>Is there any critical information missing in the above visualizations that, if revealed, may cast doubts on the patterns observed in them?</p></li>
+<li>Make a visualization that compares the mean <code>expected_marriage_age</code> of introverts and extroverts <em>(use the variable <code>introvert_extrovert</code>)</em>. What insights do you obtain?</li>
 </ol>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">9</span>,<span class="dv">6</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sns.barplot(x <span class="op">=</span> <span class="st">'introvert_extrovert'</span> ,y <span class="op">=</span> <span class="st">'expected_marriage_age'</span>, data <span class="op">=</span> survey_data)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Personality'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Expected marriage age'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(fontsize<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>plt.yticks(fontsize<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>The mean expected marriage age for introverts is about 2 years higher than that for extroverts. Also, there is a higher variation in the expected marriage age of introverts as compared to extroverts.</p>
+<ol start="2" type="1">
+<li>Does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they believe in love in first sight <em>(variable name: <code>love_first_sight</code>)</em>? Update the previous visualization to answer the question.</li>
+</ol>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(survey_data,col<span class="op">=</span><span class="st">'love_first_sight'</span>,height <span class="op">=</span> <span class="dv">5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.barplot, <span class="st">'introvert_extrovert'</span> , <span class="st">'expected_marriage_age'</span> ,order <span class="op">=</span> [<span class="st">'Introvert'</span>, <span class="st">'Extrovert'</span>])</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Personality"</span>, <span class="st">"Expected marriage age"</span>)</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="34">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x20c14eed760&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-33-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Yes, only those introverts who do not believe in love in first sight have a higher mean value of expected marriage age.</p>
+<ol start="3" type="1">
+<li>In addition to <code>love_first_sight</code>, does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they are a procrastinator <em>(variable name: <code>procrastinator</code>)</em>? Update the previous visualization to answer the question.</li>
+</ol>
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(survey_data,col<span class="op">=</span><span class="st">'love_first_sight'</span>,height <span class="op">=</span> <span class="dv">5</span>,aspect <span class="op">=</span> <span class="dv">1</span>, row <span class="op">=</span> <span class="st">'procrastinator'</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.barplot, <span class="st">'introvert_extrovert'</span> , <span class="st">'expected_marriage_age'</span> ,order <span class="op">=</span> [<span class="st">'Introvert'</span>, <span class="st">'Extrovert'</span>])</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Personality"</span>, <span class="st">"Expected marriage age"</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x20c1578cb50&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-34-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Procrastination does not seem to make much of a difference in the expected marriage age. The mean expected marriage age of procrastinating introverts seems to be only a little higher than the non-procrastinating introverts.</p>
+<ol start="4" type="1">
+<li>Is there any critical information missing in the above visualizations that, if revealed, may cast doubts on the patterns observed in them?</li>
+</ol>
+<p>Yes, we don’t know the number of observations corresponding to each bar of the bar plots. If there are a very few observations in any of the categories, then the trend shown by that category may not be reliable. For example, in the data (<code>survey_data</code>), there are only 8 introverts who are not procrastinators and believe in love in first sight, while there are 52 introverts who are procrastinators and do not believe in love in first sight.</p>
+<p>If there are more introverts in the class of STAT303-1 who are not procrastinators and believe in love in first sight (may be they didn’t fill the survey), then they are under-represnted in the sample of people who filled the survey, and the trend observed for them may be less reliable than that for other people.</p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Code for finding the number of people in each category - you will understand this code later in chapter 9 on data aggregation</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>survey_data[[<span class="st">'introvert_extrovert'</span>,<span class="st">'love_first_sight'</span>,<span class="st">'procrastinator'</span>,<span class="st">'Timestamp'</span>]].groupby([<span class="st">'introvert_extrovert'</span>,</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                                                                                  <span class="st">'love_first_sight'</span>,<span class="st">'procrastinator'</span>]).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Timestamp</th>
+    </tr>
+    <tr>
+      <th>introvert_extrovert</th>
+      <th>love_first_sight</th>
+      <th>procrastinator</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">Extrovert</th>
+      <th rowspan="2" valign="top">0</th>
+      <th>0</th>
+      <td>19</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>35</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1</th>
+      <th>0</th>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>15</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">Introvert</th>
+      <th rowspan="2" valign="top">0</th>
+      <th>0</th>
+      <td>32</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">1</th>
+      <th>0</th>
+      <td>8</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>21</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="histogram-and-density-plots-with-seaborn" class="level3" data-number="6.3.4">
 <h3 data-number="6.3.4" class="anchored" data-anchor-id="histogram-and-density-plots-with-seaborn"><span class="header-section-number">6.3.4</span> Histogram and density plots with Seaborn</h3>
@@ -1246,39 +1361,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can use the Seaborn <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">displot()</a> function to make both kinds of plots - histogram or density plot.</p>
 <p><strong>Example:</strong> Make a histogram showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
 <div class="cell" data-execution_count="188">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="188">
 <pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2319fbeabb0&gt;</code></pre>
-</div>
-<div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
-</div>
-</div>
-<p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperature.</p>
-<p><strong>Example:</strong> Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
-<div class="cell" data-execution_count="262">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="262">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20visualization_files/figure-html/cell-36-output-2.png" class="img-fluid"></p>
 </div>
 </div>
+<p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperature.</p>
+<p><strong>Example:</strong> Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
+<div class="cell" data-execution_count="262">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="262">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20visualization_files/figure-html/cell-37-output-2.png" class="img-fluid"></p>
+</div>
+</div>
 <p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
 <div class="cell" data-execution_count="158">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="158">
 <pre><code>Text(0.5, 0, 'Temperature')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-37-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-38-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The Seaborn function <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">histplot()</a> can be used to make a density plot overlapping on a histogram.</p>
@@ -1293,12 +1408,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><strong>Example:</strong> Make a boxplot comparing the distributions of maximum temperatures of Sydney, Canberra and Melbourne, given whether or not it has rained on the day.</p>
 <div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="159">
 <pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-39-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. The maximum temperature of the day, on an average, is lower if it rained on the day. 2. Sydney and Melbourne have some extremely high outlying values of maximum temperature.</p>
@@ -1308,13 +1423,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.3.6" class="anchored" data-anchor-id="scatterplots-with-seaborn"><span class="header-section-number">6.3.6</span> Scatterplots with Seaborn</h3>
 <p>We made scatterplots with Matplotlib and Pandas earlier. With Seaborn, the <code>regplot()</code> function allows us to plot a trendline over the scatterplot, along with a 95% confidence interval for the trendline. Note that this is much easier than making a trendline with Matplotlib.</p>
 <div class="cell" data-scrolled="true" data-execution_count="262">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot and trendline with seaborn</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, data <span class="op">=</span> gdp_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot and trendline with seaborn</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>sns.regplot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, data <span class="op">=</span> gdp_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="262">
 <pre><code>&lt;AxesSubplot:xlabel='gdpPercap', ylabel='lifeExp'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-40-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-41-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that the confidence interval of the trendline broadens as we move farther away from most of the data points. In other words, there is more uncertainty about the trend as we move to a domain space farther away from the data.</p>
@@ -1324,13 +1439,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Heatmaps help us visualize the correlation between all variable-pairs.</p>
 <p>Below is a heatmap visualizing the pairwise correlation of all the numerical variables of <code>survey_data_clean</code>. With a heatmap it becomes easier to see strongly correlated variables.</p>
 <div class="cell" data-execution_count="173">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="173">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-41-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above map, we can see that:</p>
@@ -1344,13 +1459,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Pairplots are used to visualize the association between all variable-pairs in the data. In other words, pairplots simultaneously visualize the scatterplots between all variable-pairs.</p>
 <p>Let us visualize the pair-wise association of nutrition variables in the starbucks drinks data.</p>
 <div class="cell" data-execution_count="210">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="210">
 <pre><code>&lt;seaborn.axisgrid.PairGrid at 0x231831dc940&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20visualization_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
+<p><img src="Data%20visualization_files/figure-html/cell-43-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>In the above pairplot, note that:</p>
