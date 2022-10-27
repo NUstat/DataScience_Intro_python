@@ -4462,19 +4462,13 @@ vertical-align: -.125em;
 <p>The Sharpe ratio compares the excess return of an investment with its risk to make a single measure: <span class="math display">\[SR=(R-R_f)/\sigma\]</span> where <span class="math inline">\(R\)</span> and <span class="math inline">\(\sigma\)</span> are the expected return and stddev for the investment and <span class="math inline">\(R_f\)</span> is the risk free rate.</p>
 <p>Risk free rate is the rate of return offered by an investment that carries zero risk. In reality there is no truly risk free rate, but we usually take something like three-month U.S. Treasury bill as a proxy as risk free rate. To be simple, in this exercise we just <strong>take risk free rate as 0</strong>.</p>
 <p>Read the data from sp500.csv.</p>
-<div class="cell" data-execution_count="154">
-<details open="">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">"sp500.csv"</span>, parse_dates<span class="op">=</span>[<span class="st">'Date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</div>
 </section>
 <section id="return-on-investment" class="level2" data-number="11.5">
 <h2 data-number="11.5" class="anchored" data-anchor-id="return-on-investment"><span class="header-section-number">11.5</span> Return on investment</h2>
 <section id="impatient-investor-daily" class="level3" data-number="11.5.1">
 <h3 data-number="11.5.1" class="anchored" data-anchor-id="impatient-investor-daily"><span class="header-section-number">11.5.1</span> Impatient investor (daily)</h3>
 <p>Suppose there is an investor who only holds the index for a single day (buy yesterday sell today).</p>
-<p>Based on the data we have,</p>
+<p>Based on the data,</p>
 <section id="section-20" class="level4" data-number="11.5.1.1">
 <h4 data-number="11.5.1.1" class="anchored" data-anchor-id="section-20"><span class="header-section-number">11.5.1.1</span> </h4>
 <p>Show the histogram graph for all the possible returns.</p>
