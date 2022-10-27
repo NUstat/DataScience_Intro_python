@@ -4100,9 +4100,10 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#instructions" id="toc-instructions" class="nav-link active" data-scroll-target="#instructions">Instructions</a></li>
-  <li><a href="#exploring-factors-associated-with-profitability-of-a-movie" id="toc-exploring-factors-associated-with-profitability-of-a-movie" class="nav-link" data-scroll-target="#exploring-factors-associated-with-profitability-of-a-movie">Exploring factors associated with profitability of a movie</a></li>
-  <li><a href="#time-trend" id="toc-time-trend" class="nav-link" data-scroll-target="#time-trend"><span class="toc-section-number">11.1</span>  Time trend</a>
+  <li><a href="#exploring-factors-associated-with-profitability-of-a-movie" id="toc-exploring-factors-associated-with-profitability-of-a-movie" class="nav-link" data-scroll-target="#exploring-factors-associated-with-profitability-of-a-movie">Exploring factors associated with profitability of a movie</a>
   <ul>
+  <li><a href="#time-trend" id="toc-time-trend" class="nav-link" data-scroll-target="#time-trend"><span class="toc-section-number">11.1</span>  Time trend</a>
+  <ul class="collapse">
   <li><a href="#month-of-release" id="toc-month-of-release" class="nav-link" data-scroll-target="#month-of-release"><span class="toc-section-number">11.1.1</span>  Month of release</a>
   <ul class="collapse">
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="toc-section-number">11.1.1.1</span>  </a></li>
@@ -4125,7 +4126,7 @@ vertical-align: -.125em;
   </ul></li>
   </ul></li>
   <li><a href="#associations" id="toc-associations" class="nav-link" data-scroll-target="#associations"><span class="toc-section-number">11.2</span>  Associations</a>
-  <ul>
+  <ul class="collapse">
   <li><a href="#pairplot-heatmap" id="toc-pairplot-heatmap" class="nav-link" data-scroll-target="#pairplot-heatmap"><span class="toc-section-number">11.2.1</span>  Pairplot / heatmap</a>
   <ul class="collapse">
   <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="toc-section-number">11.2.1.1</span>  </a></li>
@@ -4145,7 +4146,7 @@ vertical-align: -.125em;
   </ul></li>
   </ul></li>
   <li><a href="#distributions" id="toc-distributions" class="nav-link" data-scroll-target="#distributions"><span class="toc-section-number">11.3</span>  Distributions</a>
-  <ul>
+  <ul class="collapse">
   <li><a href="#distribution-of-profit-based-on-genre-boxplots" id="toc-distribution-of-profit-based-on-genre-boxplots" class="nav-link" data-scroll-target="#distribution-of-profit-based-on-genre-boxplots"><span class="toc-section-number">11.3.1</span>  Distribution of profit based on genre (boxplots)</a>
   <ul class="collapse">
   <li><a href="#section-16" id="toc-section-16" class="nav-link" data-scroll-target="#section-16"><span class="toc-section-number">11.3.1.1</span>  </a></li>
@@ -4158,7 +4159,8 @@ vertical-align: -.125em;
   </ul></li>
   </ul></li>
   <li><a href="#insights" id="toc-insights" class="nav-link" data-scroll-target="#insights"><span class="toc-section-number">11.4</span>  Insights</a></li>
-  <li><a href="#bonus-question-stock-market" id="toc-bonus-question-stock-market" class="nav-link" data-scroll-target="#bonus-question-stock-market"><span class="toc-section-number">11.5</span>  Bonus question: Stock Market</a>
+  </ul></li>
+  <li><a href="#bonus-question-stock-market" id="toc-bonus-question-stock-market" class="nav-link" data-scroll-target="#bonus-question-stock-market">Bonus question: Stock Market</a>
   <ul>
   <li><a href="#active-investing" id="toc-active-investing" class="nav-link" data-scroll-target="#active-investing">Active investing</a></li>
   <li><a href="#passive-investing" id="toc-passive-investing" class="nav-link" data-scroll-target="#passive-investing">Passive Investing</a></li>
@@ -4166,6 +4168,8 @@ vertical-align: -.125em;
   <li><a href="#return" id="toc-return" class="nav-link" data-scroll-target="#return">Return</a></li>
   <li><a href="#risk" id="toc-risk" class="nav-link" data-scroll-target="#risk">Risk</a></li>
   <li><a href="#sharpe-ratio" id="toc-sharpe-ratio" class="nav-link" data-scroll-target="#sharpe-ratio">Sharpe Ratio</a></li>
+  <li><a href="#return-on-investment" id="toc-return-on-investment" class="nav-link" data-scroll-target="#return-on-investment"><span class="toc-section-number">11.5</span>  Return on investment</a>
+  <ul class="collapse">
   <li><a href="#impatient-investor-daily" id="toc-impatient-investor-daily" class="nav-link" data-scroll-target="#impatient-investor-daily"><span class="toc-section-number">11.5.1</span>  Impatient investor (daily)</a>
   <ul class="collapse">
   <li><a href="#section-20" id="toc-section-20" class="nav-link" data-scroll-target="#section-20"><span class="toc-section-number">11.5.1.1</span>  </a></li>
@@ -4179,6 +4183,7 @@ vertical-align: -.125em;
   <li><a href="#section-25" id="toc-section-25" class="nav-link" data-scroll-target="#section-25"><span class="toc-section-number">11.5.2.3</span>  </a></li>
   </ul></li>
   <li><a href="#from-daily-to-yearly" id="toc-from-daily-to-yearly" class="nav-link" data-scroll-target="#from-daily-to-yearly"><span class="toc-section-number">11.5.3</span>  From daily to yearly</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -4214,12 +4219,11 @@ vertical-align: -.125em;
 <li><p>There is a bonus question worth 30 points. However, there is no partial credit for the bonus question. You will get 30 or 0. If everything is correct, you can score 130 out of 100 in the assignment.</p></li>
 </ol>
 </section>
-<section id="exploring-factors-associated-with-profitability-of-a-movie" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="exploring-factors-associated-with-profitability-of-a-movie">Exploring factors associated with profitability of a movie</h2>
+<section id="exploring-factors-associated-with-profitability-of-a-movie" class="level1 unnumbered">
+<h1 class="unnumbered">Exploring factors associated with profitability of a movie</h1>
 <p>In this assignment we’ll attempt to find the factors (or variables) that make a movie profitable.</p>
 <p>Read the movies data from <a href="https://raw.githubusercontent.com/vega/vega-datasets/master/data/movies.json">here</a>, in a Pandas DataFrame named as <code>movies_data</code>. The profit of movie is defined as:</p>
 <p><span class="math display">\[profit = Worldwide \ Gross - Production \ Budget\]</span></p>
-</section>
 <section id="time-trend" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="time-trend"><span class="header-section-number">11.1</span> Time trend</h2>
 <p>Let us analyze if the profitability of a movie is associated with the time of its release.</p>
@@ -4422,8 +4426,9 @@ vertical-align: -.125em;
 <p>Also, elaborate on the extent to which these trends can be generalized. For example, comment on whether these trends be generalized to the current time and all the Hollywood movies? If not, is there any time period or type of movie to which these trends can be applicable?</p>
 <p><em>(4+ 4 points)</em></p>
 </section>
-<section id="bonus-question-stock-market" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="bonus-question-stock-market"><span class="header-section-number">11.5</span> Bonus question: Stock Market</h2>
+</section>
+<section id="bonus-question-stock-market" class="level1 unnumbered">
+<h1 class="unnumbered">Bonus question: Stock Market</h1>
 <p>This question is worth 30 points. However, there is no partial credit. It will be 30 or 0.</p>
 <p>The stock market is made up of exchanges, such as the New York Stock Exchange and the Nasdaq. Stocks are listed on a specific exchange, which brings buyers and sellers together and acts as a market for the shares of those stocks. The exchange tracks the supply and demand — and directly related, the price — of each stock.</p>
 <p>A market index tracks the performance of a group of stocks, which either represents the market as a whole or a specific sector of the market, like technology or retail companies. You’re likely to hear most about the S&amp;P 500, the Nasdaq composite and the Dow Jones Industrial Average; they are often used as proxies for the performance of the overall market.</p>
@@ -4464,6 +4469,8 @@ vertical-align: -.125em;
 </details>
 </div>
 </section>
+<section id="return-on-investment" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="return-on-investment"><span class="header-section-number">11.5</span> Return on investment</h2>
 <section id="impatient-investor-daily" class="level3" data-number="11.5.1">
 <h3 data-number="11.5.1" class="anchored" data-anchor-id="impatient-investor-daily"><span class="header-section-number">11.5.1</span> Impatient investor (daily)</h3>
 <p>Suppose there is an investor who only holds the index for a single day (buy yesterday sell today).</p>
@@ -4517,6 +4524,7 @@ vertical-align: -.125em;
 </div>
 
 
+</section>
 </section>
 </section>
 
