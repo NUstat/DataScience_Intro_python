@@ -312,7 +312,7 @@
     "href": "Assignment 4 (Data Visualization).html#distributions",
     "title": "11  Assignment 4 (Data Visualization)",
     "section": "11.3 Distributions",
-    "text": "11.3 Distributions\n\n11.3.1 Distribution of profit based on genre (boxplots)\n\n11.3.1.1 \nMake boxplots to visualize the distribution of profit based on genre. Based on the plot, which genre has the most profitable movies?\n(6 points)\n\n\n11.3.1.2 \nWhich genre has the most variation in profit, and which one has the least?\n(2 points)\n\n\n\n11.3.2 Distribution of profit based on genre (density plots)\n\n11.3.2.1 \nMake density plots of profit based on genre. Adjust the limit on the horizonal axis, so that the plots are clearly visible.\n(6 points)\n\n\n11.3.2.2 \nWhat additional insight / trend can you seen in the above plot that you cannot see in 3(a)(i)?\n(2 points)"
+    "text": "11.3 Distributions\n\n11.3.1 Distribution of profit based on genre (boxplots)\n\n11.3.1.1 \nMake boxplots to visualize the distribution of profit based on genre. Based on the plot, which genre has the most profitable movies?\n(6 points)\n\n\n11.3.1.2 \nWhich genre has the most variation in profit, and which one has the least?\n(2 points)\n\n\n\n11.3.2 Distribution of profit based on genre (density plots)\n\n11.3.2.1 \nMake density plots of profit based on genre. Adjust the limit on the horizonal axis, so that the plots are clearly visible.\n(6 points)\n\n\n11.3.2.2 \nWhat additional insight / trend can you seen in the above plot that you cannot see with the boxplots?\n(2 points)"
   },
   {
     "objectID": "Assignment 4 (Data Visualization).html#insights",
