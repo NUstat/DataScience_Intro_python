@@ -281,6 +281,7 @@ div.csl-indent {
   <li><a href="#method-4-knn-k-nearest-neighbor" id="toc-method-4-knn-k-nearest-neighbor" class="nav-link" data-scroll-target="#method-4-knn-k-nearest-neighbor"><span class="toc-section-number">7.1.5.5</span>  Method 4: KNN: K-nearest neighbor</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#data-binning" id="toc-data-binning" class="nav-link" data-scroll-target="#data-binning"><span class="toc-section-number">7.2</span>  Data binning</a></li>
   </ul>
 </nav>
     </div>
@@ -841,7 +842,7 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling data to compute equally weighted distances from the 'k' nearest neighbors</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>scaled_data <span class="op">=</span> gdp_missing_values_data.iloc[:,num_cols].<span class="bu">apply</span>(<span class="kw">lambda</span> x:(x<span class="op">-</span>x.<span class="bu">min</span>())<span class="op">/</span>(x.<span class="bu">max</span>()<span class="op">-</span>x.<span class="bu">min</span>()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>To alleviate the problem of losing the orignial scale of the data, we’ll use the <code>MinMaxScaler</code> object of the <em>sklearn</em> library. The object will store the original scale of the data, which will help transform the data back to the original scale once the missing values have been imputed in the standardized data.</p>
+<p>To alleviate the problem of losing the orignial scale of the data, we’ll use the <a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.MinMaxScaler.html">MinMaxScaler</a> object of the <em>sklearn</em> library. The object will store the original scale of the data, which will help transform the data back to the original scale once the missing values have been imputed in the standardized data.</p>
 <div class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scaling data - using sklearn</span></span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -884,6 +885,30 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 </div>
 <p>Note that the RMSE is the lowest in this method. It is because this method imputes missing values as the average of the values of “similar” observations, which is smarter and more robust than the previous methods.</p>
 <p>We chose <span class="math inline">\(K=3\)</span> in the missing value imputation for GDP per capita. However, the value of <span class="math inline">\(K\)</span> is typically chosen using a method known as cross validation. We’ll learn about cross-validation in the next course of the sequence.</p>
+</section>
+</section>
+</section>
+<section id="data-binning" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="data-binning"><span class="header-section-number">7.2</span> Data binning</h2>
+<p>Data binning is a method to group values of a continuous / categorical variable into bins (or categories). Binning may help with</p>
+<ol type="i">
+<li>Better intepretation of data<br>
+</li>
+<li>Making better recommendations<br>
+</li>
+<li>Smooth data, reduce noise</li>
+</ol>
+<p>Examples:</p>
+<p><strong>Binning to better interpret data</strong> 1. The number of flu cases everyday may be binned to seasons such as fall, spring, winter and summer, to understand the effect of season on flu.</p>
+<p><strong>Binning to make recommendations:</strong></p>
+<ol start="2" type="1">
+<li><p>A doctor may like to group patient age into bins. Grouping patient ages into categories such as Age &lt;=12, 12&lt;Age&lt;=18, 18&lt;Age&lt;=65, Age&gt;65 may help recommend the kind/doses of covid vaccine a patient needs.</p></li>
+<li><p>A credit card company may want to bin customers based on their spend, as “High spenders”, “Medium spenders” and “Low spenders”. Binning will help them design customized marketing campaigns for each bin, thereby increasing customer response (or revenue). On the other hand, they use the same campaign for customers withing the same bin, thus minimizng marketing costs.</p></li>
+</ol>
+<p><strong>Binning to smooth data, and reduce noise</strong></p>
+<ol start="4" type="1">
+<li>A sales company may want to bin their total sales to a weekly / monthly / yearly level to reduce the noise in day-to-day sales.</li>
+</ol>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -891,8 +916,6 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 Rubin, Donald B. 1976. <span>“Inference and Missing Data.”</span> <em>Biometrika</em> 63 (3): 581–92.
 </div>
 </div>
-</section>
-</section>
 </section>
 
 </main> <!-- /main -->
