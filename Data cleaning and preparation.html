@@ -281,7 +281,11 @@ div.csl-indent {
   <li><a href="#method-4-knn-k-nearest-neighbor" id="toc-method-4-knn-k-nearest-neighbor" class="nav-link" data-scroll-target="#method-4-knn-k-nearest-neighbor"><span class="toc-section-number">7.1.5.5</span>  Method 4: KNN: K-nearest neighbor</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#data-binning" id="toc-data-binning" class="nav-link" data-scroll-target="#data-binning"><span class="toc-section-number">7.2</span>  Data binning</a></li>
+  <li><a href="#data-binning" id="toc-data-binning" class="nav-link" data-scroll-target="#data-binning"><span class="toc-section-number">7.2</span>  Data binning</a>
+  <ul>
+  <li><a href="#binning-with-equal-width-bins" id="toc-binning-with-equal-width-bins" class="nav-link" data-scroll-target="#binning-with-equal-width-bins"><span class="toc-section-number">7.2.1</span>  Binning with equal width bins</a></li>
+  <li><a href="#binning-with-equal-sized-bins" id="toc-binning-with-equal-sized-bins" class="nav-link" data-scroll-target="#binning-with-equal-sized-bins"><span class="toc-section-number">7.2.2</span>  Binning with equal sized bins</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -899,7 +903,10 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <li>Smooth data, reduce noise</li>
 </ol>
 <p>Examples:</p>
-<p><strong>Binning to better interpret data</strong> 1. The number of flu cases everyday may be binned to seasons such as fall, spring, winter and summer, to understand the effect of season on flu.</p>
+<p><strong>Binning to better interpret data</strong></p>
+<ol type="1">
+<li>The number of flu cases everyday may be binned to seasons such as fall, spring, winter and summer, to understand the effect of season on flu.</li>
+</ol>
 <p><strong>Binning to make recommendations:</strong></p>
 <ol start="2" type="1">
 <li><p>A doctor may like to group patient age into bins. Grouping patient ages into categories such as Age &lt;=12, 12&lt;Age&lt;=18, 18&lt;Age&lt;=65, Age&gt;65 may help recommend the kind/doses of covid vaccine a patient needs.</p></li>
@@ -910,10 +917,10 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <li>A sales company may want to bin their total sales to a weekly / monthly / yearly level to reduce the noise in day-to-day sales.</li>
 </ol>
 <p><strong>Example:</strong> The dataset <em>College.csv</em> contains information about US universities. The description of variables of the dataset can be found on page 54 of this <a href="https://hastie.su.domains/ISLR2/ISLRv2_website.pdf">book</a>. Let’s see if we can apply binning to better interpret the association of instructional expenditure per student (<code>Expend</code>) with graduation rate (<code>Grad.Rate</code>) for US universities, and make recommendations.</p>
-<div class="cell" data-execution_count="105">
+<div class="cell" data-execution_count="129">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>college <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/College.csv'</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>college.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="105">
+<div class="cell-output cell-output-display" data-execution_count="129">
 
 <div>
 
@@ -1084,7 +1091,9 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 </div>
 </div>
 <p>The distribution of <code>Extend</code> is right skewed with potentially some extremely high outlying values.</p>
-<p>We’ll use the Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">cut()</a> to bin <code>Expend</code>.</p>
+<section id="binning-with-equal-width-bins" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="binning-with-equal-width-bins"><span class="header-section-number">7.2.1</span> Binning with equal width bins</h3>
+<p>We’ll use the Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">cut()</a> to bin <code>Expend</code>. This function creates bins such that all bins have the same width.</p>
 <div class="cell" data-execution_count="119">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the cut() function in Pandas to bin "Expend"</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.cut(data[<span class="st">'Expend'</span>],<span class="dv">3</span>,retbins <span class="op">=</span> <span class="va">True</span>)</span>
@@ -1106,7 +1115,7 @@ Name: gdpPerCapita, dtype: float64</code></pre>
  array([ 3132.953     , 20868.33333333, 38550.66666667, 56233.        ]))</code></pre>
 </div>
 </div>
-<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">cut()</a> function returns a tuple of length 2:</p>
+<p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">cut()</a> function returns a tuple of length 2. The first element of the tuple are the bins, while the second element is an array containing the cut-off values for the bins.</p>
 <div class="cell" data-execution_count="124">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(Binned_expend)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="124">
@@ -1119,6 +1128,279 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <pre><code>2</code></pre>
 </div>
 </div>
+<p>Once the bins are obtained, we’ll add a column in the dataset that indicates the bin for <code>Expend</code>.</p>
+<div class="cell" data-execution_count="130">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a categorical variable to store the level of expenditure on a student</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> Binned_expend[<span class="dv">0</span>]</span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>college.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="130">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Unnamed: 0</th>
+      <th>Private</th>
+      <th>Apps</th>
+      <th>Accept</th>
+      <th>Enroll</th>
+      <th>Top10perc</th>
+      <th>Top25perc</th>
+      <th>F.Undergrad</th>
+      <th>P.Undergrad</th>
+      <th>Outstate</th>
+      <th>Room.Board</th>
+      <th>Books</th>
+      <th>Personal</th>
+      <th>PhD</th>
+      <th>Terminal</th>
+      <th>S.F.Ratio</th>
+      <th>perc.alumni</th>
+      <th>Expend</th>
+      <th>Grad.Rate</th>
+      <th>Expend_bin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Abilene Christian University</td>
+      <td>Yes</td>
+      <td>1660</td>
+      <td>1232</td>
+      <td>721</td>
+      <td>23</td>
+      <td>52</td>
+      <td>2885</td>
+      <td>537</td>
+      <td>7440</td>
+      <td>3300</td>
+      <td>450</td>
+      <td>2200</td>
+      <td>70</td>
+      <td>78</td>
+      <td>18.1</td>
+      <td>12</td>
+      <td>7041</td>
+      <td>60</td>
+      <td>(3132.953, 20868.333]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelphi University</td>
+      <td>Yes</td>
+      <td>2186</td>
+      <td>1924</td>
+      <td>512</td>
+      <td>16</td>
+      <td>29</td>
+      <td>2683</td>
+      <td>1227</td>
+      <td>12280</td>
+      <td>6450</td>
+      <td>750</td>
+      <td>1500</td>
+      <td>29</td>
+      <td>30</td>
+      <td>12.2</td>
+      <td>16</td>
+      <td>10527</td>
+      <td>56</td>
+      <td>(3132.953, 20868.333]</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adrian College</td>
+      <td>Yes</td>
+      <td>1428</td>
+      <td>1097</td>
+      <td>336</td>
+      <td>22</td>
+      <td>50</td>
+      <td>1036</td>
+      <td>99</td>
+      <td>11250</td>
+      <td>3750</td>
+      <td>400</td>
+      <td>1165</td>
+      <td>53</td>
+      <td>66</td>
+      <td>12.9</td>
+      <td>30</td>
+      <td>8735</td>
+      <td>54</td>
+      <td>(3132.953, 20868.333]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Agnes Scott College</td>
+      <td>Yes</td>
+      <td>417</td>
+      <td>349</td>
+      <td>137</td>
+      <td>60</td>
+      <td>89</td>
+      <td>510</td>
+      <td>63</td>
+      <td>12960</td>
+      <td>5450</td>
+      <td>450</td>
+      <td>875</td>
+      <td>92</td>
+      <td>97</td>
+      <td>7.7</td>
+      <td>37</td>
+      <td>19016</td>
+      <td>59</td>
+      <td>(3132.953, 20868.333]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Alaska Pacific University</td>
+      <td>Yes</td>
+      <td>193</td>
+      <td>146</td>
+      <td>55</td>
+      <td>16</td>
+      <td>44</td>
+      <td>249</td>
+      <td>869</td>
+      <td>7560</td>
+      <td>4120</td>
+      <td>800</td>
+      <td>1500</td>
+      <td>76</td>
+      <td>72</td>
+      <td>11.9</td>
+      <td>2</td>
+      <td>10922</td>
+      <td>15</td>
+      <td>(3132.953, 20868.333]</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>See the variable <code>Expend_bin</code> in the above dataset.</p>
+<p>Let us visualize the <code>Expend</code> bins over the distribution of the <code>Expend</code> variable.</p>
+<div class="cell" data-execution_count="145">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the bins for instructional expediture on a student</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.histplot(data <span class="op">=</span> college, x<span class="op">=</span> <span class="st">'Expend'</span>)</span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>    plt.axvline(Binned_expend[<span class="dv">1</span>][i], <span class="dv">0</span>,<span class="dv">100</span>,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Expenditure per student'</span>)<span class="op">;</span></span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Graduation rate'</span>)<span class="op">;</span></span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-40-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>By default, the bins created have equal width. They are created by dividing the range between the maximum and minimum value of <code>Expend</code> into the desired number of equal-width intervals. We can label the bins as well as follows.</p>
+<div class="cell" data-execution_count="148">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> pd.cut(college[<span class="st">'Expend'</span>],<span class="dv">3</span>,labels <span class="op">=</span> [<span class="st">'Low expend'</span>,<span class="st">'Med expend'</span>,<span class="st">'High expend'</span>])</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="148">
+<pre><code>0       Low expend
+1       Low expend
+2       Low expend
+3       Low expend
+4       Low expend
+          ...     
+772     Low expend
+773     Low expend
+774     Low expend
+775    High expend
+776     Low expend
+Name: Expend_bin, Length: 777, dtype: category
+Categories (3, object): ['Low expend' &lt; 'Med expend' &lt; 'High expend']</code></pre>
+</div>
+</div>
+<p>Now that we have binned the variable <code>Expend</code>, let us see if we can better visualize the association of graduation rate with expenditure per student using <code>Expened_bin</code>.</p>
+<div class="cell" data-execution_count="152">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing average graduation rate vs categories of instructional expenditure per student</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>sns.barplot(x <span class="op">=</span> <span class="st">'Expend_bin'</span>, y <span class="op">=</span> <span class="st">'Grad.Rate'</span>, data <span class="op">=</span> college)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="152">
+<pre><code>&lt;AxesSubplot:xlabel='Expend_bin', ylabel='Grad.Rate'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-42-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>It seems that the graduation rate is the highest for universities with medium level of expenditure per student. This is different from the trend we saw earlier in the scatter plot. Let us investigate.</p>
+<p>Let us find the number of universities in each bin.</p>
+<div class="cell" data-execution_count="155">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>pd.value_counts(college[<span class="st">'Expend_bin'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="155">
+<pre><code>Low expend     751
+Med expend      21
+High expend      5
+Name: Expend_bin, dtype: int64</code></pre>
+</div>
+</div>
+<p>The bin <code>High expend</code> consists of only 5 universities, or 0.6% of all the universities in the dataset. These universities may be outliers that are skewing the trend (as also evident in the histogram above).</p>
+<p>In such cases, we should bin observations such that all bins are of equal size, i.e., they have the same number of observations.</p>
+</section>
+<section id="binning-with-equal-sized-bins" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="binning-with-equal-sized-bins"><span class="header-section-number">7.2.2</span> Binning with equal sized bins</h3>
+<p>Let us bin the variable <code>Expend</code> such that each bin consists of the same number of observations.</p>
+<p>We’ll use the Pandas function <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.qcut.html">qcut()</a> to make equal-sized bins (in contrast to equal-width bins in the previous section).</p>
+<div class="cell" data-execution_count="156">
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the Pandas function qcut() to create bins with the same number of observations</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.qcut(data[<span class="st">'Expend'</span>],<span class="dv">3</span>,retbins <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> Binned_expend[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Each bin has the same number of observations with <code>qcut()</code>:</p>
+<div class="cell" data-execution_count="158">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>pd.value_counts(college[<span class="st">'Expend_bin'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="158">
+<pre><code>(3185.999, 7334.333]    259
+(7334.333, 9682.333]    259
+(9682.333, 56233.0]     259
+Name: Expend_bin, dtype: int64</code></pre>
+</div>
+</div>
+<p>Let us visualize the <code>Expend</code> bins over the distribution of the <code>Expend</code> variable.</p>
+<div class="cell" data-execution_count="159">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the bins for instructional expediture on a student</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.histplot(data <span class="op">=</span> college, x<span class="op">=</span> <span class="st">'Expend'</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>):</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    plt.axvline(Binned_expend[<span class="dv">1</span>][i], <span class="dv">0</span>,<span class="dv">100</span>,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Expenditure per student'</span>)<span class="op">;</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Graduation rate'</span>)<span class="op">;</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-46-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Note that the bin-widths have been adjusted to have the same number of observations in each bin. The bins are narrower in domains of high density, and wider in domains of sparse density.</p>
+<p>Let us again make the barplot visualizing the average graduate rate with level of instructional expenditure per student.</p>
+<div class="cell" data-execution_count="161">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> pd.qcut(college[<span class="st">'Expend'</span>],<span class="dv">3</span>,labels <span class="op">=</span> [<span class="st">'Low expend'</span>,<span class="st">'Med expend'</span>,<span class="st">'High expend'</span>])</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>sns.barplot(x <span class="op">=</span> <span class="st">'Expend_bin'</span>, y <span class="op">=</span> <span class="st">'Grad.Rate'</span>, data <span class="op">=</span> college)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Now we see the same trend that we saw in the scatterplot, but without the noise. We have smoothed the data. Note that making equal-sized bins helps reduce the effect of outliers in the overall trend.</p>
+<p>Suppose this analysis was done to provide recommendations to universities for increasing their graduation rate. With binning, we can can provide one recommendation to “Low expend” universities, and another one to “Med expend” universities. For example, the recommendations can be:</p>
+<ol type="1">
+<li>“Low expend” universities can expect an increase of 9 percentage points in <code>Grad.Rate</code>, if they migrate to the “Med expend” category.</li>
+<li>“Med expend” universities can expect an increase of 7 percentage points in <code>Grad.Rate</code>, if they migrate to the “High expend” category.</li>
+</ol>
+<p>The numbers in the above recommendations are based on the table below.</p>
+<div class="cell" data-execution_count="162">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Grad.Rate'</span>].groupby(college.Expend_bin).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="162">
+<pre><code>Expend_bin
+Low expend     57.343629
+Med expend     66.057915
+High expend    72.988417
+Name: Grad.Rate, dtype: float64</code></pre>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -1126,6 +1408,7 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 Rubin, Donald B. 1976. <span>“Inference and Missing Data.”</span> <em>Biometrika</em> 63 (3): 581–92.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
