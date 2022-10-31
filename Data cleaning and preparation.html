@@ -286,6 +286,7 @@ div.csl-indent {
   <li><a href="#binning-with-equal-width-bins" id="toc-binning-with-equal-width-bins" class="nav-link" data-scroll-target="#binning-with-equal-width-bins"><span class="toc-section-number">7.2.1</span>  Binning with equal width bins</a></li>
   <li><a href="#binning-with-equal-sized-bins" id="toc-binning-with-equal-sized-bins" class="nav-link" data-scroll-target="#binning-with-equal-sized-bins"><span class="toc-section-number">7.2.2</span>  Binning with equal sized bins</a></li>
   </ul></li>
+  <li><a href="#dummy-indicator-variables" id="toc-dummy-indicator-variables" class="nav-link" data-scroll-target="#dummy-indicator-variables"><span class="toc-section-number">7.3</span>  Dummy / Indicator variables</a></li>
   </ul>
 </nav>
     </div>
@@ -917,10 +918,10 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <li>A sales company may want to bin their total sales to a weekly / monthly / yearly level to reduce the noise in day-to-day sales.</li>
 </ol>
 <p><strong>Example:</strong> The dataset <em>College.csv</em> contains information about US universities. The description of variables of the dataset can be found on page 54 of this <a href="https://hastie.su.domains/ISLR2/ISLRv2_website.pdf">book</a>. Let’s see if we can apply binning to better interpret the association of instructional expenditure per student (<code>Expend</code>) with graduation rate (<code>Grad.Rate</code>) for US universities, and make recommendations.</p>
-<div class="cell" data-execution_count="129">
+<div class="cell" data-execution_count="188">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>college <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/College.csv'</span>)</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>college.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="129">
+<div class="cell-output cell-output-display" data-execution_count="188">
 
 <div>
 
@@ -1066,14 +1067,14 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 </div>
 </div>
 <p>To visualize the association between two numeric variables, we typically make a scatterplot. Let us make a scatterplot of graduation rate with expenditure per student, with a trendline.</p>
-<div class="cell" data-execution_count="116">
+<div class="cell" data-execution_count="189">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Let's make a scatterplot of 'Grad.Rate' vs 'Expend' with a trendline, to visualize any trend(s).</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.regplot(data <span class="op">=</span> data, x <span class="op">=</span> <span class="st">"Expend"</span>, y <span class="op">=</span> <span class="st">"Grad.Rate"</span>,scatter_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"orange"</span>}, line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"blue"</span>})</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.regplot(data <span class="op">=</span> college, x <span class="op">=</span> <span class="st">"Expend"</span>, y <span class="op">=</span> <span class="st">"Grad.Rate"</span>,scatter_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"orange"</span>}, line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"blue"</span>})</span>
 <span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
 <span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Expenditure per student'</span>)</span>
 <span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Graduation rate'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="116">
+<div class="cell-output cell-output-display" data-execution_count="189">
 <pre><code>Text(0, 0.5, 'Graduation rate')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -1082,9 +1083,9 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 </div>
 <p>The trendline indicates a positive correlation between <code>Expend</code> and <code>Grad.Rate</code>. However, there seems to be a lot of noise and presence of outliers in the data, which makes it hard to interpret the overall trend.</p>
 <p>We’ll bin <code>Expend</code> to see if we can better analyze its association with <code>Grad.Rate</code>. However, let us first visualize the distribution of <code>Expend</code>.</p>
-<div class="cell" data-execution_count="118">
+<div class="cell" data-execution_count="190">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the distribution of expend</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.histplot(data <span class="op">=</span> data, x<span class="op">=</span> <span class="st">'Expend'</span>)</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.histplot(data <span class="op">=</span> college, x<span class="op">=</span> <span class="st">'Expend'</span>)</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-35-output-1.png" class="img-fluid"></p>
@@ -1094,11 +1095,11 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <section id="binning-with-equal-width-bins" class="level3" data-number="7.2.1">
 <h3 data-number="7.2.1" class="anchored" data-anchor-id="binning-with-equal-width-bins"><span class="header-section-number">7.2.1</span> Binning with equal width bins</h3>
 <p>We’ll use the Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.cut.html">cut()</a> to bin <code>Expend</code>. This function creates bins such that all bins have the same width.</p>
-<div class="cell" data-execution_count="119">
+<div class="cell" data-execution_count="191">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the cut() function in Pandas to bin "Expend"</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.cut(data[<span class="st">'Expend'</span>],<span class="dv">3</span>,retbins <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.cut(college[<span class="st">'Expend'</span>],<span class="dv">3</span>,retbins <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>Binned_expend</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="119">
+<div class="cell-output cell-output-display" data-execution_count="191">
 <pre><code>(0      (3132.953, 20868.333]
  1      (3132.953, 20868.333]
  2      (3132.953, 20868.333]
@@ -1349,7 +1350,7 @@ Name: Expend_bin, dtype: int64</code></pre>
 <p>We’ll use the Pandas function <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.qcut.html">qcut()</a> to make equal-sized bins (in contrast to equal-width bins in the previous section).</p>
 <div class="cell" data-execution_count="156">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the Pandas function qcut() to create bins with the same number of observations</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.qcut(data[<span class="st">'Expend'</span>],<span class="dv">3</span>,retbins <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.qcut(college[<span class="st">'Expend'</span>],<span class="dv">3</span>,retbins <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> Binned_expend[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each bin has the same number of observations with <code>qcut()</code>:</p>
@@ -1385,10 +1386,10 @@ Name: Expend_bin, dtype: int64</code></pre>
 </div>
 </div>
 <p>Now we see the same trend that we saw in the scatterplot, but without the noise. We have smoothed the data. Note that making equal-sized bins helps reduce the effect of outliers in the overall trend.</p>
-<p>Suppose this analysis was done to provide recommendations to universities for increasing their graduation rate. With binning, we can can provide one recommendation to “Low expend” universities, and another one to “Med expend” universities. For example, the recommendations can be:</p>
+<p>Suppose this analysis was done to provide recommendations to universities for increasing their graduation rate. With binning, we can can provide one recommendation to <em>‘Low expend’</em> universities, and another one to <em>‘Med expend’</em> universities. For example, the recommendations can be:</p>
 <ol type="1">
-<li>“Low expend” universities can expect an increase of 9 percentage points in <code>Grad.Rate</code>, if they migrate to the “Med expend” category.</li>
-<li>“Med expend” universities can expect an increase of 7 percentage points in <code>Grad.Rate</code>, if they migrate to the “High expend” category.</li>
+<li><em>‘Low expend’</em> universities can expect an increase of 9 percentage points in <code>Grad.Rate</code>, if they migrate to the <em>‘Med expend’</em> category.</li>
+<li><em>‘Med expend’</em> universities can expect an increase of 7 percentage points in <code>Grad.Rate</code>, if they migrate to the <em>‘High expend’</em> category.</li>
 </ol>
 <p>The numbers in the above recommendations are based on the table below.</p>
 <div class="cell" data-execution_count="162">
@@ -1402,18 +1403,39 @@ Name: Grad.Rate, dtype: float64</code></pre>
 </div>
 </div>
 <p>We can also make recommendations based on the confidence intervals of mean Grad.Rate. Confidence intervals are computed below. We are finding confidence intervals based on a method known as bootstrapping. Refer https://en.wikipedia.org/wiki/Bootstrapping_(statistics) for a detailed description of Bootstrapping.</p>
-<div class="cell" data-execution_count="184">
+<div class="cell" data-execution_count="186">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bootstrapping to find 95% confidence intervals of Graduation Rate of US universities based on average expenditure per student</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> expend_bin <span class="kw">in</span> college.Expend_bin.unique():</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    data_sub <span class="op">=</span> college.loc[college.Expend_bin<span class="op">==</span>expend_bin,:]</span>
 <span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(data_sub[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>,data_sub.shape[<span class="dv">0</span>]))</span>
-<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span>,expend_bin,<span class="st">" univeristies = ["</span>,np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>),<span class="st">","</span>,np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>),<span class="st">"]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span><span class="op">+</span>expend_bin<span class="op">+</span><span class="st">" univeristies = ["</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">","</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">"]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>95% Confidence interval of Grad.Rate for  Low expend  univeristies = [ 55.39 , 59.34 ]
-95% Confidence interval of Grad.Rate for  High expend  univeristies = [ 71.02 , 74.9 ]
-95% Confidence interval of Grad.Rate for  Med expend  univeristies = [ 64.15 , 67.96 ]</code></pre>
+<pre><code>95% Confidence interval of Grad.Rate for Low expend univeristies = [55.33,59.34]
+95% Confidence interval of Grad.Rate for High expend univeristies = [71.02,74.92]
+95% Confidence interval of Grad.Rate for Med expend univeristies = [64.12,67.91]</code></pre>
 </div>
 </div>
+<p>Apart from equal-width and equal-sized bins, custom bins can be created using the <em>bins</em> argument. Suppose, bins are to be created for <code>Expend</code> with cutoffs <span class="math inline">\(\$10,000, \$20,000, \$30,000... \$60,000\)</span>. Then, we can use the <em>bins</em> argument as in the code below:</p>
+<div class="cell" data-execution_count="223">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.cut(college.Expend,bins <span class="op">=</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">0</span>,<span class="dv">70000</span>,<span class="dv">10000</span>)),retbins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="224">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the bins for instructional expediture on a student</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.histplot(data <span class="op">=</span> college, x<span class="op">=</span> <span class="st">'Expend'</span>)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">7</span>):</span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    plt.axvline(Binned_expend[<span class="dv">1</span>][i], <span class="dv">0</span>,<span class="dv">100</span>,color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Expenditure per student'</span>)<span class="op">;</span></span>
+<span id="cb74-6"><a href="#cb74-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Graduation rate'</span>)<span class="op">;</span></span>
+<span id="cb74-7"><a href="#cb74-7" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-51-output-1.png" class="img-fluid"></p>
+</div>
+</div>
+<p>As custom bin-cutoffs can be specified with the <code>cut()</code> function, custom bin quantiles can be specified with the <code>qcut()</code> function.</p>
+</section>
+</section>
+<section id="dummy-indicator-variables" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="dummy-indicator-variables"><span class="header-section-number">7.3</span> Dummy / Indicator variables</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
@@ -1421,7 +1443,6 @@ Name: Grad.Rate, dtype: float64</code></pre>
 Rubin, Donald B. 1976. <span>“Inference and Missing Data.”</span> <em>Biometrika</em> 63 (3): 581–92.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->
