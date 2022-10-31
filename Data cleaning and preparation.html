@@ -1401,6 +1401,19 @@ High expend    72.988417
 Name: Grad.Rate, dtype: float64</code></pre>
 </div>
 </div>
+<p>We can also make recommendations based on the confidence intervals of mean Grad.Rate. Confidence intervals are computed below. We are finding confidence intervals based on a method known as bootstrapping. Refer https://en.wikipedia.org/wiki/Bootstrapping_(statistics) for a detailed description of Bootstrapping.</p>
+<div class="cell" data-execution_count="184">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bootstrapping to find 95% confidence intervals of Graduation Rate of US universities based on average expenditure per student</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> expend_bin <span class="kw">in</span> college.Expend_bin.unique():</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    data_sub <span class="op">=</span> college.loc[college.Expend_bin<span class="op">==</span>expend_bin,:]</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(data_sub[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>,data_sub.shape[<span class="dv">0</span>]))</span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span>,expend_bin,<span class="st">" univeristies = ["</span>,np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>),<span class="st">","</span>,np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>),<span class="st">"]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>95% Confidence interval of Grad.Rate for  Low expend  univeristies = [ 55.39 , 59.34 ]
+95% Confidence interval of Grad.Rate for  High expend  univeristies = [ 71.02 , 74.9 ]
+95% Confidence interval of Grad.Rate for  Med expend  univeristies = [ 64.15 , 67.96 ]</code></pre>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
