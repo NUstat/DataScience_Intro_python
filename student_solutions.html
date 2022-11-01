@@ -312,18 +312,12 @@ Time taken to execute code:  0.024 seconds</code></pre>
 <section id="alternative-code-2" class="level3" data-number="12.1.3">
 <h3 data-number="12.1.3" class="anchored" data-anchor-id="alternative-code-2"><span class="header-section-number">12.1.3</span> Alternative code 2:</h3>
 <p>By Elijah Nacar</p>
-<div class="cell" data-execution_count="159">
+<div class="cell" data-execution_count="192">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> impute_var(cont, gdp):</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isnull(gdp):</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> avg_gdpPerCapita[cont]</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> gdp</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> gdp_imputed_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x: impute_var(x[<span class="st">'continent'</span>], x[<span class="st">'gdpPerCapita'</span>]),axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> gdp_imputed_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x: avg_gdpPerCapita[x[<span class="st">'continent'</span>]] <span class="cf">if</span> pd.isnull(x[<span class="st">'gdpPerCapita'</span>]) <span class="cf">else</span> x[<span class="st">'gdpPerCapita'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116
 Time taken to execute code:  0.024 seconds</code></pre>
