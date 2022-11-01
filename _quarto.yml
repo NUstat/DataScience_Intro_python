@@ -19,6 +19,7 @@ book:
     - Data aggregation.ipynb
     - Datasets.ipynb
     - Assignment 4 (Data Visualization).ipynb
+    - student_solutions.ipynb
     - references.qmd
 
 bibliography: references.bib
