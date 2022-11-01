@@ -243,6 +243,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#original-code-in-the-book" id="toc-original-code-in-the-book" class="nav-link" data-scroll-target="#original-code-in-the-book"><span class="toc-section-number">12.1.1</span>  Original code (in the book)</a></li>
   <li><a href="#alternative-code-1" id="toc-alternative-code-1" class="nav-link" data-scroll-target="#alternative-code-1"><span class="toc-section-number">12.1.2</span>  Alternative code 1:</a></li>
   <li><a href="#alternative-code-2" id="toc-alternative-code-2" class="nav-link" data-scroll-target="#alternative-code-2"><span class="toc-section-number">12.1.3</span>  Alternative code 2:</a></li>
+  <li><a href="#alternative-code-3" id="toc-alternative-code-3" class="nav-link" data-scroll-target="#alternative-code-3"><span class="toc-section-number">12.1.4</span>  Alternative code 3:</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -269,10 +270,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This chapter will consist of solutions suggested by students of the STAT303-1 Fall 2022 class, which are more efficient than those presented in the book. However, these solutions do not replace those in the book to preserve the simplicity of the book.</p>
 <section id="missing-value-imputation-based-on-correlated-variables-in-the-data" class="level2" data-number="12.1">
 <h2 data-number="12.1" class="anchored" data-anchor-id="missing-value-imputation-based-on-correlated-variables-in-the-data"><span class="header-section-number">12.1</span> Missing value imputation based on correlated variables in the data</h2>
-<p>The code below refers to <strong>Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20cleaning%20and%20preparation.html#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data">7.1.5.3</a></strong> of the book. Students have proposed a couple of ways to avoid a <code>for</code> loop in the code, which will lead to parallel computations, thereby saving execution time.</p>
+<p>The code below refers to <strong>Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20cleaning%20and%20preparation.html#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data">7.1.5.3</a></strong> of the book. Students have proposed some ways to avoid a <code>for</code> loop in the code, which will lead to parallel computations, thereby saving execution time.</p>
 <section id="original-code-in-the-book" class="level3" data-number="12.1.1">
 <h3 data-number="12.1.1" class="anchored" data-anchor-id="original-code-in-the-book"><span class="header-section-number">12.1.1</span> Original code (in the book)</h3>
-<div class="cell" data-execution_count="109">
+<div class="cell" data-execution_count="171">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cont <span class="kw">in</span> avg_gdpPerCapita.index:</span>
@@ -288,23 +289,17 @@ Time taken to execute code:  0.032 seconds</code></pre>
 <p><img src="student_solutions_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Below are a couple of more efficient ways to impute the missing values, as they avoid using the <code>for</code> loop.</p>
+<p>Below are some more efficient ways to impute the missing values, as they avoid using the <code>for</code> loop.</p>
 </section>
 <section id="alternative-code-1" class="level3" data-number="12.1.2">
 <h3 data-number="12.1.2" class="anchored" data-anchor-id="alternative-code-1"><span class="header-section-number">12.1.2</span> Alternative code 1:</h3>
-<p>By Elijah Nacar</p>
-<div class="cell" data-execution_count="110">
+<p>By Victoria Shi</p>
+<div class="cell" data-execution_count="191">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> impute_var(cont, gdp):</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isnull(gdp):</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> avg_gdpPerCapita[cont]</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> gdp</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> gdp_imputed_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x: impute_var(x[<span class="st">'continent'</span>], x[<span class="st">'gdpPerCapita'</span>]),axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data[<span class="st">"gdpPerCapita"</span>] <span class="op">=</span>  gdp_missing_values_data[[<span class="st">'continent'</span>,<span class="st">'gdpPerCapita'</span>]].groupby(<span class="st">'continent'</span>).transform(<span class="kw">lambda</span> x: x.fillna(x.mean()))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116
 Time taken to execute code:  0.024 seconds</code></pre>
@@ -316,26 +311,50 @@ Time taken to execute code:  0.024 seconds</code></pre>
 </section>
 <section id="alternative-code-2" class="level3" data-number="12.1.3">
 <h3 data-number="12.1.3" class="anchored" data-anchor-id="alternative-code-2"><span class="header-section-number">12.1.3</span> Alternative code 2:</h3>
-<p>By Erica Zhou</p>
-<div class="cell" data-execution_count="111">
+<p>By Elijah Nacar</p>
+<div class="cell" data-execution_count="159">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>cond_list <span class="op">=</span> [gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Africa'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Asia'</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Europe'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'North America'</span>,</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Oceania'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'South America'</span>]</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>choice_list <span class="op">=</span> <span class="bu">list</span>(avg_gdpPerCapita)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> np.select(cond_list, choice_list, gdp_imputed_data.gdpPerCapita)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> impute_var(cont, gdp):</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> pd.isnull(gdp):</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> avg_gdpPerCapita[cont]</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> gdp</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> gdp_imputed_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x: impute_var(x[<span class="st">'continent'</span>], x[<span class="st">'gdpPerCapita'</span>]),axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116
 Time taken to execute code:  0.024 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="student_solutions_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="alternative-code-3" class="level3" data-number="12.1.4">
+<h3 data-number="12.1.4" class="anchored" data-anchor-id="alternative-code-3"><span class="header-section-number">12.1.4</span> Alternative code 3:</h3>
+<p>By Erica Zhou</p>
+<div class="cell" data-execution_count="160">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>cond_list <span class="op">=</span> [gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Africa'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Asia'</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Europe'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'North America'</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Oceania'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'South America'</span>]</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>choice_list <span class="op">=</span> <span class="bu">list</span>(avg_gdpPerCapita)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> np.select(cond_list, choice_list, gdp_imputed_data.gdpPerCapita)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE= 25473.20645170116
+Time taken to execute code:  0.024 seconds</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="student_solutions_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 
