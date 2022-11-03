@@ -1397,15 +1397,15 @@ Name: Expend_bin, dtype: int64</code></pre>
 <h3 data-number="7.2.2" class="anchored" data-anchor-id="binning-with-equal-sized-bins"><span class="header-section-number">7.2.2</span> Binning with equal sized bins</h3>
 <p>Let us bin the variable <code>Expend</code> such that each bin consists of the same number of observations.</p>
 <p>We’ll use the Pandas function <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.qcut.html">qcut()</a> to make equal-sized bins (in contrast to equal-width bins in the previous section).</p>
-<div class="cell" data-execution_count="12">
+<div class="cell" data-execution_count="115">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Using the Pandas function qcut() to create bins with the same number of observations</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>Binned_expend <span class="op">=</span> pd.qcut(college[<span class="st">'Expend'</span>],<span class="dv">3</span>,retbins <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> Binned_expend[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Each bin has the same number of observations with <code>qcut()</code>:</p>
-<div class="cell" data-execution_count="13">
+<div class="cell" data-execution_count="116">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>pd.value_counts(college[<span class="st">'Expend_bin'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="13">
+<div class="cell-output cell-output-display" data-execution_count="116">
 <pre><code>(3185.999, 7334.333]    259
 (7334.333, 9682.333]    259
 (9682.333, 56233.0]     259
@@ -1413,7 +1413,7 @@ Name: Expend_bin, dtype: int64</code></pre>
 </div>
 </div>
 <p>Let us visualize the <code>Expend</code> bins over the distribution of the <code>Expend</code> variable.</p>
-<div class="cell" data-execution_count="17">
+<div class="cell" data-execution_count="117">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Visualizing the bins for instructional expediture on a student</span></span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
 <span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">9</span>,<span class="dv">6</span>)</span>
@@ -1717,7 +1717,7 @@ Length: 308, dtype: int64</code></pre>
 </div>
 </div>
 <p>Using Tukey’s criterion, the variables <code>learning_style_Reading/Writing (learn best through words often note-taking or reading)</code> and <code>much_effort_is_lack_of_talent</code> have the most number of outliers.</p>
-<p>However, these two varibales have only 0s and 1s. For instance, let us consider <code>learning_style_Reading/Writing (learn best through words often note-taking or reading)</code>.</p>
+<p>However, these two variables have only 0s and 1s. For instance, let us consider <code>learning_style_Reading/Writing (learn best through words often note-taking or reading)</code>.</p>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>survey_dummies[<span class="st">'learning_style_Reading/Writing (learn best through words often note-taking or reading)'</span>].value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
