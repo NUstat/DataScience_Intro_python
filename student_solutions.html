@@ -245,6 +245,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#alternative-code-2" id="toc-alternative-code-2" class="nav-link" data-scroll-target="#alternative-code-2"><span class="toc-section-number">12.1.3</span>  Alternative code 2:</a></li>
   <li><a href="#alternative-code-3" id="toc-alternative-code-3" class="nav-link" data-scroll-target="#alternative-code-3"><span class="toc-section-number">12.1.4</span>  Alternative code 3:</a></li>
   </ul></li>
+  <li><a href="#binning-with-equal-sized-bins" id="toc-binning-with-equal-sized-bins" class="nav-link" data-scroll-target="#binning-with-equal-sized-bins"><span class="toc-section-number">12.2</span>  Binning with equal sized bins</a>
+  <ul>
+  <li><a href="#original-code-in-the-book-1" id="toc-original-code-in-the-book-1" class="nav-link" data-scroll-target="#original-code-in-the-book-1"><span class="toc-section-number">12.2.1</span>  Original code (in the book)</a></li>
+  <li><a href="#alternative-code" id="toc-alternative-code" class="nav-link" data-scroll-target="#alternative-code"><span class="toc-section-number">12.2.2</span>  Alternative code:</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -349,6 +354,46 @@ Time taken to execute code:  0.024 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="student_solutions_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="binning-with-equal-sized-bins" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="binning-with-equal-sized-bins"><span class="header-section-number">12.2</span> Binning with equal sized bins</h2>
+<p>The code below refers to <strong>Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20cleaning%20and%20preparation.html#binning-with-equal-sized-bins">7.2.2</a></strong> of the book. A student has proposed a way to avoid the <code>for</code> loop in the code, which will lead to parallel computations, thereby saving execution time.</p>
+<section id="original-code-in-the-book-1" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="original-code-in-the-book-1"><span class="header-section-number">12.2.1</span> Original code (in the book)</h3>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bootstrapping to find 95% confidence intervals of Graduation Rate of US universities based on average expenditure per student</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> expend_bin <span class="kw">in</span> college.Expend_bin.unique():</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    data_sub <span class="op">=</span> college.loc[college.Expend_bin<span class="op">==</span>expend_bin,:]</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(data_sub[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>,data_sub.shape[<span class="dv">0</span>]))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span><span class="op">+</span>expend_bin<span class="op">+</span><span class="st">" univeristies = ["</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">","</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">"]"</span>)</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>95% Confidence interval of Grad.Rate for Low expend univeristies = [55.31,59.35]
+95% Confidence interval of Grad.Rate for High expend univeristies = [71.03,74.9]
+95% Confidence interval of Grad.Rate for Med expend univeristies = [64.17,67.95]
+Time taken to execute code:  0.151 seconds</code></pre>
+</div>
+</div>
+</section>
+<section id="alternative-code" class="level3" data-number="12.2.2">
+<h3 data-number="12.2.2" class="anchored" data-anchor-id="alternative-code"><span class="header-section-number">12.2.2</span> Alternative code:</h3>
+<p><em>By Victoria Shi</em></p>
+<div class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confidence_interval(df):</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(df[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>, df.shape[<span class="dv">0</span>]))</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span><span class="op">+</span>df[<span class="st">"Expend_bin"</span>].iloc[<span class="dv">0</span>]<span class="op">+</span><span class="st">" univeristies = ["</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">","</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">"]"</span>)</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>college.groupby(<span class="st">'Expend_bin'</span>).<span class="bu">apply</span>(confidence_interval)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>95% Confidence interval of Grad.Rate for Low expend univeristies = [55.35,59.35]
+95% Confidence interval of Grad.Rate for Med expend univeristies = [64.16,67.95]
+95% Confidence interval of Grad.Rate for High expend univeristies = [71.05,74.96]
+Time taken to execute code:  0.139 seconds</code></pre>
 </div>
 </div>
 
