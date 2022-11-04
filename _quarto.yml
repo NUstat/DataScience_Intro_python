@@ -21,7 +21,7 @@ book:
         - Data wrangling.ipynb
         - Data aggregation.ipynb
         - Datasets.ipynb
-      assignments: 'Assignments' 
+      part: 'Assignments' 
         - Assignment 4 (Data Visualization).ipynb
       appendices: 'Appendices'
         - student_solutions.ipynb
