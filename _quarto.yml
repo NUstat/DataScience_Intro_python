@@ -8,19 +8,24 @@ book:
   date: "9/20/2022"
   chapters:
     - index.qmd
-    - Introduction to Python and Jupyter Notebooks.ipynb
-    - data_structures.ipynb
-    - Reading data.ipynb
-    - NumPy.ipynb
-    - Pandas.ipynb
-    - Data visualization.ipynb
-    - Data cleaning and preparation.ipynb
-    - Data wrangling.ipynb
-    - Data aggregation.ipynb
-    - Datasets.ipynb
-    - Assignment 4 (Data Visualization).ipynb
-    - student_solutions.ipynb
-    - references.qmd
+    - part: 'Quick overview: Python programming'
+      chapters:
+        - Introduction to Python and Jupyter Notebooks.ipynb
+        - data_structures.ipynb
+    - part: 'Exploratory data analysis'
+        - Reading data.ipynb
+        - NumPy.ipynb
+        - Pandas.ipynb
+        - Data visualization.ipynb
+        - Data cleaning and preparation.ipynb
+        - Data wrangling.ipynb
+        - Data aggregation.ipynb
+        - Datasets.ipynb
+      assignments: 'Assignments' 
+        - Assignment 4 (Data Visualization).ipynb
+      appendices: 'Appendices'
+        - student_solutions.ipynb
+        - references.qmd
 
 bibliography: references.bib
 
