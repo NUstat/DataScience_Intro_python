@@ -13,6 +13,7 @@ book:
         - Introduction to Python and Jupyter Notebooks.ipynb
         - data_structures.ipynb
     - part: 'Exploratory data analysis'
+      chapters:
         - Reading data.ipynb
         - NumPy.ipynb
         - Pandas.ipynb
@@ -21,11 +22,12 @@ book:
         - Data wrangling.ipynb
         - Data aggregation.ipynb
         - Datasets.ipynb
-      part: 'Assignments' 
+    - part: 'Assignments' 
+      chapters:
         - Assignment 4 (Data Visualization).ipynb
-      appendices: 'Appendices'
-        - student_solutions.ipynb
-        - references.qmd
+  appendices:
+    - student_solutions.ipynb
+    - references.qmd
 
 bibliography: references.bib
 
