@@ -21,12 +21,12 @@ book:
         - Data cleaning and preparation.ipynb
         - Data wrangling.ipynb
         - Data aggregation.ipynb
-        - Datasets.ipynb
     - part: 'Assignments' 
       chapters:
         - Assignment 4 (Data Visualization).ipynb
   appendices:
     - student_solutions.ipynb
+    - Datasets.ipynb
     - references.qmd
 
 bibliography: references.bib
