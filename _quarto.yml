@@ -24,11 +24,11 @@ book:
         - student_solutions.ipynb
     - part: 'Assignments' 
       chapters:
-        - Assignment 1 (Reading data)
-        - Assignment 2 (NumPy)
-        - Assignment 3 (Pandas)
+        - Assignment 1 (Reading data).ipynb
+        - Assignment 2 (NumPy).ipynb
+        - Assignment 3 (Pandas).ipynb
         - Assignment 4 (Data Visualization).ipynb
-        - Assignment 5 (Data cleaning and preparation)
+        - Assignment 5 (Data cleaning and preparation).ipynb
   appendices:
     - Datasets.ipynb
     - references.qmd
