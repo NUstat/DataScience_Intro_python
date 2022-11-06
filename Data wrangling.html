@@ -308,8 +308,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#subsetting-data" id="toc-subsetting-data" class="nav-link" data-scroll-target="#subsetting-data"><span class="toc-section-number">8.1.3</span>  Subsetting data</a></li>
   <li><a href="#reshaping-data" id="toc-reshaping-data" class="nav-link" data-scroll-target="#reshaping-data"><span class="toc-section-number">8.1.4</span>  Reshaping data</a>
   <ul class="collapse">
-  <li><a href="#unstack" id="toc-unstack" class="nav-link" data-scroll-target="#unstack"><span class="toc-section-number">8.1.4.1</span>  <code>unstack()</code></a></li>
-  <li><a href="#stack" id="toc-stack" class="nav-link" data-scroll-target="#stack"><span class="toc-section-number">8.1.4.2</span>  <code>stack()</code></a></li>
+  <li><a href="#unstack-pandas-series-method" id="toc-unstack-pandas-series-method" class="nav-link" data-scroll-target="#unstack-pandas-series-method"><span class="toc-section-number">8.1.4.1</span>  <code>unstack()</code> (Pandas Series method)</a></li>
+  <li><a href="#unstack-pandas-dataframe-method" id="toc-unstack-pandas-dataframe-method" class="nav-link" data-scroll-target="#unstack-pandas-dataframe-method"><span class="toc-section-number">8.1.4.2</span>  <code>unstack()</code> (Pandas DataFrame method)</a></li>
+  <li><a href="#stack" id="toc-stack" class="nav-link" data-scroll-target="#stack"><span class="toc-section-number">8.1.4.3</span>  <code>stack()</code></a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -334,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Data wrangling refers to combining, transforming, and / or re-arranging data to make it suitable for further analysis. We’ll use Pandas for all data wrangling operations.</p>
+<p>Data wrangling refers to combining, transforming, and re-arranging data to make it suitable for further analysis. We’ll use Pandas for all data wrangling operations.</p>
 <div class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -500,14 +501,90 @@ dtype: object</code></pre>
            )</code></pre>
 </div>
 </div>
+<p>The hierarchical levels can have names. Let us assign names to the each level of the row and column labels:</p>
+<div class="cell" data-execution_count="173">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Naming the row indices levels</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_example.index.names<span class="op">=</span>[<span class="st">'Information type'</span>, <span class="st">'Statistic'</span>]</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Naming the column indices levels</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>df_example.columns.names<span class="op">=</span>[<span class="st">'State'</span>, <span class="st">'City'</span>]</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Viewing the DataFrame</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>df_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="173">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>State</th>
+      <th colspan="2" halign="left">Illinois</th>
+      <th colspan="2" halign="left">California</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>City</th>
+      <th>Evanston</th>
+      <th>Chicago</th>
+      <th>San Francisco</th>
+      <th>Los Angeles</th>
+    </tr>
+    <tr>
+      <th>Information type</th>
+      <th>Statistic</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Demographics</th>
+      <th>Population</th>
+      <td>771517.0</td>
+      <td>2697000.0</td>
+      <td>815201.0</td>
+      <td>3849000.0</td>
+    </tr>
+    <tr>
+      <th>Unemployement (%)</th>
+      <td>4.2</td>
+      <td>5.6</td>
+      <td>2.8</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Geography</th>
+      <th>Area (mile-sq)</th>
+      <td>7.8</td>
+      <td>234.5</td>
+      <td>46.9</td>
+      <td>502.0</td>
+    </tr>
+    <tr>
+      <th>Elevation (feet)</th>
+      <td>6749.0</td>
+      <td>597.0</td>
+      <td>52.0</td>
+      <td>305.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Observe that the names of the row and column labels appear when we view the DataFrame.</p>
 </section>
 <section id="subsetting-data" class="level3" data-number="8.1.3">
 <h3 data-number="8.1.3" class="anchored" data-anchor-id="subsetting-data"><span class="header-section-number">8.1.3</span> Subsetting data</h3>
 <p>We can use the indices at the outer levels to concisely subset a Series / DataFrame.</p>
 <p>The first four observations of the Series <code>series_example</code> correspond to the outer row index <code>English</code>, while the last 5 rows correspond to the outer row index <code>Spanish</code>. Let us subset all the observation corresponding to the outer row index <code>English</code>:</p>
 <div class="cell" data-execution_count="47">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by row-index</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>series_example[<span class="st">'English'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by row-index</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>series_example[<span class="st">'English'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>1      these
 2        are
@@ -518,8 +595,8 @@ dtype: object</code></pre>
 </div>
 <p>Just like in the case of single level indices, if we wish to subset corresponding to multiple outer-level indices, we put the indices within an additional box bracket <code>[]</code>. For example, let us subset all the observations corresponding to the row-indices <code>English</code> and <code>French</code>:</p>
 <div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by multiple row-indices</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>series_example[[<span class="st">'English'</span>,<span class="st">'French'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by multiple row-indices</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>series_example[[<span class="st">'English'</span>,<span class="st">'French'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="48">
 <pre><code>English  1      these
          2        are
@@ -535,8 +612,8 @@ dtype: object</code></pre>
 </div>
 <p>We can also subset data using the inner row index. However, we will need to put a <code>:</code> sign to indicate that the row label at the inner level is being used.</p>
 <div class="cell" data-execution_count="161">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by row-index</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>series_example[:,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by row-index</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>series_example[:,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="161">
 <pre><code>English     are
 Spanish     son
@@ -545,8 +622,8 @@ dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by mutiple row-indices</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>series_example.loc[:,[<span class="dv">1</span>,<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by mutiple row-indices</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>series_example.loc[:,[<span class="dv">1</span>,<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="50">
 <pre><code>English  1    these
 Spanish  1    estas
@@ -559,7 +636,7 @@ dtype: object</code></pre>
 </div>
 <p>As in Series, we can concisely subset rows / columns in a DataFrame based on the index at the outer levels.</p>
 <div class="cell" data-execution_count="170">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>df_example[<span class="st">'Illinois'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df_example[<span class="st">'Illinois'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="170">
 
 <div>
@@ -605,13 +682,13 @@ dtype: object</code></pre>
 <section id="reshaping-data" class="level3" data-number="8.1.4">
 <h3 data-number="8.1.4" class="anchored" data-anchor-id="reshaping-data"><span class="header-section-number">8.1.4</span> Reshaping data</h3>
 <p>Apart from ease in subsetting data, hierarchical indexing also plays a role in reshaping data.</p>
-<section id="unstack" class="level4" data-number="8.1.4.1">
-<h4 data-number="8.1.4.1" class="anchored" data-anchor-id="unstack"><span class="header-section-number">8.1.4.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unstack.html"><code>unstack()</code></a></h4>
-<p>The Pandas Series method <code>unstack()</code> pivots the inner-most level of row indices to columns, thereby creating a DataFrame:</p>
+<section id="unstack-pandas-series-method" class="level4" data-number="8.1.4.1">
+<h4 data-number="8.1.4.1" class="anchored" data-anchor-id="unstack-pandas-series-method"><span class="header-section-number">8.1.4.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unstack.html"><code>unstack()</code></a> (Pandas Series method)</h4>
+<p>The Pandas Series method <code>unstack()</code> pivots the desired level of row indices to columns, thereby creating a DataFrame. By default, the inner-most level of the row labels is pivoed.</p>
 <div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the innermost Series row index to column labels</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack()</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner-most Series row index to column labels</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 
 <div>
@@ -657,14 +734,271 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<p>Also, check out the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html"><code>unstack()</code></a> method of the Pandas DataFrame class.</p>
+<p>We can pivot the outer level of the row labels by specifying it in the <code>level</code> argument:</p>
+<div class="cell" data-execution_count="192">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the outer row indices to column labels</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack(level<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="192">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>English</th>
+      <th>French</th>
+      <th>Spanish</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>these</td>
+      <td>ce</td>
+      <td>estas</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>are</td>
+      <td>sont</td>
+      <td>son</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>english</td>
+      <td>des</td>
+      <td>palabras</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>words</td>
+      <td>françai</td>
+      <td>en</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>NaN</td>
+      <td>mots</td>
+      <td>español</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
-<section id="stack" class="level4" data-number="8.1.4.2">
-<h4 data-number="8.1.4.2" class="anchored" data-anchor-id="stack"><span class="header-section-number">8.1.4.2</span> <code>stack()</code></h4>
-<p>The inverse of <code>unstack()</code> is the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html"><code>stack()</code></a> method, which creates the inner-most level of row indices by pivoting the column labels of the prescribed level. Note that in this case the column labels have only one level, so we don’t need to specify a level.</p>
+<section id="unstack-pandas-dataframe-method" class="level4" data-number="8.1.4.2">
+<h4 data-number="8.1.4.2" class="anchored" data-anchor-id="unstack-pandas-dataframe-method"><span class="header-section-number">8.1.4.2</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html"><code>unstack()</code></a> (Pandas DataFrame method)</h4>
+<p>The Pandas DataFrame method <code>unstack()</code> pivots the specifid level of row indices to the new innemost level of column labels. By-default, the inner-most level of the row labels is pivoted.</p>
+<div class="cell" data-execution_count="181">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner level of row labels to the inner-most level of column labels</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df_example.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="181">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>State</th>
+      <th colspan="8" halign="left">Illinois</th>
+      <th colspan="8" halign="left">California</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th colspan="4" halign="left">Evanston</th>
+      <th colspan="4" halign="left">Chicago</th>
+      <th colspan="4" halign="left">San Francisco</th>
+      <th colspan="4" halign="left">Los Angeles</th>
+    </tr>
+    <tr>
+      <th>Statistic</th>
+      <th>Area (mile-sq)</th>
+      <th>Elevation (feet)</th>
+      <th>Population</th>
+      <th>Unemployement (%)</th>
+      <th>Area (mile-sq)</th>
+      <th>Elevation (feet)</th>
+      <th>Population</th>
+      <th>Unemployement (%)</th>
+      <th>Area (mile-sq)</th>
+      <th>Elevation (feet)</th>
+      <th>Population</th>
+      <th>Unemployement (%)</th>
+      <th>Area (mile-sq)</th>
+      <th>Elevation (feet)</th>
+      <th>Population</th>
+      <th>Unemployement (%)</th>
+    </tr>
+    <tr>
+      <th>Information type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Demographics</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>771517.0</td>
+      <td>4.2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>2697000.0</td>
+      <td>5.6</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>815201.0</td>
+      <td>2.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3849000.0</td>
+      <td>4.6</td>
+    </tr>
+    <tr>
+      <th>Geography</th>
+      <td>7.8</td>
+      <td>6749.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>234.5</td>
+      <td>597.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>46.9</td>
+      <td>52.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>502.0</td>
+      <td>305.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>As with Series, we can pivot the outer level of the row labels by specifying it in the <code>level</code> argument:</p>
+<div class="cell" data-execution_count="188">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the outer level (level = 0) of row labels to the inner-most level of column labels</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>df_example.unstack(level<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="188">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>State</th>
+      <th colspan="4" halign="left">Illinois</th>
+      <th colspan="4" halign="left">California</th>
+    </tr>
+    <tr>
+      <th>City</th>
+      <th colspan="2" halign="left">Evanston</th>
+      <th colspan="2" halign="left">Chicago</th>
+      <th colspan="2" halign="left">San Francisco</th>
+      <th colspan="2" halign="left">Los Angeles</th>
+    </tr>
+    <tr>
+      <th>Information type</th>
+      <th>Demographics</th>
+      <th>Geography</th>
+      <th>Demographics</th>
+      <th>Geography</th>
+      <th>Demographics</th>
+      <th>Geography</th>
+      <th>Demographics</th>
+      <th>Geography</th>
+    </tr>
+    <tr>
+      <th>Statistic</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Area (mile-sq)</th>
+      <td>NaN</td>
+      <td>7.8</td>
+      <td>NaN</td>
+      <td>234.5</td>
+      <td>NaN</td>
+      <td>46.9</td>
+      <td>NaN</td>
+      <td>502.0</td>
+    </tr>
+    <tr>
+      <th>Elevation (feet)</th>
+      <td>NaN</td>
+      <td>6749.0</td>
+      <td>NaN</td>
+      <td>597.0</td>
+      <td>NaN</td>
+      <td>52.0</td>
+      <td>NaN</td>
+      <td>305.0</td>
+    </tr>
+    <tr>
+      <th>Population</th>
+      <td>771517.0</td>
+      <td>NaN</td>
+      <td>2697000.0</td>
+      <td>NaN</td>
+      <td>815201.0</td>
+      <td>NaN</td>
+      <td>3849000.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>Unemployement (%)</th>
+      <td>4.2</td>
+      <td>NaN</td>
+      <td>5.6</td>
+      <td>NaN</td>
+      <td>2.8</td>
+      <td>NaN</td>
+      <td>4.6</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="stack" class="level4" data-number="8.1.4.3">
+<h4 data-number="8.1.4.3" class="anchored" data-anchor-id="stack"><span class="header-section-number">8.1.4.3</span> <code>stack()</code></h4>
+<p>The inverse of <code>unstack()</code> is the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html"><code>stack()</code></a> method, which creates the inner-most level of row indices by pivoting the column labels of the prescribed level.</p>
+<p>Note that if the column labels have only one level, so we don’t need to specify a level.</p>
 <div class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the columns of a DataFrame</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the columns of a DataFrame</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>English  1       these
          2         are
@@ -681,6 +1015,219 @@ Spanish  1       estas
          4          en
          5     español
 dtype: object</code></pre>
+</div>
+</div>
+<p>However, if the columns have multiple levels, we can specify the level to stack as the inner-most row level. By default, inner-most column level is stacked.</p>
+<div class="cell" data-execution_count="195">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the inner-most column labels inner-most row indices</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df_example.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="195">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>State</th>
+      <th>California</th>
+      <th>Illinois</th>
+    </tr>
+    <tr>
+      <th>Information type</th>
+      <th>Statistic</th>
+      <th>City</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="8" valign="top">Demographics</th>
+      <th rowspan="4" valign="top">Population</th>
+      <th>Chicago</th>
+      <td>NaN</td>
+      <td>2697000.0</td>
+    </tr>
+    <tr>
+      <th>Evanston</th>
+      <td>NaN</td>
+      <td>771517.0</td>
+    </tr>
+    <tr>
+      <th>Los Angeles</th>
+      <td>3849000.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>San Francisco</th>
+      <td>815201.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">Unemployement (%)</th>
+      <th>Chicago</th>
+      <td>NaN</td>
+      <td>5.6</td>
+    </tr>
+    <tr>
+      <th>Evanston</th>
+      <td>NaN</td>
+      <td>4.2</td>
+    </tr>
+    <tr>
+      <th>Los Angeles</th>
+      <td>4.6</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>San Francisco</th>
+      <td>2.8</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="8" valign="top">Geography</th>
+      <th rowspan="4" valign="top">Area (mile-sq)</th>
+      <th>Chicago</th>
+      <td>NaN</td>
+      <td>234.5</td>
+    </tr>
+    <tr>
+      <th>Evanston</th>
+      <td>NaN</td>
+      <td>7.8</td>
+    </tr>
+    <tr>
+      <th>Los Angeles</th>
+      <td>502.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>San Francisco</th>
+      <td>46.9</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">Elevation (feet)</th>
+      <th>Chicago</th>
+      <td>NaN</td>
+      <td>597.0</td>
+    </tr>
+    <tr>
+      <th>Evanston</th>
+      <td>NaN</td>
+      <td>6749.0</td>
+    </tr>
+    <tr>
+      <th>Los Angeles</th>
+      <td>305.0</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>San Francisco</th>
+      <td>52.0</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="196">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the outer column labels inner-most row indices</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>df_example.stack(level<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="196">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>City</th>
+      <th>Chicago</th>
+      <th>Evanston</th>
+      <th>Los Angeles</th>
+      <th>San Francisco</th>
+    </tr>
+    <tr>
+      <th>Information type</th>
+      <th>Statistic</th>
+      <th>State</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="4" valign="top">Demographics</th>
+      <th rowspan="2" valign="top">Population</th>
+      <th>California</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>3849000.0</td>
+      <td>815201.0</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>2697000.0</td>
+      <td>771517.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Unemployement (%)</th>
+      <th>California</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>4.6</td>
+      <td>2.8</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>5.6</td>
+      <td>4.2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="4" valign="top">Geography</th>
+      <th rowspan="2" valign="top">Area (mile-sq)</th>
+      <th>California</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>502.0</td>
+      <td>46.9</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>234.5</td>
+      <td>7.8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Elevation (feet)</th>
+      <th>California</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>305.0</td>
+      <td>52.0</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>597.0</td>
+      <td>6749.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>
 </div>
 
