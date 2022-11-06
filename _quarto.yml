@@ -29,7 +29,7 @@ book:
         - Assignment 3 (Pandas).ipynb
         - Assignment 4 (Data Visualization).ipynb
         - Assignment 5 (Data cleaning and preparation).ipynb
-  appendices:
+  appendices: 'Appendix'
     - Datasets.ipynb
     - references.qmd
 
