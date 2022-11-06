@@ -697,7 +697,7 @@
     "href": "Assignment 5 (Data cleaning and preparation).html#outliers",
     "title": "15  Assignment 5 (Data cleaning & preparation)",
     "section": "15.3 Outliers",
-    "text": "15.3 Outliers\n\n15.3.1 Identifying outlying prices\nContinue using house_features_and_price.csv. How many houses have outlying values of house_price. Are these houses extremely expensive or extremely cheap?\n(6 + 2 points)\n\n\n15.3.2 Quick EDA\nHow are these houses different from the houses in the rest of the dataset, which might be making them extremely expensive / extremely cheap? Explore the data and mention your hypothesis.\n(8 points)"
+    "text": "15.3 Outliers\n\n15.3.1 Identifying outlying prices\nContinue using house_features_and_price.csv. How many houses have outlying values of house_price. Are these houses extremely expensive or extremely cheap?\n(6 + 2 points)\n\n\n15.3.2 Quick EDA\nHow are these houses (identified in the previous question as outliers) different from the houses in the rest of the dataset, which might be making them extremely expensive / extremely cheap? Explore the data and mention your hypothesis.\n(8 points)"
   },
   {
     "objectID": "Datasets.html",
