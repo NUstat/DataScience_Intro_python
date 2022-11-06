@@ -123,6 +123,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -329,20 +332,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2 data-number="8.1" class="anchored" data-anchor-id="hierarchical-indexing"><span class="header-section-number">8.1</span> Hierarchical indexing</h2>
 <p>Until now we have seen only a single level of indexing in the rows and columns of a Pandas DataFrame. Hierarchical indexing refers to having multiple index levels on an axis (row / column) of a Pandas DataFrame. It helps us to work with a higher dimensional data in a lower dimensional form.</p>
 <p>Let use define Pandas Series as we defined in Chapter 5:</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="43">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a Pandas Series</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>series_example <span class="op">=</span> pd.Series([<span class="st">'these'</span>,<span class="st">'are'</span>,<span class="st">'english'</span>,<span class="st">'words'</span>,<span class="st">'estas'</span>,<span class="st">'son'</span>,<span class="st">'palabras'</span>,<span class="st">'en'</span>,<span class="st">'español'</span>])</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>series_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
-<pre><code>0       these
-1         are
-2     english
-3       words
-4       estas
-5         son
-6    palabras
-7          en
-8     español
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>series_example <span class="op">=</span> pd.Series([<span class="st">'these'</span>,<span class="st">'are'</span>,<span class="st">'english'</span>,<span class="st">'words'</span>,<span class="st">'estas'</span>,<span class="st">'son'</span>,<span class="st">'palabras'</span>,<span class="st">'en'</span>,<span class="st">'español'</span>,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'ce'</span>,<span class="st">'sont'</span>,<span class="st">'des'</span>,<span class="st">'françai'</span>,<span class="st">'mots'</span>])</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>series_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+<pre><code>0        these
+1          are
+2      english
+3        words
+4        estas
+5          son
+6     palabras
+7           en
+8      español
+9           ce
+10        sont
+11         des
+12     françai
+13        mots
 dtype: object</code></pre>
 </div>
 </div>
@@ -355,13 +364,13 @@ dtype: object</code></pre>
 </div>
 <p>The Series <code>series_example</code> has only one level of row indices.</p>
 <p>Let us introduce another level of row indices while defining the Series:</p>
-<div class="cell" data-execution_count="24">
+<div class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a Pandas Series with multiple levels of row indices</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>series_example <span class="op">=</span> pd.Series([<span class="st">'these'</span>,<span class="st">'are'</span>,<span class="st">'english'</span>,<span class="st">'words'</span>,<span class="st">'estas'</span>,<span class="st">'son'</span>,<span class="st">'palabras'</span>,<span class="st">'en'</span>,<span class="st">'español'</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'ce'</span>,<span class="st">'sont'</span>,<span class="st">'des'</span>,<span class="st">'françai'</span>,<span class="st">'mots'</span>], </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                          index<span class="op">=</span>[[<span class="st">'English'</span>]<span class="op">*</span><span class="dv">4</span><span class="op">+</span>[<span class="st">'Spanish'</span>]<span class="op">*</span><span class="dv">5</span><span class="op">+</span>[<span class="st">'French'</span>]<span class="op">*</span><span class="dv">5</span>,<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">5</span>))<span class="op">+</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>))<span class="op">*</span><span class="dv">2</span>])</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>series_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="24">
+<div class="cell-output cell-output-display" data-execution_count="45">
 <pre><code>English  1       these
          2         are
          3     english
@@ -380,16 +389,16 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>In the above Series, there are two levels of row indices:</p>
-<div class="cell" data-execution_count="16">
+<div class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>series_example.index.nlevels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="16">
+<div class="cell-output cell-output-display" data-execution_count="46">
 <pre><code>2</code></pre>
 </div>
 </div>
 <p>The first four observations of the Series correspond to the outer row index <code>English</code>, while the last 5 rows correspond to the outer row index <code>Spanish</code>. We can use the indices at the outler level to concisely subset the Series. For example, let us subset all the observation corresponding to the outer row index <code>English</code>:</p>
-<div class="cell" data-execution_count="20">
+<div class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>series_example[<span class="st">'English'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="20">
+<div class="cell-output cell-output-display" data-execution_count="47">
 <pre><code>1      these
 2        are
 3    english
@@ -398,9 +407,9 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Just like in the case of single level indices, if we wish to subset corresponding to multiple outer-level indices, we put the indices within an additional box bracket <code>[]</code>. For example, let us subset all the observations corresponding to the row-indices <code>English</code> and <code>French</code>:</p>
-<div class="cell" data-execution_count="25">
+<div class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>series_example[[<span class="st">'English'</span>,<span class="st">'French'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="25">
+<div class="cell-output cell-output-display" data-execution_count="48">
 <pre><code>English  1      these
          2        are
          3    english
@@ -414,24 +423,96 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>We can also subset data using the inner row index:</p>
-<div class="cell" data-execution_count="35">
+<div class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>series_example.loc[:,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
+<div class="cell-output cell-output-display" data-execution_count="49">
 <pre><code>English     are
 Spanish     son
 French     sont
 dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="38">
+<div class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>series_example.loc[:,[<span class="dv">1</span>,<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="38">
+<div class="cell-output cell-output-display" data-execution_count="50">
 <pre><code>English  1    these
 Spanish  1    estas
 French   1       ce
 English  2      are
 Spanish  2      son
 French   2     sont
+dtype: object</code></pre>
+</div>
+</div>
+<p>Apart from ease in subsetting data, hierarchical indexing also plays a role in reshaping data. For example, the Pandas Series <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unstack.html"><code>unstack()</code></a> method pivots the inner-most level of row indices to columns, thereby creating a DataFrame:</p>
+<div class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting </span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack()</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="52">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>English</th>
+      <td>these</td>
+      <td>are</td>
+      <td>english</td>
+      <td>words</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>French</th>
+      <td>ce</td>
+      <td>sont</td>
+      <td>des</td>
+      <td>françai</td>
+      <td>mots</td>
+    </tr>
+    <tr>
+      <th>Spanish</th>
+      <td>estas</td>
+      <td>son</td>
+      <td>palabras</td>
+      <td>en</td>
+      <td>español</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Also, check out the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html"><code>unstack()</code></a> method of the Pandas DataFrame class.</p>
+<p>The inverse of <code>unstack()</code> is the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html"><code>stack()</code></a> method, which creates the inner-most level of row indices by pivoting the column labels:</p>
+<div class="cell" data-execution_count="66">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>series_example_unstack.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="66">
+<pre><code>English  1       these
+         2         are
+         3     english
+         4       words
+French   1          ce
+         2        sont
+         3         des
+         4     françai
+         5        mots
+Spanish  1       estas
+         2         son
+         3    palabras
+         4          en
+         5     español
 dtype: object</code></pre>
 </div>
 </div>
