@@ -127,6 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -309,12 +310,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#get_level_values" id="toc-get_level_values" class="nav-link" data-scroll-target="#get_level_values"><span class="toc-section-number">8.1.2.1</span>  <code>get_level_values()</code></a></li>
   </ul></li>
   <li><a href="#subsetting-data" id="toc-subsetting-data" class="nav-link" data-scroll-target="#subsetting-data"><span class="toc-section-number">8.1.3</span>  Subsetting data</a></li>
-  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">8.1.4</span>  Practice exercise 1</a></li>
-  <li><a href="#reshaping-data" id="toc-reshaping-data" class="nav-link" data-scroll-target="#reshaping-data"><span class="toc-section-number">8.1.5</span>  Reshaping data</a>
+  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">8.1.4</span>  Practice exercise 1</a>
   <ul class="collapse">
-  <li><a href="#unstack-pandas-series-method" id="toc-unstack-pandas-series-method" class="nav-link" data-scroll-target="#unstack-pandas-series-method"><span class="toc-section-number">8.1.5.1</span>  <code>unstack()</code> (Pandas Series method)</a></li>
-  <li><a href="#unstack-pandas-dataframe-method" id="toc-unstack-pandas-dataframe-method" class="nav-link" data-scroll-target="#unstack-pandas-dataframe-method"><span class="toc-section-number">8.1.5.2</span>  <code>unstack()</code> (Pandas DataFrame method)</a></li>
-  <li><a href="#stack" id="toc-stack" class="nav-link" data-scroll-target="#stack"><span class="toc-section-number">8.1.5.3</span>  <code>stack()</code></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="toc-section-number">8.1.4.1</span>  </a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="toc-section-number">8.1.4.2</span>  </a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="toc-section-number">8.1.4.3</span>  </a></li>
+  </ul></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">8.1.5</span>  Practice exercise 2</a></li>
+  <li><a href="#reshaping-data" id="toc-reshaping-data" class="nav-link" data-scroll-target="#reshaping-data"><span class="toc-section-number">8.1.6</span>  Reshaping data</a>
+  <ul class="collapse">
+  <li><a href="#unstack-pandas-series-method" id="toc-unstack-pandas-series-method" class="nav-link" data-scroll-target="#unstack-pandas-series-method"><span class="toc-section-number">8.1.6.1</span>  <code>unstack()</code> (Pandas Series method)</a></li>
+  <li><a href="#unstack-pandas-dataframe-method" id="toc-unstack-pandas-dataframe-method" class="nav-link" data-scroll-target="#unstack-pandas-dataframe-method"><span class="toc-section-number">8.1.6.2</span>  <code>unstack()</code> (Pandas DataFrame method)</a></li>
+  <li><a href="#stack" id="toc-stack" class="nav-link" data-scroll-target="#stack"><span class="toc-section-number">8.1.6.3</span>  <code>stack()</code></a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -700,49 +707,854 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
+<p>Note that the dataype of each column name is a tuple. For example, let us find the datatype of the <span class="math inline">\(1^{st}\)</span> column name:</p>
+<div class="cell" data-execution_count="223">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co">#First column name</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>df_example.columns[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="223">
+<pre><code>('Illinois', 'Evanston')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="220">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Datatype of first column name</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(df_example.columns[<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="220">
+<pre><code>tuple</code></pre>
+</div>
+</div>
+<p>Thus columns at the inner levels can be accessed by specifying the name as a tuple. For example, let us subset the column <code>Evanston</code>:</p>
+<div class="cell" data-execution_count="225">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting the column 'Evanston'</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>df_example[(<span class="st">'Illinois'</span>,<span class="st">'Evanston'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="225">
+<pre><code>Information type  Statistic        
+Demographics      Population           771517.0
+                  Unemployement (%)         4.2
+Geography         Area (mile-sq)            7.8
+                  Elevation (feet)       6749.0
+Name: (Illinois, Evanston), dtype: float64</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="254">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting the columns 'Evanston' and 'Chicago' of the outer column level 'Illinois'</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>df_example.loc[:,(<span class="st">'Illinois'</span>,[<span class="st">'Evanston'</span>,<span class="st">'Chicago'</span>])]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="254">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>State</th>
+      <th colspan="2" halign="left">Illinois</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>City</th>
+      <th>Evanston</th>
+      <th>Chicago</th>
+    </tr>
+    <tr>
+      <th>Information type</th>
+      <th>Statistic</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">Demographics</th>
+      <th>Population</th>
+      <td>771517.0</td>
+      <td>2697000.0</td>
+    </tr>
+    <tr>
+      <th>Unemployement (%)</th>
+      <td>4.2</td>
+      <td>5.6</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Geography</th>
+      <th>Area (mile-sq)</th>
+      <td>7.8</td>
+      <td>234.5</td>
+    </tr>
+    <tr>
+      <th>Elevation (feet)</th>
+      <td>6749.0</td>
+      <td>597.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 </section>
 <section id="practice-exercise-1" class="level3" data-number="8.1.4">
 <h3 data-number="8.1.4" class="anchored" data-anchor-id="practice-exercise-1"><span class="header-section-number">8.1.4</span> Practice exercise 1</h3>
+<p>Read the table consisting of GDP per capita of countries from the webpage: https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita .</p>
+<p>To only read the relevant table, read the tables that contain the word <em>‘Country’</em>. How many levels of indexing are there in the rows and columns?</p>
+<div class="cell" data-execution_count="261">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>dfs <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>, match <span class="op">=</span> <span class="st">'Country'</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>gdp_per_capita <span class="op">=</span> dfs[<span class="dv">0</span>]</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>gdp_per_capita</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="261">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>UN Region</th>
+      <th colspan="2" halign="left">IMF[4]</th>
+      <th colspan="2" halign="left">World Bank[5]</th>
+      <th colspan="2" halign="left">United Nations[6]</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>UN Region</th>
+      <th>Estimate</th>
+      <th>Year</th>
+      <th>Estimate</th>
+      <th>Year</th>
+      <th>Estimate</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Liechtenstein *</td>
+      <td>Europe</td>
+      <td>—</td>
+      <td>—</td>
+      <td>169049</td>
+      <td>2019</td>
+      <td>180227</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Monaco *</td>
+      <td>Europe</td>
+      <td>—</td>
+      <td>—</td>
+      <td>173688</td>
+      <td>2020</td>
+      <td>173696</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Luxembourg *</td>
+      <td>Europe</td>
+      <td>127673</td>
+      <td>2022</td>
+      <td>135683</td>
+      <td>2021</td>
+      <td>117182</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bermuda *</td>
+      <td>Americas</td>
+      <td>—</td>
+      <td>—</td>
+      <td>110870</td>
+      <td>2021</td>
+      <td>123945</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ireland *</td>
+      <td>Europe</td>
+      <td>102217</td>
+      <td>2022</td>
+      <td>99152</td>
+      <td>2021</td>
+      <td>86251</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>Madagascar *</td>
+      <td>Africa</td>
+      <td>522</td>
+      <td>2022</td>
+      <td>515</td>
+      <td>2021</td>
+      <td>470</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>Central African Republic *</td>
+      <td>Africa</td>
+      <td>496</td>
+      <td>2022</td>
+      <td>512</td>
+      <td>2021</td>
+      <td>481</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>Sierra Leone *</td>
+      <td>Africa</td>
+      <td>494</td>
+      <td>2022</td>
+      <td>516</td>
+      <td>2021</td>
+      <td>475</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>220</th>
+      <td>South Sudan *</td>
+      <td>Africa</td>
+      <td>328</td>
+      <td>2022</td>
+      <td>1120</td>
+      <td>2015</td>
+      <td>1421</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>221</th>
+      <td>Burundi *</td>
+      <td>Africa</td>
+      <td>293</td>
+      <td>2022</td>
+      <td>237</td>
+      <td>2021</td>
+      <td>286</td>
+      <td>2020</td>
+    </tr>
+  </tbody>
+</table>
+<p>222 rows × 8 columns</p>
+</div>
+</div>
+</div>
+<section id="section" class="level4" data-number="8.1.4.1">
+<h4 data-number="8.1.4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">8.1.4.1</span> </h4>
+<p>Subset a DataFrame that select the country, and the United Nations estimates of GDP per capita with the corresponding year.</p>
+<div class="cell" data-execution_count="270">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>gdp_per_capita.loc[:,[<span class="st">'Country/Territory'</span>,<span class="st">'United Nations[6]'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="270">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th colspan="2" halign="left">United Nations[6]</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>Estimate</th>
+      <th>Year</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Liechtenstein *</td>
+      <td>180227</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Monaco *</td>
+      <td>173696</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Luxembourg *</td>
+      <td>117182</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bermuda *</td>
+      <td>123945</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ireland *</td>
+      <td>86251</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>Madagascar *</td>
+      <td>470</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>Central African Republic *</td>
+      <td>481</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>Sierra Leone *</td>
+      <td>475</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>220</th>
+      <td>South Sudan *</td>
+      <td>1421</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>221</th>
+      <td>Burundi *</td>
+      <td>286</td>
+      <td>2020</td>
+    </tr>
+  </tbody>
+</table>
+<p>222 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="level4" data-number="8.1.4.2">
+<h4 data-number="8.1.4.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">8.1.4.2</span> </h4>
+<p>Subset a DataFrame that select only the World Bank and United Nations estimates of GDP per capita without the corresponding year or country.</p>
+<div class="cell" data-execution_count="280">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>gdp_per_capita.loc[:,([<span class="st">'World Bank[5]'</span>,<span class="st">'United Nations[6]'</span>],<span class="st">'Estimate'</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="280">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>World Bank[5]</th>
+      <th>United Nations[6]</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Estimate</th>
+      <th>Estimate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>169049</td>
+      <td>180227</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>173688</td>
+      <td>173696</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>135683</td>
+      <td>117182</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>110870</td>
+      <td>123945</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>99152</td>
+      <td>86251</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>515</td>
+      <td>470</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>512</td>
+      <td>481</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>516</td>
+      <td>475</td>
+    </tr>
+    <tr>
+      <th>220</th>
+      <td>1120</td>
+      <td>1421</td>
+    </tr>
+    <tr>
+      <th>221</th>
+      <td>237</td>
+      <td>286</td>
+    </tr>
+  </tbody>
+</table>
+<p>222 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-2" class="level4" data-number="8.1.4.3">
+<h4 data-number="8.1.4.3" class="anchored" data-anchor-id="section-2"><span class="header-section-number">8.1.4.3</span> </h4>
+<p>Subset a DataFrame that select the country and only the World Bank and United Nations estimates of GDP per capita without the corresponding year or country.</p>
+<div class="cell" data-execution_count="292">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>gdp_per_capita.loc[:,[(<span class="st">'Country/Territory'</span>,<span class="st">'Country/Territory'</span>),(<span class="st">'United Nations[6]'</span>,<span class="st">'Estimate'</span>),(<span class="st">'World Bank[5]'</span>,<span class="st">'Estimate'</span>)]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="292">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>United Nations[6]</th>
+      <th>World Bank[5]</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>Estimate</th>
+      <th>Estimate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Liechtenstein *</td>
+      <td>180227</td>
+      <td>169049</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Monaco *</td>
+      <td>173696</td>
+      <td>173688</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Luxembourg *</td>
+      <td>117182</td>
+      <td>135683</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bermuda *</td>
+      <td>123945</td>
+      <td>110870</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ireland *</td>
+      <td>86251</td>
+      <td>99152</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>Madagascar *</td>
+      <td>470</td>
+      <td>515</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>Central African Republic *</td>
+      <td>481</td>
+      <td>512</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>Sierra Leone *</td>
+      <td>475</td>
+      <td>516</td>
+    </tr>
+    <tr>
+      <th>220</th>
+      <td>South Sudan *</td>
+      <td>1421</td>
+      <td>1120</td>
+    </tr>
+    <tr>
+      <th>221</th>
+      <td>Burundi *</td>
+      <td>286</td>
+      <td>237</td>
+    </tr>
+  </tbody>
+</table>
+<p>222 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<p>Drop all columns consisting of years. Use the <code>level</code> argument of the <code>drop()</code> method.</p>
+<div class="cell" data-execution_count="297">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>gdp_per_capita.drop(columns<span class="op">=</span><span class="st">'Year'</span>,level<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="297">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>UN Region</th>
+      <th>IMF[4]</th>
+      <th>World Bank[5]</th>
+      <th>United Nations[6]</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>UN Region</th>
+      <th>Estimate</th>
+      <th>Estimate</th>
+      <th>Estimate</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Liechtenstein *</td>
+      <td>Europe</td>
+      <td>—</td>
+      <td>169049</td>
+      <td>180227</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Monaco *</td>
+      <td>Europe</td>
+      <td>—</td>
+      <td>173688</td>
+      <td>173696</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Luxembourg *</td>
+      <td>Europe</td>
+      <td>127673</td>
+      <td>135683</td>
+      <td>117182</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bermuda *</td>
+      <td>Americas</td>
+      <td>—</td>
+      <td>110870</td>
+      <td>123945</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ireland *</td>
+      <td>Europe</td>
+      <td>102217</td>
+      <td>99152</td>
+      <td>86251</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>Madagascar *</td>
+      <td>Africa</td>
+      <td>522</td>
+      <td>515</td>
+      <td>470</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>Central African Republic *</td>
+      <td>Africa</td>
+      <td>496</td>
+      <td>512</td>
+      <td>481</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>Sierra Leone *</td>
+      <td>Africa</td>
+      <td>494</td>
+      <td>516</td>
+      <td>475</td>
+    </tr>
+    <tr>
+      <th>220</th>
+      <td>South Sudan *</td>
+      <td>Africa</td>
+      <td>328</td>
+      <td>1120</td>
+      <td>1421</td>
+    </tr>
+    <tr>
+      <th>221</th>
+      <td>Burundi *</td>
+      <td>Africa</td>
+      <td>293</td>
+      <td>237</td>
+      <td>286</td>
+    </tr>
+  </tbody>
+</table>
+<p>222 rows × 5 columns</p>
+</div>
+</div>
+</div>
+<p>Drop the outer level of the column labels. Use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.droplevel.html"><code>droplevel()</code></a> method.</p>
+<div class="cell" data-execution_count="304">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>gdp_per_capita2 <span class="op">=</span> gdp_per_capita.columns.droplevel(<span class="dv">1</span>)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>gdp_per_capita2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="304">
+<pre><code>Index(['Country/Territory', 'UN Region', 'IMF[4]', 'IMF[4]', 'World Bank[5]',
+       'World Bank[5]', 'United Nations[6]', 'United Nations[6]'],
+      dtype='object')</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="310">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>gdp_per_capita.droplevel(<span class="dv">1</span>,axis<span class="op">=</span><span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="310">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Country/Territory</th>
+      <th>UN Region</th>
+      <th>IMF[4]</th>
+      <th>IMF[4]</th>
+      <th>World Bank[5]</th>
+      <th>World Bank[5]</th>
+      <th>United Nations[6]</th>
+      <th>United Nations[6]</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Liechtenstein *</td>
+      <td>Europe</td>
+      <td>—</td>
+      <td>—</td>
+      <td>169049</td>
+      <td>2019</td>
+      <td>180227</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Monaco *</td>
+      <td>Europe</td>
+      <td>—</td>
+      <td>—</td>
+      <td>173688</td>
+      <td>2020</td>
+      <td>173696</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Luxembourg *</td>
+      <td>Europe</td>
+      <td>127673</td>
+      <td>2022</td>
+      <td>135683</td>
+      <td>2021</td>
+      <td>117182</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Bermuda *</td>
+      <td>Americas</td>
+      <td>—</td>
+      <td>—</td>
+      <td>110870</td>
+      <td>2021</td>
+      <td>123945</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Ireland *</td>
+      <td>Europe</td>
+      <td>102217</td>
+      <td>2022</td>
+      <td>99152</td>
+      <td>2021</td>
+      <td>86251</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>217</th>
+      <td>Madagascar *</td>
+      <td>Africa</td>
+      <td>522</td>
+      <td>2022</td>
+      <td>515</td>
+      <td>2021</td>
+      <td>470</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>218</th>
+      <td>Central African Republic *</td>
+      <td>Africa</td>
+      <td>496</td>
+      <td>2022</td>
+      <td>512</td>
+      <td>2021</td>
+      <td>481</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>219</th>
+      <td>Sierra Leone *</td>
+      <td>Africa</td>
+      <td>494</td>
+      <td>2022</td>
+      <td>516</td>
+      <td>2021</td>
+      <td>475</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>220</th>
+      <td>South Sudan *</td>
+      <td>Africa</td>
+      <td>328</td>
+      <td>2022</td>
+      <td>1120</td>
+      <td>2015</td>
+      <td>1421</td>
+      <td>2020</td>
+    </tr>
+    <tr>
+      <th>221</th>
+      <td>Burundi *</td>
+      <td>Africa</td>
+      <td>293</td>
+      <td>2022</td>
+      <td>237</td>
+      <td>2021</td>
+      <td>286</td>
+      <td>2020</td>
+    </tr>
+  </tbody>
+</table>
+<p>222 rows × 8 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="practice-exercise-2" class="level3" data-number="8.1.5">
+<h3 data-number="8.1.5" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">8.1.5</span> Practice exercise 2</h3>
 <p>Let us try to find the areas where NU students lack in diversity. Read <em>survey_data_clean.csv</em>. Use hierarchical indexing to classify the columns as follows:</p>
 <p>Classify the following variables as <em>lifestyle</em>:</p>
 <div class="cell" data-execution_count="213">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>lifestyle <span class="op">=</span> [<span class="st">'fav_alcohol'</span>, <span class="st">'parties_per_month'</span>, <span class="st">'smoke'</span>, <span class="st">'weed'</span>,<span class="st">'streaming_platforms'</span>, <span class="st">'minutes_ex_per_week'</span>,</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'sleep_hours_per_day'</span>, <span class="st">'internet_hours_per_day'</span>, <span class="st">'procrastinator'</span>, <span class="st">'num_clubs'</span>,<span class="st">'student_athlete'</span>,<span class="st">'social_media'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>lifestyle <span class="op">=</span> [<span class="st">'fav_alcohol'</span>, <span class="st">'parties_per_month'</span>, <span class="st">'smoke'</span>, <span class="st">'weed'</span>,<span class="st">'streaming_platforms'</span>, <span class="st">'minutes_ex_per_week'</span>,</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'sleep_hours_per_day'</span>, <span class="st">'internet_hours_per_day'</span>, <span class="st">'procrastinator'</span>, <span class="st">'num_clubs'</span>,<span class="st">'student_athlete'</span>,<span class="st">'social_media'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Classify the following variables as <em>personality</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>personality <span class="op">=</span> [<span class="st">'introvert_extrovert'</span>, <span class="st">'left_right_brained'</span>, <span class="st">'personality_type'</span>, </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'num_insta_followers'</span>, <span class="st">'fav_sport'</span>,<span class="st">'learning_style'</span>,<span class="st">'dominant_hand'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>personality <span class="op">=</span> [<span class="st">'introvert_extrovert'</span>, <span class="st">'left_right_brained'</span>, <span class="st">'personality_type'</span>, </span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'num_insta_followers'</span>, <span class="st">'fav_sport'</span>,<span class="st">'learning_style'</span>,<span class="st">'dominant_hand'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Classify the following variables as <em>opinion</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>opinion <span class="op">=</span> [<span class="st">'love_first_sight'</span>, <span class="st">'expected_marriage_age'</span>,  <span class="st">'expected_starting_salary'</span>, <span class="st">'how_happy'</span>, </span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'fav_number'</span>, <span class="st">'fav_letter'</span>, <span class="st">'fav_season'</span>,   <span class="st">'political_affliation'</span>, <span class="st">'cant_change_math_ability'</span>,</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'can_change_math_ability'</span>, <span class="st">'math_is_genetic'</span>, <span class="st">'much_effort_is_lack_of_talent'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>opinion <span class="op">=</span> [<span class="st">'love_first_sight'</span>, <span class="st">'expected_marriage_age'</span>,  <span class="st">'expected_starting_salary'</span>, <span class="st">'how_happy'</span>, </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'fav_number'</span>, <span class="st">'fav_letter'</span>, <span class="st">'fav_season'</span>,   <span class="st">'political_affliation'</span>, <span class="st">'cant_change_math_ability'</span>,</span>
+<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'can_change_math_ability'</span>, <span class="st">'math_is_genetic'</span>, <span class="st">'much_effort_is_lack_of_talent'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Classify the following variables as <em>academic information</em>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>academic_info <span class="op">=</span> [<span class="st">'major'</span>, <span class="st">'num_majors_minors'</span>,</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'high_school_GPA'</span>, <span class="st">'NU_GPA'</span>, <span class="st">'school_year'</span>,<span class="st">'AP_stats'</span>, <span class="st">'used_python_before'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>academic_info <span class="op">=</span> [<span class="st">'major'</span>, <span class="st">'num_majors_minors'</span>,</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'high_school_GPA'</span>, <span class="st">'NU_GPA'</span>, <span class="st">'school_year'</span>,<span class="st">'AP_stats'</span>, <span class="st">'used_python_before'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Classify the following variables as <em>demographics</em>:</p>
 <div class="cell" data-execution_count="214">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>demographics <span class="op">=</span> [ <span class="st">'only_child'</span>,<span class="st">'birth_month'</span>, </span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'living_location_on_campus'</span>, <span class="st">'age'</span>, <span class="st">'height'</span>, <span class="st">'height_father'</span>,</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'height_mother'</span>,  <span class="st">'childhood_in_US'</span>, <span class="st">'gender'</span>, <span class="st">'region_of_residence'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>demographics <span class="op">=</span> [ <span class="st">'only_child'</span>,<span class="st">'birth_month'</span>, </span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'living_location_on_campus'</span>, <span class="st">'age'</span>, <span class="st">'height'</span>, <span class="st">'height_father'</span>,</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'height_mother'</span>,  <span class="st">'childhood_in_US'</span>, <span class="st">'gender'</span>, <span class="st">'region_of_residence'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Write a function that finds the number of variables having outliers in a dataset. Apply the function on each of the 5 categories of variables in the dataset. Our hypothesis is that the category that has the maximum number of variables with outliers has the least amount of diversity.</p>
 </section>
-<section id="reshaping-data" class="level3" data-number="8.1.5">
-<h3 data-number="8.1.5" class="anchored" data-anchor-id="reshaping-data"><span class="header-section-number">8.1.5</span> Reshaping data</h3>
+<section id="reshaping-data" class="level3" data-number="8.1.6">
+<h3 data-number="8.1.6" class="anchored" data-anchor-id="reshaping-data"><span class="header-section-number">8.1.6</span> Reshaping data</h3>
 <p>Apart from ease in subsetting data, hierarchical indexing also plays a role in reshaping data.</p>
-<section id="unstack-pandas-series-method" class="level4" data-number="8.1.5.1">
-<h4 data-number="8.1.5.1" class="anchored" data-anchor-id="unstack-pandas-series-method"><span class="header-section-number">8.1.5.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unstack.html"><code>unstack()</code></a> (Pandas Series method)</h4>
+<section id="unstack-pandas-series-method" class="level4" data-number="8.1.6.1">
+<h4 data-number="8.1.6.1" class="anchored" data-anchor-id="unstack-pandas-series-method"><span class="header-section-number">8.1.6.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unstack.html"><code>unstack()</code></a> (Pandas Series method)</h4>
 <p>The Pandas Series method <code>unstack()</code> pivots the desired level of row indices to columns, thereby creating a DataFrame. By default, the inner-most level of the row labels is pivoed.</p>
 <div class="cell" data-execution_count="52">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner-most Series row index to column labels</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack()</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner-most Series row index to column labels</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack()</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="52">
 
 <div>
@@ -790,9 +1602,9 @@ dtype: object</code></pre>
 </div>
 <p>We can pivot the outer level of the row labels by specifying it in the <code>level</code> argument:</p>
 <div class="cell" data-execution_count="192">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the outer row indices to column labels</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack(level<span class="op">=</span><span class="dv">0</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the outer row indices to column labels</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack(level<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>series_example_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="192">
 
 <div>
@@ -843,12 +1655,12 @@ dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="unstack-pandas-dataframe-method" class="level4" data-number="8.1.5.2">
-<h4 data-number="8.1.5.2" class="anchored" data-anchor-id="unstack-pandas-dataframe-method"><span class="header-section-number">8.1.5.2</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html"><code>unstack()</code></a> (Pandas DataFrame method)</h4>
+<section id="unstack-pandas-dataframe-method" class="level4" data-number="8.1.6.2">
+<h4 data-number="8.1.6.2" class="anchored" data-anchor-id="unstack-pandas-dataframe-method"><span class="header-section-number">8.1.6.2</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html"><code>unstack()</code></a> (Pandas DataFrame method)</h4>
 <p>The Pandas DataFrame method <code>unstack()</code> pivots the specifid level of row indices to the new innemost level of column labels. By-default, the inner-most level of the row labels is pivoted.</p>
 <div class="cell" data-execution_count="181">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner level of row labels to the inner-most level of column labels</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>df_example.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner level of row labels to the inner-most level of column labels</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>df_example.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="181">
 
 <div>
@@ -952,8 +1764,8 @@ dtype: object</code></pre>
 </div>
 <p>As with Series, we can pivot the outer level of the row labels by specifying it in the <code>level</code> argument:</p>
 <div class="cell" data-execution_count="188">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the outer level (level = 0) of row labels to the inner-most level of column labels</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>df_example.unstack(level<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the outer level (level = 0) of row labels to the inner-most level of column labels</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>df_example.unstack(level<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="188">
 
 <div>
@@ -1046,13 +1858,13 @@ dtype: object</code></pre>
 </div>
 </div>
 </section>
-<section id="stack" class="level4" data-number="8.1.5.3">
-<h4 data-number="8.1.5.3" class="anchored" data-anchor-id="stack"><span class="header-section-number">8.1.5.3</span> <code>stack()</code></h4>
+<section id="stack" class="level4" data-number="8.1.6.3">
+<h4 data-number="8.1.6.3" class="anchored" data-anchor-id="stack"><span class="header-section-number">8.1.6.3</span> <code>stack()</code></h4>
 <p>The inverse of <code>unstack()</code> is the <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.stack.html"><code>stack()</code></a> method, which creates the inner-most level of row indices by pivoting the column labels of the prescribed level.</p>
 <p>Note that if the column labels have only one level, so we don’t need to specify a level.</p>
 <div class="cell" data-execution_count="66">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the columns of a DataFrame</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the columns of a DataFrame</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="66">
 <pre><code>English  1       these
          2         are
@@ -1073,8 +1885,8 @@ dtype: object</code></pre>
 </div>
 <p>However, if the columns have multiple levels, we can specify the level to stack as the inner-most row level. By default, inner-most column level is stacked.</p>
 <div class="cell" data-execution_count="195">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the inner-most column labels inner-most row indices</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>df_example.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the inner-most column labels inner-most row indices</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>df_example.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="195">
 
 <div>
@@ -1189,8 +2001,8 @@ dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="196">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the outer column labels inner-most row indices</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>df_example.stack(level<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the outer column labels inner-most row indices</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>df_example.stack(level<span class="op">=</span><span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="196">
 
 <div>
