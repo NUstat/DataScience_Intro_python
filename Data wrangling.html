@@ -381,7 +381,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Data wrangling refers to combining, transforming, and re-arranging data to make it suitable for further analysis. We’ll use Pandas for all data wrangling operations.</p>
-<div class="cell" data-execution_count="372">
+<div class="cell" data-execution_count="374">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -392,12 +392,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="hierarchical-indexing-in-pandas-series" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="hierarchical-indexing-in-pandas-series"><span class="header-section-number">8.1.1</span> Hierarchical indexing in Pandas Series</h3>
 <p>Let use define Pandas Series as we defined in Chapter 5:</p>
-<div class="cell" data-execution_count="43">
+<div class="cell" data-execution_count="375">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a Pandas Series</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>series_example <span class="op">=</span> pd.Series([<span class="st">'these'</span>,<span class="st">'are'</span>,<span class="st">'english'</span>,<span class="st">'words'</span>,<span class="st">'estas'</span>,<span class="st">'son'</span>,<span class="st">'palabras'</span>,<span class="st">'en'</span>,<span class="st">'español'</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">'ce'</span>,<span class="st">'sont'</span>,<span class="st">'des'</span>,<span class="st">'françai'</span>,<span class="st">'mots'</span>])</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>series_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="43">
+<div class="cell-output cell-output-display" data-execution_count="375">
 <pre><code>0        these
 1          are
 2      english
@@ -416,21 +416,21 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Let us use the attribute <code>nlevels</code> to find the number of levels of the row indices of this Series:</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="376">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>series_example.index.nlevels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="5">
+<div class="cell-output cell-output-display" data-execution_count="376">
 <pre><code>1</code></pre>
 </div>
 </div>
 <p>The Series <code>series_example</code> has only one level of row indices.</p>
 <p>Let us introduce another level of row indices while defining the Series:</p>
-<div class="cell" data-execution_count="45">
+<div class="cell" data-execution_count="377">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a Pandas Series with multiple levels of row indices</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>series_example <span class="op">=</span> pd.Series([<span class="st">'these'</span>,<span class="st">'are'</span>,<span class="st">'english'</span>,<span class="st">'words'</span>,<span class="st">'estas'</span>,<span class="st">'son'</span>,<span class="st">'palabras'</span>,<span class="st">'en'</span>,<span class="st">'español'</span>,</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                           <span class="st">'ce'</span>,<span class="st">'sont'</span>,<span class="st">'des'</span>,<span class="st">'françai'</span>,<span class="st">'mots'</span>], </span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                          index<span class="op">=</span>[[<span class="st">'English'</span>]<span class="op">*</span><span class="dv">4</span><span class="op">+</span>[<span class="st">'Spanish'</span>]<span class="op">*</span><span class="dv">5</span><span class="op">+</span>[<span class="st">'French'</span>]<span class="op">*</span><span class="dv">5</span>,<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">5</span>))<span class="op">+</span><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">6</span>))<span class="op">*</span><span class="dv">2</span>])</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>series_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="45">
+<div class="cell-output cell-output-display" data-execution_count="377">
 <pre><code>English  1       these
          2         are
          3     english
@@ -449,9 +449,9 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>In the above Series, there are two levels of row indices:</p>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="378">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>series_example.index.nlevels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="378">
 <pre><code>2</code></pre>
 </div>
 </div>
@@ -459,14 +459,14 @@ dtype: object</code></pre>
 <section id="hierarchical-indexing-in-pandas-dataframe" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="hierarchical-indexing-in-pandas-dataframe"><span class="header-section-number">8.1.2</span> Hierarchical indexing in Pandas DataFrame</h3>
 <p>In a Pandas DataFrame, both the row and the columns can have hierarchical indexing. For example, consider the DataFrame below:</p>
-<div class="cell" data-execution_count="134">
+<div class="cell" data-execution_count="379">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>np.array([[<span class="dv">771517</span>,<span class="dv">2697000</span>,<span class="dv">815201</span>,<span class="dv">3849000</span>],[<span class="fl">4.2</span>,<span class="fl">5.6</span>,<span class="fl">2.8</span>,<span class="fl">4.6</span>],</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>             [<span class="fl">7.8</span>,<span class="fl">234.5</span>,<span class="fl">46.9</span>,<span class="dv">502</span>],[<span class="dv">6749</span>, <span class="dv">597</span>, <span class="dv">52</span>, <span class="dv">305</span>]])</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>df_example <span class="op">=</span> pd.DataFrame(data,index <span class="op">=</span> [[<span class="st">'Demographics'</span>]<span class="op">*</span><span class="dv">2</span><span class="op">+</span>[<span class="st">'Geography'</span>]<span class="op">*</span><span class="dv">2</span>,</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                                      [<span class="st">'Population'</span>,<span class="st">'Unemployement (%)'</span>,<span class="st">'Area (mile-sq)'</span>,<span class="st">'Elevation (feet)'</span>]],</span>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                    columns <span class="op">=</span> [[<span class="st">'Illinois'</span>]<span class="op">*</span><span class="dv">2</span><span class="op">+</span>[<span class="st">'California'</span>]<span class="op">*</span><span class="dv">2</span>,[<span class="st">'Evanston'</span>,<span class="st">'Chicago'</span>,<span class="st">'San Francisco'</span>,<span class="st">'Los Angeles'</span>]])</span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>df_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="134">
+<div class="cell-output cell-output-display" data-execution_count="379">
 
 <div>
 
@@ -524,22 +524,22 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>In the above DataFrame, both the rows and columns have 2 levels of indexing. The number of levels of column indices can be found using the attribute <code>nlevels</code>:</p>
-<div class="cell" data-execution_count="135">
+<div class="cell" data-execution_count="380">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>df_example.columns.nlevels</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="135">
+<div class="cell-output cell-output-display" data-execution_count="380">
 <pre><code>2</code></pre>
 </div>
 </div>
 <p>The <code>columns</code> attribute will now have a <em>MultiIndex</em> datatype in contrast to the <em>Index</em> datatype with single level of indexing. The same holds for row indices.</p>
-<div class="cell" data-execution_count="141">
+<div class="cell" data-execution_count="381">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(df_example.columns)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="141">
+<div class="cell-output cell-output-display" data-execution_count="381">
 <pre><code>pandas.core.indexes.multi.MultiIndex</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="140">
+<div class="cell" data-execution_count="382">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df_example.columns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="140">
+<div class="cell-output cell-output-display" data-execution_count="382">
 <pre><code>MultiIndex([(  'Illinois',      'Evanston'),
             (  'Illinois',       'Chicago'),
             ('California', 'San Francisco'),
@@ -548,7 +548,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>The hierarchical levels can have names. Let us assign names to the each level of the row and column labels:</p>
-<div class="cell" data-execution_count="173">
+<div class="cell" data-execution_count="383">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Naming the row indices levels</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_example.index.names<span class="op">=</span>[<span class="st">'Information type'</span>, <span class="st">'Statistic'</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -557,7 +557,7 @@ dtype: object</code></pre>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Viewing the DataFrame</span></span>
 <span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>df_example</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="173">
+<div class="cell-output cell-output-display" data-execution_count="383">
 
 <div>
 
@@ -626,17 +626,17 @@ dtype: object</code></pre>
 <section id="get_level_values" class="level4" data-number="8.1.2.1">
 <h4 data-number="8.1.2.1" class="anchored" data-anchor-id="get_level_values"><span class="header-section-number">8.1.2.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.get_level_values.html"><code>get_level_values()</code></a></h4>
 <p>The names of the column levels can be obained using the function <code>get_level_values()</code>. The outer-most level corresponds to the <em>level = 0</em>, and it increses as we go to the inner levels.</p>
-<div class="cell" data-execution_count="217">
+<div class="cell" data-execution_count="384">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Column levels at level 0 (the outer level)</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_example.columns.get_level_values(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="217">
+<div class="cell-output cell-output-display" data-execution_count="384">
 <pre><code>Index(['Illinois', 'Illinois', 'California', 'California'], dtype='object', name='State')</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="218">
+<div class="cell" data-execution_count="385">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Column levels at level 1 (the inner level)</span></span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>df_example.columns.get_level_values(<span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="218">
+<div class="cell-output cell-output-display" data-execution_count="385">
 <pre><code>Index(['Evanston', 'Chicago', 'San Francisco', 'Los Angeles'], dtype='object', name='City')</code></pre>
 </div>
 </div>
@@ -646,10 +646,10 @@ dtype: object</code></pre>
 <h3 data-number="8.1.3" class="anchored" data-anchor-id="subsetting-data"><span class="header-section-number">8.1.3</span> Subsetting data</h3>
 <p>We can use the indices at the outer levels to concisely subset a Series / DataFrame.</p>
 <p>The first four observations of the Series <code>series_example</code> correspond to the outer row index <code>English</code>, while the last 5 rows correspond to the outer row index <code>Spanish</code>. Let us subset all the observation corresponding to the outer row index <code>English</code>:</p>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="386">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by row-index</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>series_example[<span class="st">'English'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="47">
+<div class="cell-output cell-output-display" data-execution_count="386">
 <pre><code>1      these
 2        are
 3    english
@@ -658,10 +658,10 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Just like in the case of single level indices, if we wish to subset corresponding to multiple outer-level indices, we put the indices within an additional box bracket <code>[]</code>. For example, let us subset all the observations corresponding to the row-indices <code>English</code> and <code>French</code>:</p>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="387">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by multiple row-indices</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>series_example[[<span class="st">'English'</span>,<span class="st">'French'</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="387">
 <pre><code>English  1      these
          2        are
          3    english
@@ -675,20 +675,20 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>We can also subset data using the inner row index. However, we will need to put a <code>:</code> sign to indicate that the row label at the inner level is being used.</p>
-<div class="cell" data-execution_count="161">
+<div class="cell" data-execution_count="392">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by row-index</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>series_example[:,<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="161">
+<div class="cell-output cell-output-display" data-execution_count="392">
 <pre><code>English     are
 Spanish     son
 French     sont
 dtype: object</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="50">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by mutiple row-indices</span></span>
+<div class="cell" data-execution_count="404">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by multiple row-indices</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>series_example.loc[:,[<span class="dv">1</span>,<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
+<div class="cell-output cell-output-display" data-execution_count="404">
 <pre><code>English  1    these
 Spanish  1    estas
 French   1       ce
