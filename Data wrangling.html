@@ -391,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Until now we have seen only a single level of indexing in the rows and columns of a Pandas DataFrame. Hierarchical indexing refers to having multiple index levels on an axis (row / column) of a Pandas DataFrame. It helps us to work with a higher dimensional data in a lower dimensional form.</p>
 <section id="hierarchical-indexing-in-pandas-series" class="level3" data-number="8.1.1">
 <h3 data-number="8.1.1" class="anchored" data-anchor-id="hierarchical-indexing-in-pandas-series"><span class="header-section-number">8.1.1</span> Hierarchical indexing in Pandas Series</h3>
-<p>Let use define Pandas Series as we defined in Chapter 5:</p>
+<p>Let us define Pandas Series as we defined in Chapter 5:</p>
 <div class="cell" data-execution_count="375">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a Pandas Series</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>series_example <span class="op">=</span> pd.Series([<span class="st">'these'</span>,<span class="st">'are'</span>,<span class="st">'english'</span>,<span class="st">'words'</span>,<span class="st">'estas'</span>,<span class="st">'son'</span>,<span class="st">'palabras'</span>,<span class="st">'en'</span>,<span class="st">'español'</span>,</span>
@@ -458,7 +458,7 @@ dtype: object</code></pre>
 </section>
 <section id="hierarchical-indexing-in-pandas-dataframe" class="level3" data-number="8.1.2">
 <h3 data-number="8.1.2" class="anchored" data-anchor-id="hierarchical-indexing-in-pandas-dataframe"><span class="header-section-number">8.1.2</span> Hierarchical indexing in Pandas DataFrame</h3>
-<p>In a Pandas DataFrame, both the row and the columns can have hierarchical indexing. For example, consider the DataFrame below:</p>
+<p>In a Pandas DataFrame, both the rows and the columns can have hierarchical indexing. For example, consider the DataFrame below:</p>
 <div class="cell" data-execution_count="416">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span>np.array([[<span class="dv">771517</span>,<span class="dv">2697000</span>,<span class="dv">815201</span>,<span class="dv">3849000</span>],[<span class="fl">4.2</span>,<span class="fl">5.6</span>,<span class="fl">2.8</span>,<span class="fl">4.6</span>],</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>             [<span class="fl">7.8</span>,<span class="fl">234.5</span>,<span class="fl">46.9</span>,<span class="dv">502</span>],[<span class="dv">6749</span>, <span class="dv">597</span>, <span class="dv">52</span>, <span class="dv">305</span>]])</span>
@@ -625,7 +625,7 @@ dtype: object</code></pre>
 <p>Observe that the names of the row and column labels appear when we view the DataFrame.</p>
 <section id="get_level_values" class="level4" data-number="8.1.2.1">
 <h4 data-number="8.1.2.1" class="anchored" data-anchor-id="get_level_values"><span class="header-section-number">8.1.2.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Index.get_level_values.html"><code>get_level_values()</code></a></h4>
-<p>The names of the column levels can be obained using the function <code>get_level_values()</code>. The outer-most level corresponds to the <em>level = 0</em>, and it increses as we go to the inner levels.</p>
+<p>The names of the column levels can be obtained using the function <code>get_level_values()</code>. The outer-most level corresponds to the <em>level = 0</em>, and it increases as we go to the inner levels.</p>
 <div class="cell" data-execution_count="384">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Column levels at level 0 (the outer level)</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>df_example.columns.get_level_values(<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -645,7 +645,7 @@ dtype: object</code></pre>
 <section id="subsetting-data" class="level3" data-number="8.1.3">
 <h3 data-number="8.1.3" class="anchored" data-anchor-id="subsetting-data"><span class="header-section-number">8.1.3</span> Subsetting data</h3>
 <p>We can use the indices at the outer levels to concisely subset a Series / DataFrame.</p>
-<p>The first four observations of the Series <code>series_example</code> correspond to the outer row index <code>English</code>, while the last 5 rows correspond to the outer row index <code>Spanish</code>. Let us subset all the observation corresponding to the outer row index <code>English</code>:</p>
+<p>The first four observations of the Series <code>series_example</code> correspond to the outer row index <code>English</code>, while the last 5 rows correspond to the outer row index <code>Spanish</code>. Let us subset all the observations corresponding to the outer row index <code>English</code>:</p>
 <div class="cell" data-execution_count="386">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Subsetting data by row-index</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>series_example[<span class="st">'English'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -842,15 +842,15 @@ Name: (Illinois, Evanston), dtype: float64</code></pre>
 </section>
 <section id="section-1" class="level4" data-number="8.1.4.2">
 <h4 data-number="8.1.4.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">8.1.4.2</span> </h4>
-<p>Subset a DataFrame that select the country, and the United Nations estimates of GDP per capita with the corresponding year.</p>
+<p>Subset a DataFrame that selects the country, and the United Nations’ estimates of GDP per capita with the corresponding year.</p>
 </section>
 <section id="section-2" class="level4" data-number="8.1.4.3">
 <h4 data-number="8.1.4.3" class="anchored" data-anchor-id="section-2"><span class="header-section-number">8.1.4.3</span> </h4>
-<p>Subset a DataFrame that select only the World Bank and United Nations estimates of GDP per capita without the corresponding year or country.</p>
+<p>Subset a DataFrame that selects only the World Bank and United Nations’ estimates of GDP per capita without the corresponding year or country.</p>
 </section>
 <section id="section-3" class="level4" data-number="8.1.4.4">
 <h4 data-number="8.1.4.4" class="anchored" data-anchor-id="section-3"><span class="header-section-number">8.1.4.4</span> </h4>
-<p>Subset a DataFrame that select the country and only the World Bank and United Nations estimates of GDP per capita without the corresponding year or country.</p>
+<p>Subset a DataFrame that selects the country and only the World Bank and United Nations’ estimates of GDP per capita without the corresponding year or country.</p>
 </section>
 <section id="section-4" class="level4" data-number="8.1.4.5">
 <h4 data-number="8.1.4.5" class="anchored" data-anchor-id="section-4"><span class="header-section-number">8.1.4.5</span> </h4>
@@ -1053,14 +1053,14 @@ Name: (Illinois, Evanston), dtype: float64</code></pre>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>       <span class="st">'living_location_on_campus'</span>, <span class="st">'age'</span>, <span class="st">'height'</span>, <span class="st">'height_father'</span>,</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>       <span class="st">'height_mother'</span>,  <span class="st">'childhood_in_US'</span>, <span class="st">'gender'</span>, <span class="st">'region_of_residence'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Write a function that finds the number of variables having outliers in a dataset. Apply the function on each of the 5 categories of variables in the dataset. Our hypothesis is that the category that has the maximum number of variables with outliers has the least amount of diversity.</p>
+<p>Write a function that finds the number of variables having outliers in a dataset. Apply the function to each of the 5 categories of variables in the dataset. Our hypothesis is that the category that has the maximum number of variables with outliers has the least amount of diversity.</p>
 </section>
 <section id="reshaping-data" class="level3" data-number="8.1.7">
 <h3 data-number="8.1.7" class="anchored" data-anchor-id="reshaping-data"><span class="header-section-number">8.1.7</span> Reshaping data</h3>
 <p>Apart from ease in subsetting data, hierarchical indexing also plays a role in reshaping data.</p>
 <section id="unstack-pandas-series-method" class="level4" data-number="8.1.7.1">
 <h4 data-number="8.1.7.1" class="anchored" data-anchor-id="unstack-pandas-series-method"><span class="header-section-number">8.1.7.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.unstack.html"><code>unstack()</code></a> (Pandas Series method)</h4>
-<p>The Pandas Series method <code>unstack()</code> pivots the desired level of row indices to columns, thereby creating a DataFrame. By default, the inner-most level of the row labels is pivoed.</p>
+<p>The Pandas Series method <code>unstack()</code> pivots the desired level of row indices to columns, thereby creating a DataFrame. By default, the inner-most level of the row labels is pivoted.</p>
 <div class="cell" data-execution_count="52">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner-most Series row index to column labels</span></span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>series_example_unstack <span class="op">=</span> series_example.unstack()</span>
@@ -1167,7 +1167,7 @@ Name: (Illinois, Evanston), dtype: float64</code></pre>
 </section>
 <section id="unstack-pandas-dataframe-method" class="level4" data-number="8.1.7.2">
 <h4 data-number="8.1.7.2" class="anchored" data-anchor-id="unstack-pandas-dataframe-method"><span class="header-section-number">8.1.7.2</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.unstack.html"><code>unstack()</code></a> (Pandas DataFrame method)</h4>
-<p>The Pandas DataFrame method <code>unstack()</code> pivots the specifid level of row indices to the new innemost level of column labels. By-default, the inner-most level of the row labels is pivoted.</p>
+<p>The Pandas DataFrame method <code>unstack()</code> pivots the specified level of row indices to the new inner-most level of column labels. By default, the inner-most level of the row labels is pivoted.</p>
 <div class="cell" data-execution_count="181">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Pivoting the inner level of row labels to the inner-most level of column labels</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>df_example.unstack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1393,7 +1393,7 @@ Spanish  1       estas
 dtype: object</code></pre>
 </div>
 </div>
-<p>However, if the columns have multiple levels, we can specify the level to stack as the inner-most row level. By default, inner-most column level is stacked.</p>
+<p>However, if the columns have multiple levels, we can specify the level to stack as the inner-most row level. By default, the inner-most column level is stacked.</p>
 <div class="cell" data-execution_count="195">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the inner-most column labels inner-most row indices</span></span>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>df_example.stack()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
