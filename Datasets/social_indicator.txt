@@ -1,0 +1,156 @@
+Index	economicActivityFemale	country	region	totalfertilityrate	lifeMale	infantMortality	gdpPerCapita	economicActivityMale	illiteracyMale	illiteracyFemale	lifeFemale	geographic_location	contraception
+1	1.9	Yemen	other	7.6	57.4	80	1924	80.6	32.406	69.552	58.4	Western Asia	0.0
+9	15.8	Oman	other	7.2	68.9	25	30404	84.1	3.01	7.31	73.3	Western Asia	53.0
+124	58.4	Ethiopia	other	7.0	48.4	107	2973	84.7	54.5	74.7	51.6	Eastern Africa	79.0
+3	7.2	Afghanistan	other	6.9	45.0	154	2474	87.5	52.8	85.0	46.0	Southern Asia	
+11	20.2	Maldives	other	6.8	65.7	49	23343	77.3	6.7	7.0	63.3	Southern Asia	53.0
+146	75.3	Malawi	other	6.69	40.3	142	1005	80.6	28.1	58.2	41.1	Eastern Africa	53.0
+68	44.9	Guinea	other	6.61	46.0	124	2731	79.9	50.1	78.1	47.0	Western Africa	77.0
+151	79.4	Burkina Faso	other	6.57	45.1	97	2334	88.9	70.5	90.8	47.0	Western Africa	79.0
+155	90.6	Burundi	other	6.28	45.5	114	772	90.1	50.7	77.5	48.8	Eastern Africa	79.0
+94	50.8	Togo	other	6.08	48.8	86	2261	77.5	33.0	63.0	51.5	Western Africa	0.0
+148	76.0	Sierra Leone	other	6.06	36.0	169	1771	80.0	54.6	81.8	39.1	Western Africa	17.0
+154	86.5	Mozambique	other	6.06	45.5	110	1293	88.2	42.3	76.7	48.4	Eastern Africa	53.0
+42	37.2	Nigeria	other	5.97	50.8	77	5280	78.3	32.7	52.7	54.0	Western Africa	53.0
+2	6.9	Saudi Arabia	other	5.9	69.9	23	48099	78.8	28.5	49.8	73.4	Western Asia	17.0
+88	49.2	Congo	other	5.87	48.6	90	4169	68.4	16.9	32.8	53.4	Middle Africa	79.0
+122	57.8	Benin	other	5.83	52.4	84	3573	90.0	51.3	74.2	57.2	Western Africa	79.0
+16	24.3	Senegal	other	5.62	50.3	62	3625	83.1	57.0	76.8	52.3	Western Africa	17.0
+28	33.0	Micronesia	other	5.6	64.4	20	3372	65.0	15.378	22.176	68.8	Oceania	53.0
+18	25.3	Chad	other	5.51	46.3	115	1621	91.2	37.9	65.3	49.3	Middle Africa	79.0
+59	42.4	Equatorial Guinea	other	5.51	48.4	107	18236	89.1	10.4	31.9	51.6	Middle Africa	79.0
+6	10.3	Iraq	other	5.25	60.9	95	10038	74.0	29.3	55.0	63.9	Western Asia	77.0
+66	44.8	Gambia	other	5.2	45.4	122	2384	70.2	47.2	75.1	48.7	Western Africa	77.0
+7	12.7	Jordan	other	5.13	67.7	30	10590	72.5	6.6	20.6	71.8	Western Asia	77.0
+57	42.0	Ivory Coast	other	5.1	50.0	86	5642	88.7	50.1	70.0	52.2	Western Africa	77.0
+8	12.7	Pakistan	other	5.02	62.9	74	5224	82.3	50.0	75.6	65.1	Southern Asia	53.0
+153	85.0	Solomon Islands	other	4.98	69.6	23	2483	87.0	16.3	31.0	73.9	Oceania	0.0
+83	48.7	Nepal	other	4.95	57.6	82	4199	79.8	59.1	86.0	57.1	Southern Asia	53.0
+142	68.8	Central African Republic	other	4.95	46.4	96	1013	87.0	31.5	47.6	51.0	Middle Africa	79.0
+10	18.4	Guatemala	west	4.9	64.7	40	8648	84.0	37.5	51.4	69.8	North America	77.0
+84	49.0	Namibia	other	4.9	54.7	60	9542	68.6	17.688	25.2	56.6	Southern Africa	53.0
+5	9.9	Iran	other	4.77	68.5	39	13513	79.8	22.3	40.7	70.0	Southern Asia	77.0
+73	46.7	Zimbabwe	other	4.68	47.6	68	2698	77.7	9.6	20.1	49.4	Eastern Africa	0.0
+19	25.9	Sudan	other	4.61	53.6	71	4082	74.6	42.3	65.4	56.4	Northern Africa	0.0
+86	49.0	Haiti	west	4.6	52.8	82	2962	80.3	52.0	57.8	56.0	North America	77.0
+152	84.7	Cambodia	other	4.5	52.6	102	4930	77.3	19.5	13.5	55.4	South-eastern Asia	79.0
+25	30.0	Marshall Islands	other	4.49	59.1	26	3767	77.0	5.94	9.72	63.0	Oceania	53.0
+23	27.7	Swaziland	other	4.46	57.7	65	3415	64.3	22.0	24.4	62.3	Southern Africa	0.0
+55	41.7	Botswana	other	4.45	48.9	56	18113	75.4	19.5	40.1	51.7	Southern Africa	79.0
+115	56.3	Bolivia	west	4.36	59.8	66	8832	74.1	9.5	24.0	63.2	South America	79.0
+150	79.3	Vanuatu	other	4.36	65.5	38	2646	88.6	34.914	46.368	69.5	Oceania	0.0
+37	34.7	Honduras	west	4.3	67.5	35	5698	86.4	27.4	27.3	72.3	North America	77.0
+20	26.1	Paraguay	west	4.17	67.5	39	13454	85.7	6.5	9.4	72.0	South America	0.0
+69	45.4	Tonga	other	4.02	67.0	3	6156	74.2	0.264	0.504	71.0	Oceania	0.0
+128	60.0	Tajikistan	other	3.93	64.2	56	3856	75.0	0.3	0.4	70.2	Central Asia	0.0
+30	33.4	Nicaragua	west	3.85	65.8	44	5648	84.5	35.4	33.4	70.6	North America	53.0
+81	48.5	Saint Lucia	west	3.82	68.0	18	13942	78.9	10.5	9.4	74.8	North America	0.0
+4	7.8	Algeria	other	3.81	67.5	44	11433	76.4	26.1	51.0	70.3	Northern Africa	
+93	50.4	South Africa	other	3.81	62.3	48	12442	79.6	18.1	18.3	68.3	Southern Africa	0.0
+48	40.2	Samoa	other	3.8	67.5	58	5260	77.3	1.848	1.656	71.1	Oceania	17.0
+141	68.0	Kiribati	other	3.8	58.0	65	2242	84.0	2.7	2.7	63.0	Oceania	77.0
+22	27.5	Qatar	other	3.77	70.0	17	97262	93.0	20.8	20.1	75.4	Western Asia	0.0
+33	34.0	Belize	west	3.66	73.4	30	6133	79.0	21.252	23.472	76.1	North America	79.0
+85	49.0	Philippines	other	3.62	66.6	35	9061	82.7	5.0	5.7	70.2	South-eastern Asia	0.0
+134	62.0	Turkmenistan	other	3.58	61.2	57	17415	78.0	0.2	0.4	68.0	Central Asia	0.0
+51	41.1	Cape Verde	other	3.56	65.5	41	6837	85.1	18.6	36.2	67.5	Western Africa	79.0
+64	43.6	Cook Islands	other	3.5	67.0	26	10466	71.4	3.102	4.104	73.0	Oceania	79.0
+130	61.0	Uzbekistan	other	3.48	64.3	43	7830	75.0	0.2	0.4	70.7	Central Asia	0.0
+15	24.2	United Arab.Emirates	other	3.46	73.9	15	43103	92.5	21.1	20.2	76.5	Western Asia	0.0
+13	21.6	Egypt	other	3.4	64.7	54	13083	73.4	36.4	61.2	67.3	Northern Africa	79.0
+46	38.9	Myanmar	other	3.3	58.5	78	4831	73.8	11.3	22.3	61.8	South-eastern Asia	53.0
+58	42.2	Malaysia	other	3.24	69.9	11	29340	77.1	10.9	21.9	74.3	South-eastern Asia	53.0
+127	60.0	Kyrgyzstan	other	3.21	63.4	39	5323	75.0	0.3	0.5	71.9	Central Asia	77.0
+113	55.9	Bangladesh	other	3.14	58.1	78	5812	88.8	50.6	73.9	58.2	Southern Asia	
+17	25.1	Morocco	other	3.1	64.8	51	8027	74.9	43.4	69.0	68.5	Northern Africa	53.0
+79	48.4	Ecuador	west	3.1	67.3	46	11331	79.7	8.0	11.8	72.5	South America	79.0
+49	40.6	El Salvador	west	3.09	66.5	39	8891	79.8	26.5	30.2	72.5	North America	79.0
+31	33.7	India	other	3.07	62.1	72	7333	80.4	34.5	62.3	62.7	Southern Asia	77.0
+126	60.0	Guam	other	3.04	72.7	10	18000	84.0	1.4	1.2	76.8	Oceania	77.0
+105	53.0	Palau	other	3.0	65.0	25	12862	72.0	1.386	3.096	69.0	Oceania	0.0
+32	33.9	Peru	west	2.98	65.9	45	12985	51.2	5.5	17.0	70.9	South America	0.0
+53	41.2	Venezuela	west	2.98	70.0	21	5178	82.1	8.2	9.7	75.7	South America	0.0
+24	29.2	Bahrain	other	2.97	71.1	18	50284	88.2	10.9	20.6	75.3	Western Asia	
+145	74.1	Vietnam	other	2.97	64.9	37	11677	81.6	3.5	8.8	69.6	South-eastern Asia	0.0
+29	33.3	Costa Rica	west	2.95	74.5	12	20667	79.2	5.3	5.0	79.2	North America	79.0
+12	20.3	Tunisia	other	2.92	68.4	37	10594	75.4	21.4	45.4	70.7	Northern Africa	0.0
+80	48.5	French Polynesia	other	2.85	69.8	10	19766	74.2	2.0	2.0	75.3	Oceania	77.0
+61	42.9	Dominican Republic	west	2.8	68.9	34	19799	82.6	18.0	17.8	73.1	North America	79.0
+34	34.3	Kuwait	other	2.77	74.1	14	41507	80.1	17.8	25.1	78.2	Western Asia	77.0
+14	23.3	Fiji	other	2.76	70.6	20	12298	85.4	6.2	10.7	74.9	Oceania	79.0
+44	37.4	Mexico	west	2.75	69.5	31	20266	83.9	8.2	12.6	75.5	North America	53.0
+70	45.6	Israel	other	2.75	75.7	7	42570	62.1	2.442	6.696	79.5	Western Asia	77.0
+71	46.4	Brunei	other	2.7	73.4	9	64405	82.2	7.4	16.6	78.1	South-eastern Asia	79.0
+91	50.2	Colombia	west	2.69	68.2	24	15184	79.0	8.8	8.6	73.7	South America	79.0
+60	42.5	Panama	west	2.63	71.8	21	30388	81.3	8.6	9.8	76.4	North America	0.0
+98	51.3	Indonesia	other	2.63	63.3	48	12882	84.8	10.4	22.0	67.0	South-eastern Asia	77.0
+54	41.3	Argentina	west	2.62	69.6	22	22141	76.2	3.8	3.8	76.8	South America	
+118	57.0	Seychelles	other	2.59	65.3	12	26119	78.8	15.18	15.12	74.1	Eastern Africa	17.0
+89	49.9	New Caledonia	other	2.53	70.9	18	19450	80.8	5.346	7.776	75.9	Oceania	53.0
+26	30.6	Turkey	other	2.5	66.5	44	32278	75.9	8.3	27.6	71.7	Western Asia	0.0
+35	34.5	Chile	west	2.44	72.3	13	24928	75.5	4.6	5.0	78.3	South America	79.0
+135	62.4	Jamaica	west	2.44	72.4	12	10294	74.0	19.2	10.9	76.8	North America	77.0
+27	32.6	Suriname	west	2.39	69.0	24	14703	64.2	4.9	9.0	74.0	South America	0.0
+47	39.3	Guyana	west	2.32	61.1	58	23258	81.2	1.4	2.5	67.9	South America	77.0
+75	47.6	Cyprus	west	2.31	75.4	7	41595	78.0	2.046	9.0	79.8	Western Asia	79.0
+136	62.8	Kazakhstan	other	2.3	62.8	34	27560	78.5	0.3	0.5	72.5	Central Asia	77.0
+45	38.8	Mauritius	other	2.28	68.3	15	22030	80.1	12.9	21.2	75.0	Eastern Africa	53.0
+72	46.7	Uruguay	west	2.25	69.6	17	23474	74.0	3.1	2.3	76.1	South America	0.0
+149	76.8	Iceland	west	2.19	77.4	5	58151	86.2	1.0	1.0	81.2	Northern Europe	77.0
+107	53.6	Brazil	west	2.17	63.4	42	15643	84.0	16.7	16.8	71.2	South America	79.0
+21	27.4	Malta	west	2.1	74.6	8	45042	74.1	10.758	11.088	79.1	Southern Europe	53.0
+38	35.1	Puerto Rico	west	2.1	72.5	9	12213	64.0	7.788	9.936	80.5	North America	0.0
+39	35.5	Sri Lanka	other	2.1	70.9	15	13909	75.6	6.6	12.8	75.4	Southern Asia	0.0
+56	41.9	Reunion	other	2.1	70.9	7	11854	62.6	21.912	20.304	79.8	Eastern Africa	0.0
+67	44.9	Trinidad and Tobago	west	2.1	71.5	14	25883	75.5	1.2	3.0	76.2	North America	0.0
+96	51.1	Netherlands Antilles	west	2.1	73.4	10	52304	69.8	4.752	6.12	79.3	Western Europe	53.0
+104	52.3	Guadeloupe	west	2.1	72.1	8	9145	66.9	9.768	9.576	78.8	North America	77.0
+114	56.2	New Zealand	other	2.02	74.7	7	44226	74.4	1.0	1.0	79.7	Oceania	53.0
+111	54.1	Martinique	west	2.0	73.7	7	12717	65.7	7.656	6.48	80.3	North America	53.0
+125	59.3	United States	west	1.96	73.4	7	68309	74.9	2.244	2.232	80.1	North America	0.0
+140	67.0	Bahamas	west	1.95	70.5	14	34046	81.2	1.5	2.0	77.1	North America	
+62	42.9	Macedonia	west	1.9	70.3	23	5888	67.0	2.2	3.2	74.7	Eastern Europe	0.0
+123	58.0	Georgia	other	1.9	68.5	23	15709	75.0	0.3	0.6	76.7	Western Asia	77.0
+108	53.8	Australia	other	1.89	75.4	6	54891	74.0	1.0	1.0	81.2	Oceania	
+139	65.9	Norway	west	1.88	74.8	5	69171	76.8	0.0	0.0	80.6	Northern Europe	53.0
+112	55.4	Finland	west	1.83	73.0	5	51867	66.9	0.0	0.0	80.1	Northern Europe	79.0
+143	72.3	Denmark	west	1.82	73.0	7	61478	83.2	1.0	1.0	78.3	Northern Europe	79.0
+50	41.1	Ireland	west	1.8	74.0	6	99239	67.8	1.0	1.0	79.4	Northern Europe	77.0
+133	61.6	Moldova	west	1.8	63.5	26	13879	74.9	1.122	4.896	71.5	Eastern Europe	53.0
+144	72.9	China	other	1.8	68.2	38	18931	84.9	10.1	27.3	71.7	Eastern Asia	79.0
+147	75.6	Sweden	west	1.8	76.2	5	55566	80.0	1.0	1.0	80.8	Northern Europe	0.0
+100	51.5	Singapore	other	1.79	75.1	5	102742	78.7	4.1	13.7	79.5	South-eastern Asia	0.0
+43	37.3	Luxembourg	west	1.76	73.1	6	122740	65.7	1.0	1.0	79.7	Western Europe	77.0
+138	65.2	Thailand	other	1.74	66.3	30	19004	83.8	4.0	8.4	72.3	South-eastern Asia	0.0
+132	61.4	Barbados	west	1.73	73.6	9	14329	73.4	2.0	3.2	78.7	North America	
+106	53.5	United Kingdom	west	1.72	74.5	6	47089	71.9	1.0	1.0	79.8	Northern Europe	0.0
+102	52.0	Armenia	west	1.7	67.2	25	13638	65.0	0.3	0.5	74.0	Western Asia	
+82	48.7	South Korea	other	1.65	68.8	9	47027	76.1	0.7	3.3	76.0	Eastern Asia	0.0
+95	51.0	Poland	west	1.65	66.7	13	35957	66.2	0.3	0.3	75.7	Eastern Europe	0.0
+78	48.4	France	west	1.63	74.6	7	49492	62.7	1.0	1.0	82.9	Western Europe	77.0
+121	57.6	Canada	west	1.61	76.1	6	51713	72.4	1.0	35.0	81.8	North America	79.0
+65	44.0	Croatia	west	1.6	68.1	10	29777	64.1	0.924	4.32	76.5	Southern Europe	79.0
+116	56.4	Macau	other	1.6	75.1	8	90606	81.1	5.412	14.616	80.1	Eastern Asia	77.0
+52	41.2	Cuba	west	1.55	74.2	9	9099	72.6	3.8	4.7	78.0	North America	79.0
+129	60.2	Netherlands	west	1.55	75.0	6	60461	81.1	1.0	1.0	80.6	Western Europe	53.0
+99	51.4	Slovakia	west	1.5	67.0	12	34815	68.2	0.3	3.4	75.8	Eastern Europe	0.0
+137	65.1	Lithuania	west	1.5	64.9	13	40784	75.7	0.4	0.7	76.0	Northern Europe	77.0
+87	49.2	Portugal	west	1.48	71.8	8	36079	67.0	7.5	13.0	78.9	Southern Europe	0.0
+90	50.0	Japan	other	1.48	76.9	4	44585	77.7	1.0	1.0	82.9	Eastern Asia	77.0
+117	56.8	Switzerland	west	1.46	75.3	5	75880	78.5	1.0	1.0	81.8	Western Europe	0.0
+109	53.8	Bulgaria	west	1.45	67.8	16	25471	60.7	0.924	2.376	74.9	Eastern Europe	79.0
+76	47.7	Austria	west	1.42	73.7	6	57891	69.5	1.0	1.0	80.1	Western Europe	
+63	43.4	Hungary	west	1.4	64.5	14	35088	61.1	0.7	1.0	73.8	Eastern Europe	77.0
+101	51.5	Latvia	west	1.4	62.5	16	33394	69.8	0.2	0.3	74.3	Northern Europe	77.0
+103	52.1	Czech Republic	west	1.4	69.8	9	42956	71.5	1.0	1.0	76.0	Eastern Europe	79.0
+120	57.4	Romania	west	1.4	66.0	24	32950	72.7	1.1	3.1	73.2	Eastern Europe	0.0
+131	61.3	Belarus	west	1.4	64.4	15	20578	76.4	0.3	0.6	74.8	Eastern Europe	
+40	36.1	Greece	west	1.38	75.5	8	30495	64.7	1.7	4.7	80.6	Southern Europe	77.0
+119	57.1	Ukraine	west	1.38	63.6	18	13943	69.1	0.33	2.16	74.0	Eastern Europe	0.0
+92	50.4	Russia	west	1.35	58.0	19	29485	68.1	0.3	0.6	71.5	Eastern Europe	0.0
+77	47.8	Hong Kong	other	1.32	76.1	5	62839	76.0	4.0	11.8	81.8	Eastern Asia	77.0
+74	47.3	Germany	west	1.3	73.4	6	56956	68.1	1.0	1.0	79.9	Western Europe	77.0
+97	51.3	Slovenia	west	1.3	69.2	7	40820	64.5	0.264	0.432	77.8	Southern Europe	0.0
+110	54.1	Estonia	west	1.3	63.9	12	39729	71.5	0.2	0.2	75.0	Northern Europe	79.0
+41	37.0	Spain	west	1.22	74.5	7	41546	63.1	1.8	3.9	81.5	Southern Europe	0.0
+36	34.6	Italy	west	1.19	75.1	7	43376	61.6	1.4	2.4	81.4	Southern Europe	77.0
