@@ -315,6 +315,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="toc-section-number">8.1.4.1</span>  </a></li>
   <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="toc-section-number">8.1.4.2</span>  </a></li>
   <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="toc-section-number">8.1.4.3</span>  </a></li>
+  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"><span class="toc-section-number">8.1.4.4</span>  </a></li>
+  <li><a href="#section-4" id="toc-section-4" class="nav-link" data-scroll-target="#section-4"><span class="toc-section-number">8.1.4.5</span>  </a></li>
+  <li><a href="#section-5" id="toc-section-5" class="nav-link" data-scroll-target="#section-5"><span class="toc-section-number">8.1.4.6</span>  </a></li>
   </ul></li>
   <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">8.1.5</span>  Practice exercise 2</a></li>
   <li><a href="#reshaping-data" id="toc-reshaping-data" class="nav-link" data-scroll-target="#reshaping-data"><span class="toc-section-number">8.1.6</span>  Reshaping data</a>
@@ -794,19 +797,29 @@ Name: (Illinois, Evanston), dtype: float64</code></pre>
 <section id="practice-exercise-1" class="level3" data-number="8.1.4">
 <h3 data-number="8.1.4" class="anchored" data-anchor-id="practice-exercise-1"><span class="header-section-number">8.1.4</span> Practice exercise 1</h3>
 <p>Read the table consisting of GDP per capita of countries from the webpage: https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita .</p>
-<p>To only read the relevant table, read the tables that contain the word <em>‘Country’</em>. How many levels of indexing are there in the rows and columns?</p>
+<p>To only read the relevant table, read the tables that contain the word <em>‘Country’</em>.</p>
 <section id="section" class="level4" data-number="8.1.4.1">
 <h4 data-number="8.1.4.1" class="anchored" data-anchor-id="section"><span class="header-section-number">8.1.4.1</span> </h4>
-<p>Subset a DataFrame that select the country, and the United Nations estimates of GDP per capita with the corresponding year.</p>
+<p>How many levels of indexing are there in the rows and columns?</p>
 </section>
 <section id="section-1" class="level4" data-number="8.1.4.2">
 <h4 data-number="8.1.4.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">8.1.4.2</span> </h4>
-<p>Subset a DataFrame that select only the World Bank and United Nations estimates of GDP per capita without the corresponding year or country.</p>
+<p>Subset a DataFrame that select the country, and the United Nations estimates of GDP per capita with the corresponding year.</p>
 </section>
 <section id="section-2" class="level4" data-number="8.1.4.3">
 <h4 data-number="8.1.4.3" class="anchored" data-anchor-id="section-2"><span class="header-section-number">8.1.4.3</span> </h4>
+<p>Subset a DataFrame that select only the World Bank and United Nations estimates of GDP per capita without the corresponding year or country.</p>
+</section>
+<section id="section-3" class="level4" data-number="8.1.4.4">
+<h4 data-number="8.1.4.4" class="anchored" data-anchor-id="section-3"><span class="header-section-number">8.1.4.4</span> </h4>
 <p>Subset a DataFrame that select the country and only the World Bank and United Nations estimates of GDP per capita without the corresponding year or country.</p>
+</section>
+<section id="section-4" class="level4" data-number="8.1.4.5">
+<h4 data-number="8.1.4.5" class="anchored" data-anchor-id="section-4"><span class="header-section-number">8.1.4.5</span> </h4>
 <p>Drop all columns consisting of years. Use the <code>level</code> argument of the <code>drop()</code> method.</p>
+</section>
+<section id="section-5" class="level4" data-number="8.1.4.6">
+<h4 data-number="8.1.4.6" class="anchored" data-anchor-id="section-5"><span class="header-section-number">8.1.4.6</span> </h4>
 <p>In the dataset obtained above, drop the outer level of the column labels. Use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.droplevel.html"><code>droplevel()</code></a> method.</p>
 </section>
 </section>
