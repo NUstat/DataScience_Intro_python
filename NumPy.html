@@ -829,7 +829,7 @@ Array 2:
 <li>Use <em>broadcasting</em> to compute the euclidean distance of capital cities from Washington DC.</li>
 </ol>
 <p><strong>Solution:</strong></p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>capital_cities <span class="op">=</span> pd.read_html(<span class="st">'http://techslides.com/list-of-countries-and-capitals'</span>,header<span class="op">=</span><span class="dv">0</span>)[<span class="dv">0</span>]</span>
 <span id="cb84-3"><a href="#cb84-3" aria-hidden="true" tabindex="-1"></a>coordinates_capital_cities <span class="op">=</span> capital_cities.iloc[:,<span class="dv">2</span>:<span class="dv">4</span>].to_numpy()</span>
