@@ -4415,7 +4415,7 @@ dtype: object</code></pre>
 </section>
 <section id="melting-columns-with-multiple-types-of-values" class="level4" data-number="8.4.2.2">
 <h4 data-number="8.4.2.2" class="anchored" data-anchor-id="melting-columns-with-multiple-types-of-values"><span class="header-section-number">8.4.2.2</span> Melting columns with multiple types of values</h4>
-<p>Consider the dataset created in Section . It has two types of values - <code>lifeExp</code> and <code>gdpPercapita</code>, which are the column labels at the outer level. The <code>melt()</code> function will melt all the years of data into a single column. However, it will create another column based on the outer level column labels - <code>lifeExp</code> and <code>gdpPercapita</code> to distinguish between these two types of values. Here, we see that the function <code>melt()</code> internally uses hierarchical indexing to make the transformation easier.</p>
+<p>Consider the dataset created in Section . It has two types of values - <code>lifeExp</code> and <code>gdpPercapita</code>, which are the column labels at the outer level. The <code>melt()</code> function will melt all the years of data into a single column. However, it will create another column based on the outer level column labels - <code>lifeExp</code> and <code>gdpPercapita</code> to distinguish between these two types of values. Here, we see that the function <code>melt()</code> internally uses hierarchical indexing to handle the transformation of multiple types of columns.</p>
 <div class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>data_melt <span class="op">=</span> pd.melt(data_wide_lifeExp_gdpPercap.reset_index(),id_vars <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],var_name <span class="op">=</span> [<span class="st">'Metric'</span>,<span class="st">'year'</span>])</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>data_melt.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -4480,6 +4480,71 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
+<p>Although the data above is in <em>‘long’</em>-form, it is not quiet in its original format, as in <code>data_all_continents</code>. We need to pivot again by <code>Metric</code> to have two separate columns of <code>gdpPercap</code> and <code>lifeExp</code>.</p>
+<div class="cell" data-execution_count="122">
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>data_restore <span class="op">=</span> data_melt.pivot(index <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>,<span class="st">'year'</span>],columns <span class="op">=</span> <span class="st">'Metric'</span>)</span>
+<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>data_restore.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="122">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">value</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Metric</th>
+      <th>gdpPercap</th>
+      <th>lifeExp</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th rowspan="5" valign="top">Algeria</th>
+      <th>1952</th>
+      <td>2449.008185</td>
+      <td>43.077</td>
+    </tr>
+    <tr>
+      <th>1957</th>
+      <td>3013.976023</td>
+      <td>45.685</td>
+    </tr>
+    <tr>
+      <th>1962</th>
+      <td>2550.816880</td>
+      <td>48.303</td>
+    </tr>
+    <tr>
+      <th>1967</th>
+      <td>3246.991771</td>
+      <td>51.407</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>4182.663766</td>
+      <td>54.518</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Now, we can convert the row indices of <code>continent</code> and <code>country</code> to columns to restore the dataset to the same form as <code>data_all_continents</code>.</p>
 
 
 </section>
