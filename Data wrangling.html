@@ -3837,7 +3837,7 @@ dtype: object</code></pre>
 <p>But before melting the columns in the above dataset, we will convert <code>continent</code> to a column, as we need to make subplots based on continent.</p>
 <p>The Pandas DataFrame method <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html"><code>reset_index()</code></a> can be used to remove one or more levels of indexing from the DataFrame.</p>
 <div class="cell" data-execution_count="94">
-<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resetting row indices to default values</span></span>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Making 'continent' a column instead of row-index at level 0</span></span>
 <span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>data_wide.reset_index(inplace<span class="op">=</span><span class="va">True</span>,level<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>data_wide.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="94">
@@ -4018,6 +4018,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>With the above DataFrame, we can visualize the mean life expectancy against year separately for each continent.</p>
+<p>If we wish to have country also in the above data, we can keep it while resetting the index:</p>
 
 
 </section>
