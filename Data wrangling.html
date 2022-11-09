@@ -363,6 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#melting-wide-to-long-format" id="toc-melting-wide-to-long-format" class="nav-link" data-scroll-target="#melting-wide-to-long-format"><span class="toc-section-number">8.4.2</span>  Melting “wide” to “long” format</a>
   <ul class="collapse">
+  <li><a href="#melt" id="toc-melt" class="nav-link" data-scroll-target="#melt"><code>melt()</code></a></li>
   <li><a href="#melting-columns-with-a-single-type-of-value" id="toc-melting-columns-with-a-single-type-of-value" class="nav-link" data-scroll-target="#melting-columns-with-a-single-type-of-value"><span class="toc-section-number">8.4.2.1</span>  Melting columns with a single type of value</a></li>
   <li><a href="#melting-columns-with-multiple-types-of-values" id="toc-melting-columns-with-multiple-types-of-values" class="nav-link" data-scroll-target="#melting-columns-with-multiple-types-of-values"><span class="toc-section-number">8.4.2.2</span>  Melting columns with multiple types of values</a></li>
   </ul></li>
@@ -3917,8 +3918,10 @@ dtype: object</code></pre>
 </section>
 <section id="melting-wide-to-long-format" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="melting-wide-to-long-format"><span class="header-section-number">8.4.2</span> Melting “wide” to “long” format</h3>
-<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.melt.html"><code>melt()</code></a> {-}</p>
+<section id="melt" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="melt"><a href="https://pandas.pydata.org/docs/reference/api/pandas.melt.html"><code>melt()</code></a></h4>
 <p>This function is used to re-arrange the dataset from the <em>‘wide’</em> form to the <em>‘long’</em> form.</p>
+</section>
 <section id="melting-columns-with-a-single-type-of-value" class="level4" data-number="8.4.2.1">
 <h4 data-number="8.4.2.1" class="anchored" data-anchor-id="melting-columns-with-a-single-type-of-value"><span class="header-section-number">8.4.2.1</span> Melting columns with a single type of value</h4>
 <p>Let us consider <code>data_wide</code> created in the previous section.</p>
@@ -4545,6 +4548,77 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Now, we can convert the row indices of <code>continent</code> and <code>country</code> to columns to restore the dataset to the same form as <code>data_all_continents</code>.</p>
+<div class="cell" data-execution_count="123">
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>data_restore.reset_index(inplace <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>data_restore.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="123">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>continent</th>
+      <th>country</th>
+      <th>year</th>
+      <th colspan="2" halign="left">value</th>
+    </tr>
+    <tr>
+      <th>Metric</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>gdpPercap</th>
+      <th>lifeExp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1952</td>
+      <td>2449.008185</td>
+      <td>43.077</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1957</td>
+      <td>3013.976023</td>
+      <td>45.685</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1962</td>
+      <td>2550.816880</td>
+      <td>48.303</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1967</td>
+      <td>3246.991771</td>
+      <td>51.407</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1972</td>
+      <td>4182.663766</td>
+      <td>54.518</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
 
 
 </section>
