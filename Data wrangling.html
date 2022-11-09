@@ -2378,13 +2378,13 @@ dtype: object</code></pre>
 <section id="many-to-one-join" class="level4" data-number="8.2.1.2">
 <h4 data-number="8.2.1.2" class="anchored" data-anchor-id="many-to-one-join"><span class="header-section-number">8.2.1.2</span> Many-to-one join</h4>
 <p>One or more rows in one dataset is linked (or related) to a single row in another dataset based on the key column(s).</p>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="70">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>data_student <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_many.csv'</span>)</span>
 <span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>data_skill <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_one.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="71">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>data_student</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="71">
 
 <div>
 
@@ -2432,9 +2432,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="32">
+<div class="cell" data-execution_count="72">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>data_skill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="32">
+<div class="cell-output cell-output-display" data-execution_count="72">
 
 <div>
 
@@ -2710,13 +2710,13 @@ dtype: object</code></pre>
 <section id="many-to-many-join" class="level4" data-number="8.2.1.4">
 <h4 data-number="8.2.1.4" class="anchored" data-anchor-id="many-to-many-join"><span class="header-section-number">8.2.1.4</span> Many-to-many join</h4>
 <p>One, or more, rows in one dataset is linked (or related) to one, or more, rows in another dataset using the key column(s).</p>
-<div class="cell" data-execution_count="38">
+<div class="cell" data-execution_count="73">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>data_student <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_many.csv'</span>)</span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>data_skill <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_many.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="39">
+<div class="cell" data-scrolled="true" data-execution_count="74">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>data_student</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="39">
+<div class="cell-output cell-output-display" data-execution_count="74">
 
 <div>
 
@@ -2764,9 +2764,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="40">
+<div class="cell" data-scrolled="true" data-execution_count="75">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>data_skill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="40">
+<div class="cell-output cell-output-display" data-execution_count="75">
 
 <div>
 
@@ -2824,9 +2824,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="82">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="82">
 
 <div>
 
@@ -3189,18 +3189,18 @@ dtype: object</code></pre>
 <h2 data-number="8.3" class="anchored" data-anchor-id="concatenating-datasets"><span class="header-section-number">8.3</span> Concatenating datasets</h2>
 <p>The Pandas DataFrame method <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html"><code>concat()</code></a> is used to stack datasets along an axis. The method is similar to NumPy’s <code>concatenate()</code> method.</p>
 <p><strong>Example</strong>: You are given the life expectancy data of each continent as a separate *.csv file. Visualize the change of life expectancy over time for different continents.</p>
-<div class="cell" data-execution_count="45">
+<div class="cell" data-execution_count="84">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>data_asia <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Asia.csv'</span>)</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>data_europe <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Europe.csv'</span>)</span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>data_africa <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Africa.csv'</span>)</span>
 <span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>data_oceania <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Oceania.csv'</span>)</span>
 <span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>data_americas <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Americas.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="46">
+<div class="cell" data-execution_count="85">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Appending all the data files, i.e., stacking them on top of each other</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>data_all_continents <span class="op">=</span> pd.concat([data_asia,data_europe,data_africa,data_oceania,data_americas],keys <span class="op">=</span> [<span class="st">'Asia'</span>,<span class="st">'Europe'</span>,<span class="st">'Africa'</span>,<span class="st">'Oceania'</span>,<span class="st">'Americas'</span>])</span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>data_all_continents</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="46">
+<div class="cell-output cell-output-display" data-execution_count="85">
 
 <div>
 
@@ -3315,12 +3315,12 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Let’s have the continent as a column as we need to use that in the visualization.</p>
-<div class="cell" data-execution_count="47">
+<div class="cell" data-execution_count="86">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.reset_index(inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="48">
+<div class="cell" data-execution_count="87">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="48">
+<div class="cell-output cell-output-display" data-execution_count="87">
 
 <div>
 
@@ -3393,11 +3393,11 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="49">
+<div class="cell" data-execution_count="88">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.drop(columns <span class="op">=</span> <span class="st">'level_1'</span>,inplace <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>data_all_continents.rename(columns <span class="op">=</span> {<span class="st">'level_0'</span>:<span class="st">'continent'</span>},inplace <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>data_all_continents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="49">
+<div class="cell-output cell-output-display" data-execution_count="88">
 
 <div>
 
@@ -3464,13 +3464,13 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="50">
+<div class="cell" data-execution_count="89">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co">#change of life expectancy over time for different continents</span></span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(data_all_continents,col <span class="op">=</span> <span class="st">'continent'</span>,col_wrap <span class="op">=</span> <span class="dv">3</span>,height <span class="op">=</span> <span class="fl">4.5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)<span class="co">#height = 3,aspect = 0.8)</span></span>
-<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'year'</span>,<span class="st">'gdpPercap'</span>)</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'year'</span>,<span class="st">'lifeExp'</span>)</span>
 <span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="50">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2a40e4c3bb0&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="89">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2a4103fa130&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20wrangling_files/figure-html/cell-75-output-2.png" class="img-fluid"></p>
@@ -3564,7 +3564,7 @@ dtype: object</code></pre>
 <p>For visualizing life expectancy in 2007 against life expectancy in 1957, we will need to filter the data, and then make the plot. Everytime that we need to compare a metric for a year against another year, we will need to filter the data.</p>
 <p>If we need to often compare metrics of a year against another year, it will be easier to have each year as a separate column, instead of having all years in a single column.</p>
 <p>As we are increasing the number of columns and deceasing the number of rows, we are re-arranging the data from <em>long</em>-form to <em>wide</em>-form.</p>
-<div class="cell" data-execution_count="55">
+<div class="cell" data-execution_count="93">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>data_wide <span class="op">=</span> data_all_continents.pivot(index <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],columns <span class="op">=</span> <span class="st">'year'</span>,values <span class="op">=</span> <span class="st">'lifeExp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="56">
@@ -3702,12 +3702,322 @@ dtype: object</code></pre>
 <p><img src="Data%20wrangling_files/figure-html/cell-79-output-2.png" class="img-fluid"></p>
 </div>
 </div>
-<p>Observe that for some African countries the life expectancy has decreased after 50 years. It is worth inverstigating to these countries to identify factors associated with the decrease.</p>
+<p>Observe that for some African countries, the life expectancy has decreased after 50 years. It is worth investigating these countries to identify factors associated with the decrease.</p>
 </section>
 </section>
 <section id="pivoting-wide-to-long-format" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="pivoting-wide-to-long-format"><span class="header-section-number">8.4.2</span> Pivoting “wide” to “long” format</h3>
-<p><em>melt()</em></p>
+<p><a href="https://pandas.pydata.org/docs/reference/api/pandas.melt.html"><code>melt()</code></a></p>
+<p>This function is used to re-arrange the dataset from the <em>‘wide’</em> form to the <em>‘long’</em> form.</p>
+<p>Let us consider <code>data_wide</code> created in the previous section.</p>
+<div class="cell" data-execution_count="83">
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>data_wide.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="83">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>1952</th>
+      <th>1957</th>
+      <th>1962</th>
+      <th>1967</th>
+      <th>1972</th>
+      <th>1977</th>
+      <th>1982</th>
+      <th>1987</th>
+      <th>1992</th>
+      <th>1997</th>
+      <th>2002</th>
+      <th>2007</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th>Algeria</th>
+      <td>43.077</td>
+      <td>45.685</td>
+      <td>48.303</td>
+      <td>51.407</td>
+      <td>54.518</td>
+      <td>58.014</td>
+      <td>61.368</td>
+      <td>65.799</td>
+      <td>67.744</td>
+      <td>69.152</td>
+      <td>70.994</td>
+      <td>72.301</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>30.015</td>
+      <td>31.999</td>
+      <td>34.000</td>
+      <td>35.985</td>
+      <td>37.928</td>
+      <td>39.483</td>
+      <td>39.942</td>
+      <td>39.906</td>
+      <td>40.647</td>
+      <td>40.963</td>
+      <td>41.003</td>
+      <td>42.731</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>38.223</td>
+      <td>40.358</td>
+      <td>42.618</td>
+      <td>44.885</td>
+      <td>47.014</td>
+      <td>49.190</td>
+      <td>50.904</td>
+      <td>52.337</td>
+      <td>53.919</td>
+      <td>54.777</td>
+      <td>54.406</td>
+      <td>56.728</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>47.622</td>
+      <td>49.618</td>
+      <td>51.520</td>
+      <td>53.298</td>
+      <td>56.024</td>
+      <td>59.319</td>
+      <td>61.484</td>
+      <td>63.622</td>
+      <td>62.745</td>
+      <td>52.556</td>
+      <td>46.634</td>
+      <td>50.728</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>31.975</td>
+      <td>34.906</td>
+      <td>37.814</td>
+      <td>40.697</td>
+      <td>43.591</td>
+      <td>46.137</td>
+      <td>48.122</td>
+      <td>49.557</td>
+      <td>50.260</td>
+      <td>50.324</td>
+      <td>50.650</td>
+      <td>52.295</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>Suppose, we wish to visualize the change of life expectancy over time for different continents, as we did in section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#concatenating-datasets">8.3</a>. For plotting <code>lifeExp</code> against <code>year</code>, all the years must be in a single column. Thus, we need to <em>melt</em> the columns of <code>data_wide</code> to a single column and call it <code>year</code>.</p>
+<p>But before melting the columns in the above dataset, we will convert <code>continent</code> to a column, as we need to make subplots based on continent.</p>
+<p>The Pandas DataFrame method <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.reset_index.html"><code>reset_index()</code></a> can be used to remove one or more levels of indexing from the DataFrame.</p>
+<div class="cell" data-execution_count="94">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Resetting row indices to default values</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>data_wide.reset_index(inplace<span class="op">=</span><span class="va">True</span>,level<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>data_wide.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="94">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>year</th>
+      <th>continent</th>
+      <th>1952</th>
+      <th>1957</th>
+      <th>1962</th>
+      <th>1967</th>
+      <th>1972</th>
+      <th>1977</th>
+      <th>1982</th>
+      <th>1987</th>
+      <th>1992</th>
+      <th>1997</th>
+      <th>2002</th>
+      <th>2007</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Algeria</th>
+      <td>Africa</td>
+      <td>43.077</td>
+      <td>45.685</td>
+      <td>48.303</td>
+      <td>51.407</td>
+      <td>54.518</td>
+      <td>58.014</td>
+      <td>61.368</td>
+      <td>65.799</td>
+      <td>67.744</td>
+      <td>69.152</td>
+      <td>70.994</td>
+      <td>72.301</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>Africa</td>
+      <td>30.015</td>
+      <td>31.999</td>
+      <td>34.000</td>
+      <td>35.985</td>
+      <td>37.928</td>
+      <td>39.483</td>
+      <td>39.942</td>
+      <td>39.906</td>
+      <td>40.647</td>
+      <td>40.963</td>
+      <td>41.003</td>
+      <td>42.731</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>Africa</td>
+      <td>38.223</td>
+      <td>40.358</td>
+      <td>42.618</td>
+      <td>44.885</td>
+      <td>47.014</td>
+      <td>49.190</td>
+      <td>50.904</td>
+      <td>52.337</td>
+      <td>53.919</td>
+      <td>54.777</td>
+      <td>54.406</td>
+      <td>56.728</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>Africa</td>
+      <td>47.622</td>
+      <td>49.618</td>
+      <td>51.520</td>
+      <td>53.298</td>
+      <td>56.024</td>
+      <td>59.319</td>
+      <td>61.484</td>
+      <td>63.622</td>
+      <td>62.745</td>
+      <td>52.556</td>
+      <td>46.634</td>
+      <td>50.728</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>Africa</td>
+      <td>31.975</td>
+      <td>34.906</td>
+      <td>37.814</td>
+      <td>40.697</td>
+      <td>43.591</td>
+      <td>46.137</td>
+      <td>48.122</td>
+      <td>49.557</td>
+      <td>50.260</td>
+      <td>50.324</td>
+      <td>50.650</td>
+      <td>52.295</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>data_melted<span class="op">=</span>pd.melt(data_wide,id_vars <span class="op">=</span> [<span class="st">'continent'</span>],var_name <span class="op">=</span> <span class="st">'Year'</span>,value_name <span class="op">=</span> <span class="st">'LifeExp'</span>)</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>data_melted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="96">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>continent</th>
+      <th>Year</th>
+      <th>LifeExp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>1952</td>
+      <td>43.077</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa</td>
+      <td>1952</td>
+      <td>30.015</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Africa</td>
+      <td>1952</td>
+      <td>38.223</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa</td>
+      <td>1952</td>
+      <td>47.622</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Africa</td>
+      <td>1952</td>
+      <td>31.975</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>With the above DataFrame, we can visualize the mean life expectancy against year separately for each continent.</p>
 
 
 </section>
