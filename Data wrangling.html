@@ -355,7 +355,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </ul></li>
   <li><a href="#reshaping-data-1" id="toc-reshaping-data-1" class="nav-link" data-scroll-target="#reshaping-data-1"><span class="toc-section-number">8.4</span>  Reshaping data</a>
   <ul>
-  <li><a href="#pivoting-long-to-wide-format" id="toc-pivoting-long-to-wide-format" class="nav-link" data-scroll-target="#pivoting-long-to-wide-format"><span class="toc-section-number">8.4.1</span>  Pivoting “long” to “wide” format</a></li>
+  <li><a href="#pivoting-long-to-wide-format" id="toc-pivoting-long-to-wide-format" class="nav-link" data-scroll-target="#pivoting-long-to-wide-format"><span class="toc-section-number">8.4.1</span>  Pivoting “long” to “wide” format</a>
+  <ul class="collapse">
+  <li><a href="#pivot" id="toc-pivot" class="nav-link" data-scroll-target="#pivot"><span class="toc-section-number">8.4.1.1</span>  <code>pivot()</code></a></li>
+  </ul></li>
   <li><a href="#pivoting-wide-to-long-format" id="toc-pivoting-wide-to-long-format" class="nav-link" data-scroll-target="#pivoting-wide-to-long-format"><span class="toc-section-number">8.4.2</span>  Pivoting “wide” to “long” format</a></li>
   </ul></li>
   </ul>
@@ -2233,19 +2236,22 @@ dtype: object</code></pre>
 <p>The Pandas DataFrame method <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.merge.html">merge()</a> uses columns defined as <em>key</em> column(s) to merge two datasets. In case the <em>key</em> column(s) are not defined, the overlapping column(s) are considered as the <em>key</em> columns.</p>
 <section id="join-types" class="level3" data-number="8.2.1">
 <h3 data-number="8.2.1" class="anchored" data-anchor-id="join-types"><span class="header-section-number">8.2.1</span> Join types</h3>
+<p>When a dataset is merged with another based on <em>key</em> column(s), one of the following four types of join will occur depending on the repetition of the values of the key(s) in the datasets.</p>
 <ol type="i">
 <li>One-to-one, (ii) Many-to-one, (iii) One-to-Many, and (iv) Many-to-many</li>
 </ol>
-<div class="cell" data-execution_count="405">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_one.csv'</span>)</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_one.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The type of join may sometimes determine the number of rows to be obtained in the merged dataset. If we don’t get the expected number of rows in the merged dataset, an investigation of the datsets may be neccessary to identify and resolve the issue. There may be several possible issues, for example, the dataset may not be arranged in a way that we have assumed it to be arranged.</p>
+<p>We’ll use toy datasets to understand the above types of joins. The <em>.csv</em> files with the prefix <em>student</em> consist of the names of a few students along with their majors, and the files with the prefix <em>skills</em> consist of the names of majors along with the skills imparted by the respective majors.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>data_student <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_one.csv'</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>data_skill <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_one.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="one-to-one-join" class="level4" data-number="8.2.1.1">
 <h4 data-number="8.2.1.1" class="anchored" data-anchor-id="one-to-one-join"><span class="header-section-number">8.2.1.1</span> One-to-one join</h4>
-<p>Each row in one table is linked (or related) to a single row in another table using the key column(s).</p>
-<div class="cell" data-execution_count="352">
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="352">
+<p>Each row in one dataset is linked (or related) to a single row in another dataset based on the key column(s).</p>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>data_student</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
 
 <div>
 
@@ -2283,9 +2289,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="353">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="353">
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>data_skill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="24">
 
 <div>
 
@@ -2323,9 +2329,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="354">
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="354">
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
 
 <div>
 
@@ -2371,14 +2377,14 @@ dtype: object</code></pre>
 </section>
 <section id="many-to-one-join" class="level4" data-number="8.2.1.2">
 <h4 data-number="8.2.1.2" class="anchored" data-anchor-id="many-to-one-join"><span class="header-section-number">8.2.1.2</span> Many-to-one join</h4>
-<p>One or more rows in one table is linked (or related) to a single row in another table using the key column(s).</p>
-<div class="cell" data-execution_count="380">
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="op">=</span> pd.read_csv(<span class="st">'student_many.csv'</span>)</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.read_csv(<span class="st">'skills_one.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>One or more rows in one dataset is linked (or related) to a single row in another dataset based on the key column(s).</p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>data_student <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_many.csv'</span>)</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>data_skill <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_one.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="381">
-<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="381">
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>data_student</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
 
 <div>
 
@@ -2426,9 +2432,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="382">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="382">
+<div class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>data_skill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="32">
 
 <div>
 
@@ -2466,9 +2472,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="383">
-<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="383">
+<div class="cell" data-scrolled="true" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="33">
 
 <div>
 
@@ -2526,14 +2532,14 @@ dtype: object</code></pre>
 </section>
 <section id="one-to-many-join" class="level4" data-number="8.2.1.3">
 <h4 data-number="8.2.1.3" class="anchored" data-anchor-id="one-to-many-join"><span class="header-section-number">8.2.1.3</span> One-to-many join</h4>
-<p>Each row in one table is linked (or related) to one, or more, rows in another table using the key column(s).</p>
-<div class="cell" data-execution_count="384">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="op">=</span> pd.read_csv(<span class="st">'student_one.csv'</span>)</span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.read_csv(<span class="st">'skills_many.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each row in one dataset is linked (or related) to one, or more rows in another dataset based on the key column(s).</p>
+<div class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>data_student <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_one.csv'</span>)</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>data_skill <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_many.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="385">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="385">
+<div class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>data_student</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="35">
 
 <div>
 
@@ -2571,9 +2577,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="386">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="386">
+<div class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>data_skill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="36">
 
 <div>
 
@@ -2631,9 +2637,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="387">
-<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="387">
+<div class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="37">
 
 <div>
 
@@ -2703,14 +2709,14 @@ dtype: object</code></pre>
 </section>
 <section id="many-to-many-join" class="level4" data-number="8.2.1.4">
 <h4 data-number="8.2.1.4" class="anchored" data-anchor-id="many-to-many-join"><span class="header-section-number">8.2.1.4</span> Many-to-many join</h4>
-<p>One, or more, rows in one table is linked (or related) to one, or more, rows in another table using the key column(s).</p>
-<div class="cell" data-execution_count="388">
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="op">=</span> pd.read_csv(<span class="st">'student_many.csv'</span>)</span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.read_csv(<span class="st">'skills_many.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>One, or more, rows in one dataset is linked (or related) to one, or more, rows in another dataset using the key column(s).</p>
+<div class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>data_student <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_many.csv'</span>)</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>data_skill <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_many.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="389">
-<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="389">
+<div class="cell" data-scrolled="true" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>data_student</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="39">
 
 <div>
 
@@ -2758,9 +2764,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-scrolled="true" data-execution_count="390">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="390">
+<div class="cell" data-scrolled="true" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>data_skill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="40">
 
 <div>
 
@@ -2818,9 +2824,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="391">
-<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="391">
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="41">
 
 <div>
 
@@ -2911,24 +2917,25 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<p>Note that there are two ‘Statistics’ rows in data1, and two ‘Statistics’ rows in data2, resulting in 2x2 = 4 ‘Statistics’ rows in the merged data</p>
+<p>Note that there are two ‘<em>Statistics</em>’ rows in <code>data_student</code>, and two ‘<em>Statistics</em>’ rows in <code>data_skill</code>, resulting in 2x2 = 4 ‘<em>Statistics</em>’ rows in the merged data. The same is true for the ‘<em>Computer Science</em>’ <code>Major</code>.</p>
 </section>
 </section>
 <section id="join-types-with-how-argument" class="level3" data-number="8.2.2">
 <h3 data-number="8.2.2" class="anchored" data-anchor-id="join-types-with-how-argument"><span class="header-section-number">8.2.2</span> Join types with <code>how</code> argument</h3>
+<p>The above mentioned types of join (one-to-one, many-to-one, etc.) occur depening on the structure of the datasets being merged. We don’t have control over the type of join. However, we can control <code>how</code> the joins are occurring. We can merge (or <em>join</em>) two datasets in one of the following four ways:</p>
 <ol type="i">
-<li>inner, (ii) left, (iii) right, (iv) ’outer</li>
+<li><code>inner</code> join, (ii) <code>left</code> join, (iii) <code>right</code> join, (iv) <code>outer</code> join</li>
 </ol>
 <section id="inner-join" class="level4" data-number="8.2.2.1">
 <h4 data-number="8.2.2.1" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">8.2.2.1</span> inner join</h4>
-<p>Use only the key combinations observed in both tables.</p>
-<div class="cell" data-execution_count="392">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>data1 <span class="op">=</span> pd.read_csv(<span class="st">'student_how.csv'</span>)</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>data2 <span class="op">=</span> pd.read_csv(<span class="st">'skills_how.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is the join that occurs by default, i.e., without specifying the <code>how</code> argument in the <code>merge()</code> function. In <code>inner</code> join, only those observations are merged that have the same value(s) in the <em>key</em> column(s) of both the datasets.</p>
+<div class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>data_student <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/student_how.csv'</span>)</span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>data_skill <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/skills_how.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="393">
-<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="393">
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a>data_student</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
 
 <div>
 
@@ -2961,9 +2968,9 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="394">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="394">
+<div class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>data_skill</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="44">
 
 <div>
 
@@ -2997,7 +3004,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="395">
-<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="395">
 
 <div>
@@ -3034,9 +3041,9 @@ dtype: object</code></pre>
 </section>
 <section id="left-join" class="level4" data-number="8.2.2.2">
 <h4 data-number="8.2.2.2" class="anchored" data-anchor-id="left-join"><span class="header-section-number">8.2.2.2</span> left join</h4>
-<p>Use all the key combinations observed in the left table.</p>
+<p>In <code>left</code> join, the merged dataset will have all the rows of the dataset that is specified first in the <code>merge()</code> function. Only those observations of the other dataset will be merged whose value(s) in the <em>key</em> column(s) exist in the dataset specified first in the <code>merge()</code> function.</p>
 <div class="cell" data-scrolled="true" data-execution_count="85">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2,how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill,how<span class="op">=</span><span class="st">'left'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="85">
 
 <div>
@@ -3083,9 +3090,9 @@ dtype: object</code></pre>
 </section>
 <section id="right-join" class="level4" data-number="8.2.2.3">
 <h4 data-number="8.2.2.3" class="anchored" data-anchor-id="right-join"><span class="header-section-number">8.2.2.3</span> right join</h4>
-<p>Use all the key combinations observed in the right table.</p>
+<p>In <code>right</code> join, the merged dataset will have all the rows of the dataset that is specified second in the <code>merge()</code> function. Only those observations of the other dataset will be merged whose value(s) in the <em>key</em> column(s) exist in the dataset specified second in the <code>merge()</code> function.</p>
 <div class="cell" data-scrolled="true" data-execution_count="86">
-<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2,how<span class="op">=</span><span class="st">'right'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill,how<span class="op">=</span><span class="st">'right'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
 
 <div>
@@ -3127,9 +3134,9 @@ dtype: object</code></pre>
 </section>
 <section id="outer-join" class="level4" data-number="8.2.2.4">
 <h4 data-number="8.2.2.4" class="anchored" data-anchor-id="outer-join"><span class="header-section-number">8.2.2.4</span> outer join</h4>
-<p>Use all key combinations observed in both the tables together.</p>
+<p>In <code>outer</code> join, the merged dataset will have all the rows of both the datasets being merged.</p>
 <div class="cell" data-execution_count="335">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data1,data2,how<span class="op">=</span><span class="st">'outer'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>pd.merge(data_student,data_skill,how<span class="op">=</span><span class="st">'outer'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="335">
 
 <div>
@@ -3182,18 +3189,18 @@ dtype: object</code></pre>
 <h2 data-number="8.3" class="anchored" data-anchor-id="concatenating-datasets"><span class="header-section-number">8.3</span> Concatenating datasets</h2>
 <p>The Pandas DataFrame method <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html"><code>concat()</code></a> is used to stack datasets along an axis. The method is similar to NumPy’s <code>concatenate()</code> method.</p>
 <p><strong>Example</strong>: You are given the life expectancy data of each continent as a separate *.csv file. Visualize the change of life expectancy over time for different continents.</p>
-<div class="cell" data-execution_count="355">
+<div class="cell" data-execution_count="45">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>data_asia <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Asia.csv'</span>)</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>data_europe <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Europe.csv'</span>)</span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>data_africa <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Africa.csv'</span>)</span>
 <span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>data_oceania <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Oceania.csv'</span>)</span>
 <span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>data_americas <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Americas.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="365">
+<div class="cell" data-execution_count="46">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Appending all the data files, i.e., stacking them on top of each other</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>data_all_continents <span class="op">=</span> pd.concat([data_asia,data_europe,data_africa,data_oceania,data_americas],keys <span class="op">=</span> [<span class="st">'Asia'</span>,<span class="st">'Europe'</span>,<span class="st">'Africa'</span>,<span class="st">'Oceania'</span>,<span class="st">'Americas'</span>])</span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>data_all_continents</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="365">
+<div class="cell-output cell-output-display" data-execution_count="46">
 
 <div>
 
@@ -3308,12 +3315,12 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Let’s have the continent as a column as we need to use that in the visualization.</p>
-<div class="cell" data-execution_count="366">
+<div class="cell" data-execution_count="47">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.reset_index(inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="368">
+<div class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="368">
+<div class="cell-output cell-output-display" data-execution_count="48">
 
 <div>
 
@@ -3386,11 +3393,11 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="369">
+<div class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.drop(columns <span class="op">=</span> <span class="st">'level_1'</span>,inplace <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>data_all_continents.rename(columns <span class="op">=</span> {<span class="st">'level_0'</span>:<span class="st">'continent'</span>},inplace <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>data_all_continents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="369">
+<div class="cell-output cell-output-display" data-execution_count="49">
 
 <div>
 
@@ -3457,13 +3464,13 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="373">
+<div class="cell" data-execution_count="50">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co">#change of life expectancy over time for different continents</span></span>
 <span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(data_all_continents,col <span class="op">=</span> <span class="st">'continent'</span>,col_wrap <span class="op">=</span> <span class="dv">3</span>,height <span class="op">=</span> <span class="fl">4.5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)<span class="co">#height = 3,aspect = 0.8)</span></span>
 <span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'year'</span>,<span class="st">'gdpPercap'</span>)</span>
 <span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="373">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2348dab5430&gt;</code></pre>
+<div class="cell-output cell-output-display" data-execution_count="50">
+<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2a40e4c3bb0&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="Data%20wrangling_files/figure-html/cell-75-output-2.png" class="img-fluid"></p>
@@ -3478,9 +3485,225 @@ dtype: object</code></pre>
 </section>
 <section id="reshaping-data-1" class="level2" data-number="8.4">
 <h2 data-number="8.4" class="anchored" data-anchor-id="reshaping-data-1"><span class="header-section-number">8.4</span> Reshaping data</h2>
+<p>Data often needs to be re-arranged to ease analysis.</p>
 <section id="pivoting-long-to-wide-format" class="level3" data-number="8.4.1">
 <h3 data-number="8.4.1" class="anchored" data-anchor-id="pivoting-long-to-wide-format"><span class="header-section-number">8.4.1</span> Pivoting “long” to “wide” format</h3>
-<p><em>pivot()</em></p>
+<section id="pivot" class="level4" data-number="8.4.1.1">
+<h4 data-number="8.4.1.1" class="anchored" data-anchor-id="pivot"><span class="header-section-number">8.4.1.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.pivot.html"><code>pivot()</code></a></h4>
+<p>This function helps re-arrange data from the <em>‘long’</em> form to a <em>‘wide’</em> form.</p>
+<p><strong>Example:</strong> Let us consider the dataset <code>data_all_continents</code> obtained in the previous section after concatenating the data of all the continents.</p>
+<div class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="51">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>continent</th>
+      <th>country</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Asia</td>
+      <td>Afghanistan</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>For visualizing life expectancy in 2007 against life expectancy in 1957, we will need to filter the data, and then make the plot. Everytime that we need to compare a metric for a year against another year, we will need to filter the data.</p>
+<p>If we need to often compare metrics of a year against another year, it will be easier to have each year as a separate column, instead of having all years in a single column.</p>
+<p>As we are increasing the number of columns and deceasing the number of rows, we are re-arranging the data from <em>long</em>-form to <em>wide</em>-form.</p>
+<div class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>data_wide <span class="op">=</span> data_all_continents.pivot(index <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],columns <span class="op">=</span> <span class="st">'year'</span>,values <span class="op">=</span> <span class="st">'lifeExp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>data_wide.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="56">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>1952</th>
+      <th>1957</th>
+      <th>1962</th>
+      <th>1967</th>
+      <th>1972</th>
+      <th>1977</th>
+      <th>1982</th>
+      <th>1987</th>
+      <th>1992</th>
+      <th>1997</th>
+      <th>2002</th>
+      <th>2007</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th>Algeria</th>
+      <td>43.077</td>
+      <td>45.685</td>
+      <td>48.303</td>
+      <td>51.407</td>
+      <td>54.518</td>
+      <td>58.014</td>
+      <td>61.368</td>
+      <td>65.799</td>
+      <td>67.744</td>
+      <td>69.152</td>
+      <td>70.994</td>
+      <td>72.301</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>30.015</td>
+      <td>31.999</td>
+      <td>34.000</td>
+      <td>35.985</td>
+      <td>37.928</td>
+      <td>39.483</td>
+      <td>39.942</td>
+      <td>39.906</td>
+      <td>40.647</td>
+      <td>40.963</td>
+      <td>41.003</td>
+      <td>42.731</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>38.223</td>
+      <td>40.358</td>
+      <td>42.618</td>
+      <td>44.885</td>
+      <td>47.014</td>
+      <td>49.190</td>
+      <td>50.904</td>
+      <td>52.337</td>
+      <td>53.919</td>
+      <td>54.777</td>
+      <td>54.406</td>
+      <td>56.728</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>47.622</td>
+      <td>49.618</td>
+      <td>51.520</td>
+      <td>53.298</td>
+      <td>56.024</td>
+      <td>59.319</td>
+      <td>61.484</td>
+      <td>63.622</td>
+      <td>62.745</td>
+      <td>52.556</td>
+      <td>46.634</td>
+      <td>50.728</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>31.975</td>
+      <td>34.906</td>
+      <td>37.814</td>
+      <td>40.697</td>
+      <td>43.591</td>
+      <td>46.137</td>
+      <td>48.122</td>
+      <td>49.557</td>
+      <td>50.260</td>
+      <td>50.324</td>
+      <td>50.650</td>
+      <td>52.295</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>With values of <code>year</code> as columns, it is easy to compare any metric for different years.</p>
+<div class="cell" data-execution_count="59">
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">#visualizing the change in life expectancy of all countries in 2007 as compared to that in 1957, i.e., the overall change in life expectancy in 50 years. </span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>sns.scatterplot(data <span class="op">=</span> data_wide, x <span class="op">=</span> <span class="dv">1957</span>,y<span class="op">=</span><span class="dv">2007</span>,hue <span class="op">=</span> <span class="st">'continent'</span>)</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>sns.lineplot(data <span class="op">=</span> data_wide, x <span class="op">=</span> <span class="dv">1957</span>,y <span class="op">=</span> <span class="dv">1957</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="59">
+<pre><code>&lt;AxesSubplot:xlabel='1957', ylabel='2007'&gt;</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="Data%20wrangling_files/figure-html/cell-79-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+<p>Observe that for some African countries the life expectancy has decreased after 50 years. It is worth inverstigating to these countries to identify factors associated with the decrease.</p>
+</section>
 </section>
 <section id="pivoting-wide-to-long-format" class="level3" data-number="8.4.2">
 <h3 data-number="8.4.2" class="anchored" data-anchor-id="pivoting-wide-to-long-format"><span class="header-section-number">8.4.2</span> Pivoting “wide” to “long” format</h3>
