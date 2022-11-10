@@ -367,6 +367,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#melting-columns-with-a-single-type-of-value" id="toc-melting-columns-with-a-single-type-of-value" class="nav-link" data-scroll-target="#melting-columns-with-a-single-type-of-value"><span class="toc-section-number">8.4.2.1</span>  Melting columns with a single type of value</a></li>
   <li><a href="#melting-columns-with-multiple-types-of-values" id="toc-melting-columns-with-multiple-types-of-values" class="nav-link" data-scroll-target="#melting-columns-with-multiple-types-of-values"><span class="toc-section-number">8.4.2.2</span>  Melting columns with multiple types of values</a></li>
   </ul></li>
+  <li><a href="#practice-exercise-5" id="toc-practice-exercise-5" class="nav-link" data-scroll-target="#practice-exercise-5"><span class="toc-section-number">8.4.3</span>  Practice exercise 5</a>
+  <ul class="collapse">
+  <li><a href="#section-8" id="toc-section-8" class="nav-link" data-scroll-target="#section-8"><span class="toc-section-number">8.4.3.1</span>  </a></li>
+  <li><a href="#section-9" id="toc-section-9" class="nav-link" data-scroll-target="#section-9"><span class="toc-section-number">8.4.3.2</span>  </a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -391,7 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Data wrangling refers to combining, transforming, and re-arranging data to make it suitable for further analysis. We’ll use Pandas for all data wrangling operations.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3196,18 +3201,18 @@ dtype: object</code></pre>
 <h2 data-number="8.3" class="anchored" data-anchor-id="concatenating-datasets"><span class="header-section-number">8.3</span> Concatenating datasets</h2>
 <p>The Pandas DataFrame method <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.concat.html"><code>concat()</code></a> is used to stack datasets along an axis. The method is similar to NumPy’s <code>concatenate()</code> method.</p>
 <p><strong>Example</strong>: You are given the life expectancy data of each continent as a separate *.csv file. Visualize the change of life expectancy over time for different continents.</p>
-<div class="cell" data-execution_count="84">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>data_asia <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Asia.csv'</span>)</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>data_europe <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Europe.csv'</span>)</span>
 <span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>data_africa <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Africa.csv'</span>)</span>
 <span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>data_oceania <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Oceania.csv'</span>)</span>
 <span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>data_americas <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpec_Americas.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="85">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Appending all the data files, i.e., stacking them on top of each other</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>data_all_continents <span class="op">=</span> pd.concat([data_asia,data_europe,data_africa,data_oceania,data_americas],keys <span class="op">=</span> [<span class="st">'Asia'</span>,<span class="st">'Europe'</span>,<span class="st">'Africa'</span>,<span class="st">'Oceania'</span>,<span class="st">'Americas'</span>])</span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>data_all_continents</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="85">
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -3322,12 +3327,12 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Let’s have the continent as a column as we need to use that in the visualization.</p>
-<div class="cell" data-execution_count="86">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.reset_index(inplace <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="87">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb93"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="87">
+<div class="cell-output cell-output-display" data-execution_count="7">
 
 <div>
 
@@ -3400,11 +3405,11 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="88">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a>data_all_continents.drop(columns <span class="op">=</span> <span class="st">'level_1'</span>,inplace <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>data_all_continents.rename(columns <span class="op">=</span> {<span class="st">'level_0'</span>:<span class="st">'continent'</span>},inplace <span class="op">=</span> <span class="va">True</span>)</span>
 <span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>data_all_continents.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="88">
+<div class="cell-output cell-output-display" data-execution_count="8">
 
 <div>
 
@@ -4616,6 +4621,580 @@ dtype: object</code></pre>
     </tr>
   </tbody>
 </table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="practice-exercise-5" class="level3" data-number="8.4.3">
+<h3 data-number="8.4.3" class="anchored" data-anchor-id="practice-exercise-5"><span class="header-section-number">8.4.3</span> Practice exercise 5</h3>
+<section id="section-8" class="level4" data-number="8.4.3.1">
+<h4 data-number="8.4.3.1" class="anchored" data-anchor-id="section-8"><span class="header-section-number">8.4.3.1</span> </h4>
+<p>Both <code>unstack()</code> and <code>pivot()</code> seem to transform the data from the <em>‘long’</em> form to the <em>‘wide’</em> form. Is there a difference between the two functions?</p>
+<p><strong>Solution:</strong></p>
+<p>Yes, both the functions transform the data from the <em>‘long’</em> form to the <em>‘wide’</em> form. However, <code>unstack()</code> pivots the row indices, while <code>pivot()</code> pivots the columns of the DataFrame.</p>
+<p>Even though both functions are a bit different, it is possible to just use one of them to perform a reshaping operation. If we wish to pivot a column, we can either use <code>pivot()</code> directly on the column, or we can convert the column to row indices and then use <code>unstack()</code>. If we wish to pivot row indices, we can either use <code>unstack()</code> directly on the row indices, or we can convert row indices to a column and then use <code>pivot()</code>.</p>
+<p>To summarise, using one function may be more straightforward than using the other one, but either can be used for reshaping data from the <em>‘long’</em> form to the <em>‘wide’</em> form.</p>
+<p>Below is an example where we perform the same reshaping operation with either function.</p>
+<p>Consider the data <code>data_all_continent</code>. Suppose we wish to transform it to <code>data_wide</code> as we did using <code>pivot()</code> in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#pivoting-a-single-column">8.4.1.1</a>. Let us do it using <code>unstack()</code>, instead of <code>pivot()</code>.</p>
+<p>The first step will be to reindex data to set <code>year</code> as row indices, and also <code>continent</code> and <code>country</code> as row indices because these two column were set as indices with the <code>pivot()</code> function in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#pivoting-a-single-column">8.4.1.1</a>.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reindexing data to make 'continent', 'country', and 'year' as hierarchical row indices</span></span>
+<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>data_reindexed<span class="op">=</span>data_all_continents.set_index([<span class="st">'continent'</span>,<span class="st">'country'</span>,<span class="st">'year'</span>])</span>
+<span id="cb111-3"><a href="#cb111-3" aria-hidden="true" tabindex="-1"></a>data_reindexed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th>year</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Asia</th>
+      <th rowspan="5" valign="top">Afghanistan</th>
+      <th>1952</th>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <th>1957</th>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <th>1962</th>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <th>1967</th>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <th>1972</th>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">Americas</th>
+      <th rowspan="5" valign="top">Venezuela</th>
+      <th>1987</th>
+      <td>70.190</td>
+      <td>17910182</td>
+      <td>9883.584648</td>
+    </tr>
+    <tr>
+      <th>1992</th>
+      <td>71.150</td>
+      <td>20265563</td>
+      <td>10733.926310</td>
+    </tr>
+    <tr>
+      <th>1997</th>
+      <td>72.146</td>
+      <td>22374398</td>
+      <td>10165.495180</td>
+    </tr>
+    <tr>
+      <th>2002</th>
+      <td>72.766</td>
+      <td>24287670</td>
+      <td>8605.047831</td>
+    </tr>
+    <tr>
+      <th>2007</th>
+      <td>73.747</td>
+      <td>26084662</td>
+      <td>11415.805690</td>
+    </tr>
+  </tbody>
+</table>
+<p>1704 rows × 3 columns</p>
+</div>
+</div>
+</div>
+<p>Now we can use <code>unstack()</code> to pivot the desired row index, i.e., <code>year</code>. Also, since we are only interested in pivoting the values of <code>lifeExp</code> (as in the example in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#pivoting-a-single-column">8.4.1.1</a>), we will filter the pivoted data with the <code>lifeExp</code> column label.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>data_wide_with_unstack<span class="op">=</span>data_reindexed.unstack(<span class="st">'year'</span>)[<span class="st">'lifeExp'</span>]</span>
+<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>data_wide_with_unstack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="19">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>1952</th>
+      <th>1957</th>
+      <th>1962</th>
+      <th>1967</th>
+      <th>1972</th>
+      <th>1977</th>
+      <th>1982</th>
+      <th>1987</th>
+      <th>1992</th>
+      <th>1997</th>
+      <th>2002</th>
+      <th>2007</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th>Algeria</th>
+      <td>43.077</td>
+      <td>45.685</td>
+      <td>48.303</td>
+      <td>51.407</td>
+      <td>54.518</td>
+      <td>58.014</td>
+      <td>61.368</td>
+      <td>65.799</td>
+      <td>67.744</td>
+      <td>69.152</td>
+      <td>70.994</td>
+      <td>72.301</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>30.015</td>
+      <td>31.999</td>
+      <td>34.000</td>
+      <td>35.985</td>
+      <td>37.928</td>
+      <td>39.483</td>
+      <td>39.942</td>
+      <td>39.906</td>
+      <td>40.647</td>
+      <td>40.963</td>
+      <td>41.003</td>
+      <td>42.731</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>38.223</td>
+      <td>40.358</td>
+      <td>42.618</td>
+      <td>44.885</td>
+      <td>47.014</td>
+      <td>49.190</td>
+      <td>50.904</td>
+      <td>52.337</td>
+      <td>53.919</td>
+      <td>54.777</td>
+      <td>54.406</td>
+      <td>56.728</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>47.622</td>
+      <td>49.618</td>
+      <td>51.520</td>
+      <td>53.298</td>
+      <td>56.024</td>
+      <td>59.319</td>
+      <td>61.484</td>
+      <td>63.622</td>
+      <td>62.745</td>
+      <td>52.556</td>
+      <td>46.634</td>
+      <td>50.728</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>31.975</td>
+      <td>34.906</td>
+      <td>37.814</td>
+      <td>40.697</td>
+      <td>43.591</td>
+      <td>46.137</td>
+      <td>48.122</td>
+      <td>49.557</td>
+      <td>50.260</td>
+      <td>50.324</td>
+      <td>50.650</td>
+      <td>52.295</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Europe</th>
+      <th>Switzerland</th>
+      <td>69.620</td>
+      <td>70.560</td>
+      <td>71.320</td>
+      <td>72.770</td>
+      <td>73.780</td>
+      <td>75.390</td>
+      <td>76.210</td>
+      <td>77.410</td>
+      <td>78.030</td>
+      <td>79.370</td>
+      <td>80.620</td>
+      <td>81.701</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>43.585</td>
+      <td>48.079</td>
+      <td>52.098</td>
+      <td>54.336</td>
+      <td>57.005</td>
+      <td>59.507</td>
+      <td>61.036</td>
+      <td>63.108</td>
+      <td>66.146</td>
+      <td>68.835</td>
+      <td>70.845</td>
+      <td>71.777</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>69.180</td>
+      <td>70.420</td>
+      <td>70.760</td>
+      <td>71.360</td>
+      <td>72.010</td>
+      <td>72.760</td>
+      <td>74.040</td>
+      <td>75.007</td>
+      <td>76.420</td>
+      <td>77.218</td>
+      <td>78.471</td>
+      <td>79.425</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Oceania</th>
+      <th>Australia</th>
+      <td>69.120</td>
+      <td>70.330</td>
+      <td>70.930</td>
+      <td>71.100</td>
+      <td>71.930</td>
+      <td>73.490</td>
+      <td>74.740</td>
+      <td>76.320</td>
+      <td>77.560</td>
+      <td>78.830</td>
+      <td>80.370</td>
+      <td>81.235</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>69.390</td>
+      <td>70.260</td>
+      <td>71.240</td>
+      <td>71.520</td>
+      <td>71.890</td>
+      <td>72.220</td>
+      <td>73.840</td>
+      <td>74.320</td>
+      <td>76.330</td>
+      <td>77.550</td>
+      <td>79.110</td>
+      <td>80.204</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 12 columns</p>
+</div>
+</div>
+</div>
+<p>The above dataset is the same as that obtained using the <code>pivot()</code> function in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#pivoting-a-single-column">8.4.1.1</a>.</p>
+</section>
+<section id="section-9" class="level4" data-number="8.4.3.2">
+<h4 data-number="8.4.3.2" class="anchored" data-anchor-id="section-9"><span class="header-section-number">8.4.3.2</span> </h4>
+<p>Both <code>stack()</code> and <code>melt()</code> seem to transform the data from the <em>‘wide’</em> form to the <em>‘long’</em> form. Is there a difference between the two functions?</p>
+<p><strong>Solution:</strong></p>
+<p>Following the trend of the previous question, we can always use <code>stack()</code> instead of <code>melt()</code> and vice-versa. The main difference is that <code>melt()</code> lets us choose the indentifier columns with the argument <code>id_vars</code>. However, if we use <code>stack()</code>, we will need to set the relevant melted row indices as columns. On the other hand, if we wished to have the melted columns as row indices, we can either directly use <code>stack()</code> or use <code>melt()</code> and then set the desired columns as row indices.</p>
+<p>To summarise, using one function may be more straightforward than using the other one, but either can be used for reshaping data from the <em>‘wide’</em> form to the <em>‘long’</em> form.</p>
+<p>Let us melt the data <code>data_wide_with_unstack</code> using the <code>stack()</code> function to obtain the same dataset as obtained with the <code>melt()</code> function in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#melting-columns-with-a-single-type-of-value">8.4.1.2</a>.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Stacking the data</span></span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>data_stacked <span class="op">=</span> data_wide_with_unstack.stack()</span>
+<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>data_stacked</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+<pre><code>continent  country      year
+Africa     Algeria      1952    43.077
+                        1957    45.685
+                        1962    48.303
+                        1967    51.407
+                        1972    54.518
+                                 ...  
+Oceania    New Zealand  1987    74.320
+                        1992    76.330
+                        1997    77.550
+                        2002    79.110
+                        2007    80.204
+Length: 1704, dtype: float64</code></pre>
+</div>
+</div>
+<p>Now we need to convert the row indices <code>continent</code> and <code>country</code> to columns as in the melted data in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#melting-columns-with-a-single-type-of-value">8.4.1.2</a>.</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Putting 'continent' and 'country' as columns</span></span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a>data_long_with_stack <span class="op">=</span> data_stacked.reset_index()</span>
+<span id="cb115-3"><a href="#cb115-3" aria-hidden="true" tabindex="-1"></a>data_long_with_stack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>continent</th>
+      <th>country</th>
+      <th>year</th>
+      <th>0</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1952</td>
+      <td>43.077</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1957</td>
+      <td>45.685</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1962</td>
+      <td>48.303</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1967</td>
+      <td>51.407</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1972</td>
+      <td>54.518</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1699</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>1987</td>
+      <td>74.320</td>
+    </tr>
+    <tr>
+      <th>1700</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>1992</td>
+      <td>76.330</td>
+    </tr>
+    <tr>
+      <th>1701</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>1997</td>
+      <td>77.550</td>
+    </tr>
+    <tr>
+      <th>1702</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>2002</td>
+      <td>79.110</td>
+    </tr>
+    <tr>
+      <th>1703</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>2007</td>
+      <td>80.204</td>
+    </tr>
+  </tbody>
+</table>
+<p>1704 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p>Finally, we need to rename the column named as 0 to <code>LifeExp</code> to obtain the same dataset as in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#melting-columns-with-a-single-type-of-value">8.4.1.2</a>.</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Renaming column 0 to 'LifeExp'</span></span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a>data_long_with_stack.rename(columns <span class="op">=</span> {<span class="dv">0</span>:<span class="st">'LifeExp'</span>},inplace<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>data_long_with_stack</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>continent</th>
+      <th>country</th>
+      <th>year</th>
+      <th>LifeExp</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1952</td>
+      <td>43.077</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1957</td>
+      <td>45.685</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1962</td>
+      <td>48.303</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1967</td>
+      <td>51.407</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Africa</td>
+      <td>Algeria</td>
+      <td>1972</td>
+      <td>54.518</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1699</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>1987</td>
+      <td>74.320</td>
+    </tr>
+    <tr>
+      <th>1700</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>1992</td>
+      <td>76.330</td>
+    </tr>
+    <tr>
+      <th>1701</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>1997</td>
+      <td>77.550</td>
+    </tr>
+    <tr>
+      <th>1702</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>2002</td>
+      <td>79.110</td>
+    </tr>
+    <tr>
+      <th>1703</th>
+      <td>Oceania</td>
+      <td>New Zealand</td>
+      <td>2007</td>
+      <td>80.204</td>
+    </tr>
+  </tbody>
+</table>
+<p>1704 rows × 4 columns</p>
 </div>
 </div>
 </div>
