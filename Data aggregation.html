@@ -20,6 +20,69 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1.6em;
   vertical-align: middle;
 }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -60,6 +123,9 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 </head>
@@ -231,7 +297,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#the-groupby-object" id="toc-the-groupby-object" class="nav-link active" data-scroll-target="#the-groupby-object"><span class="toc-section-number">9.1</span>  The GroupBy object</a>
+  <ul>
+  <li><a href="#creating-a-groupby-object-groupby" id="toc-creating-a-groupby-object-groupby" class="nav-link" data-scroll-target="#creating-a-groupby-object-groupby"><span class="toc-section-number">9.1.1</span>  Creating a GroupBy object: <code>groupby</code></a></li>
+  <li><a href="#attributes-and-methods-of-the-groupby-object" id="toc-attributes-and-methods-of-the-groupby-object" class="nav-link" data-scroll-target="#attributes-and-methods-of-the-groupby-object"><span class="toc-section-number">9.1.2</span>  Attributes and methods of the <em>GroupBy</em> object</a>
+  <ul class="collapse">
+  <li><a href="#keys" id="toc-keys" class="nav-link" data-scroll-target="#keys"><span class="toc-section-number">9.1.2.1</span>  <code>keys</code></a></li>
+  <li><a href="#ngroups" id="toc-ngroups" class="nav-link" data-scroll-target="#ngroups"><span class="toc-section-number">9.1.2.2</span>  <code>ngroups</code></a></li>
+  <li><a href="#groups" id="toc-groups" class="nav-link" data-scroll-target="#groups"><span class="toc-section-number">9.1.2.3</span>  <code>groups</code></a></li>
+  <li><a href="#size" id="toc-size" class="nav-link" data-scroll-target="#size"><span class="toc-section-number">9.1.2.4</span>  <code>size()</code></a></li>
+  <li><a href="#first" id="toc-first" class="nav-link" data-scroll-target="#first"><span class="toc-section-number">9.1.2.5</span>  <code>first()</code></a></li>
+  <li><a href="#get_group" id="toc-get_group" class="nav-link" data-scroll-target="#get_group"><span class="toc-section-number">9.1.2.6</span>  <code>get_group()</code></a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -252,9 +336,414 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Data aggregation</p>
+<p>Data aggregation refers to summarizing data with statistics such as sum, count, average, maximum, minimum etc. to provide a high level view of the data. Often there are mutually exclusive groups in the data that are of interest. In such cases, we may be interested in finding these statisitcs separately for each group. The Pandas function <em>groupby()</em> is used to split the data into groups, and then the desired function(s) are applied on each of these groups for groupwise data aggregation. However, the <em>groupby()</em> function is not limited for groupwise data aggregation, but can also be used for several other kinds of groupwise oprations.</p>
+<p><strong>Groupby mechanics:</strong> (Source: https://pandas.pydata.org/docs/user_guide/groupby.html)</p>
+<p>Group by: split-apply-combine By “group by” we are referring to a process involving one or more of the following steps:</p>
+<p>Splitting the data into groups based on some criteria.</p>
+<p>Applying a function to each group independently.</p>
+<p>Combining the results into a data structure.</p>
+<p>Out of these, the split step is the most straightforward. In fact, in many situations we may wish to split the data set into groups and do something with those groups. In the apply step, we might wish to do one of the following:</p>
+<p><strong>Aggregation:</strong> compute a summary statistic (or statistics) for each group. Some examples:</p>
+<p>Compute group sums or means.<br>
+Compute group sizes / counts.</p>
+<p><strong>Transformation:</strong> perform some group-specific computations and return a like-indexed object. Some examples:</p>
+<p>Standardize data (zscore) within a group.<br>
+Filling NAs within groups with a value derived from each group.</p>
+<p><strong>Filtration:</strong> discard some groups, according to a group-wise computation that evaluates True or False. Some examples:</p>
+<p>Discard data that belongs to groups with only a few members.<br>
+Filter out data based on the group sum or mean.</p>
+<p>Some combination of the above: <em>GroupBy</em> will examine the results of the <em>apply</em> step and try to return a sensibly combined result if it doesn’t fit into either of the above two categories.</p>
+<p>We’ll use Pandas to perform <em>GroupBy</em> operations.</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="the-groupby-object" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="the-groupby-object"><span class="header-section-number">9.1</span> The GroupBy object</h2>
+<section id="creating-a-groupby-object-groupby" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="creating-a-groupby-object-groupby"><span class="header-section-number">9.1.1</span> Creating a GroupBy object: <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html"><code>groupby</code></a></h3>
+<p>This Pandas DataFrame method <code>groupby()</code> is used to create a <code>GroupBy</code> object.</p>
+<p>A string passed to <code>groupby()</code> may refer to either a column or an index level. If a string matches both a column name and an index level name, a ValueError will be raised.</p>
+<p><strong>Example</strong>: Consider the life expectancy dataset, <em>gdp_lifeExpectancy.csv</em>. Suppose we want to group by the observations by <code>continent</code>.</p>
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="3">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We will pass the column <code>continent</code> as an argument to the <code>groupby()</code> method.</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a GroupBy object</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> data.groupby(<span class="st">'continent'</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#This will split the data into groups that correspond to values of the column 'continent'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>The <code>groupby()</code> method returns a <em>GroupBy</em> object.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A 'GroupBy' objects is created with the `groupby()` function</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(grouped)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>pandas.core.groupby.generic.DataFrameGroupBy</code></pre>
+</div>
+</div>
+<p>The GroupBy object <code>grouped</code> contains the information of the groups in which the data is distributed. Each observation has been assigned to a specific group of the column(s) used to group the data. However, note that the dataset is not physically split into different DataFrames. For example, in the above case, each observation is assigned to a particular group depending on the value of the <code>continent</code> for that observation. However, all the observations are still in the same DataFrame <code>data</code>.</p>
+</section>
+<section id="attributes-and-methods-of-the-groupby-object" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="attributes-and-methods-of-the-groupby-object"><span class="header-section-number">9.1.2</span> Attributes and methods of the <em>GroupBy</em> object</h3>
+<section id="keys" class="level4" data-number="9.1.2.1">
+<h4 data-number="9.1.2.1" class="anchored" data-anchor-id="keys"><span class="header-section-number">9.1.2.1</span> <code>keys</code></h4>
+<p>The object(s) grouping the data are called <em>key(s)</em>. Here <code>continent</code> is the group key. The keys of the <em>GroupBy</em> object can be seen using Its <code>keys</code> attribute.</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Key(s) of the GroupBy object</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>grouped.keys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>'continent'</code></pre>
+</div>
+</div>
+</section>
+<section id="ngroups" class="level4" data-number="9.1.2.2">
+<h4 data-number="9.1.2.2" class="anchored" data-anchor-id="ngroups"><span class="header-section-number">9.1.2.2</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.GroupBy.ngroup.html"><code>ngroups</code></a></h4>
+<p>The number of groups in which the data is distributed based on the keys can be seen with the <code>ngroups</code> attribute.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The number of groups based on the key(s)</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>grouped.ngroups</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>5</code></pre>
+</div>
+</div>
+</section>
+<section id="groups" class="level4" data-number="9.1.2.3">
+<h4 data-number="9.1.2.3" class="anchored" data-anchor-id="groups"><span class="header-section-number">9.1.2.3</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.GroupBy.groups.html"><code>groups</code></a></h4>
+<p>The <code>groups</code> attribute of the <em>GroupBy</em> object contains the group labels (or names) and the row labels of the observations in each group, as a dictionary.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The groups (in the dictionary format)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>grouped.groups</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>{'Africa': [24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, ...], 'Americas': [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 432, 433, 434, 435, ...], 'Asia': [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 660, 661, 662, 663, 664, 665, 666, 667, 668, 669, 670, 671, 696, 697, 698, 699, 700, 701, 702, 703, 704, 705, 706, 707, 708, 709, 710, 711, 712, 713, 714, 715, 716, 717, 718, 719, 720, 721, 722, 723, ...], 'Europe': [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 516, 517, 518, 519, ...], 'Oceania': [60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 1092, 1093, 1094, 1095, 1096, 1097, 1098, 1099, 1100, 1101, 1102, 1103]}</code></pre>
+</div>
+</div>
+<p>The group names are the <em>keys</em> of the dictionary, while the row labels are the corresponding <em>values</em></p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Group names</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>grouped.groups.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>dict_keys(['Africa', 'Americas', 'Asia', 'Europe', 'Oceania'])</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Group values are the row labels corresponding to a particular group</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>grouped.groups.values()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="12">
+<pre><code>dict_values([Int64Index([  24,   25,   26,   27,   28,   29,   30,   31,   32,   33,
+            ...
+            1694, 1695, 1696, 1697, 1698, 1699, 1700, 1701, 1702, 1703],
+           dtype='int64', length=624), Int64Index([  48,   49,   50,   51,   52,   53,   54,   55,   56,   57,
+            ...
+            1634, 1635, 1636, 1637, 1638, 1639, 1640, 1641, 1642, 1643],
+           dtype='int64', length=300), Int64Index([   0,    1,    2,    3,    4,    5,    6,    7,    8,    9,
+            ...
+            1670, 1671, 1672, 1673, 1674, 1675, 1676, 1677, 1678, 1679],
+           dtype='int64', length=396), Int64Index([  12,   13,   14,   15,   16,   17,   18,   19,   20,   21,
+            ...
+            1598, 1599, 1600, 1601, 1602, 1603, 1604, 1605, 1606, 1607],
+           dtype='int64', length=360), Int64Index([  60,   61,   62,   63,   64,   65,   66,   67,   68,   69,   70,
+              71, 1092, 1093, 1094, 1095, 1096, 1097, 1098, 1099, 1100, 1101,
+            1102, 1103],
+           dtype='int64')])</code></pre>
+</div>
+</div>
+</section>
+<section id="size" class="level4" data-number="9.1.2.4">
+<h4 data-number="9.1.2.4" class="anchored" data-anchor-id="size"><span class="header-section-number">9.1.2.4</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.GroupBy.size.html"><code>size()</code></a></h4>
+<p>The <code>size()</code> method of the <em>GroupBy</em> object returns the number of observations in each group.</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of observations in each group</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>grouped.size()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="13">
+<pre><code>continent
+Africa      624
+Americas    300
+Asia        396
+Europe      360
+Oceania      24
+dtype: int64</code></pre>
+</div>
+</div>
+</section>
+<section id="first" class="level4" data-number="9.1.2.5">
+<h4 data-number="9.1.2.5" class="anchored" data-anchor-id="first"><span class="header-section-number">9.1.2.5</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.GroupBy.first.html"><code>first()</code></a></h4>
+<p>The first non missing element of each group is returned with the <code>first()</code> method of the <em>GroupBy</em> object.</p>
+<div class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The first element of the group can be printed using the first() method</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>grouped.first()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="15">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Africa</th>
+      <td>Algeria</td>
+      <td>1952</td>
+      <td>43.077</td>
+      <td>9279525</td>
+      <td>2449.008185</td>
+    </tr>
+    <tr>
+      <th>Americas</th>
+      <td>Argentina</td>
+      <td>1952</td>
+      <td>62.485</td>
+      <td>17876956</td>
+      <td>5911.315053</td>
+    </tr>
+    <tr>
+      <th>Asia</th>
+      <td>Afghanistan</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <th>Europe</th>
+      <td>Albania</td>
+      <td>1952</td>
+      <td>55.230</td>
+      <td>1282697</td>
+      <td>1601.056136</td>
+    </tr>
+    <tr>
+      <th>Oceania</th>
+      <td>Australia</td>
+      <td>1952</td>
+      <td>69.120</td>
+      <td>8691212</td>
+      <td>10039.595640</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="get_group" class="level4" data-number="9.1.2.6">
+<h4 data-number="9.1.2.6" class="anchored" data-anchor-id="get_group"><span class="header-section-number">9.1.2.6</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.GroupBy.get_group.html"><code>get_group()</code></a></h4>
+<p>This method returns the observations for a particular group of the <em>GroupBy</em> object.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Observations for individual groups can be obtained using the get_group() function</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>grouped.get_group(<span class="st">'Asia'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="16">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>country</th>
+      <th>continent</th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1952</td>
+      <td>28.801</td>
+      <td>8425333</td>
+      <td>779.445314</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1957</td>
+      <td>30.332</td>
+      <td>9240934</td>
+      <td>820.853030</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1962</td>
+      <td>31.997</td>
+      <td>10267083</td>
+      <td>853.100710</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1967</td>
+      <td>34.020</td>
+      <td>11537966</td>
+      <td>836.197138</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Afghanistan</td>
+      <td>Asia</td>
+      <td>1972</td>
+      <td>36.088</td>
+      <td>13079460</td>
+      <td>739.981106</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1675</th>
+      <td>Yemen, Rep.</td>
+      <td>Asia</td>
+      <td>1987</td>
+      <td>52.922</td>
+      <td>11219340</td>
+      <td>1971.741538</td>
+    </tr>
+    <tr>
+      <th>1676</th>
+      <td>Yemen, Rep.</td>
+      <td>Asia</td>
+      <td>1992</td>
+      <td>55.599</td>
+      <td>13367997</td>
+      <td>1879.496673</td>
+    </tr>
+    <tr>
+      <th>1677</th>
+      <td>Yemen, Rep.</td>
+      <td>Asia</td>
+      <td>1997</td>
+      <td>58.020</td>
+      <td>15826497</td>
+      <td>2117.484526</td>
+    </tr>
+    <tr>
+      <th>1678</th>
+      <td>Yemen, Rep.</td>
+      <td>Asia</td>
+      <td>2002</td>
+      <td>60.308</td>
+      <td>18701257</td>
+      <td>2234.820827</td>
+    </tr>
+    <tr>
+      <th>1679</th>
+      <td>Yemen, Rep.</td>
+      <td>Asia</td>
+      <td>2007</td>
+      <td>62.698</td>
+      <td>22211743</td>
+      <td>2280.769906</td>
+    </tr>
+  </tbody>
+</table>
+<p>396 rows × 6 columns</p>
+</div>
+</div>
+</div>
 
 
+</section>
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
