@@ -391,7 +391,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Data wrangling refers to combining, transforming, and re-arranging data to make it suitable for further analysis. We’ll use Pandas for all data wrangling operations.</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1500,13 +1500,13 @@ Name: (Illinois, Evanston), dtype: float64</code></pre>
 <span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Scaling the social indicator dataset</span></span>
 <span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>social_indicator_scaled <span class="op">=</span> social_indicator.iloc[:,<span class="dv">2</span>:].<span class="bu">apply</span>(<span class="kw">lambda</span> x: (x<span class="op">-</span>x.mean())<span class="op">/</span>(x.std()))</span>
 <span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Computing the manhattan distances of all countries from country G (Luxembourg)</span></span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Computing the Manhattan distances of all countries from country G (Luxembourg)</span></span>
 <span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>manhattan_distances <span class="op">=</span> (social_indicator_scaled<span class="op">-</span>social_indicator_scaled.iloc[country_max_gdp_position,:]).<span class="bu">abs</span>().<span class="bu">sum</span>(axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the indices of African countries</span></span>
 <span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>african_countries_indices <span class="op">=</span> social_indicator.loc[social_indicator.continent<span class="op">==</span><span class="st">'Africa'</span>,:].index</span>
 <span id="cb49-12"><a href="#cb49-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtering the manhattan distances of African countries from country G (Luxembourg)</span></span>
+<span id="cb49-13"><a href="#cb49-13" aria-hidden="true" tabindex="-1"></a><span class="co">#Filtering the Manhattan distances of African countries from country G (Luxembourg)</span></span>
 <span id="cb49-14"><a href="#cb49-14" aria-hidden="true" tabindex="-1"></a>manhattan_distances_African <span class="op">=</span> manhattan_distances[african_countries_indices]</span>
 <span id="cb49-15"><a href="#cb49-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb49-16"><a href="#cb49-16" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the country among African countries that has the least Manhattan distance to country G (Luxembourg)</span></span>
@@ -1533,8 +1533,8 @@ Name: (Illinois, Evanston), dtype: float64</code></pre>
 <pre><code>'Reunion'</code></pre>
 </div>
 </div>
-<p>As we have converted the columns <code>continent</code> and <code>country</code> to row indices, all the lines of code where we were keeping track of the index of country <span class="math inline">\(G\)</span>, African countries, and manhattan distances of African countries are eliminated. Three lines of code are eliminated.</p>
-<p>Hierarchical indexing relieves of from keeping track of indices, if we set indices that are relatable to our analysis.</p>
+<p>As we have converted the columns <code>continent</code> and <code>country</code> to row indices, all the lines of code where we were keeping track of the index of country <span class="math inline">\(G\)</span>, African countries, and Manhattan distances of African countries are eliminated. Three lines of code are eliminated.</p>
+<p>Hierarchical indexing relieves us from keeping track of indices, if we set indices that are relatable to our analysis.</p>
 </section>
 <section id="section-7" class="level4" data-number="8.1.5.2">
 <h4 data-number="8.1.5.2" class="anchored" data-anchor-id="section-7"><span class="header-section-number">8.1.5.2</span> </h4>
@@ -4418,7 +4418,7 @@ dtype: object</code></pre>
 </section>
 <section id="melting-columns-with-multiple-types-of-values" class="level4" data-number="8.4.2.2">
 <h4 data-number="8.4.2.2" class="anchored" data-anchor-id="melting-columns-with-multiple-types-of-values"><span class="header-section-number">8.4.2.2</span> Melting columns with multiple types of values</h4>
-<p>Consider the dataset created in Section . It has two types of values - <code>lifeExp</code> and <code>gdpPercapita</code>, which are the column labels at the outer level. The <code>melt()</code> function will melt all the years of data into a single column. However, it will create another column based on the outer level column labels - <code>lifeExp</code> and <code>gdpPercapita</code> to distinguish between these two types of values. Here, we see that the function <code>melt()</code> internally uses hierarchical indexing to handle the transformation of multiple types of columns.</p>
+<p>Consider the dataset created in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20wrangling.html#pivoting-multiple-columns">8.4.1.2</a>. It has two types of values - <code>lifeExp</code> and <code>gdpPercapita</code>, which are the column labels at the outer level. The <code>melt()</code> function will melt all the years of data into a single column. However, it will create another column based on the outer level column labels - <code>lifeExp</code> and <code>gdpPercapita</code> to distinguish between these two types of values. Here, we see that the function <code>melt()</code> internally uses hierarchical indexing to handle the transformation of multiple types of columns.</p>
 <div class="cell" data-execution_count="121">
 <div class="sourceCode cell-code" id="cb108"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>data_melt <span class="op">=</span> pd.melt(data_wide_lifeExp_gdpPercap.reset_index(),id_vars <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],var_name <span class="op">=</span> [<span class="st">'Metric'</span>,<span class="st">'year'</span>])</span>
 <span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>data_melt.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
