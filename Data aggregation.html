@@ -322,6 +322,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#grouping-columns" id="toc-grouping-columns" class="nav-link" data-scroll-target="#grouping-columns"><span class="toc-section-number">9.2.1.2</span>  Grouping columns</a></li>
   </ul></li>
   <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">9.2.2</span>  Practice exercise 1</a></li>
+  <li><a href="#agg" id="toc-agg" class="nav-link" data-scroll-target="#agg"><span class="toc-section-number">9.2.3</span>  <code>agg()</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -346,7 +347,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Data aggregation refers to summarizing data with statistics such as sum, count, average, maximum, minimum etc. to provide a high level view of the data. Often there are mutually exclusive groups in the data that are of interest. In such cases, we may be interested in finding these statisitcs separately for each group. The Pandas DataFrame method <code>groupby()</code> is used to split the data into groups, and then the desired function(s) are applied on each of these groups for groupwise data aggregation. However, the <code>groupby()</code> method is not limited for groupwise data aggregation, but can also be used for several other kinds of groupwise oprations.</p>
-<p><strong>Groupby mechanics:</strong> (Source: https://pandas.pydata.org/docs/user_guide/groupby.html)</p>
+<p><strong>Groupby mechanics:</strong> <em>(Source: https://pandas.pydata.org/docs/user_guide/groupby.html)</em></p>
 <p>Group by: split-apply-combine By <em>‘group by’</em> we are referring to a process involving one or more of the following steps:</p>
 <ol type="1">
 <li><p>Splitting the data into groups based on some criteria.</p></li>
@@ -1550,6 +1551,9 @@ dtype: int64</code></pre>
 <li><p>Apply the following function on all the columns to convert them to numeric: <code>f = lambda x:pd.to_numeric(x,errors = 'coerce')</code></p></li>
 <li><p>Now use <code>groupby()</code> to find estimate the GDP per capita for each country.</p></li>
 </ol>
+</section>
+<section id="agg" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="agg"><span class="header-section-number">9.2.3</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg()</code></a></h3>
 
 
 </section>
