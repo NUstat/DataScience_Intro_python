@@ -314,6 +314,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#get_group" id="toc-get_group" class="nav-link" data-scroll-target="#get_group"><span class="toc-section-number">9.1.2.6</span>  <code>get_group()</code></a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#data-aggregation-with-groupby-methods" id="toc-data-aggregation-with-groupby-methods" class="nav-link" data-scroll-target="#data-aggregation-with-groupby-methods"><span class="toc-section-number">9.2</span>  Data aggregation with <code>groupby()</code> methods</a>
+  <ul>
+  <li><a href="#mean" id="toc-mean" class="nav-link" data-scroll-target="#mean"><span class="toc-section-number">9.2.1</span>  <code>mean()</code></a>
+  <ul class="collapse">
+  <li><a href="#grouping-observations" id="toc-grouping-observations" class="nav-link" data-scroll-target="#grouping-observations"><span class="toc-section-number">9.2.1.1</span>  Grouping observations</a></li>
+  <li><a href="#grouping-columns" id="toc-grouping-columns" class="nav-link" data-scroll-target="#grouping-columns"><span class="toc-section-number">9.2.1.2</span>  Grouping columns</a></li>
+  </ul></li>
+  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">9.2.2</span>  Practice exercise 1</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -747,9 +756,802 @@ dtype: int64</code></pre>
 </div>
 </div>
 </div>
-
-
 </section>
+</section>
+</section>
+<section id="data-aggregation-with-groupby-methods" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="data-aggregation-with-groupby-methods"><span class="header-section-number">9.2</span> Data aggregation with <code>groupby()</code> methods</h2>
+<section id="mean" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="mean"><span class="header-section-number">9.2.1</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.core.groupby.GroupBy.mean.html"><code>mean()</code></a></h3>
+<p>This method returns the mean of each group of the <em>GroupBy</em> object.</p>
+<section id="grouping-observations" class="level4" data-number="9.2.1.1">
+<h4 data-number="9.2.1.1" class="anchored" data-anchor-id="grouping-observations"><span class="header-section-number">9.2.1.1</span> Grouping observations</h4>
+<p><strong>Example:</strong> Find the mean life expectancy, population and GDP per capita for each country since 1952.</p>
+<p>First, we’ll group the data such that all observations corresponding to a country make a unique group.</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the observations by 'country'</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> data.groupby(<span class="st">'country'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now, we’ll find the mean statistics for each group with the <code>mean()</code> method. The method will be applied on all columns of the DataFrame and all groups.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean stastistic of all columns of the DataFrame and all groups</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>grouped.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="25">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Afghanistan</th>
+      <td>1979.5</td>
+      <td>37.478833</td>
+      <td>1.582372e+07</td>
+      <td>802.674598</td>
+    </tr>
+    <tr>
+      <th>Albania</th>
+      <td>1979.5</td>
+      <td>68.432917</td>
+      <td>2.580249e+06</td>
+      <td>3255.366633</td>
+    </tr>
+    <tr>
+      <th>Algeria</th>
+      <td>1979.5</td>
+      <td>59.030167</td>
+      <td>1.987541e+07</td>
+      <td>4426.025973</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>1979.5</td>
+      <td>37.883500</td>
+      <td>7.309390e+06</td>
+      <td>3607.100529</td>
+    </tr>
+    <tr>
+      <th>Argentina</th>
+      <td>1979.5</td>
+      <td>69.060417</td>
+      <td>2.860224e+07</td>
+      <td>8955.553783</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>Vietnam</th>
+      <td>1979.5</td>
+      <td>57.479500</td>
+      <td>5.456857e+07</td>
+      <td>1017.712615</td>
+    </tr>
+    <tr>
+      <th>West Bank and Gaza</th>
+      <td>1979.5</td>
+      <td>60.328667</td>
+      <td>1.848606e+06</td>
+      <td>3759.996781</td>
+    </tr>
+    <tr>
+      <th>Yemen, Rep.</th>
+      <td>1979.5</td>
+      <td>46.780417</td>
+      <td>1.084319e+07</td>
+      <td>1569.274672</td>
+    </tr>
+    <tr>
+      <th>Zambia</th>
+      <td>1979.5</td>
+      <td>45.996333</td>
+      <td>6.353805e+06</td>
+      <td>1358.199409</td>
+    </tr>
+    <tr>
+      <th>Zimbabwe</th>
+      <td>1979.5</td>
+      <td>52.663167</td>
+      <td>7.641966e+06</td>
+      <td>635.858042</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p>Note that if we wished to retain the <code>continent</code> in the above dataset, we can group the data by both <code>continent</code> and <code>country</code>. If the data is to be grouped by multiple columns, we need to put them within <code>[]</code> brackets:</p>
+<div class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the observations by 'continent' and 'country'</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> data.groupby([<span class="st">'continent'</span>,<span class="st">'country'</span>])</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean stastistic of all columns of the DataFrame and all groups</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>grouped.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>year</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+      <th>gdpPercap</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th>Algeria</th>
+      <td>1979.5</td>
+      <td>59.030167</td>
+      <td>1.987541e+07</td>
+      <td>4426.025973</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>1979.5</td>
+      <td>37.883500</td>
+      <td>7.309390e+06</td>
+      <td>3607.100529</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>1979.5</td>
+      <td>48.779917</td>
+      <td>4.017497e+06</td>
+      <td>1155.395107</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>1979.5</td>
+      <td>54.597500</td>
+      <td>9.711862e+05</td>
+      <td>5031.503557</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>1979.5</td>
+      <td>44.694000</td>
+      <td>7.548677e+06</td>
+      <td>843.990665</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Europe</th>
+      <th>Switzerland</th>
+      <td>1979.5</td>
+      <td>75.565083</td>
+      <td>6.384293e+06</td>
+      <td>27074.334405</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>1979.5</td>
+      <td>59.696417</td>
+      <td>4.590901e+07</td>
+      <td>4469.453380</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>1979.5</td>
+      <td>73.922583</td>
+      <td>5.608780e+07</td>
+      <td>19380.472986</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Oceania</th>
+      <th>Australia</th>
+      <td>1979.5</td>
+      <td>74.662917</td>
+      <td>1.464931e+07</td>
+      <td>19980.595634</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>1979.5</td>
+      <td>73.989500</td>
+      <td>3.100032e+06</td>
+      <td>17262.622813</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 4 columns</p>
+</div>
+</div>
+</div>
+<p>Here the data has been aggregated according to the group keys - <code>continent</code> and <code>country</code>, and a new DataFrame is created that is indexed by the unique values of <code>continent</code>-<code>country</code>.</p>
+<p>For large datasets, it may be desirable to aggregate only a few columns. For example, if we wish to compute the means of only <code>lifeExp</code> and <code>gdpPercap</code>, then we can filter those columns in the <em>GroupBy</em> object <em>(just like we filter columns in a DataFrame)</em>, and then apply the <code>mean()</code> method:</p>
+<div class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>grouped[[<span class="st">'lifeExp'</span>,<span class="st">'gdpPercap'</span>]].mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="28">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>lifeExp</th>
+      <th>gdpPercap</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th>Algeria</th>
+      <td>59.030167</td>
+      <td>4426.025973</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>37.883500</td>
+      <td>3607.100529</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>48.779917</td>
+      <td>1155.395107</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>54.597500</td>
+      <td>5031.503557</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>44.694000</td>
+      <td>843.990665</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Europe</th>
+      <th>Switzerland</th>
+      <td>75.565083</td>
+      <td>27074.334405</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>59.696417</td>
+      <td>4469.453380</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>73.922583</td>
+      <td>19380.472986</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Oceania</th>
+      <th>Australia</th>
+      <td>74.662917</td>
+      <td>19980.595634</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>73.989500</td>
+      <td>17262.622813</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 2 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="grouping-columns" class="level4" data-number="9.2.1.2">
+<h4 data-number="9.2.1.2" class="anchored" data-anchor-id="grouping-columns"><span class="header-section-number">9.2.1.2</span> Grouping columns</h4>
+<p>By default, the grouping takes place by rows. However, as with several other Pandas methods, grouping can also be done by columns by using the <code>axis = 1</code> argument.</p>
+<p><strong>Example:</strong> Consider we have the above dataset in the wide-format as follows.</p>
+<div class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data_wide <span class="op">=</span> data.pivot(index <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],columns <span class="op">=</span> <span class="st">'year'</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>data_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="30">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="10" halign="left">lifeExp</th>
+      <th>...</th>
+      <th colspan="10" halign="left">gdpPercap</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>year</th>
+      <th>1952</th>
+      <th>1957</th>
+      <th>1962</th>
+      <th>1967</th>
+      <th>1972</th>
+      <th>1977</th>
+      <th>1982</th>
+      <th>1987</th>
+      <th>1992</th>
+      <th>1997</th>
+      <th>...</th>
+      <th>1962</th>
+      <th>1967</th>
+      <th>1972</th>
+      <th>1977</th>
+      <th>1982</th>
+      <th>1987</th>
+      <th>1992</th>
+      <th>1997</th>
+      <th>2002</th>
+      <th>2007</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th>Algeria</th>
+      <td>43.077</td>
+      <td>45.685</td>
+      <td>48.303</td>
+      <td>51.407</td>
+      <td>54.518</td>
+      <td>58.014</td>
+      <td>61.368</td>
+      <td>65.799</td>
+      <td>67.744</td>
+      <td>69.152</td>
+      <td>...</td>
+      <td>2550.816880</td>
+      <td>3246.991771</td>
+      <td>4182.663766</td>
+      <td>4910.416756</td>
+      <td>5745.160213</td>
+      <td>5681.358539</td>
+      <td>5023.216647</td>
+      <td>4797.295051</td>
+      <td>5288.040382</td>
+      <td>6223.367465</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>30.015</td>
+      <td>31.999</td>
+      <td>34.000</td>
+      <td>35.985</td>
+      <td>37.928</td>
+      <td>39.483</td>
+      <td>39.942</td>
+      <td>39.906</td>
+      <td>40.647</td>
+      <td>40.963</td>
+      <td>...</td>
+      <td>4269.276742</td>
+      <td>5522.776375</td>
+      <td>5473.288005</td>
+      <td>3008.647355</td>
+      <td>2756.953672</td>
+      <td>2430.208311</td>
+      <td>2627.845685</td>
+      <td>2277.140884</td>
+      <td>2773.287312</td>
+      <td>4797.231267</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>38.223</td>
+      <td>40.358</td>
+      <td>42.618</td>
+      <td>44.885</td>
+      <td>47.014</td>
+      <td>49.190</td>
+      <td>50.904</td>
+      <td>52.337</td>
+      <td>53.919</td>
+      <td>54.777</td>
+      <td>...</td>
+      <td>949.499064</td>
+      <td>1035.831411</td>
+      <td>1085.796879</td>
+      <td>1029.161251</td>
+      <td>1277.897616</td>
+      <td>1225.856010</td>
+      <td>1191.207681</td>
+      <td>1232.975292</td>
+      <td>1372.877931</td>
+      <td>1441.284873</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>47.622</td>
+      <td>49.618</td>
+      <td>51.520</td>
+      <td>53.298</td>
+      <td>56.024</td>
+      <td>59.319</td>
+      <td>61.484</td>
+      <td>63.622</td>
+      <td>62.745</td>
+      <td>52.556</td>
+      <td>...</td>
+      <td>983.653976</td>
+      <td>1214.709294</td>
+      <td>2263.611114</td>
+      <td>3214.857818</td>
+      <td>4551.142150</td>
+      <td>6205.883850</td>
+      <td>7954.111645</td>
+      <td>8647.142313</td>
+      <td>11003.605080</td>
+      <td>12569.851770</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>31.975</td>
+      <td>34.906</td>
+      <td>37.814</td>
+      <td>40.697</td>
+      <td>43.591</td>
+      <td>46.137</td>
+      <td>48.122</td>
+      <td>49.557</td>
+      <td>50.260</td>
+      <td>50.324</td>
+      <td>...</td>
+      <td>722.512021</td>
+      <td>794.826560</td>
+      <td>854.735976</td>
+      <td>743.387037</td>
+      <td>807.198586</td>
+      <td>912.063142</td>
+      <td>931.752773</td>
+      <td>946.294962</td>
+      <td>1037.645221</td>
+      <td>1217.032994</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Europe</th>
+      <th>Switzerland</th>
+      <td>69.620</td>
+      <td>70.560</td>
+      <td>71.320</td>
+      <td>72.770</td>
+      <td>73.780</td>
+      <td>75.390</td>
+      <td>76.210</td>
+      <td>77.410</td>
+      <td>78.030</td>
+      <td>79.370</td>
+      <td>...</td>
+      <td>20431.092700</td>
+      <td>22966.144320</td>
+      <td>27195.113040</td>
+      <td>26982.290520</td>
+      <td>28397.715120</td>
+      <td>30281.704590</td>
+      <td>31871.530300</td>
+      <td>32135.323010</td>
+      <td>34480.957710</td>
+      <td>37506.419070</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>43.585</td>
+      <td>48.079</td>
+      <td>52.098</td>
+      <td>54.336</td>
+      <td>57.005</td>
+      <td>59.507</td>
+      <td>61.036</td>
+      <td>63.108</td>
+      <td>66.146</td>
+      <td>68.835</td>
+      <td>...</td>
+      <td>2322.869908</td>
+      <td>2826.356387</td>
+      <td>3450.696380</td>
+      <td>4269.122326</td>
+      <td>4241.356344</td>
+      <td>5089.043686</td>
+      <td>5678.348271</td>
+      <td>6601.429915</td>
+      <td>6508.085718</td>
+      <td>8458.276384</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>69.180</td>
+      <td>70.420</td>
+      <td>70.760</td>
+      <td>71.360</td>
+      <td>72.010</td>
+      <td>72.760</td>
+      <td>74.040</td>
+      <td>75.007</td>
+      <td>76.420</td>
+      <td>77.218</td>
+      <td>...</td>
+      <td>12477.177070</td>
+      <td>14142.850890</td>
+      <td>15895.116410</td>
+      <td>17428.748460</td>
+      <td>18232.424520</td>
+      <td>21664.787670</td>
+      <td>22705.092540</td>
+      <td>26074.531360</td>
+      <td>29478.999190</td>
+      <td>33203.261280</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Oceania</th>
+      <th>Australia</th>
+      <td>69.120</td>
+      <td>70.330</td>
+      <td>70.930</td>
+      <td>71.100</td>
+      <td>71.930</td>
+      <td>73.490</td>
+      <td>74.740</td>
+      <td>76.320</td>
+      <td>77.560</td>
+      <td>78.830</td>
+      <td>...</td>
+      <td>12217.226860</td>
+      <td>14526.124650</td>
+      <td>16788.629480</td>
+      <td>18334.197510</td>
+      <td>19477.009280</td>
+      <td>21888.889030</td>
+      <td>23424.766830</td>
+      <td>26997.936570</td>
+      <td>30687.754730</td>
+      <td>34435.367440</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>69.390</td>
+      <td>70.260</td>
+      <td>71.240</td>
+      <td>71.520</td>
+      <td>71.890</td>
+      <td>72.220</td>
+      <td>73.840</td>
+      <td>74.320</td>
+      <td>76.330</td>
+      <td>77.550</td>
+      <td>...</td>
+      <td>13175.678000</td>
+      <td>14463.918930</td>
+      <td>16046.037280</td>
+      <td>16233.717700</td>
+      <td>17632.410400</td>
+      <td>19007.191290</td>
+      <td>18363.324940</td>
+      <td>21050.413770</td>
+      <td>23189.801350</td>
+      <td>25185.009110</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 36 columns</p>
+</div>
+</div>
+</div>
+<p>Now, find the mean GDP per capita, life expectancy and population for each country.</p>
+<p>Here, we can group by the outer level column labels to obtain the means. Also, we need to use the argument <code>axis=1</code> to indicate that we intend to group columns, instead of rows.</p>
+<div class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data_wide.groupby(axis<span class="op">=</span><span class="dv">1</span>,level<span class="op">=</span><span class="dv">0</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="31">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>gdpPercap</th>
+      <th>lifeExp</th>
+      <th>pop</th>
+    </tr>
+    <tr>
+      <th>continent</th>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">Africa</th>
+      <th>Algeria</th>
+      <td>4426.025973</td>
+      <td>59.030167</td>
+      <td>1.987541e+07</td>
+    </tr>
+    <tr>
+      <th>Angola</th>
+      <td>3607.100529</td>
+      <td>37.883500</td>
+      <td>7.309390e+06</td>
+    </tr>
+    <tr>
+      <th>Benin</th>
+      <td>1155.395107</td>
+      <td>48.779917</td>
+      <td>4.017497e+06</td>
+    </tr>
+    <tr>
+      <th>Botswana</th>
+      <td>5031.503557</td>
+      <td>54.597500</td>
+      <td>9.711862e+05</td>
+    </tr>
+    <tr>
+      <th>Burkina Faso</th>
+      <td>843.990665</td>
+      <td>44.694000</td>
+      <td>7.548677e+06</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th rowspan="3" valign="top">Europe</th>
+      <th>Switzerland</th>
+      <td>27074.334405</td>
+      <td>75.565083</td>
+      <td>6.384293e+06</td>
+    </tr>
+    <tr>
+      <th>Turkey</th>
+      <td>4469.453380</td>
+      <td>59.696417</td>
+      <td>4.590901e+07</td>
+    </tr>
+    <tr>
+      <th>United Kingdom</th>
+      <td>19380.472986</td>
+      <td>73.922583</td>
+      <td>5.608780e+07</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">Oceania</th>
+      <th>Australia</th>
+      <td>19980.595634</td>
+      <td>74.662917</td>
+      <td>1.464931e+07</td>
+    </tr>
+    <tr>
+      <th>New Zealand</th>
+      <td>17262.622813</td>
+      <td>73.989500</td>
+      <td>3.100032e+06</td>
+    </tr>
+  </tbody>
+</table>
+<p>142 rows × 3 columns</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="practice-exercise-1" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="practice-exercise-1"><span class="header-section-number">9.2.2</span> Practice exercise 1</h3>
+<p>Read the table consisting of GDP per capita of countries from the webpage: https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita .</p>
+<p>To only read the relevant table, read the tables that contain the word <em>‘Country’</em>.</p>
+<p>Estimate the GDP per capita of each country as the average of the estimates of the three agencies - IMF, United Nations and World Bank.</p>
+<p>We need to do a bit of data cleaning before we could directly use the <code>groupby()</code> function. Follow the steps below to answer this question:</p>
+<ol type="1">
+<li><p>Set the first 3 columns containing country, sub-region and region as hierarchical row labels.</p></li>
+<li><p>Apply the following function on all the columns to convert them to numeric: <code>f = lambda x:pd.to_numeric(x,errors = 'coerce')</code></p></li>
+<li><p>Now use <code>groupby()</code> to find estimate the GDP per capita for each country.</p></li>
+</ol>
+
+
 </section>
 </section>
 
