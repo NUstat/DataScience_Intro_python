@@ -336,24 +336,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Data aggregation refers to summarizing data with statistics such as sum, count, average, maximum, minimum etc. to provide a high level view of the data. Often there are mutually exclusive groups in the data that are of interest. In such cases, we may be interested in finding these statisitcs separately for each group. The Pandas function <em>groupby()</em> is used to split the data into groups, and then the desired function(s) are applied on each of these groups for groupwise data aggregation. However, the <em>groupby()</em> function is not limited for groupwise data aggregation, but can also be used for several other kinds of groupwise oprations.</p>
+<p>Data aggregation refers to summarizing data with statistics such as sum, count, average, maximum, minimum etc. to provide a high level view of the data. Often there are mutually exclusive groups in the data that are of interest. In such cases, we may be interested in finding these statisitcs separately for each group. The Pandas DataFrame method <code>groupby()</code> is used to split the data into groups, and then the desired function(s) are applied on each of these groups for groupwise data aggregation. However, the <code>groupby()</code> method is not limited for groupwise data aggregation, but can also be used for several other kinds of groupwise oprations.</p>
 <p><strong>Groupby mechanics:</strong> (Source: https://pandas.pydata.org/docs/user_guide/groupby.html)</p>
-<p>Group by: split-apply-combine By “group by” we are referring to a process involving one or more of the following steps:</p>
-<p>Splitting the data into groups based on some criteria.</p>
-<p>Applying a function to each group independently.</p>
-<p>Combining the results into a data structure.</p>
-<p>Out of these, the split step is the most straightforward. In fact, in many situations we may wish to split the data set into groups and do something with those groups. In the apply step, we might wish to do one of the following:</p>
-<p><strong>Aggregation:</strong> compute a summary statistic (or statistics) for each group. Some examples:</p>
-<p>Compute group sums or means.<br>
-Compute group sizes / counts.</p>
-<p><strong>Transformation:</strong> perform some group-specific computations and return a like-indexed object. Some examples:</p>
-<p>Standardize data (zscore) within a group.<br>
-Filling NAs within groups with a value derived from each group.</p>
-<p><strong>Filtration:</strong> discard some groups, according to a group-wise computation that evaluates True or False. Some examples:</p>
-<p>Discard data that belongs to groups with only a few members.<br>
-Filter out data based on the group sum or mean.</p>
+<p>Group by: split-apply-combine By <em>‘group by’</em> we are referring to a process involving one or more of the following steps:</p>
+<ol type="1">
+<li><p>Splitting the data into groups based on some criteria.</p></li>
+<li><p>Applying a function to each group independently.</p></li>
+<li><p>Combining the results in a DataFrame.</p></li>
+</ol>
+<p>Out of these, the split step is the most straightforward. In fact, in many situations we may wish to split the data set into groups and do something with those groups. In the apply step, we may wish to do one of the following:</p>
+<p><strong>1. Aggregation:</strong> compute a summary statistic (or statistics) for each group. Some examples:</p>
+<ul>
+<li>Compute group sums or means.</li>
+<li>Compute group sizes / counts.</li>
+</ul>
+<p><strong>2. Transformation:</strong> perform some group-specific computations and return a like-indexed object. Some examples:</p>
+<ul>
+<li>Standardize data <em>(zscore)</em> within a group.</li>
+<li>Filling <em>NAs</em> within groups with a value derived from each group.</li>
+</ul>
+<p><strong>3. Filtration:</strong> discard some groups, according to a group-wise computation that evaluates True or False. Some examples:</p>
+<ul>
+<li>Discard data that belongs to groups with only a few members.</li>
+<li>Filter out data based on the group <em>sum</em> or <em>mean</em>.</li>
+</ul>
 <p>Some combination of the above: <em>GroupBy</em> will examine the results of the <em>apply</em> step and try to return a sensibly combined result if it doesn’t fit into either of the above two categories.</p>
-<p>We’ll use Pandas to perform <em>GroupBy</em> operations.</p>
+<p>We’ll use Pandas to group the data and perform <em>GroupBy</em> operations.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
