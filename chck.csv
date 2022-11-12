@@ -1,0 +1,223 @@
+,Country,GDP_per_capita,Similar_country,Similarity_score
+0,Liechtenstein,180227,Liechtenstein,1.0
+1,Monaco,173696,Monaco,1.0
+2,Luxembourg,117182,Luxembourg,1.0
+3,Bermuda,123945,Bermuda,1.0
+4,Ireland,86251,Ireland,1.0
+5,Norway,66871,Norway,1.0
+6,Switzerland,86919,Switzerland,1.0
+7,Isle of Man,—,Isle of Man,1.0
+8,Cayman Islands,95191,Cayman Islands,1.0
+9,Qatar,50815,Qatar,1.0
+10,Singapore,58114,Singapore,1.0
+11,United States,63123,United States,1.0
+12,Channel Islands,—,Channel Islands,1.0
+13,Iceland,63644,Iceland,1.0
+14,Australia,55823,Australia,1.0
+15,Faroe Islands,—,Faroe Islands,1.0
+16,Denmark,61477,Denmark,1.0
+17,Canada,43560,Canada,1.0
+18,Sweden,53575,Sweden,1.0
+19,Netherlands,53334,Netherlands,1.0
+20,Israel,47034,Israel,1.0
+21,Greenland,55139,Greenland,1.0
+22,Austria,48106,Austria,1.0
+23,Finland,48685,Finland,1.0
+24,Belgium,45028,Belgium,1.0
+25,Hong Kong,46611,Hong Kong,1.0
+26,British Virgin Islands,49357,British Virgin Islands,1.0
+27,Germany,45909,Germany,1.0
+28,United Arab Emirates,36285,United Arab Emirates,1.0
+29,San Marino,45832,San Marino,1.0
+30,United Kingdom,40718,United Kingdom,1.0
+31,New Zealand,43972,New Zealand,1.0
+32,Brunei,27437,Brunei,1.0
+33,France,38959,France,1.0
+34,Andorra,37072,Andorra,1.0
+35,US Virgin Islands,—,U.S. Virgin Islands,0.9444444444444444
+36,Puerto Rico,36052,Puerto Rico,1.0
+37,Kuwait,24809,Kuwait,1.0
+38,Taiwan,28383,Taiwan,1.0
+39,New Caledonia,34006,New Caledonia,1.0
+40,Guam,—,Guam,1.0
+41,Japan,39990,Japan,1.0
+42,Italy,31238,Italy,1.0
+43,Macau,37474,Macao,0.8
+44,South Korea,31947,South Korea,1.0
+45,Malta,33771,Malta,1.0
+46,Bahamas,25194,Bahamas,1.0
+47,Aruba,23386,Aruba,1.0
+48,Cyprus,28133,Cyprus,1.0
+49,Slovenia,25777,Slovenia,1.0
+50,Estonia,23106,Estonia,1.0
+51,Spain,27409,Spain,1.0
+52,Bahrain,19925,Bahrain,1.0
+53,Czech Republic,22911,Czech Republic,1.0
+54,Saudi Arabia,20110,Saudi Arabia,1.0
+55,Portugal,22413,Portugal,1.0
+56,Turks and Caicos Islands,23881,Turks and Caicos Islands,1.0
+57,Lithuania,20772,Lithuania,1.0
+58,Oman,12409,Oman,1.0
+59,Iran,11183,Iran,1.0
+60,Latvia,17871,Latvia,1.0
+61,Saint Martin French part,—,Sint Maarten,0.5555555555555556
+62,Greece,18117,Greece,1.0
+63,Trinidad and Tobago,15286,Trinidad and Tobago,1.0
+64,Northern Mariana Islands,—,Northern Mariana Islands,1.0
+65,Slovakia,19264,Slovakia,1.0
+66,Seychelles,10767,Seychelles,1.0
+67,French Polynesia,20707,French Polynesia,1.0
+68,Uruguay,15438,Uruguay,1.0
+69,Barbados,15449,Barbados,1.0
+70,Sint Maarten Dutch part,20000,Sint Maarten,0.6857142857142857
+71,Saint Kitts and Nevis,17434,Saint Kitts and Nevis,1.0
+72,Poland,15764,Poland,1.0
+73,Hungary,16129,Hungary,1.0
+74,Guyana,6956,Guyana,1.0
+75,Croatia,13934,Croatia,1.0
+76,Anguilla,17226,Anguilla,1.0
+77,Antigua and Barbuda,13993,Antigua and Barbuda,1.0
+78,Panama,12269,Panama,1.0
+79,Cook Islands,16135,Cook Islands,1.0
+80,Curaçao,15819,Curaçao,1.0
+81,Romania,12929,Romania,1.0
+82,Chile,13232,Chile,1.0
+83,Maldives,6924,Maldives,1.0
+84,Russia,10166,Russia,1.0
+85,Argentina,8476,Argentina,1.0
+86,Montserrat,13523,Montserrat,1.0
+87,Malaysia,10402,Malaysia,1.0
+88,Costa Rica,12077,Costa Rica,1.0
+89,China,10229,China,1.0
+90,American Samoa,—,American Samoa,1.0
+91,Palau,14567,Palau,1.0
+92,Bulgaria,10058,Bulgaria,1.0
+93,World,10949,World,1.0
+94,Turkmenistan,7104,Turkmenistan,1.0
+95,Kazakhstan,9111,Kazakhstan,1.0
+96,Equatorial Guinea,7143,Equatorial Guinea,1.0
+97,Mexico,8326,Mexico,1.0
+98,Saint Lucia,8805,Saint Lucia,1.0
+99,Dominican Republic,7268,Dominican Republic,1.0
+100,Grenada,9273,Grenada,1.0
+101,Gabon,6789,Gabon,1.0
+102,Nauru,12510,Nauru,1.0
+103,Turkey,8538,Turkey,1.0
+104,Montenegro,7626,Montenegro,1.0
+105,Cuba,9478,Cuba,1.0
+106,Serbia,7656,Serbia,1.0
+107,Mauritius,8587,Mauritius,1.0
+108,Brazil,6797,Brazil,1.0
+109,Belarus,6377,Belarus,1.0
+110,Saint Vincent and theGrenadines,7298,Saint Vincent and the Grenadines,0.9841269841269841
+111,Dominica,7038,Dominica,1.0
+112,Thailand,7189,Thailand,1.0
+113,Botswana,6711,Botswana,1.0
+114,Peru,6163,Peru,1.0
+115,Azerbaijan,4202,Azerbaijan,1.0
+116,Bosnia and Herzegovina,6035,Bosnia and Herzegovina,1.0
+117,North Macedonia,5886,North Macedonia,1.0
+118,Georgia,3984,Georgia,1.0
+119,South Africa,5094,South Africa,1.0
+120,Iraq,4146,Iraq,1.0
+121,Colombia,5333,Colombia,1.0
+122,Ecuador,5600,Ecuador,1.0
+123,Albania,5181,Albania,1.0
+124,Belize,3988,Belize,1.0
+125,Libya,4243,Libya,1.0
+126,Armenia,4266,Armenia,1.0
+127,Tuvalu,4648,Tuvalu,1.0
+128,Jamaica,4665,Jamaica,1.0
+129,Paraguay,4950,Paraguay,1.0
+130,Moldova,2954,Moldova,1.0
+131,Fiji,5013,Fiji,1.0
+132,Kosovo,4368,Morocco,0.46153846153846156
+133,Tonga,4646,Tonga,1.0
+134,El Salvador,3799,El Salvador,1.0
+135,Guatemala,4332,Guatemala,1.0
+136,Suriname,7023,Suriname,1.0
+137,Ukraine,3557,Ukraine,1.0
+138,Marshall Islands,4130,Marshall Islands,1.0
+139,Namibia,4215,Namibia,1.0
+140,Indonesia,3870,Indonesia,1.0
+141,Jordan,4283,Jordan,1.0
+142,Mongolia,4007,Mongolia,1.0
+143,Egypt,3609,Egypt,1.0
+144,Vietnam,2786,Vietnam,1.0
+145,Algeria,3368,Algeria,1.0
+146,Samoa,3890,Samoa,1.0
+147,Micronesia,3500,Micronesia,1.0
+148,Eswatini,3306,Eswatini,1.0
+149,Morocco,3108,Morocco,1.0
+150,Tunisia,3318,Tunisia,1.0
+151,Angola,1896,Angola,1.0
+152,Djibouti,3465,Djibouti,1.0
+153,Bolivia,3133,Bolivia,1.0
+154,Cape Verde,3064,Cape Verde,1.0
+155,Philippines,3299,Philippines,1.0
+156,Bhutan,3218,Bhutan,1.0
+157,Palestine,3050,Palestine,1.0
+158,Papua New Guinea,2640,Papua New Guinea,1.0
+159,Sri Lanka,3768,Sri Lanka,1.0
+160,Venezuela,3740,Venezuela,1.0
+161,Vanuatu,2783,Vanuatu,1.0
+162,Honduras,2406,Honduras,1.0
+163,Congo,1830,Congo,1.0
+164,Bangladesh,2001,Bangladesh,1.0
+165,Lebanon,9310,Lebanon,1.0
+166,India,1931,India,1.0
+167,Zimbabwe,1466,Zimbabwe,1.0
+168,Ivory Coast,2318,Ivory Coast,1.0
+169,Nicaragua,1905,Nicaragua,1.0
+170,Ghana,2206,Ghana,1.0
+171,Mauritania,1702,Mauritania,1.0
+172,Nigeria,2085,Nigeria,1.0
+173,Kenya,1879,Kenya,1.0
+174,Uzbekistan,1724,Uzbekistan,1.0
+175,Solomon Islands,2251,Solomon Islands,1.0
+176,São Tomé and Príncipe,2174,São Tomé and Príncipe,1.0
+177,Laos,2623,Laos,1.0
+178,East Timor,1443,East Timor,1.0
+179,Cambodia,1513,Cambodia,1.0
+180,Kiribati,1515,Kiribati,1.0
+181,Haiti,1360,Haiti,1.0
+182,Pakistan,1167,Pakistan,1.0
+183,Cameroon,1502,Cameroon,1.0
+184,Senegal,1458,Senegal,1.0
+185,Kyrgyzstan,1186,Kyrgyzstan,1.0
+186,Benin,1254,Benin,1.0
+187,Zambia,985,Zambia,1.0
+188,Guinea,1179,Guinea,1.0
+189,Comoros,1421,Comoros,1.0
+190,Nepal,1135,Nepal,1.0
+191,Tanzania,1115,Tanzania,1.0
+192,Lesotho,1061,Lesotho,1.0
+193,Uganda,846,Uganda,1.0
+194,Myanmar,1292,Myanmar,1.0
+195,Ethiopia,840,Ethiopia,1.0
+196,Zanzibar,1031,Zambia,0.5714285714285714
+197,Tajikistan,838,Tajikistan,1.0
+198,Togo,863,Togo,1.0
+199,Sudan,1415,Sudan,1.0
+200,Rwanda,798,Rwanda,1.0
+201,Syria,890,Syria,1.0
+202,Yemen,937,Yemen,1.0
+203,Mali,856,Mali,1.0
+204,GuineaBissau,668,Guinea-Bissau,0.96
+205,Gambia,757,Gambia,1.0
+206,Burkina Faso,831,Burkina Faso,1.0
+207,Chad,679,Chad,1.0
+208,Liberia,491,Liberia,1.0
+209,DR Congo,506,DR Congo,1.0
+210,Eritrea,588,Eritrea,1.0
+211,North Korea,618,North Korea,1.0
+212,Afghanistan,508,Afghanistan,1.0
+213,Niger,568,Niger,1.0
+214,Mozambique,449,Mozambique,1.0
+215,Somalia,118,Somalia,1.0
+216,Malawi,615,Malawi,1.0
+217,Madagascar,470,Madagascar,1.0
+218,Central African Republic,481,Central African Republic,1.0
+219,Sierra Leone,475,Sierra Leone,1.0
+220,South Sudan,1421,South Sudan,1.0
+221,Burundi,286,Burundi,1.0

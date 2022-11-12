@@ -29,6 +29,7 @@ book:
         - Assignment 3 (Pandas).ipynb
         - Assignment 4 (Data Visualization).ipynb
         - Assignment 5 (Data cleaning and preparation).ipynb
+        - Assignment 6 (Data wrangling).ipynb
   appendices: 
     - Datasets.ipynb
     - references.qmd
