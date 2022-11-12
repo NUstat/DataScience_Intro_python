@@ -1373,7 +1373,7 @@ Name: (Illinois, Evanston), dtype: float64</code></pre>
 </section>
 <section id="section-5" class="level4" data-number="8.1.4.6">
 <h4 data-number="8.1.4.6" class="anchored" data-anchor-id="section-5"><span class="header-section-number">8.1.4.6</span> </h4>
-<p>In the dataset obtained above, drop the outer level of the column labels. Use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.droplevel.html"><code>droplevel()</code></a> method.</p>
+<p>In the dataset obtained above, drop the inner level of the column labels. Use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.droplevel.html"><code>droplevel()</code></a> method.</p>
 <div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>gdp_per_capita <span class="op">=</span> gdp_per_capita.droplevel(<span class="dv">1</span>,axis<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>gdp_per_capita</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
