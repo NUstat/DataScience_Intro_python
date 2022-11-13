@@ -127,6 +127,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
 
@@ -327,7 +328,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#grouping-columns" id="toc-grouping-columns" class="nav-link" data-scroll-target="#grouping-columns"><span class="toc-section-number">9.2.1.2</span>  Grouping columns</a></li>
   </ul></li>
   <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">9.2.2</span>  Practice exercise 1</a></li>
-  <li><a href="#agg" id="toc-agg" class="nav-link" data-scroll-target="#agg"><span class="toc-section-number">9.2.3</span>  <code>agg()</code></a></li>
+  <li><a href="#agg" id="toc-agg" class="nav-link" data-scroll-target="#agg"><span class="toc-section-number">9.2.3</span>  <code>agg()</code></a>
+  <ul class="collapse">
+  <li><a href="#multiple-aggregation-functions" id="toc-multiple-aggregation-functions" class="nav-link" data-scroll-target="#multiple-aggregation-functions"><span class="toc-section-number">9.2.3.1</span>  Multiple aggregation functions</a></li>
+  <li><a href="#custom-aggregate-functions" id="toc-custom-aggregate-functions" class="nav-link" data-scroll-target="#custom-aggregate-functions"><span class="toc-section-number">9.2.3.2</span>  Custom aggregate functions</a></li>
+  <li><a href="#grouping-by-multiple-columns" id="toc-grouping-by-multiple-columns" class="nav-link" data-scroll-target="#grouping-by-multiple-columns"><span class="toc-section-number">9.2.3.3</span>  Grouping by multiple columns</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -377,7 +383,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Some combination of the above: <em>GroupBy</em> will examine the results of the <em>apply</em> step and try to return a sensibly combined result if it doesn’t fit into either of the above two categories.</p>
 <p>We’ll use Pandas to group the data and perform <em>GroupBy</em> operations.</p>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -391,8 +397,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>A string passed to <code>groupby()</code> may refer to either a column or an index level. If a string matches both a column name and an index level name, a ValueError will be raised.</p>
 <p><strong>Example</strong>: Consider the life expectancy dataset, <em>gdp_lifeExpectancy.csv</em>. Suppose we want to group by the observations by <code>continent</code>.</p>
 <div class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_lifeExp_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gdp_lifeExp_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 
 <div>
@@ -463,7 +469,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We will pass the column <code>continent</code> as an argument to the <code>groupby()</code> method.</p>
 <div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a GroupBy object</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> data.groupby(<span class="st">'continent'</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> gdp_lifeExp_data.groupby(<span class="st">'continent'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#This will split the data into groups that correspond to values of the column 'continent'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>groupby()</code> method returns a <em>GroupBy</em> object.</p>
@@ -776,7 +782,7 @@ dtype: int64</code></pre>
 <p>First, we’ll group the data such that all observations corresponding to a country make a unique group.</p>
 <div class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the observations by 'country'</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> data.groupby(<span class="st">'country'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> gdp_lifeExp_data.groupby(<span class="st">'country'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, we’ll find the mean statistics for each group with the <code>mean()</code> method. The method will be applied on all columns of the DataFrame and all groups.</p>
 <div class="cell" data-execution_count="25">
@@ -890,7 +896,7 @@ dtype: int64</code></pre>
 <p>Note that if we wished to retain the <code>continent</code> in the above dataset, we can group the data by both <code>continent</code> and <code>country</code>. If the data is to be grouped by multiple columns, we need to put them within <code>[]</code> brackets:</p>
 <div class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the observations by 'continent' and 'country'</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> data.groupby([<span class="st">'continent'</span>,<span class="st">'country'</span>])</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> gdp_lifeExp_data.groupby([<span class="st">'continent'</span>,<span class="st">'country'</span>])</span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean stastistic of all columns of the DataFrame and all groups</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>grouped.mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1099,10 +1105,10 @@ dtype: int64</code></pre>
 <h4 data-number="9.2.1.2" class="anchored" data-anchor-id="grouping-columns"><span class="header-section-number">9.2.1.2</span> Grouping columns</h4>
 <p>By default, the grouping takes place by rows. However, as with several other Pandas methods, grouping can also be done by columns by using the <code>axis = 1</code> argument.</p>
 <p><strong>Example:</strong> Consider we have the above dataset in the wide-format as follows.</p>
-<div class="cell" data-execution_count="30">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>data_wide <span class="op">=</span> data.pivot(index <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],columns <span class="op">=</span> <span class="st">'year'</span>)</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>data_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="30">
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>gdp_lifeExp_data_wide <span class="op">=</span> gdp_lifeExp_data.pivot(index <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],columns <span class="op">=</span> <span class="st">'year'</span>)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>gdp_lifeExp_data_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="4">
 
 <div>
 
@@ -1443,9 +1449,9 @@ dtype: int64</code></pre>
 </div>
 <p>Now, find the mean GDP per capita, life expectancy and population for each country.</p>
 <p>Here, we can group by the outer level column labels to obtain the means. Also, we need to use the argument <code>axis=1</code> to indicate that we intend to group columns, instead of rows.</p>
-<div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>data_wide.groupby(axis<span class="op">=</span><span class="dv">1</span>,level<span class="op">=</span><span class="dv">0</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>gdp_lifeExp_data_wide.groupby(axis<span class="op">=</span><span class="dv">1</span>,level<span class="op">=</span><span class="dv">0</span>).mean()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="5">
 
 <div>
 
@@ -1559,8 +1565,600 @@ dtype: int64</code></pre>
 </section>
 <section id="agg" class="level3" data-number="9.2.3">
 <h3 data-number="9.2.3" class="anchored" data-anchor-id="agg"><span class="header-section-number">9.2.3</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg()</code></a></h3>
+<p>Directly applying the aggregate methods of the <em>GroupBy</em> object such as mean, count, etc., lets us apply only one function at a time. Also, we may wish to apply an aggregate function of our own, which is not there in the set of methods of the <em>GroupBy</em> object, such as the range of values of a column.</p>
+<p>The <code>agg()</code> function of a <em>GroupBy</em> object lets us aggregate data using:</p>
+<ol type="1">
+<li><p>Multiple aggregation functions</p></li>
+<li><p>Custom aggregate functions (in addition to in-built functions like mean, std, count etc.)</p></li>
+</ol>
+<p>Consider the spotify dataset containing information about tracks and artists.</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>spotify_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/spotify_data.csv'</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>spotify_data.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>key</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>All Girls Are The Same</td>
+      <td>0</td>
+      <td>165820</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.673</td>
+      <td>...</td>
+      <td>0</td>
+      <td>-7.226</td>
+      <td>1</td>
+      <td>0.306</td>
+      <td>0.0769</td>
+      <td>0.000338</td>
+      <td>0.0856</td>
+      <td>0.203</td>
+      <td>161.991</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Lucid Dreams</td>
+      <td>0</td>
+      <td>239836</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.511</td>
+      <td>...</td>
+      <td>6</td>
+      <td>-7.230</td>
+      <td>0</td>
+      <td>0.200</td>
+      <td>0.3490</td>
+      <td>0.000000</td>
+      <td>0.3400</td>
+      <td>0.218</td>
+      <td>83.903</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>16996777</td>
+      <td>rap</td>
+      <td>Juice WRLD</td>
+      <td>96</td>
+      <td>Hear Me Calling</td>
+      <td>0</td>
+      <td>189977</td>
+      <td>1</td>
+      <td>2021</td>
+      <td>0.699</td>
+      <td>...</td>
+      <td>7</td>
+      <td>-3.997</td>
+      <td>0</td>
+      <td>0.106</td>
+      <td>0.3080</td>
+      <td>0.000036</td>
+      <td>0.1210</td>
+      <td>0.499</td>
+      <td>88.933</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 21 columns</p>
+</div>
+</div>
+</div>
+<p>Suppose, we wish to find the average popularity of tracks for each genre. We can do that by using the <code>mean()</code> method of a <em>GroupBy</em> object, as shown in the previous section. We will also sort the table by decreasing average popularity.</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>grouped<span class="op">=</span>spotify_data.groupby(<span class="st">'genres'</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].mean().sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
+<pre><code>genres
+rap              51.162959
+hip hop          48.700665
+metal            46.334539
+electronic       43.253165
+country          41.132686
+pop              37.783194
+latin            37.563765
+rock             36.749623
+miscellaneous    36.167401
+pop &amp; rock       35.619242
+hoerspiel        31.258670
+folk             29.716767
+jazz             20.349472
+Name: track_popularity, dtype: float64</code></pre>
+</div>
+</div>
+<p>Let us also find the standard deviation of the popularity of the tracks for each genre. We will also sort the table by decreasing standard deviation of popularity.</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].std().sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>genres
+rap              20.912240
+country          20.544338
+pop              17.790385
+miscellaneous    16.240129
+electronic       16.075841
+pop &amp; rock       15.560975
+folk             15.150717
+jazz             15.087119
+latin            14.492199
+rock             14.350580
+metal            14.331154
+hip hop          12.824901
+hoerspiel         6.459370
+Name: track_popularity, dtype: float64</code></pre>
+</div>
+</div>
+<p>Even though rap is the most popular genre on an average, its popularity varies the most amongs listners. So, it should probably be recommended only to rap listners or the criteria to accept rap songs on Spotify should be more stringent.</p>
+<section id="multiple-aggregation-functions" class="level4" data-number="9.2.3.1">
+<h4 data-number="9.2.3.1" class="anchored" data-anchor-id="multiple-aggregation-functions"><span class="header-section-number">9.2.3.1</span> Multiple aggregation functions</h4>
+<p>Let us use the <code>agg()</code> method of the <em>GroupBy</em> object to simultaneously find the mean and standard deviation of the track popularity for each genre.</p>
+<p>For aggregating by multiple functions, we pass a list of strings to <em>agg()</em>, where the strings are the function names.</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>]).sort_values(by <span class="op">=</span> <span class="st">'mean'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rap</th>
+      <td>51.162959</td>
+      <td>20.912240</td>
+    </tr>
+    <tr>
+      <th>hip hop</th>
+      <td>48.700665</td>
+      <td>12.824901</td>
+    </tr>
+    <tr>
+      <th>metal</th>
+      <td>46.334539</td>
+      <td>14.331154</td>
+    </tr>
+    <tr>
+      <th>electronic</th>
+      <td>43.253165</td>
+      <td>16.075841</td>
+    </tr>
+    <tr>
+      <th>country</th>
+      <td>41.132686</td>
+      <td>20.544338</td>
+    </tr>
+    <tr>
+      <th>pop</th>
+      <td>37.783194</td>
+      <td>17.790385</td>
+    </tr>
+    <tr>
+      <th>latin</th>
+      <td>37.563765</td>
+      <td>14.492199</td>
+    </tr>
+    <tr>
+      <th>rock</th>
+      <td>36.749623</td>
+      <td>14.350580</td>
+    </tr>
+    <tr>
+      <th>miscellaneous</th>
+      <td>36.167401</td>
+      <td>16.240129</td>
+    </tr>
+    <tr>
+      <th>pop &amp; rock</th>
+      <td>35.619242</td>
+      <td>15.560975</td>
+    </tr>
+    <tr>
+      <th>hoerspiel</th>
+      <td>31.258670</td>
+      <td>6.459370</td>
+    </tr>
+    <tr>
+      <th>folk</th>
+      <td>29.716767</td>
+      <td>15.150717</td>
+    </tr>
+    <tr>
+      <th>jazz</th>
+      <td>20.349472</td>
+      <td>15.087119</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>From the above table, we observe that people not just like hip-hop the second most on average, but they also like it more consistently than almost all other genres. We have also sorted the above table by decreasing average track popularity.</p>
+</section>
+<section id="custom-aggregate-functions" class="level4" data-number="9.2.3.2">
+<h4 data-number="9.2.3.2" class="anchored" data-anchor-id="custom-aggregate-functions"><span class="header-section-number">9.2.3.2</span> Custom aggregate functions</h4>
+<p>In addition to the mean and standard deviation of the track popularirty of each genre, let us also include the <span class="math inline">\(90^{th}\)</span> percentile of track popularity in the table above, and sort it by the same.</p>
+<div class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function that returns the 90th percentile value</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ninety_pc(x):</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.quantile(<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>,Ninety_pc]).sort_values(by <span class="op">=</span> <span class="st">'Ninety_pc'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="20">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>mean</th>
+      <th>std</th>
+      <th>Ninety_pc</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rap</th>
+      <td>51.162959</td>
+      <td>20.912240</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>country</th>
+      <td>41.132686</td>
+      <td>20.544338</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <th>hip hop</th>
+      <td>48.700665</td>
+      <td>12.824901</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>metal</th>
+      <td>46.334539</td>
+      <td>14.331154</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>electronic</th>
+      <td>43.253165</td>
+      <td>16.075841</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>pop</th>
+      <td>37.783194</td>
+      <td>17.790385</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>miscellaneous</th>
+      <td>36.167401</td>
+      <td>16.240129</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>latin</th>
+      <td>37.563765</td>
+      <td>14.492199</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>pop &amp; rock</th>
+      <td>35.619242</td>
+      <td>15.560975</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>rock</th>
+      <td>36.749623</td>
+      <td>14.350580</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>folk</th>
+      <td>29.716767</td>
+      <td>15.150717</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>jazz</th>
+      <td>20.349472</td>
+      <td>15.087119</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>hoerspiel</th>
+      <td>31.258670</td>
+      <td>6.459370</td>
+      <td>37</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>From the above table, we observe that even though country songs are not as popular as hip-hop on an average, the top <span class="math inline">\(10\%\)</span> country tracks are more popular than the top <span class="math inline">\(10\%\)</span> hip hop tracks.</p>
+<p>For aggregating by multiple functions &amp; changing the column names resulting from those functions, we pass a list of tuples to <code>agg()</code>, where each tuple is of length two, and contains the new column name &amp; the function to be applied.</p>
+<div class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simultaneous renaming of columns while grouping</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>),(<span class="st">'90th percentile'</span>,Ninety_pc)]).sort_values(by <span class="op">=</span> <span class="st">'90th percentile'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="21">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Average</th>
+      <th>Standard deviation</th>
+      <th>90th percentile</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rap</th>
+      <td>51.162959</td>
+      <td>20.912240</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>country</th>
+      <td>41.132686</td>
+      <td>20.544338</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <th>hip hop</th>
+      <td>48.700665</td>
+      <td>12.824901</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>metal</th>
+      <td>46.334539</td>
+      <td>14.331154</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>electronic</th>
+      <td>43.253165</td>
+      <td>16.075841</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>pop</th>
+      <td>37.783194</td>
+      <td>17.790385</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>miscellaneous</th>
+      <td>36.167401</td>
+      <td>16.240129</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>latin</th>
+      <td>37.563765</td>
+      <td>14.492199</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>pop &amp; rock</th>
+      <td>35.619242</td>
+      <td>15.560975</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>rock</th>
+      <td>36.749623</td>
+      <td>14.350580</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>folk</th>
+      <td>29.716767</td>
+      <td>15.150717</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>jazz</th>
+      <td>20.349472</td>
+      <td>15.087119</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>hoerspiel</th>
+      <td>31.258670</td>
+      <td>6.459370</td>
+      <td>37</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We can put use a lambda function as well instead of separately defining the function <code>Ninety_pc</code> in the above code:</p>
+<div class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simultaneous renaming of columns while grouping</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>),(<span class="st">'90th percentile'</span>,<span class="kw">lambda</span> x:x.quantile(<span class="fl">0.9</span>))]).sort_values(by <span class="op">=</span> <span class="st">'90th percentile'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="22">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Average</th>
+      <th>Standard deviation</th>
+      <th>90th percentile</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rap</th>
+      <td>51.162959</td>
+      <td>20.912240</td>
+      <td>74</td>
+    </tr>
+    <tr>
+      <th>country</th>
+      <td>41.132686</td>
+      <td>20.544338</td>
+      <td>67</td>
+    </tr>
+    <tr>
+      <th>hip hop</th>
+      <td>48.700665</td>
+      <td>12.824901</td>
+      <td>64</td>
+    </tr>
+    <tr>
+      <th>metal</th>
+      <td>46.334539</td>
+      <td>14.331154</td>
+      <td>63</td>
+    </tr>
+    <tr>
+      <th>electronic</th>
+      <td>43.253165</td>
+      <td>16.075841</td>
+      <td>61</td>
+    </tr>
+    <tr>
+      <th>pop</th>
+      <td>37.783194</td>
+      <td>17.790385</td>
+      <td>60</td>
+    </tr>
+    <tr>
+      <th>miscellaneous</th>
+      <td>36.167401</td>
+      <td>16.240129</td>
+      <td>57</td>
+    </tr>
+    <tr>
+      <th>latin</th>
+      <td>37.563765</td>
+      <td>14.492199</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>pop &amp; rock</th>
+      <td>35.619242</td>
+      <td>15.560975</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>rock</th>
+      <td>36.749623</td>
+      <td>14.350580</td>
+      <td>56</td>
+    </tr>
+    <tr>
+      <th>folk</th>
+      <td>29.716767</td>
+      <td>15.150717</td>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>jazz</th>
+      <td>20.349472</td>
+      <td>15.087119</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>hoerspiel</th>
+      <td>31.258670</td>
+      <td>6.459370</td>
+      <td>37</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="grouping-by-multiple-columns" class="level4" data-number="9.2.3.3">
+<h4 data-number="9.2.3.3" class="anchored" data-anchor-id="grouping-by-multiple-columns"><span class="header-section-number">9.2.3.3</span> Grouping by multiple columns</h4>
 
 
+</section>
 </section>
 </section>
 
