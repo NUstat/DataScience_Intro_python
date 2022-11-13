@@ -2866,21 +2866,21 @@ Name: track_popularity, dtype: float64</code></pre>
 <h3 data-number="9.3.1" class="anchored" data-anchor-id="filtering-data-by-group"><span class="header-section-number">9.3.1</span> Filtering data by group</h3>
 <p><strong>Example</strong>: Find the top 3 most popular tracks of each genre in the spotify dataset.</p>
 <p>We’ll first define a function that sorts a dataset by decreasing track popularity and returns the top 3 rows. Then, we’ll apply this function on each group using the <code>apply()</code> method of the <em>GroupBy</em> object.</p>
-<div class="cell" data-execution_count="95">
+<div class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the function that finds the top 3 most popular tracks from the dataset 'x'</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top_tracks(x,col<span class="op">=</span><span class="st">'track_popularity'</span>,n<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top_stats(x,col<span class="op">=</span><span class="st">'track_popularity'</span>,n<span class="op">=</span><span class="dv">3</span>):</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.sort_values(by<span class="op">=</span>col,ascending <span class="op">=</span> <span class="va">False</span>)[<span class="dv">0</span>:n]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="96">
+<div class="cell" data-execution_count="105">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the groups in the spotify data</span></span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>grouped_spotify_data <span class="op">=</span> spotify_data.groupby(<span class="st">'genres'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we’ll use the <code>apply()</code> method to apply the <code>top_stats()</code> function on each group of the object <code>grouped_spotify_data</code>.</p>
-<div class="cell" data-execution_count="97">
+<div class="cell" data-execution_count="106">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(top_tracks)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(top_stats)</span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="97">
+<div class="cell-output cell-output-display" data-execution_count="106">
 
 <div>
 
@@ -3066,12 +3066,13 @@ Name: track_popularity, dtype: float64</code></pre>
 </div>
 </div>
 </div>
+<p>The <code>top_stats()</code> function is applied to each group, and the results are concatenated internally with the <code>concat()</code> function. The output therefore has a hierarchical index whose outer level indices are the group keys.</p>
 <p>We can also use a lambda function instead of separately defining the function <code>top_tracks()</code>:</p>
-<div class="cell" data-execution_count="100">
+<div class="cell" data-execution_count="107">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre - using lambda function</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>,ascending<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>:<span class="dv">3</span>])</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="100">
+<div class="cell-output cell-output-display" data-execution_count="107">
 
 <div>
 
@@ -3255,6 +3256,30 @@ Name: track_popularity, dtype: float64</code></pre>
 </table>
 <p>5 rows × 22 columns</p>
 </div>
+</div>
+</div>
+<p>We can also pass arguments to the <code>top_stats()</code> function with the <code>apply()</code> function.</p>
+<p><strong>Example:</strong> Find the most popular artist from each genre.</p>
+<div class="cell" data-execution_count="113">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Applying the 'top_stats()' function to each group of the data (based on 'genre') to find the most popular artist </span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Dropping the inner row label as it is not informative</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>grouped_spotify_data.<span class="bu">apply</span>(top_stats,col<span class="op">=</span><span class="st">'artist_popularity'</span>,n<span class="op">=</span><span class="dv">1</span>)[<span class="st">'artist_name'</span>].droplevel(axis<span class="op">=</span><span class="dv">0</span>, level <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="113">
+<pre><code>genres
+country               Morgan Wallen
+electronic                Daft Punk
+folk                       Bon Iver
+hip hop                      Eminem
+hoerspiel              Die drei ???
+jazz             Earth, Wind &amp; Fire
+latin                        Maluma
+metal                   Linkin Park
+miscellaneous             Pop Smoke
+pop                   Justin Bieber
+pop &amp; rock                 Maroon 5
+rap                       Bad Bunny
+rock                Imagine Dragons
+Name: artist_name, dtype: object</code></pre>
 </div>
 </div>
 </section>
