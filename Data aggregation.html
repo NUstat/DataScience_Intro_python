@@ -334,6 +334,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#custom-aggregate-functions" id="toc-custom-aggregate-functions" class="nav-link" data-scroll-target="#custom-aggregate-functions"><span class="toc-section-number">9.2.3.2</span>  Custom aggregate functions</a></li>
   <li><a href="#grouping-by-multiple-columns" id="toc-grouping-by-multiple-columns" class="nav-link" data-scroll-target="#grouping-by-multiple-columns"><span class="toc-section-number">9.2.3.3</span>  Grouping by multiple columns</a></li>
   <li><a href="#multiple-aggregate-functions-on-multiple-columns" id="toc-multiple-aggregate-functions-on-multiple-columns" class="nav-link" data-scroll-target="#multiple-aggregate-functions-on-multiple-columns"><span class="toc-section-number">9.2.3.4</span>  Multiple aggregate functions on multiple columns</a></li>
+  <li><a href="#distinct-aggregate-functions-on-multiple-columns" id="toc-distinct-aggregate-functions-on-multiple-columns" class="nav-link" data-scroll-target="#distinct-aggregate-functions-on-multiple-columns"><span class="toc-section-number">9.2.3.5</span>  Distinct aggregate functions on multiple columns</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -2158,19 +2159,19 @@ Name: track_popularity, dtype: float64</code></pre>
 <section id="grouping-by-multiple-columns" class="level4" data-number="9.2.3.3">
 <h4 data-number="9.2.3.3" class="anchored" data-anchor-id="grouping-by-multiple-columns"><span class="header-section-number">9.2.3.3</span> Grouping by multiple columns</h4>
 <p>Let us find aggregate statistics when we group data by multiple columns. For that, let us create a new categorical column <code>energy_lvl</code> that has two levels - <em>Low energy</em> and <em>High energy</em>, depending on the <code>energy</code> of the track.</p>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-execution_count="39">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a new categorical column 'energy_lvl'</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>spotify_data[<span class="st">'energy_lvl'</span>] <span class="op">=</span> pd.qcut(spotify_data.energy,<span class="dv">2</span>,labels<span class="op">=</span>[<span class="st">'Low energy'</span>, <span class="st">'High energy'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let us find the mean, standard deviation and 90th percentile value of the track popularity for each genre-energy level combination simultaneously.</p>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="40">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data with 'genres' and 'energy_lvl'</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>grouped<span class="op">=</span>spotify_data.groupby([<span class="st">'genres'</span>,<span class="st">'energy_lvl'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="33">
+<div class="cell" data-execution_count="41">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding aggregate statistics of data grouped with multple columns</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>,Ninety_pc])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="33">
+<div class="cell-output cell-output-display" data-execution_count="41">
 
 <div>
 
@@ -2370,6 +2371,486 @@ Name: track_popularity, dtype: float64</code></pre>
 </section>
 <section id="multiple-aggregate-functions-on-multiple-columns" class="level4" data-number="9.2.3.4">
 <h4 data-number="9.2.3.4" class="anchored" data-anchor-id="multiple-aggregate-functions-on-multiple-columns"><span class="header-section-number">9.2.3.4</span> Multiple aggregate functions on multiple columns</h4>
+<p>Let us find the mean and standard deviation of track popularity and danceability for each genre and energy level.</p>
+<div class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability <span class="op">=</span> grouped[[<span class="st">'track_popularity'</span>,<span class="st">'danceability'</span>]].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>)])</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="43">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">track_popularity</th>
+      <th colspan="2" halign="left">danceability</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Average</th>
+      <th>Standard deviation</th>
+      <th>Average</th>
+      <th>Standard deviation</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th>energy_lvl</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">country</th>
+      <th>Low energy</th>
+      <td>34.982069</td>
+      <td>19.877274</td>
+      <td>0.602382</td>
+      <td>0.128027</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>49.859100</td>
+      <td>18.196092</td>
+      <td>0.597569</td>
+      <td>0.105243</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">electronic</th>
+      <th>Low energy</th>
+      <td>43.754789</td>
+      <td>13.294925</td>
+      <td>0.563125</td>
+      <td>0.242978</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>43.005671</td>
+      <td>17.290356</td>
+      <td>0.634216</td>
+      <td>0.152565</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">folk</th>
+      <th>Low energy</th>
+      <td>29.617831</td>
+      <td>15.360910</td>
+      <td>0.510957</td>
+      <td>0.152062</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>29.991957</td>
+      <td>14.556622</td>
+      <td>0.564669</td>
+      <td>0.136981</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hip hop</th>
+      <th>Low energy</th>
+      <td>50.283669</td>
+      <td>12.423124</td>
+      <td>0.731064</td>
+      <td>0.134749</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>48.012067</td>
+      <td>12.936656</td>
+      <td>0.714225</td>
+      <td>0.125525</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hoerspiel</th>
+      <th>Low energy</th>
+      <td>31.534779</td>
+      <td>5.953968</td>
+      <td>0.673494</td>
+      <td>0.072998</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>30.514032</td>
+      <td>7.609088</td>
+      <td>0.628369</td>
+      <td>0.083672</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">jazz</th>
+      <th>Low energy</th>
+      <td>19.421085</td>
+      <td>14.599499</td>
+      <td>0.503981</td>
+      <td>0.147328</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>25.715373</td>
+      <td>16.662754</td>
+      <td>0.599330</td>
+      <td>0.135762</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">latin</th>
+      <th>Low energy</th>
+      <td>34.308370</td>
+      <td>15.126721</td>
+      <td>0.559290</td>
+      <td>0.158853</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>39.992605</td>
+      <td>13.504109</td>
+      <td>0.644309</td>
+      <td>0.137094</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">metal</th>
+      <th>Low energy</th>
+      <td>38.612403</td>
+      <td>16.000151</td>
+      <td>0.409464</td>
+      <td>0.146364</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>46.985621</td>
+      <td>13.993685</td>
+      <td>0.420022</td>
+      <td>0.123839</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">miscellaneous</th>
+      <th>Low energy</th>
+      <td>34.157235</td>
+      <td>16.516910</td>
+      <td>0.543357</td>
+      <td>0.188526</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>39.394186</td>
+      <td>15.241620</td>
+      <td>0.629966</td>
+      <td>0.146947</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">pop</th>
+      <th>Low energy</th>
+      <td>34.722631</td>
+      <td>18.340408</td>
+      <td>0.544546</td>
+      <td>0.158974</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>40.597155</td>
+      <td>16.784034</td>
+      <td>0.628555</td>
+      <td>0.136695</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">pop &amp; rock</th>
+      <th>Low energy</th>
+      <td>32.987221</td>
+      <td>15.594202</td>
+      <td>0.533666</td>
+      <td>0.150233</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>37.413357</td>
+      <td>15.280915</td>
+      <td>0.554165</td>
+      <td>0.138734</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">rap</th>
+      <th>Low energy</th>
+      <td>57.177966</td>
+      <td>16.491203</td>
+      <td>0.712144</td>
+      <td>0.139155</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>48.225166</td>
+      <td>22.182320</td>
+      <td>0.729174</td>
+      <td>0.130477</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">rock</th>
+      <th>Low energy</th>
+      <td>34.654871</td>
+      <td>14.387263</td>
+      <td>0.533698</td>
+      <td>0.160000</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>38.256199</td>
+      <td>14.133726</td>
+      <td>0.510587</td>
+      <td>0.149943</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>We get a couple of insights from the above table:</p>
+<ul>
+<li><p>High energy songs have higher danceability for most genres as expected. However, for hip-hop, country, rock and hoerspiel, even low-energy songs have comparable danceability.</p></li>
+<li><p>Hip hop has the highest danceability as expected. However, high energy rap also has relatively high danceability.</p></li>
+</ul>
+</section>
+<section id="distinct-aggregate-functions-on-multiple-columns" class="level4" data-number="9.2.3.5">
+<h4 data-number="9.2.3.5" class="anchored" data-anchor-id="distinct-aggregate-functions-on-multiple-columns"><span class="header-section-number">9.2.3.5</span> Distinct aggregate functions on multiple columns</h4>
+<p>For aggregating by multiple functions, we pass a list of strings to <code>agg()</code>, where the strings are the function names.</p>
+<p>For aggregating by multiple functions &amp; changing the column names resulting from those functions, we pass a list of tuples to <code>agg()</code>, where each tuple is of length two, and contains the new column name as the first object and the function to be applied as the second object of the tuple.</p>
+<p>For aggregating by multiple functions such that a distinct set of functions is applied to each column, we pass a dictionary to <code>agg()</code>, where the keys are the column names on which the function is to be applied, and the values are the list of strings that are the function names, or a list of tuples if we also wish to name the aggregated columns.</p>
+<p><strong>Example:</strong> For each genre and energy level, find the mean and standard deviation of the track popularity, and the minimum and maximum values of loudness.</p>
+<div class="cell" data-execution_count="78">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Specifying arguments to the function as a dictionary if distinct functions are to be applied on distinct columns</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">'track_popularity'</span>:[(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>)],<span class="st">'loudness'</span>:[<span class="st">'min'</span>,<span class="st">'max'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="78">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th colspan="2" halign="left">track_popularity</th>
+      <th colspan="2" halign="left">loudness</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>Average</th>
+      <th>Standard deviation</th>
+      <th>min</th>
+      <th>max</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th>energy_lvl</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">country</th>
+      <th>Low energy</th>
+      <td>34.982069</td>
+      <td>19.877274</td>
+      <td>-23.163</td>
+      <td>-4.145</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>49.859100</td>
+      <td>18.196092</td>
+      <td>-16.763</td>
+      <td>-0.716</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">electronic</th>
+      <th>Low energy</th>
+      <td>43.754789</td>
+      <td>13.294925</td>
+      <td>-60.000</td>
+      <td>-4.936</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>43.005671</td>
+      <td>17.290356</td>
+      <td>-19.756</td>
+      <td>-0.533</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">folk</th>
+      <th>Low energy</th>
+      <td>29.617831</td>
+      <td>15.360910</td>
+      <td>-28.715</td>
+      <td>-0.972</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>29.991957</td>
+      <td>14.556622</td>
+      <td>-16.383</td>
+      <td>0.501</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hip hop</th>
+      <th>Low energy</th>
+      <td>50.283669</td>
+      <td>12.423124</td>
+      <td>-25.947</td>
+      <td>-1.595</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>48.012067</td>
+      <td>12.936656</td>
+      <td>-18.273</td>
+      <td>0.642</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">hoerspiel</th>
+      <th>Low energy</th>
+      <td>31.534779</td>
+      <td>5.953968</td>
+      <td>-29.907</td>
+      <td>-4.910</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>30.514032</td>
+      <td>7.609088</td>
+      <td>-22.046</td>
+      <td>-2.130</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">jazz</th>
+      <th>Low energy</th>
+      <td>19.421085</td>
+      <td>14.599499</td>
+      <td>-60.000</td>
+      <td>-2.962</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>25.715373</td>
+      <td>16.662754</td>
+      <td>-27.563</td>
+      <td>-1.166</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">latin</th>
+      <th>Low energy</th>
+      <td>34.308370</td>
+      <td>15.126721</td>
+      <td>-31.897</td>
+      <td>-2.331</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>39.992605</td>
+      <td>13.504109</td>
+      <td>-18.357</td>
+      <td>-1.204</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">metal</th>
+      <th>Low energy</th>
+      <td>38.612403</td>
+      <td>16.000151</td>
+      <td>-32.032</td>
+      <td>-4.311</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>46.985621</td>
+      <td>13.993685</td>
+      <td>-16.244</td>
+      <td>-1.275</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">miscellaneous</th>
+      <th>Low energy</th>
+      <td>34.157235</td>
+      <td>16.516910</td>
+      <td>-44.410</td>
+      <td>-1.409</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>39.394186</td>
+      <td>15.241620</td>
+      <td>-37.684</td>
+      <td>1.634</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">pop</th>
+      <th>Low energy</th>
+      <td>34.722631</td>
+      <td>18.340408</td>
+      <td>-41.182</td>
+      <td>-0.045</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>40.597155</td>
+      <td>16.784034</td>
+      <td>-27.575</td>
+      <td>0.330</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">pop &amp; rock</th>
+      <th>Low energy</th>
+      <td>32.987221</td>
+      <td>15.594202</td>
+      <td>-60.000</td>
+      <td>-1.823</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>37.413357</td>
+      <td>15.280915</td>
+      <td>-22.234</td>
+      <td>1.107</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">rap</th>
+      <th>Low energy</th>
+      <td>57.177966</td>
+      <td>16.491203</td>
+      <td>-23.611</td>
+      <td>-1.218</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>48.225166</td>
+      <td>22.182320</td>
+      <td>-15.012</td>
+      <td>0.457</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">rock</th>
+      <th>Low energy</th>
+      <td>34.654871</td>
+      <td>14.387263</td>
+      <td>-42.488</td>
+      <td>-1.708</td>
+    </tr>
+    <tr>
+      <th>High energy</th>
+      <td>38.256199</td>
+      <td>14.133726</td>
+      <td>-25.291</td>
+      <td>3.744</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<p>From the above table, we observe that high energy songs are always louder than low energy songs. High energy Rock songs can be very loud.</p>
 
 
 </section>
