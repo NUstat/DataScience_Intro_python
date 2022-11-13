@@ -337,6 +337,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#distinct-aggregate-functions-on-multiple-columns" id="toc-distinct-aggregate-functions-on-multiple-columns" class="nav-link" data-scroll-target="#distinct-aggregate-functions-on-multiple-columns"><span class="toc-section-number">9.2.3.5</span>  Distinct aggregate functions on multiple columns</a></li>
   </ul></li>
   </ul></li>
+  <li><a href="#apply-data-aggregation-filtering-transformation" id="toc-apply-data-aggregation-filtering-transformation" class="nav-link" data-scroll-target="#apply-data-aggregation-filtering-transformation"><span class="toc-section-number">9.3</span>  <code>apply()</code>: Data aggregation, filtering &amp; transformation</a>
+  <ul>
+  <li><a href="#filtering-data-by-group" id="toc-filtering-data-by-group" class="nav-link" data-scroll-target="#filtering-data-by-group"><span class="toc-section-number">9.3.1</span>  Filtering data by group</a></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">9.3.2</span>  Practice exercise 2</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -2851,9 +2856,413 @@ Name: track_popularity, dtype: float64</code></pre>
 </div>
 </div>
 <p>From the above table, we observe that high energy songs are always louder than low energy songs. High energy Rock songs can be very loud.</p>
-
-
 </section>
+</section>
+</section>
+<section id="apply-data-aggregation-filtering-transformation" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="apply-data-aggregation-filtering-transformation"><span class="header-section-number">9.3</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.GroupBy.apply.html"><code>apply()</code></a>: Data aggregation, filtering &amp; transformation</h2>
+<p>With the <code>apply()</code> method of the <em>GroupBy</em> object, we can perform several operations on groups, other than data aggregation.</p>
+<section id="filtering-data-by-group" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="filtering-data-by-group"><span class="header-section-number">9.3.1</span> Filtering data by group</h3>
+<p><strong>Example</strong>: Find the top 3 most popular tracks of each genre in the spotify dataset.</p>
+<p>We’ll first define a function that sorts a dataset by decreasing track popularity and returns the top 3 rows. Then, we’ll apply this function on each group using the <code>apply()</code> method of the <em>GroupBy</em> object.</p>
+<div class="cell" data-execution_count="95">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the function that finds the top 3 most popular tracks from the dataset 'x'</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top_tracks(x,col<span class="op">=</span><span class="st">'track_popularity'</span>,n<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.sort_values(by<span class="op">=</span>col,ascending <span class="op">=</span> <span class="va">False</span>)[<span class="dv">0</span>:n]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="96">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the groups in the spotify data</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>grouped_spotify_data <span class="op">=</span> spotify_data.groupby(<span class="st">'genres'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now we’ll use the <code>apply()</code> method to apply the <code>top_stats()</code> function on each group of the object <code>grouped_spotify_data</code>.</p>
+<div class="cell" data-execution_count="97">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(top_tracks)</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="97">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>energy_lvl</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">country</th>
+      <th>4047</th>
+      <td>4755356</td>
+      <td>country</td>
+      <td>Luke Combs</td>
+      <td>85</td>
+      <td>Forever After All</td>
+      <td>82</td>
+      <td>232533</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>0.487</td>
+      <td>...</td>
+      <td>-5.195</td>
+      <td>1</td>
+      <td>0.0253</td>
+      <td>0.1910</td>
+      <td>0.000000</td>
+      <td>0.0933</td>
+      <td>0.456</td>
+      <td>151.964</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th>2403</th>
+      <td>1678738</td>
+      <td>country</td>
+      <td>Morgan Wallen</td>
+      <td>88</td>
+      <td>Wasted On You</td>
+      <td>81</td>
+      <td>178520</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.505</td>
+      <td>...</td>
+      <td>-5.240</td>
+      <td>0</td>
+      <td>0.0318</td>
+      <td>0.3730</td>
+      <td>0.001070</td>
+      <td>0.1260</td>
+      <td>0.252</td>
+      <td>196.000</td>
+      <td>3</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th>16244</th>
+      <td>1678738</td>
+      <td>country</td>
+      <td>Morgan Wallen</td>
+      <td>88</td>
+      <td>Whiskey Glasses</td>
+      <td>81</td>
+      <td>234347</td>
+      <td>0</td>
+      <td>2018</td>
+      <td>0.614</td>
+      <td>...</td>
+      <td>-4.580</td>
+      <td>1</td>
+      <td>0.0289</td>
+      <td>0.3690</td>
+      <td>0.000002</td>
+      <td>0.1150</td>
+      <td>0.707</td>
+      <td>149.959</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">electronic</th>
+      <th>83058</th>
+      <td>7650304</td>
+      <td>electronic</td>
+      <td>Daft Punk</td>
+      <td>86</td>
+      <td>One More Time</td>
+      <td>81</td>
+      <td>320357</td>
+      <td>0</td>
+      <td>2001</td>
+      <td>0.611</td>
+      <td>...</td>
+      <td>-8.618</td>
+      <td>1</td>
+      <td>0.1330</td>
+      <td>0.0193</td>
+      <td>0.000000</td>
+      <td>0.3320</td>
+      <td>0.476</td>
+      <td>122.752</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th>13068</th>
+      <td>28026432</td>
+      <td>electronic</td>
+      <td>Alan Walker</td>
+      <td>85</td>
+      <td>Faded</td>
+      <td>80</td>
+      <td>212107</td>
+      <td>0</td>
+      <td>2018</td>
+      <td>0.468</td>
+      <td>...</td>
+      <td>-5.085</td>
+      <td>1</td>
+      <td>0.0476</td>
+      <td>0.0281</td>
+      <td>0.000008</td>
+      <td>0.1100</td>
+      <td>0.159</td>
+      <td>179.642</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+<p>We can also use a lambda function instead of separately defining the function <code>top_tracks()</code>:</p>
+<div class="cell" data-execution_count="100">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre - using lambda function</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>,ascending<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>:<span class="dv">3</span>])</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="100">
+
+<div>
+
+<table class="dataframe table table-sm table-striped">
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th>artist_followers</th>
+      <th>genres</th>
+      <th>artist_name</th>
+      <th>artist_popularity</th>
+      <th>track_name</th>
+      <th>track_popularity</th>
+      <th>duration_ms</th>
+      <th>explicit</th>
+      <th>release_year</th>
+      <th>danceability</th>
+      <th>...</th>
+      <th>loudness</th>
+      <th>mode</th>
+      <th>speechiness</th>
+      <th>acousticness</th>
+      <th>instrumentalness</th>
+      <th>liveness</th>
+      <th>valence</th>
+      <th>tempo</th>
+      <th>time_signature</th>
+      <th>energy_lvl</th>
+    </tr>
+    <tr>
+      <th>genres</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="3" valign="top">country</th>
+      <th>4047</th>
+      <td>4755356</td>
+      <td>country</td>
+      <td>Luke Combs</td>
+      <td>85</td>
+      <td>Forever After All</td>
+      <td>82</td>
+      <td>232533</td>
+      <td>0</td>
+      <td>2020</td>
+      <td>0.487</td>
+      <td>...</td>
+      <td>-5.195</td>
+      <td>1</td>
+      <td>0.0253</td>
+      <td>0.1910</td>
+      <td>0.000000</td>
+      <td>0.0933</td>
+      <td>0.456</td>
+      <td>151.964</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th>2403</th>
+      <td>1678738</td>
+      <td>country</td>
+      <td>Morgan Wallen</td>
+      <td>88</td>
+      <td>Wasted On You</td>
+      <td>81</td>
+      <td>178520</td>
+      <td>0</td>
+      <td>2021</td>
+      <td>0.505</td>
+      <td>...</td>
+      <td>-5.240</td>
+      <td>0</td>
+      <td>0.0318</td>
+      <td>0.3730</td>
+      <td>0.001070</td>
+      <td>0.1260</td>
+      <td>0.252</td>
+      <td>196.000</td>
+      <td>3</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th>16244</th>
+      <td>1678738</td>
+      <td>country</td>
+      <td>Morgan Wallen</td>
+      <td>88</td>
+      <td>Whiskey Glasses</td>
+      <td>81</td>
+      <td>234347</td>
+      <td>0</td>
+      <td>2018</td>
+      <td>0.614</td>
+      <td>...</td>
+      <td>-4.580</td>
+      <td>1</td>
+      <td>0.0289</td>
+      <td>0.3690</td>
+      <td>0.000002</td>
+      <td>0.1150</td>
+      <td>0.707</td>
+      <td>149.959</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">electronic</th>
+      <th>83058</th>
+      <td>7650304</td>
+      <td>electronic</td>
+      <td>Daft Punk</td>
+      <td>86</td>
+      <td>One More Time</td>
+      <td>81</td>
+      <td>320357</td>
+      <td>0</td>
+      <td>2001</td>
+      <td>0.611</td>
+      <td>...</td>
+      <td>-8.618</td>
+      <td>1</td>
+      <td>0.1330</td>
+      <td>0.0193</td>
+      <td>0.000000</td>
+      <td>0.3320</td>
+      <td>0.476</td>
+      <td>122.752</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+    <tr>
+      <th>13068</th>
+      <td>28026432</td>
+      <td>electronic</td>
+      <td>Alan Walker</td>
+      <td>85</td>
+      <td>Faded</td>
+      <td>80</td>
+      <td>212107</td>
+      <td>0</td>
+      <td>2018</td>
+      <td>0.468</td>
+      <td>...</td>
+      <td>-5.085</td>
+      <td>1</td>
+      <td>0.0476</td>
+      <td>0.0281</td>
+      <td>0.000008</td>
+      <td>0.1100</td>
+      <td>0.159</td>
+      <td>179.642</td>
+      <td>4</td>
+      <td>High energy</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 22 columns</p>
+</div>
+</div>
+</div>
+</section>
+<section id="practice-exercise-2" class="level3" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">9.3.2</span> Practice exercise 2</h3>
+<p>Filter the first 4 columns of the spotify dataset. Drop duplicate observartions in the resulting dataset using the Pandas DataFrame method <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html"><code>drop_duplicates()</code></a>. Find the top 3 most popular artists for each genre.</p>
+
+
 </section>
 </section>
 
