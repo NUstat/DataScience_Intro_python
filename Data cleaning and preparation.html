@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -167,10 +167,7 @@ div.csl-indent {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./" class="sidebar-logo-link">
-      <img src="./NU_Stat_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Introduction to Data Science with Python</a> 
     </div>
@@ -381,6 +378,7 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     
+  
     
   </div>
   
@@ -780,7 +778,7 @@ dtype: int64</code></pre>
 <pre><code>RMSE= 34843.91091137732</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-14-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We observe that the accuracy of imputation is poor as GDP per capita can vary a lot across countries, and the data is not sorted by GDP per capita. There is no reason why the GDP per capita of a country should be close to the GDP per capita of the country in the observation above it.</p>
@@ -798,7 +796,7 @@ dtype: int64</code></pre>
 <pre><code>RMSE= 30793.549983587087</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-16-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Although this method of imputation doesn’t seem impressive, the RMSE of the estimates is lower than that of the naive method. Since we had introduced missing values randomly in <code>gdp_missing_values_data</code>, the mean GDP per capita will be the closest constant to the GDP per capita values, in terms of squared error.</p>
@@ -814,7 +812,7 @@ dtype: int64</code></pre>
 <pre><code>&lt;AxesSubplot:xlabel='continent', ylabel='gdpPerCapita'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-17-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>We observe that there is a distinct difference between the GDPs per capita of some of the contents. Let us impute the missing GDP per capita of a country as the mean GDP per capita of the corresponding continent. This imputation should be better than imputing the missing GDP per capita as the mean of all the non-missing values, as the GDP per capita of a country is likely to be closer to the mean GDP per capita of the continent, rather the mean GDP per capita of the whole world.</p>
@@ -847,7 +845,7 @@ Name: gdpPerCapita, dtype: float64</code></pre>
 <pre><code>RMSE= 25473.20645170116</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-20-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that the imputed values are closer to the actual values, and the RMSE has further reduced as expected.</p>
@@ -887,7 +885,7 @@ dtype: float64</code></pre>
 <pre><code>RMSE= 25570.361516956993</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-22-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -998,7 +996,7 @@ dtype: float64</code></pre>
 <pre><code>RMSE= 16804.195967740387</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-33-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-33-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that the RMSE is the lowest in this method. It is because this method imputes missing values as the average of the values of “similar” observations, which is smarter and more robust than the previous methods.</p>
@@ -1191,7 +1189,7 @@ dtype: float64</code></pre>
 <pre><code>Text(0, 0.5, 'Graduation rate')</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-35-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The trendline indicates a positive correlation between <code>Expend</code> and <code>Grad.Rate</code>. However, there seems to be a lot of noise and presence of outliers in the data, which makes it hard to interpret the overall trend.</p>
@@ -1201,7 +1199,7 @@ dtype: float64</code></pre>
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.histplot(data <span class="op">=</span> college, x<span class="op">=</span> <span class="st">'Expend'</span>)</span>
 <span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>The distribution of <code>Extend</code> is right skewed with potentially some extremely high outlying values.</p>
@@ -1410,7 +1408,7 @@ dtype: float64</code></pre>
 <span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Graduation rate'</span>)<span class="op">;</span></span>
 <span id="cb61-8"><a href="#cb61-8" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-41-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>By default, the bins created have equal width. They are created by dividing the range between the maximum and minimum value of <code>Expend</code> into the desired number of equal-width intervals. We can label the bins as well as follows.</p>
@@ -1441,7 +1439,7 @@ Categories (3, object): ['Low expend' &lt; 'Med expend' &lt; 'High expend']</cod
 <pre><code>&lt;AxesSubplot:xlabel='Expend_bin', ylabel='Grad.Rate'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-43-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-43-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>It seems that the graduation rate is the highest for universities with medium level of expenditure per student. This is different from the trend we saw earlier in the scatter plot. Let us investigate.</p>
@@ -1488,7 +1486,7 @@ Name: Expend_bin, dtype: int64</code></pre>
 <span id="cb71-7"><a href="#cb71-7" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Graduation rate'</span>)<span class="op">;</span></span>
 <span id="cb71-8"><a href="#cb71-8" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-47-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that the bin-widths have been adjusted to have the same number of observations in each bin. The bins are narrower in domains of high density, and wider in domains of sparse density.</p>
@@ -1497,7 +1495,7 @@ Name: Expend_bin, dtype: int64</code></pre>
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> pd.qcut(college[<span class="st">'Expend'</span>],<span class="dv">3</span>,labels <span class="op">=</span> [<span class="st">'Low expend'</span>,<span class="st">'Med expend'</span>,<span class="st">'High expend'</span>])</span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span>sns.barplot(x <span class="op">=</span> <span class="st">'Expend_bin'</span>, y <span class="op">=</span> <span class="st">'Grad.Rate'</span>, data <span class="op">=</span> college)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-48-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Now we see the same trend that we saw in the scatterplot, but without the noise. We have smoothed the data. Note that making equal-sized bins helps reduce the effect of outliers in the overall trend.</p>
@@ -1545,7 +1543,7 @@ Name: Grad.Rate, dtype: float64</code></pre>
 <span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Graduation rate'</span>)<span class="op">;</span></span>
 <span id="cb78-6"><a href="#cb78-6" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-52-output-1.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-52-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>As custom bin-cutoffs can be specified with the <code>cut()</code> function, custom bin quantiles can be specified with the <code>qcut()</code> function.</p>
@@ -1684,7 +1682,7 @@ dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>college.boxplot(column <span class="op">=</span> <span class="st">'Expend'</span>)</span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-60-output-1.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-60-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>There are several outliers (shown as circles in the above boxplot), which correspond to high values of average instructional expenditure per student. Boxplot identifies outliers based on the <a href="https://en.wikipedia.org/wiki/Outlier">Tukey’s fences</a> criterion:</p>
@@ -1719,7 +1717,7 @@ dtype: float64</code></pre>
 <pre><code>&lt;AxesSubplot:xlabel='Expend_bin', ylabel='Grad.Rate'&gt;</code></pre>
 </div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-66-output-2.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-66-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 <p>With the outliers removed, we obtain the correct overall trend, even in the case of equal-width bins. Note that these bins have unequal number of observations as shown below.</p>
@@ -1732,7 +1730,7 @@ dtype: float64</code></pre>
 <span id="cb98-6"><a href="#cb98-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Graduation rate'</span>)<span class="op">;</span></span>
 <span id="cb98-7"><a href="#cb98-7" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data%20cleaning%20and%20preparation_files/figure-html/cell-67-output-1.png" class="img-fluid"></p>
+<p><img src="Data cleaning and preparation_files/figure-html/cell-67-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Note that the right tail of the histogram has disappered since we removed outliers.</p>
@@ -1884,7 +1882,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -1920,24 +1935,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
 });
 </script>
