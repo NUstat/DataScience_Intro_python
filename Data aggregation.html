@@ -1575,6 +1575,15 @@ dtype: int64</code></pre>
 <li><p>Apply the following function on all the columns to convert them to numeric: <code>f = lambda x:pd.to_numeric(x,errors = 'coerce')</code></p></li>
 <li><p>Now use <code>groupby()</code> to find estimate the GDP per capita for each country.</p></li>
 </ol>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dfs <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>, match <span class="op">=</span> <span class="st">'Country'</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>gdp_per_capita <span class="op">=</span> dfs[<span class="dv">0</span>]</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>gdp_per_capita_reindexed <span class="op">=</span> gdp_per_capita.set_index([(<span class="st">'Country/Territory'</span>,<span class="st">'Country/Territory'</span>),</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                                                     (<span class="st">'UN Region'</span>,<span class="st">'UN Region'</span>)])</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>gdp_per_capita_numeric<span class="op">=</span>gdp_per_capita_reindexed.<span class="bu">apply</span>(<span class="kw">lambda</span> x:pd.to_numeric(x,errors <span class="op">=</span> <span class="st">'coerce'</span>))</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>gdp_per_capita_numeric.groupby(axis<span class="op">=</span><span class="dv">1</span>,level<span class="op">=</span><span class="dv">1</span>).mean().drop(columns<span class="op">=</span><span class="st">'Year'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="agg" class="level3" data-number="9.2.3">
 <h3 data-number="9.2.3" class="anchored" data-anchor-id="agg"><span class="header-section-number">9.2.3</span> <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.agg.html"><code>agg()</code></a></h3>
@@ -1586,8 +1595,8 @@ dtype: int64</code></pre>
 </ol>
 <p>Consider the spotify dataset containing information about tracks and artists.</p>
 <div class="cell" data-execution_count="137">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>spotify_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/spotify_data.csv'</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>spotify_data.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>spotify_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/spotify_data.csv'</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>spotify_data.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="137">
 
 <div>
@@ -1700,8 +1709,8 @@ dtype: int64</code></pre>
 </div>
 <p>Suppose, we wish to find the average popularity of tracks for each genre. We can do that by using the <code>mean()</code> method of a <em>GroupBy</em> object, as shown in the previous section. We will also sort the table by decreasing average popularity.</p>
 <div class="cell" data-execution_count="138">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>grouped<span class="op">=</span>spotify_data.groupby(<span class="st">'genres'</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].mean().sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>grouped<span class="op">=</span>spotify_data.groupby(<span class="st">'genres'</span>)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].mean().sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="138">
 <pre><code>genres
 rap              51.162959
@@ -1722,7 +1731,7 @@ Name: track_popularity, dtype: float64</code></pre>
 </div>
 <p>Let us also find the standard deviation of the popularity of the tracks for each genre. We will also sort the table by decreasing standard deviation of popularity.</p>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].std().sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].std().sort_values(ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>genres
 rap              20.912240
@@ -1747,7 +1756,7 @@ Name: track_popularity, dtype: float64</code></pre>
 <p>Let us use the <code>agg()</code> method of the <em>GroupBy</em> object to simultaneously find the mean and standard deviation of the track popularity for each genre.</p>
 <p>For aggregating by multiple functions, we pass a list of strings to <em>agg()</em>, where the strings are the function names.</p>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>]).sort_values(by <span class="op">=</span> <span class="st">'mean'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>]).sort_values(by <span class="op">=</span> <span class="st">'mean'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 
 <div>
@@ -1842,12 +1851,12 @@ Name: track_popularity, dtype: float64</code></pre>
 <h4 data-number="9.2.3.2" class="anchored" data-anchor-id="custom-aggregate-functions"><span class="header-section-number">9.2.3.2</span> Custom aggregate functions</h4>
 <p>In addition to the mean and standard deviation of the track popularirty of each genre, let us also include the <span class="math inline">\(90^{th}\)</span> percentile of track popularity in the table above, and sort it by the same.</p>
 <div class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function that returns the 90th percentile value</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ninety_pc(x):</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.quantile(<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function that returns the 90th percentile value</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ninety_pc(x):</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.quantile(<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>,Ninety_pc]).sort_values(by <span class="op">=</span> <span class="st">'Ninety_pc'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>,Ninety_pc]).sort_values(by <span class="op">=</span> <span class="st">'Ninety_pc'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
 
 <div>
@@ -1954,8 +1963,8 @@ Name: track_popularity, dtype: float64</code></pre>
 <p>From the above table, we observe that even though country songs are not as popular as hip-hop on an average, the top <span class="math inline">\(10\%\)</span> country tracks are more popular than the top <span class="math inline">\(10\%\)</span> hip hop tracks.</p>
 <p>For aggregating by multiple functions &amp; changing the column names resulting from those functions, we pass a list of tuples to <code>agg()</code>, where each tuple is of length two, and contains the new column name &amp; the function to be applied.</p>
 <div class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simultaneous renaming of columns while grouping</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>),(<span class="st">'90th percentile'</span>,Ninety_pc)]).sort_values(by <span class="op">=</span> <span class="st">'90th percentile'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simultaneous renaming of columns while grouping</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>),(<span class="st">'90th percentile'</span>,Ninety_pc)]).sort_values(by <span class="op">=</span> <span class="st">'90th percentile'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
 
 <div>
@@ -2061,8 +2070,8 @@ Name: track_popularity, dtype: float64</code></pre>
 </div>
 <p>We can put use a lambda function as well instead of separately defining the function <code>Ninety_pc</code> in the above code:</p>
 <div class="cell" data-execution_count="22">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simultaneous renaming of columns while grouping</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>),(<span class="st">'90th percentile'</span>,<span class="kw">lambda</span> x:x.quantile(<span class="fl">0.9</span>))]).sort_values(by <span class="op">=</span> <span class="st">'90th percentile'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Simultaneous renaming of columns while grouping</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>),(<span class="st">'90th percentile'</span>,<span class="kw">lambda</span> x:x.quantile(<span class="fl">0.9</span>))]).sort_values(by <span class="op">=</span> <span class="st">'90th percentile'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 
 <div>
@@ -2171,17 +2180,17 @@ Name: track_popularity, dtype: float64</code></pre>
 <h4 data-number="9.2.3.3" class="anchored" data-anchor-id="grouping-by-multiple-columns"><span class="header-section-number">9.2.3.3</span> Grouping by multiple columns</h4>
 <p>Let us find aggregate statistics when we group data by multiple columns. For that, let us create a new categorical column <code>energy_lvl</code> that has two levels - <em>Low energy</em> and <em>High energy</em>, depending on the <code>energy</code> of the track.</p>
 <div class="cell" data-execution_count="141">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a new categorical column 'energy_lvl'</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>spotify_data[<span class="st">'energy_lvl'</span>] <span class="op">=</span> pd.qcut(spotify_data.energy,<span class="dv">2</span>,labels<span class="op">=</span>[<span class="st">'Low energy'</span>, <span class="st">'High energy'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a new categorical column 'energy_lvl'</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>spotify_data[<span class="st">'energy_lvl'</span>] <span class="op">=</span> pd.qcut(spotify_data.energy,<span class="dv">2</span>,labels<span class="op">=</span>[<span class="st">'Low energy'</span>, <span class="st">'High energy'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let us find the mean, standard deviation and 90th percentile value of the track popularity for each genre-energy level combination simultaneously.</p>
 <div class="cell" data-execution_count="40">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data with 'genres' and 'energy_lvl'</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>grouped<span class="op">=</span>spotify_data.groupby([<span class="st">'genres'</span>,<span class="st">'energy_lvl'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data with 'genres' and 'energy_lvl'</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>grouped<span class="op">=</span>spotify_data.groupby([<span class="st">'genres'</span>,<span class="st">'energy_lvl'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="41">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding aggregate statistics of data grouped with multple columns</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>,Ninety_pc])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding aggregate statistics of data grouped with multple columns</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>,Ninety_pc])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="41">
 
 <div>
@@ -2384,8 +2393,8 @@ Name: track_popularity, dtype: float64</code></pre>
 <h4 data-number="9.2.3.4" class="anchored" data-anchor-id="multiple-aggregate-functions-on-multiple-columns"><span class="header-section-number">9.2.3.4</span> Multiple aggregate functions on multiple columns</h4>
 <p>Let us find the mean and standard deviation of track popularity and danceability for each genre and energy level.</p>
 <div class="cell" data-execution_count="139">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability <span class="op">=</span> grouped[[<span class="st">'track_popularity'</span>,<span class="st">'danceability'</span>]].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>)])</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability <span class="op">=</span> grouped[[<span class="st">'track_popularity'</span>,<span class="st">'danceability'</span>]].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>)])</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="139">
 
 <div>
@@ -2522,8 +2531,8 @@ Name: track_popularity, dtype: float64</code></pre>
 <p>For aggregating by multiple functions such that a distinct set of functions is applied to each column, we pass a dictionary to <code>agg()</code>, where the keys are the column names on which the function is to be applied, and the values are the list of strings that are the function names, or a list of tuples if we also wish to name the aggregated columns.</p>
 <p><strong>Example:</strong> For each genre and energy level, find the mean and standard deviation of the track popularity, and the minimum and maximum values of loudness.</p>
 <div class="cell" data-execution_count="78">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Specifying arguments to the function as a dictionary if distinct functions are to be applied on distinct columns</span></span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">'track_popularity'</span>:[(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>)],<span class="st">'loudness'</span>:[<span class="st">'min'</span>,<span class="st">'max'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Specifying arguments to the function as a dictionary if distinct functions are to be applied on distinct columns</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>grouped.agg({<span class="st">'track_popularity'</span>:[(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>)],<span class="st">'loudness'</span>:[<span class="st">'min'</span>,<span class="st">'max'</span>]})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="78">
 
 <div>
@@ -2766,19 +2775,19 @@ Name: track_popularity, dtype: float64</code></pre>
 <p><strong>Example</strong>: Find the top 3 most popular tracks of each genre in the spotify dataset.</p>
 <p>We’ll first define a function that sorts a dataset by decreasing track popularity and returns the top 3 rows. Then, we’ll apply this function on each group using the <code>apply()</code> method of the <em>GroupBy</em> object.</p>
 <div class="cell" data-execution_count="104">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the function that finds the top 3 most popular tracks from the dataset 'x'</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top_stats(x,col<span class="op">=</span><span class="st">'track_popularity'</span>,n<span class="op">=</span><span class="dv">3</span>):</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.sort_values(by<span class="op">=</span>col,ascending <span class="op">=</span> <span class="va">False</span>)[<span class="dv">0</span>:n]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the function that finds the top 3 most popular tracks from the dataset 'x'</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> top_stats(x,col<span class="op">=</span><span class="st">'track_popularity'</span>,n<span class="op">=</span><span class="dv">3</span>):</span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.sort_values(by<span class="op">=</span>col,ascending <span class="op">=</span> <span class="va">False</span>)[<span class="dv">0</span>:n]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="105">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the groups in the spotify data</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>grouped_spotify_data <span class="op">=</span> spotify_data.groupby(<span class="st">'genres'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining the groups in the spotify data</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>grouped_spotify_data <span class="op">=</span> spotify_data.groupby(<span class="st">'genres'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we’ll use the <code>apply()</code> method to apply the <code>top_stats()</code> function on each group of the object <code>grouped_spotify_data</code>.</p>
 <div class="cell" data-execution_count="106">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(top_stats)</span>
-<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(top_stats)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="106">
 
 <div>
@@ -2968,9 +2977,9 @@ Name: track_popularity, dtype: float64</code></pre>
 <p>The <code>top_stats()</code> function is applied to each group, and the results are concatenated internally with the <code>concat()</code> function. The output therefore has a hierarchical index whose outer level indices are the group keys.</p>
 <p>We can also use a lambda function instead of separately defining the function <code>top_tracks()</code>:</p>
 <div class="cell" data-execution_count="107">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre - using lambda function</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>,ascending<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>:<span class="dv">3</span>])</span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Top 3 tracks of each genre - using lambda function</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>top3_tracks <span class="op">=</span> grouped_spotify_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sort_values(by <span class="op">=</span> <span class="st">'track_popularity'</span>,ascending<span class="op">=</span><span class="va">False</span>)[<span class="dv">0</span>:<span class="dv">3</span>])</span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>top3_tracks.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="107">
 
 <div>
@@ -3160,9 +3169,9 @@ Name: track_popularity, dtype: float64</code></pre>
 <p>We can also pass arguments to the <code>top_stats()</code> function with the <code>apply()</code> function.</p>
 <p><strong>Example:</strong> Find the most popular artist from each genre.</p>
 <div class="cell" data-execution_count="113">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Applying the 'top_stats()' function to each group of the data (based on 'genre') to find the most popular artist </span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Dropping the inner row label as it is not informative</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>grouped_spotify_data.<span class="bu">apply</span>(top_stats,col<span class="op">=</span><span class="st">'artist_popularity'</span>,n<span class="op">=</span><span class="dv">1</span>)[<span class="st">'artist_name'</span>].droplevel(axis<span class="op">=</span><span class="dv">0</span>, level <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Applying the 'top_stats()' function to each group of the data (based on 'genre') to find the most popular artist </span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Dropping the inner row label as it is not informative</span></span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>grouped_spotify_data.<span class="bu">apply</span>(top_stats,col<span class="op">=</span><span class="st">'artist_popularity'</span>,n<span class="op">=</span><span class="dv">1</span>)[<span class="st">'artist_name'</span>].droplevel(axis<span class="op">=</span><span class="dv">0</span>, level <span class="op">=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <pre><code>genres
 country               Morgan Wallen
@@ -3185,6 +3194,11 @@ Name: artist_name, dtype: object</code></pre>
 <section id="practice-exercise-2" class="level3" data-number="9.3.2">
 <h3 data-number="9.3.2" class="anchored" data-anchor-id="practice-exercise-2"><span class="header-section-number">9.3.2</span> Practice exercise 2</h3>
 <p>Filter the first 4 columns of the spotify dataset. Drop duplicate observartions in the resulting dataset using the Pandas DataFrame method <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.drop_duplicates.html"><code>drop_duplicates()</code></a>. Find the top 3 most popular artists for each genre.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>spotify_data.iloc[:,<span class="dv">0</span>:<span class="dv">4</span>].drop_duplicates().groupby(<span class="st">'genres'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sort_values(by <span class="op">=</span> <span class="st">'artist_popularity'</span>, </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>                                                                                          ascending <span class="op">=</span> <span class="va">False</span>)[<span class="dv">0</span>:<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="transforming-data-by-group" class="level3" data-number="9.3.3">
 <h3 data-number="9.3.3" class="anchored" data-anchor-id="transforming-data-by-group"><span class="header-section-number">9.3.3</span> Transforming data by group</h3>
@@ -3193,47 +3207,47 @@ Name: artist_name, dtype: object</code></pre>
 <p>We will compare the approach we used with the approach using the <code>groupby()</code> &amp; <code>apply()</code> methods.</p>
 <p>Let us read the datasets and the function that makes a visualization to compare the imputed values with the actual values.</p>
 <div class="cell" data-execution_count="114">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing data with missing values</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>gdp_missing_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing data with all values</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a>gdp_complete_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_complete_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing data with missing values</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>gdp_missing_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_missing_data.csv'</span>)</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing data with all values</span></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>gdp_complete_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/GDP_complete_data.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="122">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Index of rows with missing values for GDP per capita</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>null_ind_gdpPC <span class="op">=</span> gdp_missing_data.index[gdp_missing_data.gdpPerCapita.isnull()]</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function to plot the imputed values vs actual values </span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_actual_vs_predicted():</span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a>    plt.rc(<span class="st">'xtick'</span>, labelsize<span class="op">=</span><span class="dv">15</span>) </span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a>    plt.rc(<span class="st">'ytick'</span>, labelsize<span class="op">=</span><span class="dv">15</span>) </span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> gdp_complete_data.loc[null_ind_gdpPC,<span class="st">'gdpPerCapita'</span>]</span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> gdp_imputed_data.loc[null_ind_gdpPC,<span class="st">'gdpPerCapita'</span>]</span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x,y)</span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>np.polyfit(x,y,<span class="dv">1</span>)</span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a>    p<span class="op">=</span>np.poly1d(z)</span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(x,x,color<span class="op">=</span><span class="st">'orange'</span>)</span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Actual GDP per capita'</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Imputed GDP per capita'</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
-<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
-<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
-<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a>    rmse <span class="op">=</span> np.sqrt(((x<span class="op">-</span>y).<span class="bu">pow</span>(<span class="dv">2</span>)).mean())</span>
-<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"RMSE="</span>,rmse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Index of rows with missing values for GDP per capita</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>null_ind_gdpPC <span class="op">=</span> gdp_missing_data.index[gdp_missing_data.gdpPerCapita.isnull()]</span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function to plot the imputed values vs actual values </span></span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_actual_vs_predicted():</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>    plt.rc(<span class="st">'xtick'</span>, labelsize<span class="op">=</span><span class="dv">15</span>) </span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a>    plt.rc(<span class="st">'ytick'</span>, labelsize<span class="op">=</span><span class="dv">15</span>) </span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> gdp_complete_data.loc[null_ind_gdpPC,<span class="st">'gdpPerCapita'</span>]</span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> gdp_imputed_data.loc[null_ind_gdpPC,<span class="st">'gdpPerCapita'</span>]</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    plt.scatter(x,y)</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>    z<span class="op">=</span>np.polyfit(x,y,<span class="dv">1</span>)</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    p<span class="op">=</span>np.poly1d(z)</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(x,x,color<span class="op">=</span><span class="st">'orange'</span>)</span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Actual GDP per capita'</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Imputed GDP per capita'</span>,fontsize<span class="op">=</span><span class="dv">20</span>)</span>
+<span id="cb50-17"><a href="#cb50-17" aria-hidden="true" tabindex="-1"></a>    ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
+<span id="cb50-18"><a href="#cb50-18" aria-hidden="true" tabindex="-1"></a>    ax.yaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
+<span id="cb50-19"><a href="#cb50-19" aria-hidden="true" tabindex="-1"></a>    rmse <span class="op">=</span> np.sqrt(((x<span class="op">-</span>y).<span class="bu">pow</span>(<span class="dv">2</span>)).mean())</span>
+<span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"RMSE="</span>,rmse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Approach 1:</strong> Using the approach we used in Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20cleaning%20and%20preparation.html#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data">7.1.5.3</a></p>
 <div class="cell" data-execution_count="123">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean GDP per capita of the continent</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita <span class="op">=</span> gdp_missing_data[<span class="st">'gdpPerCapita'</span>].groupby(gdp_missing_data[<span class="st">'continent'</span>]).mean()</span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of missing data to impute missing values</span></span>
-<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_data.copy()</span>
-<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Replacing missing GDP per capita with the mean GDP per capita for the corresponding continent</span></span>
-<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cont <span class="kw">in</span> avg_gdpPerCapita.index:</span>
-<span id="cb49-9"><a href="#cb49-9" aria-hidden="true" tabindex="-1"></a>    gdp_imputed_data.loc[(gdp_imputed_data.continent<span class="op">==</span>cont) <span class="op">&amp;</span> (gdp_imputed_data.gdpPerCapita.isnull()),</span>
-<span id="cb49-10"><a href="#cb49-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'gdpPerCapita'</span>]<span class="op">=</span>avg_gdpPerCapita[cont]</span>
-<span id="cb49-11"><a href="#cb49-11" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean GDP per capita of the continent</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita <span class="op">=</span> gdp_missing_data[<span class="st">'gdpPerCapita'</span>].groupby(gdp_missing_data[<span class="st">'continent'</span>]).mean()</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of missing data to impute missing values</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_data.copy()</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Replacing missing GDP per capita with the mean GDP per capita for the corresponding continent</span></span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cont <span class="kw">in</span> avg_gdpPerCapita.index:</span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a>    gdp_imputed_data.loc[(gdp_imputed_data.continent<span class="op">==</span>cont) <span class="op">&amp;</span> (gdp_imputed_data.gdpPerCapita.isnull()),</span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'gdpPerCapita'</span>]<span class="op">=</span>avg_gdpPerCapita[cont]</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116</code></pre>
 </div>
@@ -3243,16 +3257,16 @@ Name: artist_name, dtype: object</code></pre>
 </div>
 <p><strong>Approach 2:</strong> Using the <code>groupby()</code> and <code>apply()</code> methods.</p>
 <div class="cell" data-execution_count="126">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of missing data to impute missing values</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_data.copy()</span>
-<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping data by continent</span></span>
-<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> gdp_missing_data.groupby(<span class="st">'continent'</span>)</span>
-<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Applying the lambda function on the 'gdpPerCapita' column of the groups</span></span>
-<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data[<span class="st">'gdpPerCapita'</span>] <span class="op">=</span> grouped[<span class="st">'gdpPerCapita'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.fillna(x.mean()))</span>
-<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of missing data to impute missing values</span></span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_data.copy()</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping data by continent</span></span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> gdp_missing_data.groupby(<span class="st">'continent'</span>)</span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a><span class="co">#Applying the lambda function on the 'gdpPerCapita' column of the groups</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data[<span class="st">'gdpPerCapita'</span>] <span class="op">=</span> grouped[<span class="st">'gdpPerCapita'</span>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x.fillna(x.mean()))</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116</code></pre>
 </div>
@@ -3268,7 +3282,7 @@ Name: artist_name, dtype: object</code></pre>
 <p>The spotify dataset has more than 200k observations. It may be expensive to operate with so many observations. Suppose, we wish to take a random sample of 650 observations to analyze spotify data, such that all genres are equally represented.</p>
 <p>Before taking the random sample, let us find the number of tracks in each genre.</p>
 <div class="cell" data-execution_count="128">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="128">
 <pre><code>pop              70441
 rock             49785
@@ -3288,11 +3302,11 @@ Name: genres, dtype: int64</code></pre>
 </div>
 <p>Let us take a random sample of 650 observations from the entire dataset.</p>
 <div class="cell" data-execution_count="129">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>sample_spotify_data <span class="op">=</span> spotify_data.sample(<span class="dv">650</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>sample_spotify_data <span class="op">=</span> spotify_data.sample(<span class="dv">650</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let us see the number of track of each genre in our sample.</p>
 <div class="cell" data-execution_count="130">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>sample_spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>sample_spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="130">
 <pre><code>pop              185
 rock             150
@@ -3312,8 +3326,8 @@ Name: genres, dtype: int64</code></pre>
 </div>
 <p>Some of the genres have a very low representation in the data. To rectify this, we can take a random sample of 50 observations from each of the 13 genres. In other words, we can take a random sample from each of the genre-based groups.</p>
 <div class="cell" data-execution_count="132">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>evenly_sampled_spotify_data <span class="op">=</span> spotify_data.groupby(<span class="st">'genres'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sample(<span class="dv">50</span>))</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>evenly_sampled_spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>evenly_sampled_spotify_data <span class="op">=</span> spotify_data.groupby(<span class="st">'genres'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sample(<span class="dv">50</span>))</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>evenly_sampled_spotify_data.genres.value_counts()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="132">
 <pre><code>hoerspiel        50
 hip hop          50
@@ -3339,7 +3353,7 @@ Name: genres, dtype: int64</code></pre>
 <p>The <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.corr.html"><code>corr()</code></a> method of the <em>GroupBy</em> object returns the correlation between all pairs of columns within each group.</p>
 <p><strong>Example:</strong> Find the correlation between danceability and track popularity for each genre-energy level combination.</p>
 <div class="cell" data-execution_count="142">
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>spotify_data.groupby([<span class="st">'genres'</span>,<span class="st">'energy_lvl'</span>]).<span class="bu">apply</span>(<span class="kw">lambda</span> x:x[<span class="st">'danceability'</span>].corr(x[<span class="st">'track_popularity'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>spotify_data.groupby([<span class="st">'genres'</span>,<span class="st">'energy_lvl'</span>]).<span class="bu">apply</span>(<span class="kw">lambda</span> x:x[<span class="st">'danceability'</span>].corr(x[<span class="st">'track_popularity'</span>]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="142">
 <pre><code>genres         energy_lvl 
 country        Low energy    -0.171830
@@ -3378,7 +3392,7 @@ dtype: float64</code></pre>
 <p>The Pandas <code>pivot_table()</code> function is used to aggregate data groupwise where some of the group keys are along the rows and some along the columns. Note that <code>pivot_table()</code> is the same as <code>pivot()</code> except that <code>pivot_table()</code> aggregates the data as well in addition to re-arranging it.</p>
 <p><strong>Example:</strong> Find the mean of track popularity for each genre-energy lvl combination such that each row corresponds to a genre, and the energy levels correspond to columns.</p>
 <div class="cell" data-execution_count="144">
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(data <span class="op">=</span> spotify_data,values <span class="op">=</span> <span class="st">'track_popularity'</span>,index <span class="op">=</span> <span class="st">'genres'</span>, columns <span class="op">=</span><span class="st">'energy_lvl'</span>,aggfunc <span class="op">=</span> <span class="st">'mean'</span>,margins <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(data <span class="op">=</span> spotify_data,values <span class="op">=</span> <span class="st">'track_popularity'</span>,index <span class="op">=</span> <span class="st">'genres'</span>, columns <span class="op">=</span><span class="st">'energy_lvl'</span>,aggfunc <span class="op">=</span> <span class="st">'mean'</span>,margins <span class="op">=</span> <span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="144">
 
 <div>
@@ -3491,7 +3505,7 @@ dtype: float64</code></pre>
 <p>We can use also use custom <em>GroupBy</em> aggregate functions with <code>pivot_table()</code>.</p>
 <p><strong>Example</strong>: Find the <span class="math inline">\(90^{th}\)</span> percentile of track popularity for each genre-energy lvl combination such that each row corresponds to a genre, and the energy levels correspond to columns.</p>
 <div class="cell" data-execution_count="145">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(data <span class="op">=</span> spotify_data,values <span class="op">=</span> <span class="st">'track_popularity'</span>,index <span class="op">=</span> <span class="st">'genres'</span>, columns <span class="op">=</span><span class="st">'energy_lvl'</span>,aggfunc <span class="op">=</span> <span class="kw">lambda</span> x:np.percentile(x,<span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(data <span class="op">=</span> spotify_data,values <span class="op">=</span> <span class="st">'track_popularity'</span>,index <span class="op">=</span> <span class="st">'genres'</span>, columns <span class="op">=</span><span class="st">'energy_lvl'</span>,aggfunc <span class="op">=</span> <span class="kw">lambda</span> x:np.percentile(x,<span class="dv">90</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="145">
 
 <div>
@@ -3586,8 +3600,8 @@ dtype: float64</code></pre>
 <p>The <code>crosstab()</code> method is a special case of a pivot table for computing group frequncies (or size of each group). We may often use it to check if the data is representative of all groups that are of interest to us.</p>
 <p><strong>Example:</strong> Find the number of observations in each group, where each groups corresponds to a distinct genre-energy lvl combination</p>
 <div class="cell" data-execution_count="146">
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cross tabulation of 'genres' and 'energy_lvl'</span></span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>pd.crosstab(spotify_data.genres,spotify_data.energy_lvl,margins <span class="op">=</span> <span class="va">True</span>).sort_values(by <span class="op">=</span> <span class="st">'All'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Cross tabulation of 'genres' and 'energy_lvl'</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>pd.crosstab(spotify_data.genres,spotify_data.energy_lvl,margins <span class="op">=</span> <span class="va">True</span>).sort_values(by <span class="op">=</span> <span class="st">'All'</span>,ascending <span class="op">=</span> <span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="146">
 
 <div>
@@ -3699,8 +3713,8 @@ dtype: float64</code></pre>
 </div>
 <p>The above table can be generated with the <code>pivot_table()</code> function using <em>‘count’</em> as the <code>aggfunc</code> argument, as shown below. However, the <code>crosstab()</code> function is more compact to code.</p>
 <div class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Generating cross-tabulation of 'genres' and 'energy_lvl' with 'pivot_table()'</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(data <span class="op">=</span> spotify_data,values <span class="op">=</span> <span class="st">'track_popularity'</span>,index <span class="op">=</span> <span class="st">'genres'</span>, columns <span class="op">=</span><span class="st">'energy_lvl'</span>,aggfunc <span class="op">=</span> <span class="st">'count'</span>,margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Generating cross-tabulation of 'genres' and 'energy_lvl' with 'pivot_table()'</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>pd.pivot_table(data <span class="op">=</span> spotify_data,values <span class="op">=</span> <span class="st">'track_popularity'</span>,index <span class="op">=</span> <span class="st">'genres'</span>, columns <span class="op">=</span><span class="st">'energy_lvl'</span>,aggfunc <span class="op">=</span> <span class="st">'count'</span>,margins<span class="op">=</span><span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="148">
 
 <div>
@@ -3812,7 +3826,7 @@ dtype: float64</code></pre>
 </div>
 <p><strong>Example:</strong> Find the percentage of observations in each group of the above table.</p>
 <div class="cell" data-execution_count="150">
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab(spotify_data.genres,spotify_data.energy_lvl,margins <span class="op">=</span> <span class="va">True</span>).sort_values(by <span class="op">=</span> <span class="st">'All'</span>,ascending <span class="op">=</span> <span class="va">False</span>)<span class="op">/</span>spotify_data.shape[<span class="dv">0</span>]<span class="op">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>pd.crosstab(spotify_data.genres,spotify_data.energy_lvl,margins <span class="op">=</span> <span class="va">True</span>).sort_values(by <span class="op">=</span> <span class="st">'All'</span>,ascending <span class="op">=</span> <span class="va">False</span>)<span class="op">/</span>spotify_data.shape[<span class="dv">0</span>]<span class="op">*</span><span class="dv">100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="150">
 
 <div>
@@ -3926,6 +3940,13 @@ dtype: float64</code></pre>
 <h3 data-number="9.6.1" class="anchored" data-anchor-id="practice-exercise-3"><span class="header-section-number">9.6.1</span> Practice exercise 3</h3>
 <p>What percentage of unique tracks are contributed by the top 5 artists of each genre?</p>
 <p><strong>Hint:</strong> Find the top 5 artists based on <code>artist_popularity</code> for each genre. Count the total number of unique tracks (<code>track_name</code>) contributed by these artists. Divide this number by the total number of unique tracks in the data. The <code>nunique()</code> function will be useful.</p>
+<p><strong>Solution:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>top5artists <span class="op">=</span> spotify_data.iloc[:,<span class="dv">0</span>:<span class="dv">4</span>].drop_duplicates().groupby(<span class="st">'genres'</span>).<span class="bu">apply</span>(<span class="kw">lambda</span> x:x.sort_values(by <span class="op">=</span> <span class="st">'artist_popularity'</span>, </span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>                            ascending <span class="op">=</span> <span class="va">False</span>)[<span class="dv">0</span>:<span class="dv">5</span>]).droplevel(axis<span class="op">=</span><span class="dv">0</span>,level<span class="op">=</span><span class="dv">1</span>)[<span class="st">'artist_name'</span>]</span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a>top5artists_tracks <span class="op">=</span> spotify_data.loc[spotify_data.artist_name.isin(top5artists),:]</span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>top5artists_tracks.track_name.nunique()<span class="op">/</span>spotify_data.track_name.nunique()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
