@@ -35,6 +35,7 @@ book:
         - Assignment 4 (Data Visualization).ipynb
         - Assignment 5 (Data cleaning and preparation).ipynb
         - Assignment 6 (Data wrangling).ipynb
+        - Assignment 7 (Data aggregation).ipynb
   appendices: 
     - Datasets.ipynb
     - references.qmd
