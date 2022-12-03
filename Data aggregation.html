@@ -1579,7 +1579,7 @@ dtype: int64</code></pre>
 <p>Estimate the GDP per capita of each country as the average of the estimates of the three agencies - IMF, United Nations and World Bank.</p>
 <p>We need to do a bit of data cleaning before we could directly use the <code>groupby()</code> function. Follow the steps below to answer this question:</p>
 <ol type="1">
-<li><p>Set the first 3 columns containing country, sub-region and region as hierarchical row labels.</p></li>
+<li><p>Set the first 2 columns containing country, and UN region as hierarchical row labels.</p></li>
 <li><p>Apply the following function on all the columns to convert them to numeric: <code>f = lambda x:pd.to_numeric(x,errors = 'coerce')</code></p></li>
 <li><p>Now use <code>groupby()</code> to find estimate the GDP per capita for each country.</p></li>
 </ol>
