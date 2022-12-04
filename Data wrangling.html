@@ -3656,7 +3656,7 @@ dtype: object</code></pre>
 <h4 data-number="8.4.1.1" class="anchored" data-anchor-id="pivoting-a-single-column"><span class="header-section-number">8.4.1.1</span> Pivoting a single column</h4>
 <p>For visualizing life expectancy in 2007 against life expectancy in 1957, we will need to filter the data, and then make the plot. Everytime that we need to compare a metric for a year against another year, we will need to filter the data.</p>
 <p>If we need to often compare metrics of a year against another year, it will be easier to have each year as a separate column, instead of having all years in a single column.</p>
-<p>As we are increasing the number of columns and deceasing the number of rows, we are re-arranging the data from <em>long</em>-form to <em>wide</em>-form.</p>
+<p>As we are increasing the number of columns and decreasing the number of rows, we are re-arranging the data from <em>long</em>-form to <em>wide</em>-form.</p>
 <div class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb104"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>data_wide <span class="op">=</span> data_all_continents.pivot(index <span class="op">=</span> [<span class="st">'continent'</span>,<span class="st">'country'</span>],columns <span class="op">=</span> <span class="st">'year'</span>,values <span class="op">=</span> <span class="st">'lifeExp'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
