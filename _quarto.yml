@@ -2,6 +2,7 @@ project:
   type: book
 
 book:  
+  cover-image: ds_image.jpg
   title: "Introduction to Data Science with Python"
   author: "Arvind Krishna, and Arend Kuyper"
   date: "9/20/2022"
