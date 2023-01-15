@@ -12,7 +12,6 @@ book:
     logo-href: "https://statistics.northwestern.edu/"
 
   chapters:
-    - welcome.ipynb
     - index.qmd
     - part: 'Quick overview: Python programming'
       chapters:
