@@ -1,0 +1,711 @@
+Data aggregation refers to summarizing data with statistics such as sum, count, average, maximum, minimum, etc. to provide a high level view of the data. Often there are mutually exclusive groups in the data that are of interest. In such cases, we may be interested in finding these statistics separately for each group. The Pandas DataFrame method groupby() is used to split the data into groups, and then the desired function(s) are applied on each of these groups for groupwise data aggregation. However, the groupby() method is not limited to groupwise data aggregation, but can also be used for several other kinds of groupwise operations.
+
+Groupby mechanics: (Source: https://pandas.pydata.org/docs/user_guide/groupby.html)
+
+Group by: split-apply-combine By ‘group by’ we are referring to a process involving one or more of the following steps:
+
+Splitting the data into groups based on some criteria.
+
+Applying a function to each group independently.
+
+Combining the results in a DataFrame.
+
+Out of these, the split step is the most straightforward. In fact, in many situations we may wish to split the data set into groups and do something with those groups. In the apply step, we may wish to do one of the following:
+
+1. Aggregation: compute a summary statistic (or statistics) for each group. Some examples:
+
+Compute group sums or means.
+Compute group sizes / counts.
+2. Transformation: perform some group-specific computations and return a like-indexed object. Some examples:
+
+Standardize data (zscore) within a group.
+Filling NAs within groups with a value derived from each group.
+3. Filtration: discard some groups, according to a group-wise computation that evaluates True or False. Some examples:
+
+Discard data that belongs to groups with only a few members.
+Filter out data based on the group sum or mean.
+Some combination of the above: GroupBy will examine the results of the apply step and try to return a sensibly combined result if it doesn’t fit into either of the above two categories.
+
+We’ll use Pandas to group the data and perform GroupBy operations.
+
+This Pandas DataFrame method groupby() is used to create a GroupBy object.
+
+A string passed to groupby() may refer to either a column or an index level. If a string matches both a column name and an index level name, a ValueError will be raised.
+
+Example: Consider the life expectancy dataset, gdp_lifeExpectancy.csv. Suppose we want to group by the observations by continent.
+
+We will pass the column continent as an argument to the groupby() method.
+
+The groupby() method returns a GroupBy object.
+
+The GroupBy object grouped contains the information of the groups in which the data is distributed. Each observation has been assigned to a specific group of the column(s) used to group the data. However, note that the dataset is not physically split into different DataFrames. For example, in the above case, each observation is assigned to a particular group depending on the value of the continent for that observation. However, all the observations are still in the same DataFrame data.
+
+The object(s) grouping the data are called key(s). Here continent is the group key. The keys of the GroupBy object can be seen using Its keys attribute.
+
+The number of groups in which the data is distributed based on the keys can be seen with the ngroups attribute.
+
+The groups attribute of the GroupBy object contains the group labels (or names) and the row labels of the observations in each group, as a dictionary.
+
+The group names are the keys of the dictionary, while the row labels are the corresponding values
+
+The size() method of the GroupBy object returns the number of observations in each group.
+
+The first non missing element of each group is returned with the first() method of the GroupBy object.
+
+This method returns the observations for a particular group of the GroupBy object.
+
+This method returns the mean of each group of the GroupBy object.
+
+Example: Find the mean life expectancy, population and GDP per capita for each country since 1952.
+
+First, we’ll group the data such that all observations corresponding to a country make a unique group.
+
+Now, we’ll find the mean statistics for each group with the mean() method. The method will be applied on all columns of the DataFrame and all groups.
+
+Note that if we wished to retain the continent in the above dataset, we can group the data by both continent and country. If the data is to be grouped by multiple columns, we need to put them within [] brackets:
+
+Here the data has been aggregated according to the group keys - continent and country, and a new DataFrame is created that is indexed by the unique values of continent-country.
+
+For large datasets, it may be desirable to aggregate only a few columns. For example, if we wish to compute the means of only lifeExp and gdpPercap, then we can filter those columns in the GroupBy object (just like we filter columns in a DataFrame), and then apply the mean() method:
+
+By default, the grouping takes place by rows. However, as with several other Pandas methods, grouping can also be done by columns by using the axis = 1 argument.
+
+Example: Consider we have the above dataset in the wide-format as follows.
+
+Now, find the mean GDP per capita, life expectancy and population for each country.
+
+Here, we can group by the outer level column labels to obtain the means. Also, we need to use the argument axis=1 to indicate that we intend to group columns, instead of rows.
+
+Directly applying the aggregate methods of the GroupBy object such as mean, count, etc., lets us apply only one function at a time. Also, we may wish to apply an aggregate function of our own, which is not there in the set of methods of the GroupBy object, such as the range of values of a column.
+
+The agg() function of a GroupBy object lets us aggregate data using:
+
+Multiple aggregation functions
+
+Custom aggregate functions (in addition to in-built functions like mean, std, count etc.)
+
+Consider the spotify dataset containing information about tracks and artists.
+
+Suppose, we wish to find the average popularity of tracks for each genre. We can do that by using the mean() method of a GroupBy object, as shown in the previous section. We will also sort the table by decreasing average popularity.
+
+
+Let us also find the standard deviation of the popularity of the tracks for each genre. We will also sort the table by decreasing standard deviation of popularity.
+
+Even though rap is the most popular genre on an average, its popularity varies the most amongs listeners. So, it should probably be recommended only to rap listeners or the criteria to accept rap songs on Spotify should be more stringent.
+
+Let us use the agg() method of the GroupBy object to simultaneously find the mean and standard deviation of the track popularity for each genre.
+
+For aggregating by multiple functions, we pass a list of strings to agg(), where the strings are the function names.
+
+From the above table, we observe that people not just like hip-hop the second most on average, but they also like it more consistently than almost all other genres. We have also sorted the above table by decreasing average track popularity.
+
+In addition to the mean and standard deviation of the track popularirty of each genre, let us also include the  percentile of track popularity in the table above, and sort it by the same.
+
+From the above table, we observe that even though country songs are not as popular as hip-hop on an average, the top  country tracks are more popular than the top  hip hop tracks.
+
+For aggregating by multiple functions & changing the column names resulting from those functions, we pass a list of tuples to agg(), where each tuple is of length two, and contains the new column name & the function to be applied.
+
+We can put use a lambda function as well instead of separately defining the function Ninety_pc in the above code:
+
+Let us find aggregate statistics when we group data by multiple columns. For that, let us create a new categorical column energy_lvl that has two levels - Low energy and High energy, depending on the energy of the track.
+
+Now, let us find the mean, standard deviation and 90th percentile value of the track popularity for each genre-energy level combination simultaneously.
+
+For most of the genres, there is not much difference between the average popularity of low energy and high energy tracks. However, in case of country tracks people seem to to prefer high energy tracks a lot more as compared to low energy tracks.
+
+Let us find the mean and standard deviation of track popularity and danceability for each genre and energy level.
+
+We get a couple of insights from the above table:
+
+High energy songs have higher danceability for most genres as expected. However, for hip-hop, country, rock and hoerspiel, even low-energy songs have comparable danceability.
+
+Hip hop has the highest danceability as expected. However, high energy rap also has relatively high danceability.
+
+For aggregating by multiple functions, we pass a list of strings to agg(), where the strings are the function names.
+
+For aggregating by multiple functions & changing the column names resulting from those functions, we pass a list of tuples to agg(), where each tuple is of length two, and contains the new column name as the first object and the function to be applied as the second object of the tuple.
+
+For aggregating by multiple functions such that a distinct set of functions is applied to each column, we pass a dictionary to agg(), where the keys are the column names on which the function is to be applied, and the values are the list of strings that are the function names, or a list of tuples if we also wish to name the aggregated columns.
+
+Example: For each genre and energy level, find the mean and standard deviation of the track popularity, and the minimum and maximum values of loudness.
+
+From the above table, we observe that high energy songs are always louder than low energy songs. High energy Rock songs can be very loud.
+
+With the apply() method of the GroupBy object, we can perform several operations on groups, other than data aggregation.
+
+We’ll first define a function that sorts a dataset by decreasing track popularity and returns the top 3 rows. Then, we’ll apply this function on each group using the apply() method of the GroupBy object.
+
+The top_stats() function is applied to each group, and the results are concatenated internally with the concat() function. The output therefore has a hierarchical index whose outer level indices are the group keys.
+
+We can also use a lambda function instead of separately defining the function top_tracks():
+
+Recall method 3 for imputing missing values in Chapter 7. The method was to impute missing values based on correlated variables in data.
+
+In the example shown for the method, values of GDP per capita for a few countries were missing. We imputed the missing value of GDP per capita for those countries as the average GDP per capita of the corresponding continent.
+
+We will compare the approach we used with the approach using the groupby() & apply() methods.
+
+Let us read the datasets and the function that makes a visualization to compare the imputed values with the actual values.
+
+With the apply() function, the missing value of gdpPerCapita for observations of each group are filled by the mean gdpPerCapita of that group. The code is not only more convenient to write, but also faster as compared to for loops. The for loop imputes the missing values of observations of one group at a time, while the imputation may happen in parallel for all groups with the apply() function.
+
+The groupby() and apply() method can be used to for stratified random sampling from a large dataset.
+
+The spotify dataset has more than 200k observations. It may be expensive to operate with so many observations. Suppose, we wish to take a random sample of 650 observations to analyze spotify data, such that all genres are equally represented.
+
+Before taking the random sample, let us find the number of tracks in each genre.
+
+Some of the genres have a very low representation in the data. To rectify this, we can take a random sample of 50 observations from each of the 13 genres. In other words, we can take a random sample from each of the genre-based groups.
+
+The corr() method of the GroupBy object returns the correlation between all pairs of columns within each group.
+
+Example: Find the correlation between danceability and track popularity for each genre-energy level combination.
+
+The Pandas pivot_table() function is used to aggregate data groupwise where some of the group keys are along the rows and some along the columns. Note that pivot_table() is the same as pivot() except that pivot_table() aggregates the data as well in addition to re-arranging it.
+
+Example: Find the mean of track popularity for each genre-energy lvl combination such that each row corresponds to a genre, and the energy levels correspond to columns.
+
+We can use also use custom GroupBy aggregate functions with pivot_table().
+
+Example: Find the  percentile of track popularity for each genre-energy lvl combination such that each row corresponds to a genre, and the energy levels correspond to columns.
+
+The crosstab() method is a special case of a pivot table for computing group frequncies (or size of each group). We may often use it to check if the data is representative of all groups that are of interest to us.
+
+Example: Find the number of observations in each group, where each groups corresponds to a distinct genre-energy lvl combination
+
+The above table can be generated with the pivot_table() function using ‘count’ as the aggfunc argument, as shown below. However, the crosstab() function is more compact to code.
+
+Data wrangling refers to combining, transforming, and re-arranging data to make it suitable for further analysis. We’ll use Pandas for all data wrangling operations.
+
+Until now we have seen only a single level of indexing in the rows and columns of a Pandas DataFrame. Hierarchical indexing refers to having multiple index levels on an axis (row / column) of a Pandas DataFrame. It helps us to work with a higher dimensional data in a lower dimensional form.
+
+Let us define Pandas Series as we defined in Chapter 5:
+
+Let us use the attribute nlevels to find the number of levels of the row indices of this Series:
+
+The Series series_example has only one level of row indices.
+
+Let us introduce another level of row indices while defining the Series:
+
+In the above Series, there are two levels of row indices:
+
+In a Pandas DataFrame, both the rows and the columns can have hierarchical indexing. For example, consider the DataFrame below:
+
+In the above DataFrame, both the rows and columns have 2 levels of indexing. The number of levels of column indices can be found using the attribute nlevels:
+
+The columns attribute will now have a MultiIndex datatype in contrast to the Index datatype with single level of indexing. The same holds for row indices.
+
+The hierarchical levels can have names. Let us assign names to the each level of the row and column labels:
+
+The names of the column levels can be obtained using the function get_level_values(). The outer-most level corresponds to the level = 0, and it increases as we go to the inner levels.
+
+We can use the indices at the outer levels to concisely subset a Series / DataFrame.
+
+The first four observations of the Series series_example correspond to the outer row index English, while the last 5 rows correspond to the outer row index Spanish. Let us subset all the observations corresponding to the outer row index English:
+
+Just like in the case of single level indices, if we wish to subset corresponding to multiple outer-level indices, we put the indices within an additional box bracket []. For example, let us subset all the observations corresponding to the row-indices English and French:
+
+We can also subset data using the inner row index. However, we will need to put a : sign to indicate that the row label at the inner level is being used.
+
+As in Series, we can concisely subset rows / columns in a DataFrame based on the index at the outer levels.
+
+Note that the dataype of each column name is a tuple. For example, let us find the datatype of the 
+
+Thus columns at the inner levels can be accessed by specifying the name as a tuple. For example, let us subset the column Evanston:
+
+Apart from ease in subsetting data, hierarchical indexing also plays a role in reshaping data.
+
+The Pandas Series method unstack() pivots the desired level of row indices to columns, thereby creating a DataFrame. By default, the inner-most level of the row labels is pivoted.
+
+The Pandas DataFrame method unstack() pivots the specified level of row indices to the new inner-most level of column labels. By default, the inner-most level of the row labels is pivoted.
+
+We can pivot the outer level of the row labels by specifying it in the level argument:
+
+As with Series, we can pivot the outer level of the row labels by specifying it in the level argument:
+
+The inverse of unstack() is the stack() method, which creates the inner-most level of row indices by pivoting the column labels of the prescribed level.
+
+Note that if the column labels have only one level, we don’t need to specify a level.
+
+However, if the columns have multiple levels, we can specify the level to stack as the inner-most row level. By default, the inner-most column level is stacked.
+
+The Pandas DataFrame method merge() uses columns defined as key column(s) to merge two datasets. In case the key column(s) are not defined, the overlapping column(s) are considered as the key columns.
+
+When a dataset is merged with another based on key column(s), one of the following four types of join will occur depending on the repetition of the values of the key(s) in the datasets.
+
+One-to-one, (ii) Many-to-one, (iii) One-to-Many, and (iv) Many-to-many
+The type of join may sometimes determine the number of rows to be obtained in the merged dataset. If we don’t get the expected number of rows in the merged dataset, an investigation of the datsets may be neccessary to identify and resolve the issue. There may be several possible issues, for example, the dataset may not be arranged in a way that we have assumed it to be arranged.
+
+We’ll use toy datasets to understand the above types of joins. The .csv files with the prefix student consist of the names of a few students along with their majors, and the files with the prefix skills consist of the names of majors along with the skills imparted by the respective majors.
+
+Each row in one dataset is linked (or related) to a single row in another dataset based on the key column(s).
+
+One or more rows in one dataset is linked (or related) to a single row in another dataset based on the key column(s).
+
+Each row in one dataset is linked (or related) to one, or more rows in another dataset based on the key column(s).
+
+One, or more, rows in one dataset is linked (or related) to one, or more, rows in another dataset using the key column(s).
+
+Note that there are two ‘Statistics’ rows in data_student, and two ‘Statistics’ rows in data_skill, resulting in 2x2 = 4 ‘Statistics’ rows in the merged data. The same is true for the ‘Computer Science’ Major.
+
+The above mentioned types of join (one-to-one, many-to-one, etc.) occur depening on the structure of the datasets being merged. We don’t have control over the type of join. However, we can control how the joins are occurring. We can merge (or join) two datasets in one of the following four ways:
+
+inner join, (ii) left join, (iii) right join, (iv) outer join
+
+This is the join that occurs by default, i.e., without specifying the how argument in the merge() function. In inner join, only those observations are merged that have the same value(s) in the key column(s) of both the datasets.
+
+When you may use inner join? You should use inner join when you cannot carry out the analysis unless the observation corresponding to the key column(s) is present in both the tables.
+
+Example: Suppose you wish to analyze the association between vaccinations and covid infection rate based on country-level data. In one of the datasets, you have the infection rate for each country, while in the other one you have the number of vaccinations in each country. The countries which have either the vaccination or the infection rate missing, cannot help analyze the association. In such as case you may be interested only in countries that have values for both the variables. Thus, you will use inner join to discard the countries with either value missing.
+
+In left join, the merged dataset will have all the rows of the dataset that is specified first in the merge() function. Only those observations of the other dataset will be merged whose value(s) in the key column(s) exist in the dataset specified first in the merge() function.
+
+When you may use left join? You should use left join when the primary variable(s) of interest are present in the one of the datasets, and whose missing values cannot be imputed. The variable(s) in the other dataset may not be as important or it may be possible to reasonably impute their values, if missing corresponding to the observation in the primary dataset.
+
+Suppose you wish to analyze the association between the covid infection rate and the government effectiveness score (a metric used to determine the effectiveness of the government in implementing policies, upholding law and order etc.) based on the data of all countries. Let us say that one of the datasets contains the covid infection rate, while the other one contains the government effectiveness score for each country. If the infection rate for a country is missing, it might be hard to impute. However, the government effectiveness score may be easier to impute based on GDP per capita, crime rate etc. - information that is easily available online. In such a case, you may wish to use a left join where you keep all the countries for which the infection rate is known.
+
+Suppose you wish to analyze the association between demographics such as age, income etc. and the amount of credit card spend. Let us say one of the datasets contains the demographic information of each customer, while the other one contains the credit card spend for the customers who made at least one purchase. In such as case, you may want to do a left join as customers not making any purchase might be absent in the card spend data. Their spend can be imputed as zero after merging the datasets.
+
+In right join, the merged dataset will have all the rows of the dataset that is specified second in the merge() function. Only those observations of the other dataset will be merged whose value(s) in the key column(s) exist in the dataset specified second in the merge() function.
+
+When you may use right join? You can always use a left join instead of a right join. Their purpose is the same.
+
+In outer join, the merged dataset will have all the rows of both the datasets being merged.
+
+When you may use outer join? You should use an outer join when you cannot afford to lose data present in either of the tables. All the other joins may result in loss of data.
+
+Example: Suppose I took two course surveys for this course. If I need to analyze student sentiment during the course, I will take an outer join of both the surveys. Assume that each survey is a dataset, where each row corresponds to a unique student. Even if a student has answered one of the two surverys, it will be indicative of the sentiment, and will be useful to keep in the merged dataset.
+
+The Pandas DataFrame method concat() is used to stack datasets along an axis. The method is similar to NumPy’s concatenate() method.
+
+Example: You are given the life expectancy data of each continent as a separate *.csv file. Visualize the change of life expectancy over time for different continents.
+
+Datasets can also be concatenated side-by-side (by providing the argument axis = 1 with the concat() function) as we saw with the merge function.
+
+Data often needs to be re-arranged to ease analysis.
+
+This function helps re-arrange data from the ‘long’ form to a ‘wide’ form.
+
+Example: Let us consider the dataset data_all_continents obtained in the previous section after concatenating the data of all the continents.
+
+For visualizing life expectancy in 2007 against life expectancy in 1957, we will need to filter the data, and then make the plot. Everytime that we need to compare a metric for a year against another year, we will need to filter the data.
+
+If we need to often compare metrics of a year against another year, it will be easier to have each year as a separate column, instead of having all years in a single column.
+
+As we are increasing the number of columns and decreasing the number of rows, we are re-arranging the data from long-form to wide-form.
+
+Observe that for some African countries, the life expectancy has decreased after 50 years. It is worth investigating these countries to identify factors associated with the decrease.
+
+In the above transformation, we retained only lifeExp in the ‘wide’ dataset. Suppose, we are also interested in visualizing GDP per capita of countries in one year against another year. In that case, we must have gdpPercap in the ’wide’-form data as well.
+
+Let us create a dataset named as data_wide_lifeExp_gdpPercap that will contain both lifeExp and gdpPercap for each year in a separate column. We will specify the columns to pivot in the values argument of the pivot() function.
+
+The metric for each year is now in a separate column, and can be visualized directly. Note that re-arranging the dataset from the ‘long’-form to ‘wide-form’ leads to hierarchical indexing of columns when multiple ‘values’ need to be re-arranged. In this case, the multiple ‘values’ that need to be re-arranged are lifeExp and gdpPercap.
+
+This function is used to re-arrange the dataset from the ‘wide’ form to the ‘long’ form.
+
+Suppose, we wish to visualize the change of life expectancy over time for different continents, as we did in section 8.3. For plotting lifeExp against year, all the years must be in a single column. Thus, we need to melt the columns of data_wide to a single column and call it year.
+
+But before melting the columns in the above dataset, we will convert continent to a column, as we need to make subplots based on continent.
+
+The Pandas DataFrame method reset_index() can be used to remove one or more levels of indexing from the DataFrame.
+
+With the above DataFrame, we can visualize the mean life expectancy against year separately for each continent.
+
+If we wish to have country also in the above data, we can keep it while resetting the index:
+
+Consider the dataset created in Section 8.4.1.2. It has two types of values - lifeExp and gdpPercapita, which are the column labels at the outer level. The melt() function will melt all the years of data into a single column. However, it will create another column based on the outer level column labels - lifeExp and gdpPercapita to distinguish between these two types of values. Here, we see that the function melt() internally uses hierarchical indexing to handle the transformation of multiple types of columns.
+
+Although the data above is in ‘long’-form, it is not quiet in its original format, as in data_all_continents. We need to pivot again by Metric to have two separate columns of gdpPercap and lifeExp.
+
+Now, we can convert the row indices of continent and country to columns to restore the dataset to the same form as data_all_continents.
+
+Missing values in a dataset can occur due to several reasons such as breakdown of measuring equipment, accidental removal of observations, lack of response by respondents, error on the part of the researcher, etc.
+
+Let us read the dataset GDP_missing_data.csv, in which we have randomly removed some values, or put missing values in some of the columns.
+
+We’ll also read GDP_complete_data.csv, in which we have not removed any values. We’ll use this data later to assess the accuracy of our guess or estimate of missing values in GDP_missing_data.csv.
+
+Missing values in a Pandas DataFrame can be identified with the isnull() method. The Pandas Series object also consists of the isnull() method. For finding the number of missing values in each column of gdp_missing_values_data, we will sum up the missing values in each column of the dataset:
+
+Note that the descriptive statistics methods associated with Pandas objects ignore missing values by default. Consider the summary statistics of gdp_missing_values_data:
+
+Observe that the count statistics report the number of non-missing values of each column in the data, as the number of rows in the data (see code below) is more than the number of non-missing values of all the variables in the above table. Similarly, for the rest of the statistics, such as mean, std, etc., the missing values are ignored.
+
+Now that we know how to identify missing values in the dataset, let us learn about the types of missing values that can be there. Rubin (1976) classified missing values in three categories.
+
+If the probability of being missing is the same for all cases, then the data are said to be missing completely at random. An example of MCAR is a weighing scale that ran out of batteries. Some of the data will be missing simply because of bad luck.
+
+If the probability of being missing is the same only within groups defined by the observed data, then the data are missing at random (MAR). MAR is a much broader class than MCAR. For example, when placed on a soft surface, a weighinDropping rows with even a single missing value has reduced the number of rows from 155 to 42! However, earlier we saw that all the columns except contraception had at most 10 missing values. Removing all rows / columns with even a single missing value results in loss of data that is non-missing in the respective rows/columns. Thus, it is typically a bad idea to drop observations with even a single missing value, except in cases where we have a very small number of missing-value observations.
+
+g scale may produce more missing values than when placed on a hard surface. Such data are thus not MCAR. If, however, we know surface type and if we can assume MCAR within the type of surface, then the data are MAR
+
+MNAR means that the probability of being missing varies for reasons that are unknown to us. For example, the weighing scale mechanism may wear out over time, producing more missing data as time progresses, but we may fail to note this. If the heavier objects are measured later in time, then we obtain a distribution of the measurements that will be distorted. MNAR includes the possibility that the scale produces more missing values for the heavier objects (as above), a situation that might be difficult to recognize and handle.
+
+Sometimes our analysis requires that there should be no missing values in the dataset. For example, while building statistical models, we may require the values of all the predictor variables. The quickest way is to use the dropna() method, which drops the observations that even have a single missing value, and leaves only complete observations in the data.
+
+Let us drop the rows containing even a single value from gdp_missing_values_data.
+
+Dropping rows with even a single missing value has reduced the number of rows from 155 to 42! However, earlier we saw that all the columns except contraception had at most 10 missing values. Removing all rows / columns with even a single missing value results in loss of data that is non-missing in the respective rows/columns. Thus, it is typically a bad idea to drop observations with even a single missing value, except in cases where we have a very small number of missing-value observations.
+
+If a few values of a column are missing, we can possibly estimate them using the rest of the data, so that we can (hopefully) maximize the information that can be extracted from the data. However, if most of the values of a column are missing, it may be harder to estimate its values.
+
+In this case, we see that around 50% values of the contraception column is missing. Thus, we’ll drop the column as it may be hard to impute its values based on a relatively small number of non-missing values.
+
+There are an unlimited number of ways to impute missing values. Some imputation methods are provided in the Pandas documentation.
+
+The best way to impute them will depend on the problem, and the assumptions taken. Below are just a few examples.
+
+Filling the missing value of a column by copying the value of the previous non-missing observation.
+
+After imputing missing values, note there is still one missing value for illiteracyMale. Can you guess why one missing value remained?
+
+Let us check how good is this method in imputing missing values. We’ll compare the imputed values of gdpPerCapita with the actual values. Recall that we had randomly put some missing values in gdp_missing_values_data, and we have the actual values in gdp_complete_data.
+
+We observe that the accuracy of imputation is poor as GDP per capita can vary a lot across countries, and the data is not sorted by GDP per capita. There is no reason why the GDP per capita of a country should be close to the GDP per capita of the country in the observation above it.
+
+Let us impute missing values in the column as the average of the non-missing values of the column. The sum of squared differences between actual values and the imputed values is likely to be smaller if we impute using the mean. However, this may not be true in cases other than MCAR (Missing completely at random).
+
+Although this method of imputation doesn’t seem impressive, the RMSE of the estimates is lower than that of the naive method. Since we had introduced missing values randomly in gdp_missing_values_data, the mean GDP per capita will be the closest constant to the GDP per capita values, in terms of squared error.
+
+If a variable is highly correlated with another variable in the dataset, we can approximate its missing values using the trendline with the highly correlated variable.
+
+Let us visualize the distribution of GDP per capita for different continents
+
+
+We observe that there is a distinct difference between the GDPs per capita of some of the contents. Let us impute the missing GDP per capita of a country as the mean GDP per capita of the corresponding continent. This imputation should be better than imputing the missing GDP per capita as the mean of all the non-missing values, as the GDP per capita of a country is likely to be closer to the mean GDP per capita of the continent, rather the mean GDP per capita of the whole world.
+
+In this method, we’ll impute the missing value of the variable as the mean value of the -nearest neighbors having non-missing values for that variable. The neighbors to a data-point are identified based on their Euclidean distance to the point in terms of the standardized values of rest of the variables in the data.
+
+Let’s consider a toy example to understand missing value imputation by KNN. Suppose we have to impute missing values in a toy dataset, named as toy_data having 4 observations and 3 variables.
+
+We’ll use some functions from the sklearn library to perform the KNN imputation. It is much easier to directly use the algorithm from sklearn, instead of coding it from scratch.
+
+We’ll use the sklearn function nan_euclidean_distances() to compute the Euclidean distance between all pairs of observations in the data.
+
+Note that the size of the above matrix is 4x4. This is because the  element of the matrix is the distance of the  observation from the  observation. The matrix is symmetric because the distance of  observation to the  observation is the same as the distance of the  observation to the  observation.
+
+We’ll use the sklearn function KNNImputer() to impute the missing value of a column in toy_data as the mean of the values of the  nearest neighbors to the observation that have non-missing values for that column.
+
+Let us impute the missing values in toy_data using the values of  nearest neighbors from the corresponding observation.
+
+The third observation was the closest to the  and  observations based on the Euclidean distance matrix. Thus, the missing value in the  row of the toy_data has been imputed as the mean of the values in the  and  observations for the corresponding column. Similarly, the  observation is the closest to the  and  observations. Thus the missing value in the  row of toy_data has been imputed as the mean of the values in the  and  observations for the corresponding column.
+
+Let us use KNN to impute the missing values of gdpPerCapita in gdp_missing_values_data. We’ll use only the numeric columns of the data in imputing the missing values. Also, we’ll ignore contraception as it has a lot of missing values, and thus may not be useful.
+
+Before computing the pair-wise Euclidean distance of observations, we must standardize the data so that all columns are at the same scale. This will avoid columns with a higher magnitude of values having a higher weight in determining the Euclidean distance. Unless there is a reason to give a higher weight to a column, we assume all columns to have the same weight in the Euclidean distance computation.
+
+We can use the code below to scale the data. However, after imputing the missing values, the data is to be scaled back to the original scale, so that each variable is in the same units as in the original dataset. However, if the code below is used, we’ll lose the orginal scale of each of the columns.
+
+To alleviate the problem of losing the orignial scale of the data, we’ll use the MinMaxScaler object of the sklearn library. The object will store the original scale of the data, which will help transform the data back to the original scale once the missing values have been imputed in the standardized data.
+
+Note that the RMSE is the lowest in this method. It is because this method imputes missing values as the average of the values of “similar” observations, which is smarter and more robust than the previous methods.
+
+We chose  in the missing value imputation for GDP per capita. However, the value of  is typically chosen using a method known as cross validation. We’ll learn about cross-validation in the next course of the sequence.
+
+Data binning is a method to group values of a continuous / categorical variable into bins (or categories). Binning may help with
+
+Better intepretation of data
+Making better recommendations
+Smooth data, reduce noise
+Examples:
+
+Binning to better interpret data
+
+The number of flu cases everyday may be binned to seasons such as fall, spring, winter and summer, to understand the effect of season on flu.
+Binning to make recommendations:
+
+A doctor may like to group patient age into bins. Grouping patient ages into categories such as Age <=12, 12<Age<=18, 18<Age<=65, Age>65 may help recommend the kind/doses of covid vaccine a patient needs.
+
+A credit card company may want to bin customers based on their spend, as “High spenders”, “Medium spenders” and “Low spenders”. Binning will help them design customized marketing campaigns for each bin, thereby increasing customer response (or revenue). On the other hand, they use the same campaign for customers withing the same bin, thus minimizng marketing costs.
+
+Binning to smooth data, and reduce noise
+
+A sales company may want to bin their total sales to a weekly / monthly / yearly level to reduce the noise in day-to-day sales.
+Example: The dataset College.csv contains information about US universities. The description of variables of the dataset can be found on page 54 of this book. Let’s see if we can apply binning to better interpret the association of instructional expenditure per student (Expend) with graduation rate (Grad.Rate) for US universities, and make recommendations.
+
+To visualize the association between two numeric variables, we typically make a scatterplot. Let us make a scatterplot of graduation rate with expenditure per student, with a trendline.
+
+The trendline indicates a positive correlation between Expend and Grad.Rate. However, there seems to be a lot of noise and presence of outliers in the data, which makes it hard to interpret the overall trend.
+
+We’ll bin Expend to see if we can better analyze its association with Grad.Rate. However, let us first visualize the distribution of Expend.
+
+The distribution of Extend is right skewed with potentially some extremely high outlying values.
+
+We’ll use the Pandas function cut() to bin Expend. This function creates bins such that all bins have the same width.
+
+The cut() function returns a tuple of length 2. The first element of the tuple are the bins, while the second element is an array containing the cut-off values for the bins.
+
+See the variable Expend_bin in the above dataset.
+
+Let us visualize the Expend bins over the distribution of the Expend variable.
+
+By default, the bins created have equal width. They are created by dividing the range between the maximum and minimum value of Expend into the desired number of equal-width intervals. We can label the bins as well as follows.
+
+Now that we have binned the variable Expend, let us see if we can better visualize the association of graduation rate with expenditure per student using Expened_bin.
+
+It seems that the graduation rate is the highest for universities with medium level of expenditure per student. This is different from the trend we saw earlier in the scatter plot. Let us investigate.
+
+Let us find the number of universities in each bin.
+
+The bin High expend consists of only 5 universities, or 0.6% of all the universities in the dataset. These universities may be outliers that are skewing the trend (as also evident in the histogram above).
+
+In such cases, we should bin observations such that all bins are of equal size, i.e., they have the same number of observations.
+
+Let us bin the variable Expend such that each bin consists of the same number of observations.
+
+We’ll use the Pandas function qcut() to make equal-sized bins (in contrast to equal-width bins in the previous section).
+
+Each bin has the same number of observations with qcut():
+
+Let us visualize the Expend bins over the distribution of the Expend variable.
+
+Note that the bin-widths have been adjusted to have the same number of observations in each bin. The bins are narrower in domains of high density, and wider in domains of sparse density.
+
+Let us again make the barplot visualizing the average graduate rate with level of instructional expenditure per student.
+
+Now we see the same trend that we saw in the scatterplot, but without the noise. We have smoothed the data. Note that making equal-sized bins helps reduce the effect of outliers in the overall trend.
+
+Suppose this analysis was done to provide recommendations to universities for increasing their graduation rate. With binning, we can can provide one recommendation to ‘Low expend’ universities, and another one to ‘Med expend’ universities. For example, the recommendations can be:
+
+‘Low expend’ universities can expect an increase of 9 percentage points in Grad.Rate, if they migrate to the ‘Med expend’ category.
+‘Med expend’ universities can expect an increase of 7 percentage points in Grad.Rate, if they migrate to the ‘High expend’ category.
+The numbers in the above recommendations are based on the table below.
+
+
+We can also make recommendations based on the confidence intervals of mean Grad.Rate. Confidence intervals are computed below. We are finding confidence intervals based on a method known as bootstrapping. Refer https://en.wikipedia.org/wiki/Bootstrapping_(statistics) for a detailed description of Bootstrapping.
+
+
+Apart from equal-width and equal-sized bins, custom bins can be created using the bins argument. Suppose, bins are to be created for Expend with cutoffs . Then, we can use the bins argument as in the code below:
+
+
+Dummy variables (or indicator variables) take only the values of 0 and 1 to indicate the presence or absence of a catagorical effect. They are particularly useful in regression modeling to help explain the dependent variable.
+
+If a column in a DataFrame has  distinct values, we will get a DataFrame with  columns containing 0s and 1s with the Pandas get_dummies() function.
+
+Let us make dummy variables with the equal-sized bins we created for the average instruction expenditure per student.
+
+The dummy data dummy_Expend has a value of  if the observation corresponds to the category referenced by the column name.
+
+We can find the correlation between the dummy variables and graduation rate to identify if any of the dummy variables will be useful to estimate graduation rate (Grad.Rate).
+
+The dummy variables Low expend and High expend may contribute in explaining Grad.Rate in a regression model.
+
+An outlier is an observation that is significantly different from the rest of the data. Detection of outliers is important as they may distort the general trends in data.
+
+Let us visualize outliers in average instructional expenditure per student given by the variable Expend.
+
+There are several outliers (shown as circles in the above boxplot), which correspond to high values of average instructional expenditure per student. Boxplot identifies outliers based on the Tukey’s fences criterion:
+
+Tukey’s fences: John Tukey proposed that observations outside the range  are outliers, where  and  are the lower  and upper  quartiles respectively. Let us detect outliers based on Tukey’s fences.
+
+
+Earlier, the trend was distorted by outliers when we created bins of equal width. Let us see if we get the correct trend with the outliers removed from the data.
+
+With the outliers removed, we obtain the correct overall trend, even in the case of equal-width bins. Note that these bins have unequal number of observations as shown below.
+
+
+“One picture is worth a thousand words” - Fred R. Barnard
+
+Visual perception offers the highest bandwidth channel, as we acquire much more information through visual perception than with all of the other channels combined, as billions of our neurons are dedicated to this task. Moreover, the processing of visual information is, at its first stages, a highly parallel process. Thus, it is generally easier for humans to comprehend information with plots, diagrams and pictures, rather than with text and numbers. This makes data visualizations a vital part of data science. Some of the key purposes of data visualization are:
+
+Data visualization is the first step towards exploratory data analysis (EDA), which reveals trends, patterns, insights, or even irregularities in data.
+Data visualization can help explain the workings of complex mathematical models.
+Data visualization are an elegant way to summarise the findings of a data analysis project.
+Data visualizations (especially interactive ones such as those on Tableau) may be the end-product of data analytics project, where the stakeholders make decisions based on the visualizations.
+We’ll use a couple of libraries for making data visualizations - matplotlib and seaborn. Matplotlib is mostly used for creating relatively simple two-dimensional plots. Its plotting interface that is similar to the plot() function in MATLAB, so those who have used MATLAB should find it familiar. Seaborn is a recently developed data visualization library based on matplotlib. It is more oriented towards visualizing data with Pandas DataFrame and NumPy arrays. While matplotlib may also be used to create complex plots, seaborn has some built-in themes that may make it more convenient to make complex plots. Seaborn also has color schemes and plot styles that improve the readability and aesthetics of malplotlib plots. However, preferences depend on the user and their coding style, and it is perfectly fine to use either library for making the same visualization.
+
+6.1 Matplotlib
+Matplotlib is:
+
+a low-level graph plotting library in python that strives to emulate MATLAB,
+can be used in Python scripts, Python and IPython shells, Jupyter notebooks and web application servers.
+is mostly written in python, a few segments are written in C, Objective-C and Javascript for Platform compatibility.
+Conceptual model: Plotting requires action on a range of levels, ranging from the size of the figure to the text object in the plot. Matplotlib provides object-oriented interface in the hierarchical fashion to provide complete control over the plot. The user generates and keeps track of the figure and axes objects. These axes objects are then used for most plotting actions.
+
+6.1.1 Matplotlib: Object hierarchy
+A hierarchy means that there is a tree-like structure of matplotlib objects underlying each plot.
+
+A Figure object is the outermost container for a matplotlib graphic, which can contain multiple Axes objects. Note that an Axes actually translates into what we think of as an individual plot or graph (rather than the plural of axis as we might expect).
+
+The Figure object is a box-like container holding one or more Axes (actual plots), as shown in Figure 6.1. Below the Axes in the hierarchy are smaller objects such as tick marks, individual lines, legends, and text boxes. Almost every element of a chart is its own manipulable Python object, all the way down to the ticks and labels.
+
+However, Matplotlib presents this as a figure anatomy, rather than an explicit hierarchy. Figure 6.2 shows the components of a figure that can be customized with Matplotlib. (Source: https://matplotlib.org/stable/gallery/showcase/anatomy.html ).
+
+Let’s visualize the life expectancy of different countries with GDP per capita. We’ll read the data file gdp_lifeExpectancy.csv, which contains the GDP per capita and life expectancy of countries from 1952 to 2007.
+
+6.1.2 Scatterplots and trendline with Matplotlib
+Purpose of scatterplots: Scatterplots (with or without a trendline) allow us to visualize the relationship between two numerical variables.
+
+We’ll import the pyplot module of matplotlib to make plots. We’ll use the plot() function to make the scatter plot, and the functions xlabel() and ylabel() for labeling the plot axes.
+
+import matplotlib.pyplot as plt
+
+Q: Make a scatterplot of Life expectancy vs GDP per capita.
+
+There are two ways of plotting the figure:
+
+Explicitly creating figures and axes, and call methods on them (object-oriented style).
+
+Letting pyplot implicitly track the plot that it wants to reference. Simple functions are used to add plot elements (lines, images, text, etc.) to the current axes in the current figure (pyplot-style).
+
+We’ll plot the figure in both ways.
+
+Both the plotting styles - object-oriented style and the pyplot style are perfectly valid and have their pros and cons.
+
+Pyplot style is easier for simple plots
+
+Object-oriented style is slightly more complicated but more powerful as it allows for greater control over the axes in figure. This proves to be quite useful when we are dealing with a figure with multiple axes.
+
+From the above plot, we observe that life expectancy seems to be positively correlated with the GDP per capita of the country, as one may expect. However, there are a few outliers in the data - which are countries having extremely high GDP per capita, but not a correspondingly high life expectancy.
+
+Sometimes it is difficult to get an idea of the overall trend (positive or negative correlation). In such cases, it may help to add a trendline to the scatter plot. In the plot below we add a trendline over the scatterplot showing that the life expectancy on an average increases with increasing GDP per capita. The trendline is actually a linear regression of life expectancy on GDP per capita. However, we’ll not discuss linear regression in this book.
+
+Q: Add a trendline over the scatterplot of life expectancy vs GDP per capita.
+
+The above plot shows that our earlier intuition of a postive correlation between Life expectancy and GDP per capita was correct.
+
+We used the NumPy function polyfit() to compute the slope and intercept of the trendline. Then, we defined an object compute_y_given_x of poly1d class and used it to compute the trendline.
+
+There is often a need to make a few plots together to compare them. See the example below.
+
+Q: Make scatterplots of life expectancy vs GDP per capita separately for each of the 4 continents of Asia, Europe, Africa and America. Arrange the plots in a 2 x 2 grid.
+
+We observe that for each continent, except Africa, initially life expectancy increases rapidly with increasing GDP per capita. However, after a certain threshold of GDP per capita, life expectancy increases slowly. Several countries in Europe enjoy a relatively high GDP per capita as well as high life expectancy. Some countries in Asia have an extremely high GDP per capita, but a relatively low life expectancy. It will be interesting to see the proportion of GDP associated with healthcare for these outlying Asian countries, and European countries.
+
+We used the subplot function of matplotlib to define the 2x2 grid of subplots. The function subplots_adjust() can be used to adjust white spaces around the plot. We used a for loop to iterate over each subplot. The axes object returned by the subplot() function was used to refer to individual subplots.
+
+6.1.5 Overlapping plots with legend
+We can also have the scatterplot of all the continents on the sample plot, with a distinct color for each continent. A legend will be required to identify the continent’s color.
+
+Note that a disadvantage of the above plot is overplotting. The data points corresponding to the Americas are hiding the data points of other continents. However, if the data points corresponding to different categories are spread apart, then it may be convenient to visualize all the categories on the same plot.
+
+6.2 Pandas
+Matplotlib is a low-level tool, in which different components of the plot, such as points, legend, axis titles, etc. need to be specified separately. The Pandas plot() function can be used directly with a DataFrame or Series to make plots.
+
+In the above plot, note that:
+
+With matplotlib, it will take 3 lines to make the same plot - one for the scatterplot, and two for the axis titles.
+The object ax is of type matplotlib.axes._subplots.AxesSubplot (check the code below). This means we can use the attributes and methods associated with the axes object of Matplotlib. If you see the documentation of the Pandas plot() function, you will find that under the kwargs** argument, you have Options to pass to matplotlib plotting method. Thus, you get the convenience of using the Pandas plot() function, while also having the attributes aWe have reshaped the data to obtain the mean GDP per capita of each continent for each year.
+
+The pandas plot() function can be directly used with this DataFrame to create line plots showing mean GDP per capita of each continent with year.nd methods associated with Matplotlib.
+
+6.2.2 Lineplots with Pandas
+Purpose of lineplots: Lineplots show the relationship between two numerical variables when the variable on the x-axis, also called the explanatory variable, is of a sequential nature; in other words there is an inherent ordering to the variable. The most common example of lineplots have some notion of time on the x-axis (or the horizontal axis): hours, days, weeks, years, etc. Since time is sequential, we connect consecutive observations of the variable on the y-axis with a line. Lineplots that have some notion of time on the x-axis are also called time series plots. Lineplots should be avoided when there is not a clear sequential ordering to the variable on the x-axis.
+
+Let us re-arrange the data to show other benefits of the Pandas plot() function. Note that data resphaping is explained in Chapter 8 of the book, so you may ignore the code block below that uses the pivot_table() function.
+
+We observe that the mean GDP per capita of of Europe and Oceania have increased rapidly, while that for Africa is increasing very slowly.
+
+The above plot will take several lines of code if developed using only matplotlib. The pandas plot() function has a framework to conveniently make commonly used plots.
+
+Note that argument marker = ‘o’ puts a solid circle at each of the data points.
+
+6.2.3 Bar plots with Pandas
+Purpose of bar plots: Barplots are used to visualize any aggregate statistics of a continuous variable with respect to the categories or levels of a categorical variable. For example, we may visualize the average IMDB rating (aggregate statistics) of movies based on their genre (the categorical variable).
+
+Bar plots can be made using the pandas bar function with the DataFrame or Series, just like the line plots and scatterplots.
+
+Below, we are reading the dataset of noise complaints of type Loud music/Party received the police in New York City in 2016.
+
+From the above plot, we observe that most of the complaints come from residential buildings and houses, as one may expect.
+
+Let is visualize the time of the year when most complaints occur.
+
+Try executing the code without sort_index() to figure out the purpose of using the function.
+
+From the above plot, we observe that most of the complaints occur during summer and early Fall.
+
+Let us create a stacked bar chart that combines both the above plots into a single plot. You may ignore the code used for re-shaping the data until Chapter 8. The purpose here is to show the utility of the pandas bar() function.
+
+The above plots gives the insights about location and day of the year simultaneously that were previously separately obtained by the individual plots.
+
+An alternative to stacked barplots are side-by-side barplots, as shown below.
+
+Seaborn offers the flexibility of simultaneously visualizing multiple variables in a single plot, and offers several themes to develop plots.
+
+We’ll group the data to obtain the total complaints for each Location Type, Borough, Month_of_the_year, and Hour_of_the_day. Note that you’ll learn grouping data in Chapter 9, so you may ignore the next code block. The grouping is done to shape the data in a suitable form for visualization.
+
+From the above plot, we observe that most of the complaints are made around midnight. However, interestingly, there are some complaints at each hour of the day.
+
+Note that the above barplot shows the mean number of complaints in a month at each hour of the day. The black lines are the 95% confidence intervals of the mean number of complaints.
+
+6.3.2 Facetgrid: Multi-plot grid for plotting conditional relationships
+With pandas, we simultaneously visualized the number of complaints with month of the year and location type in Figure 6.3. We’ll use Seaborn to add another variable - Borough to the visualization.
+
+Q: Visualize the mean number of complaints with Month_of_the_year, Location Type, and Borough.
+
+The seaborn class FacetGrid is used to design the plot, i.e., specify the way the data will be divided in mutually exclusive subsets for visualization. Then the [map] function of the FacetGrid class is used to apply a plotting function to each subset of the data.
+
+From the above plot, we get a couple of interesting insights: 1. For Queens and Staten Island, most of the complaints occur in summer, for Manhattan and Bronx it is mostly during late spring, while Brooklyn has a spike of complaints in early Fall. 2. In most of the Boroughs, the majority complaints always occur in residential areas. However, for Manhattan, the number of street/sidewalk complaints in the summer are comparable to those from residential areas.
+
+We have visualized 4 variables simultaneously in the above plot.
+
+Let us consider another example, where we will visualize the weather in a few cities of Australia. The file Australia_weather.csv consists of weather details of Sydney, Canberra, and Melbourne from 2007 to 2017.
+
+Q: Visualize if it rains the next day (RainTomorrow) given whether it has rained today (RainToday), the current day’s humidity (Humidity9am), maximum temperature (MaxTemp) and the city (Location).
+
+
+Humidity tends to be higher when it is going to rain the next day. However, the correlation is much more pronounced for Syndey. In case it is not raining on the current day, humidity seems to be slightly negatively correlated with temperature.
+
+6.3.4 Histogram and density plots with Seaborn
+Purpose: Histogram and density plots visualize the distribution of a continuous variable.
+
+A histogram plots the number of observations occurring within discrete, evenly spaced bins of a random variable, to visualize the distribution of the variable. It may be considered a special case of a bar plot as bars are used to plot the observation counts.
+
+A density plot uses a kernel density estimate to approximate the distribution of random variable.
+
+We can use the Seaborn displot() function to make both kinds of plots - histogram or density plot.
+
+Example: Make a histogram showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.
+
+From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperature.
+
+Example: Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.
+
+6.3.5 Boxplots with Seaborn
+Purpose: Boxplots is a standardized way of visualizing the distribution of a continuous variable. They show five key metrics that describe the data distribution - median, 25th percentile value, 75th percentile value, minimum and maximum, as shown in the figure below. Note that the minimum and maximum exclude the outliers.
+
+Example: Make a boxplot comparing the distributions of maximum temperatures of Sydney, Canberra and Melbourne, given whether or not it has rained on the day.
+
+From the above plot, we observe that: 1. The maximum temperature of the day, on an average, is lower if it rained on the day. 2. Sydney and Melbourne have some extremely high outlying values of maximum temperature.
+
+We have used the Seaborn boxplot() function for the above plot.
+
+6.3.6 Scatterplots with Seaborn
+We made scatterplots with Matplotlib and Pandas earlier. With Seaborn, the regplot() function allows us to plot a trendline over the scatterplot, along with a 95% confidence interval for the trendline. Note that this is much easier than making a trendline with Matplotlib.
+
+Note that the confidence interval of the trendline broadens as we move farther away from most of the data points. In other words, there is more uncertainty about the trend as we move to a domain space farther away from the data.
+
+6.3.7 Heatmaps with Seaborn
+Purpose: Heatmaps help us visualize the correlation between all variable-pairs.
+
+Below is a heatmap visualizing the pairwise correlation of all the numerical variables of survey_data_clean. With a heatmap it becomes easier to see strongly correlated variables.
+
+From the above map, we can see that:
+
+student athlete is strongly postively correlated with minutes_ex_per_week
+procrastinator is strongly negatively correlated with NU_GPA
+6.3.8 Pairplots with Seaborn
+Purpose: Pairplots are used to visualize the association between all variable-pairs in the data. In other words, pairplots simultaneously visualize the scatterplots between all variable-pairs.
+
+Let us visualize the pair-wise association of nutrition variables in the starbucks drinks data.
+
+In the above pairplot, note that:
+
+The histograms on the diagonal of the grid show the distribution of each of the variables.
+Instead of a histogram, we can visualize the density plot with the argument kde = True.
+The scatterplots in the rest of the grid are the pair-wise plots of all the variables.
+From the above plot, we observe that:
+
+Almost all the variable pairs have a positive correlation, i.e., if one of the nutrients increase in a drink, others also are likely to increase.
+The number of calories seem to be strongly positively correlated with the amount of carbs in the drink.
+From the density plots we can see that there is a lot of choice for consumers to buy a drink that has a zero value for any of the nutrients - fat, protein, fiber, or sodium.
+
+
+
+
+
+
+
+

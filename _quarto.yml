@@ -2,7 +2,6 @@ project:
   type: book
 
 book:  
-  cover-image: ds_image.jpg
   title: "Introduction to Data Science with Python"
   author: "Arvind Krishna, and Arend Kuyper"
   date: "9/20/2022"
@@ -13,6 +12,7 @@ book:
     logo-href: "https://statistics.northwestern.edu/"
 
   chapters:
+    - welcome.ipynb
     - index.qmd
     - part: 'Quick overview: Python programming'
       chapters:
