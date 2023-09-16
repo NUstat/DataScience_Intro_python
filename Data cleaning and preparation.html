@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,48 +47,19 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+/* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
 }
-.hanging div.csl-entry {
+.hanging-indent div.csl-entry {
   margin-left:2em;
   text-indent:-2em;
 }
@@ -101,8 +73,7 @@ div.csl-right-inline {
 }
 div.csl-indent {
   margin-left: 2em;
-}
-</style>
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -139,13 +110,15 @@ div.csl-indent {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -154,11 +127,16 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reading data.html">Exploratory data analysis</a></li><li class="breadcrumb-item"><a href="./Data cleaning and preparation.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -166,7 +144,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./NU_Stat_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -175,149 +153,120 @@ div.csl-indent {
       <a href="./">Introduction to Data Science with Python</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Quick overview: Python programming</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Quick overview: Python programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></a>
+  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></a>
+  <a href="./data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Exploratory data analysis</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  <a href="./Reading data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./NumPy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></a>
+  <a href="./NumPy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Pandas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></a>
+  <a href="./Pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></a>
+  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></a>
+  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></a>
+  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></a>
+  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./student_solutions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Alternative solutions by students</span></a>
+  <a href="./student_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Alternative solutions by students</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Assignments</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Assignment 1 (Reading data).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Assignment 1 (Reading data)</span></a>
+  <a href="./Datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Assignment 2 (NumPy).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assignment 2 (NumPy)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 3 (Pandas).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assignment 3 (Pandas)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 4 (Data Visualization).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Assignment 4 (Data Visualization)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 5 (Data cleaning and preparation).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Assignment 5 (Data cleaning &amp; preparation)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 6 (Data wrangling).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Assignment 6 (Data wrangling)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 7 (Data aggregation).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Assignment 7 (Data aggregation)</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -325,50 +274,51 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#handling-missing-data" id="toc-handling-missing-data" class="nav-link active" data-scroll-target="#handling-missing-data"><span class="toc-section-number">7.1</span>  Handling missing data</a>
+  <li><a href="#handling-missing-data" id="toc-handling-missing-data" class="nav-link active" data-scroll-target="#handling-missing-data"><span class="header-section-number">7.1</span> Handling missing data</a>
   <ul>
-  <li><a href="#identifying-missing-values-isnull" id="toc-identifying-missing-values-isnull" class="nav-link" data-scroll-target="#identifying-missing-values-isnull"><span class="toc-section-number">7.1.1</span>  Identifying missing values (<code>isnull()</code>)</a></li>
-  <li><a href="#types-of-missing-values" id="toc-types-of-missing-values" class="nav-link" data-scroll-target="#types-of-missing-values"><span class="toc-section-number">7.1.2</span>  Types of missing values</a>
+  <li><a href="#identifying-missing-values-isnull" id="toc-identifying-missing-values-isnull" class="nav-link" data-scroll-target="#identifying-missing-values-isnull"><span class="header-section-number">7.1.1</span> Identifying missing values (<code>isnull()</code>)</a></li>
+  <li><a href="#types-of-missing-values" id="toc-types-of-missing-values" class="nav-link" data-scroll-target="#types-of-missing-values"><span class="header-section-number">7.1.2</span> Types of missing values</a>
   <ul class="collapse">
-  <li><a href="#missing-completely-at-random-mcar" id="toc-missing-completely-at-random-mcar" class="nav-link" data-scroll-target="#missing-completely-at-random-mcar"><span class="toc-section-number">7.1.2.1</span>  Missing Completely at Random (MCAR)</a></li>
-  <li><a href="#missing-at-random-mar" id="toc-missing-at-random-mar" class="nav-link" data-scroll-target="#missing-at-random-mar"><span class="toc-section-number">7.1.2.2</span>  Missing at Random (MAR)</a></li>
-  <li><a href="#missing-not-at-random-mnar" id="toc-missing-not-at-random-mnar" class="nav-link" data-scroll-target="#missing-not-at-random-mnar"><span class="toc-section-number">7.1.2.3</span>  Missing Not at Random (MNAR)</a></li>
+  <li><a href="#missing-completely-at-random-mcar" id="toc-missing-completely-at-random-mcar" class="nav-link" data-scroll-target="#missing-completely-at-random-mcar"><span class="header-section-number">7.1.2.1</span> Missing Completely at Random (MCAR)</a></li>
+  <li><a href="#missing-at-random-mar" id="toc-missing-at-random-mar" class="nav-link" data-scroll-target="#missing-at-random-mar"><span class="header-section-number">7.1.2.2</span> Missing at Random (MAR)</a></li>
+  <li><a href="#missing-not-at-random-mnar" id="toc-missing-not-at-random-mnar" class="nav-link" data-scroll-target="#missing-not-at-random-mnar"><span class="header-section-number">7.1.2.3</span> Missing Not at Random (MNAR)</a></li>
   </ul></li>
-  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">7.1.3</span>  Practice exercise 1</a>
+  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="header-section-number">7.1.3</span> Practice exercise 1</a>
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="toc-section-number">7.1.3.1</span>  </a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="toc-section-number">7.1.3.2</span>  </a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="toc-section-number">7.1.3.3</span>  </a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">7.1.3.1</span> </a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">7.1.3.2</span> </a></li>
+  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"><span class="header-section-number">7.1.3.3</span> </a></li>
   </ul></li>
-  <li><a href="#dropping-observations-with-missing-values-dropna" id="toc-dropping-observations-with-missing-values-dropna" class="nav-link" data-scroll-target="#dropping-observations-with-missing-values-dropna"><span class="toc-section-number">7.1.4</span>  Dropping observations with missing values (<code>dropna()</code>)</a></li>
-  <li><a href="#some-methods-to-impute-missing-values" id="toc-some-methods-to-impute-missing-values" class="nav-link" data-scroll-target="#some-methods-to-impute-missing-values"><span class="toc-section-number">7.1.5</span>  Some methods to impute missing values</a>
+  <li><a href="#dropping-observations-with-missing-values-dropna" id="toc-dropping-observations-with-missing-values-dropna" class="nav-link" data-scroll-target="#dropping-observations-with-missing-values-dropna"><span class="header-section-number">7.1.4</span> Dropping observations with missing values (<code>dropna()</code>)</a></li>
+  <li><a href="#some-methods-to-impute-missing-values" id="toc-some-methods-to-impute-missing-values" class="nav-link" data-scroll-target="#some-methods-to-impute-missing-values"><span class="header-section-number">7.1.5</span> Some methods to impute missing values</a>
   <ul class="collapse">
-  <li><a href="#method-1-naive-method" id="toc-method-1-naive-method" class="nav-link" data-scroll-target="#method-1-naive-method"><span class="toc-section-number">7.1.5.1</span>  Method 1: Naive Method</a></li>
-  <li><a href="#method-2-imputing-missing-values-as-the-mean-of-non-missing-values" id="toc-method-2-imputing-missing-values-as-the-mean-of-non-missing-values" class="nav-link" data-scroll-target="#method-2-imputing-missing-values-as-the-mean-of-non-missing-values"><span class="toc-section-number">7.1.5.2</span>  Method 2: Imputing missing values as the mean of non-missing values</a></li>
-  <li><a href="#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data" id="toc-method-3-imputing-missing-values-based-on-correlated-variables-in-the-data" class="nav-link" data-scroll-target="#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data"><span class="toc-section-number">7.1.5.3</span>  Method 3: Imputing missing values based on correlated variables in the data</a></li>
-  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">7.1.5.4</span>  Practice exercise 2</a></li>
-  <li><a href="#method-4-knn-k-nearest-neighbor" id="toc-method-4-knn-k-nearest-neighbor" class="nav-link" data-scroll-target="#method-4-knn-k-nearest-neighbor"><span class="toc-section-number">7.1.5.5</span>  Method 4: KNN: K-nearest neighbor</a></li>
+  <li><a href="#method-1-naive-method" id="toc-method-1-naive-method" class="nav-link" data-scroll-target="#method-1-naive-method"><span class="header-section-number">7.1.5.1</span> Method 1: Naive Method</a></li>
+  <li><a href="#method-2-imputing-missing-values-as-the-mean-of-non-missing-values" id="toc-method-2-imputing-missing-values-as-the-mean-of-non-missing-values" class="nav-link" data-scroll-target="#method-2-imputing-missing-values-as-the-mean-of-non-missing-values"><span class="header-section-number">7.1.5.2</span> Method 2: Imputing missing values as the mean of non-missing values</a></li>
+  <li><a href="#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data" id="toc-method-3-imputing-missing-values-based-on-correlated-variables-in-the-data" class="nav-link" data-scroll-target="#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data"><span class="header-section-number">7.1.5.3</span> Method 3: Imputing missing values based on correlated variables in the data</a></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="header-section-number">7.1.5.4</span> Practice exercise 2</a></li>
+  <li><a href="#method-4-knn-k-nearest-neighbor" id="toc-method-4-knn-k-nearest-neighbor" class="nav-link" data-scroll-target="#method-4-knn-k-nearest-neighbor"><span class="header-section-number">7.1.5.5</span> Method 4: KNN: K-nearest neighbor</a></li>
   </ul></li>
   </ul></li>
-  <li><a href="#data-binning" id="toc-data-binning" class="nav-link" data-scroll-target="#data-binning"><span class="toc-section-number">7.2</span>  Data binning</a>
+  <li><a href="#data-binning" id="toc-data-binning" class="nav-link" data-scroll-target="#data-binning"><span class="header-section-number">7.2</span> Data binning</a>
   <ul>
-  <li><a href="#binning-with-equal-width-bins" id="toc-binning-with-equal-width-bins" class="nav-link" data-scroll-target="#binning-with-equal-width-bins"><span class="toc-section-number">7.2.1</span>  Binning with equal width bins</a></li>
-  <li><a href="#binning-with-equal-sized-bins" id="toc-binning-with-equal-sized-bins" class="nav-link" data-scroll-target="#binning-with-equal-sized-bins"><span class="toc-section-number">7.2.2</span>  Binning with equal sized bins</a></li>
-  <li><a href="#binning-with-custom-bins" id="toc-binning-with-custom-bins" class="nav-link" data-scroll-target="#binning-with-custom-bins"><span class="toc-section-number">7.2.3</span>  Binning with custom bins</a></li>
+  <li><a href="#binning-with-equal-width-bins" id="toc-binning-with-equal-width-bins" class="nav-link" data-scroll-target="#binning-with-equal-width-bins"><span class="header-section-number">7.2.1</span> Binning with equal width bins</a></li>
+  <li><a href="#binning-with-equal-sized-bins" id="toc-binning-with-equal-sized-bins" class="nav-link" data-scroll-target="#binning-with-equal-sized-bins"><span class="header-section-number">7.2.2</span> Binning with equal sized bins</a></li>
+  <li><a href="#binning-with-custom-bins" id="toc-binning-with-custom-bins" class="nav-link" data-scroll-target="#binning-with-custom-bins"><span class="header-section-number">7.2.3</span> Binning with custom bins</a></li>
   </ul></li>
-  <li><a href="#dummy-indicator-variables" id="toc-dummy-indicator-variables" class="nav-link" data-scroll-target="#dummy-indicator-variables"><span class="toc-section-number">7.3</span>  Dummy / Indicator variables</a>
+  <li><a href="#dummy-indicator-variables" id="toc-dummy-indicator-variables" class="nav-link" data-scroll-target="#dummy-indicator-variables"><span class="header-section-number">7.3</span> Dummy / Indicator variables</a>
   <ul>
-  <li><a href="#practice-exercise-3" id="toc-practice-exercise-3" class="nav-link" data-scroll-target="#practice-exercise-3"><span class="toc-section-number">7.3.1</span>  Practice exercise 3</a></li>
+  <li><a href="#practice-exercise-3" id="toc-practice-exercise-3" class="nav-link" data-scroll-target="#practice-exercise-3"><span class="header-section-number">7.3.1</span> Practice exercise 3</a></li>
   </ul></li>
-  <li><a href="#outlier-detection" id="toc-outlier-detection" class="nav-link" data-scroll-target="#outlier-detection"><span class="toc-section-number">7.4</span>  Outlier detection</a>
+  <li><a href="#outlier-detection" id="toc-outlier-detection" class="nav-link" data-scroll-target="#outlier-detection"><span class="header-section-number">7.4</span> Outlier detection</a>
   <ul>
-  <li><a href="#practice-exercise-4" id="toc-practice-exercise-4" class="nav-link" data-scroll-target="#practice-exercise-4"><span class="toc-section-number">7.4.1</span>  Practice exercise 4</a></li>
+  <li><a href="#practice-exercise-4" id="toc-practice-exercise-4" class="nav-link" data-scroll-target="#practice-exercise-4"><span class="header-section-number">7.4.1</span> Practice exercise 4</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -378,7 +328,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></h1>
 </div>
 
 
@@ -410,105 +360,106 @@ div.csl-indent {
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="2">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>economicActivityFemale</th>
-      <th>country</th>
-      <th>lifeMale</th>
-      <th>infantMortality</th>
-      <th>gdpPerCapita</th>
-      <th>economicActivityMale</th>
-      <th>illiteracyMale</th>
-      <th>illiteracyFemale</th>
-      <th>lifeFemale</th>
-      <th>geographic_location</th>
-      <th>contraception</th>
-      <th>continent</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>7.2</td>
-      <td>Afghanistan</td>
-      <td>45.0</td>
-      <td>154.0</td>
-      <td>2474.0</td>
-      <td>87.5</td>
-      <td>NaN</td>
-      <td>85.0</td>
-      <td>46.0</td>
-      <td>Southern Asia</td>
-      <td>NaN</td>
-      <td>Asia</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>7.8</td>
-      <td>Algeria</td>
-      <td>67.5</td>
-      <td>44.0</td>
-      <td>11433.0</td>
-      <td>76.4</td>
-      <td>26.1</td>
-      <td>51.0</td>
-      <td>70.3</td>
-      <td>Northern Africa</td>
-      <td>NaN</td>
-      <td>Africa</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>41.3</td>
-      <td>Argentina</td>
-      <td>69.6</td>
-      <td>22.0</td>
-      <td>NaN</td>
-      <td>76.2</td>
-      <td>3.8</td>
-      <td>3.8</td>
-      <td>76.8</td>
-      <td>South America</td>
-      <td>NaN</td>
-      <td>South America</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>52.0</td>
-      <td>Armenia</td>
-      <td>67.2</td>
-      <td>25.0</td>
-      <td>13638.0</td>
-      <td>65.0</td>
-      <td>NaN</td>
-      <td>0.5</td>
-      <td>74.0</td>
-      <td>Western Asia</td>
-      <td>NaN</td>
-      <td>Asia</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>53.8</td>
-      <td>Australia</td>
-      <td>NaN</td>
-      <td>6.0</td>
-      <td>54891.0</td>
-      <td>NaN</td>
-      <td>1.0</td>
-      <td>1.0</td>
-      <td>81.2</td>
-      <td>Oceania</td>
-      <td>NaN</td>
-      <td>Oceania</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">economicActivityFemale</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">lifeMale</th>
+<th data-quarto-table-cell-role="th">infantMortality</th>
+<th data-quarto-table-cell-role="th">gdpPerCapita</th>
+<th data-quarto-table-cell-role="th">economicActivityMale</th>
+<th data-quarto-table-cell-role="th">illiteracyMale</th>
+<th data-quarto-table-cell-role="th">illiteracyFemale</th>
+<th data-quarto-table-cell-role="th">lifeFemale</th>
+<th data-quarto-table-cell-role="th">geographic_location</th>
+<th data-quarto-table-cell-role="th">contraception</th>
+<th data-quarto-table-cell-role="th">continent</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>7.2</td>
+<td>Afghanistan</td>
+<td>45.0</td>
+<td>154.0</td>
+<td>2474.0</td>
+<td>87.5</td>
+<td>NaN</td>
+<td>85.0</td>
+<td>46.0</td>
+<td>Southern Asia</td>
+<td>NaN</td>
+<td>Asia</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>7.8</td>
+<td>Algeria</td>
+<td>67.5</td>
+<td>44.0</td>
+<td>11433.0</td>
+<td>76.4</td>
+<td>26.1</td>
+<td>51.0</td>
+<td>70.3</td>
+<td>Northern Africa</td>
+<td>NaN</td>
+<td>Africa</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>41.3</td>
+<td>Argentina</td>
+<td>69.6</td>
+<td>22.0</td>
+<td>NaN</td>
+<td>76.2</td>
+<td>3.8</td>
+<td>3.8</td>
+<td>76.8</td>
+<td>South America</td>
+<td>NaN</td>
+<td>South America</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>52.0</td>
+<td>Armenia</td>
+<td>67.2</td>
+<td>25.0</td>
+<td>13638.0</td>
+<td>65.0</td>
+<td>NaN</td>
+<td>0.5</td>
+<td>74.0</td>
+<td>Western Asia</td>
+<td>NaN</td>
+<td>Asia</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>53.8</td>
+<td>Australia</td>
+<td>NaN</td>
+<td>6.0</td>
+<td>54891.0</td>
+<td>NaN</td>
+<td>1.0</td>
+<td>1.0</td>
+<td>81.2</td>
+<td>Oceania</td>
+<td>NaN</td>
+<td>Oceania</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -538,123 +489,124 @@ dtype: int64</code></pre>
 <div class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>gdp_missing_values_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="23">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>economicActivityFemale</th>
-      <th>lifeMale</th>
-      <th>infantMortality</th>
-      <th>gdpPerCapita</th>
-      <th>economicActivityMale</th>
-      <th>illiteracyMale</th>
-      <th>illiteracyFemale</th>
-      <th>lifeFemale</th>
-      <th>contraception</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>145.000000</td>
-      <td>145.000000</td>
-      <td>145.000000</td>
-      <td>145.000000</td>
-      <td>145.000000</td>
-      <td>145.000000</td>
-      <td>145.000000</td>
-      <td>145.000000</td>
-      <td>84.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>45.935172</td>
-      <td>65.491724</td>
-      <td>37.158621</td>
-      <td>24193.482759</td>
-      <td>76.563448</td>
-      <td>13.570028</td>
-      <td>21.448897</td>
-      <td>70.615862</td>
-      <td>51.773810</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>16.875922</td>
-      <td>9.099256</td>
-      <td>34.465699</td>
-      <td>22748.764444</td>
-      <td>7.854730</td>
-      <td>16.497954</td>
-      <td>25.497045</td>
-      <td>9.923791</td>
-      <td>31.930026</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>1.900000</td>
-      <td>36.000000</td>
-      <td>3.000000</td>
-      <td>772.000000</td>
-      <td>51.200000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>39.100000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>35.500000</td>
-      <td>62.900000</td>
-      <td>10.000000</td>
-      <td>6837.000000</td>
-      <td>72.000000</td>
-      <td>1.000000</td>
-      <td>2.300000</td>
-      <td>67.500000</td>
-      <td>17.000000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>47.600000</td>
-      <td>67.800000</td>
-      <td>24.000000</td>
-      <td>15184.000000</td>
-      <td>77.300000</td>
-      <td>6.600000</td>
-      <td>9.720000</td>
-      <td>73.900000</td>
-      <td>65.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>55.900000</td>
-      <td>72.400000</td>
-      <td>54.000000</td>
-      <td>35957.000000</td>
-      <td>81.600000</td>
-      <td>19.500000</td>
-      <td>30.200000</td>
-      <td>78.100000</td>
-      <td>77.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>90.600000</td>
-      <td>77.400000</td>
-      <td>169.000000</td>
-      <td>122740.000000</td>
-      <td>93.000000</td>
-      <td>70.500000</td>
-      <td>90.800000</td>
-      <td>82.900000</td>
-      <td>79.000000</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">economicActivityFemale</th>
+<th data-quarto-table-cell-role="th">lifeMale</th>
+<th data-quarto-table-cell-role="th">infantMortality</th>
+<th data-quarto-table-cell-role="th">gdpPerCapita</th>
+<th data-quarto-table-cell-role="th">economicActivityMale</th>
+<th data-quarto-table-cell-role="th">illiteracyMale</th>
+<th data-quarto-table-cell-role="th">illiteracyFemale</th>
+<th data-quarto-table-cell-role="th">lifeFemale</th>
+<th data-quarto-table-cell-role="th">contraception</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">count</td>
+<td>145.000000</td>
+<td>145.000000</td>
+<td>145.000000</td>
+<td>145.000000</td>
+<td>145.000000</td>
+<td>145.000000</td>
+<td>145.000000</td>
+<td>145.000000</td>
+<td>84.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">mean</td>
+<td>45.935172</td>
+<td>65.491724</td>
+<td>37.158621</td>
+<td>24193.482759</td>
+<td>76.563448</td>
+<td>13.570028</td>
+<td>21.448897</td>
+<td>70.615862</td>
+<td>51.773810</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">std</td>
+<td>16.875922</td>
+<td>9.099256</td>
+<td>34.465699</td>
+<td>22748.764444</td>
+<td>7.854730</td>
+<td>16.497954</td>
+<td>25.497045</td>
+<td>9.923791</td>
+<td>31.930026</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">min</td>
+<td>1.900000</td>
+<td>36.000000</td>
+<td>3.000000</td>
+<td>772.000000</td>
+<td>51.200000</td>
+<td>0.000000</td>
+<td>0.000000</td>
+<td>39.100000</td>
+<td>0.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">25%</td>
+<td>35.500000</td>
+<td>62.900000</td>
+<td>10.000000</td>
+<td>6837.000000</td>
+<td>72.000000</td>
+<td>1.000000</td>
+<td>2.300000</td>
+<td>67.500000</td>
+<td>17.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">50%</td>
+<td>47.600000</td>
+<td>67.800000</td>
+<td>24.000000</td>
+<td>15184.000000</td>
+<td>77.300000</td>
+<td>6.600000</td>
+<td>9.720000</td>
+<td>73.900000</td>
+<td>65.000000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">75%</td>
+<td>55.900000</td>
+<td>72.400000</td>
+<td>54.000000</td>
+<td>35957.000000</td>
+<td>81.600000</td>
+<td>19.500000</td>
+<td>30.200000</td>
+<td>78.100000</td>
+<td>77.000000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">max</td>
+<td>90.600000</td>
+<td>77.400000</td>
+<td>169.000000</td>
+<td>122740.000000</td>
+<td>93.000000</td>
+<td>70.500000</td>
+<td>90.800000</td>
+<td>82.900000</td>
+<td>79.000000</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1041,147 +993,148 @@ dtype: float64</code></pre>
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>college <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/College.csv'</span>)</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>college.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="122">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>Private</th>
-      <th>Apps</th>
-      <th>Accept</th>
-      <th>Enroll</th>
-      <th>Top10perc</th>
-      <th>Top25perc</th>
-      <th>F.Undergrad</th>
-      <th>P.Undergrad</th>
-      <th>Outstate</th>
-      <th>Room.Board</th>
-      <th>Books</th>
-      <th>Personal</th>
-      <th>PhD</th>
-      <th>Terminal</th>
-      <th>S.F.Ratio</th>
-      <th>perc.alumni</th>
-      <th>Expend</th>
-      <th>Grad.Rate</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Abilene Christian University</td>
-      <td>Yes</td>
-      <td>1660</td>
-      <td>1232</td>
-      <td>721</td>
-      <td>23</td>
-      <td>52</td>
-      <td>2885</td>
-      <td>537</td>
-      <td>7440</td>
-      <td>3300</td>
-      <td>450</td>
-      <td>2200</td>
-      <td>70</td>
-      <td>78</td>
-      <td>18.1</td>
-      <td>12</td>
-      <td>7041</td>
-      <td>60</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Adelphi University</td>
-      <td>Yes</td>
-      <td>2186</td>
-      <td>1924</td>
-      <td>512</td>
-      <td>16</td>
-      <td>29</td>
-      <td>2683</td>
-      <td>1227</td>
-      <td>12280</td>
-      <td>6450</td>
-      <td>750</td>
-      <td>1500</td>
-      <td>29</td>
-      <td>30</td>
-      <td>12.2</td>
-      <td>16</td>
-      <td>10527</td>
-      <td>56</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Adrian College</td>
-      <td>Yes</td>
-      <td>1428</td>
-      <td>1097</td>
-      <td>336</td>
-      <td>22</td>
-      <td>50</td>
-      <td>1036</td>
-      <td>99</td>
-      <td>11250</td>
-      <td>3750</td>
-      <td>400</td>
-      <td>1165</td>
-      <td>53</td>
-      <td>66</td>
-      <td>12.9</td>
-      <td>30</td>
-      <td>8735</td>
-      <td>54</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Agnes Scott College</td>
-      <td>Yes</td>
-      <td>417</td>
-      <td>349</td>
-      <td>137</td>
-      <td>60</td>
-      <td>89</td>
-      <td>510</td>
-      <td>63</td>
-      <td>12960</td>
-      <td>5450</td>
-      <td>450</td>
-      <td>875</td>
-      <td>92</td>
-      <td>97</td>
-      <td>7.7</td>
-      <td>37</td>
-      <td>19016</td>
-      <td>59</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Alaska Pacific University</td>
-      <td>Yes</td>
-      <td>193</td>
-      <td>146</td>
-      <td>55</td>
-      <td>16</td>
-      <td>44</td>
-      <td>249</td>
-      <td>869</td>
-      <td>7560</td>
-      <td>4120</td>
-      <td>800</td>
-      <td>1500</td>
-      <td>76</td>
-      <td>72</td>
-      <td>11.9</td>
-      <td>2</td>
-      <td>10922</td>
-      <td>15</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Private</th>
+<th data-quarto-table-cell-role="th">Apps</th>
+<th data-quarto-table-cell-role="th">Accept</th>
+<th data-quarto-table-cell-role="th">Enroll</th>
+<th data-quarto-table-cell-role="th">Top10perc</th>
+<th data-quarto-table-cell-role="th">Top25perc</th>
+<th data-quarto-table-cell-role="th">F.Undergrad</th>
+<th data-quarto-table-cell-role="th">P.Undergrad</th>
+<th data-quarto-table-cell-role="th">Outstate</th>
+<th data-quarto-table-cell-role="th">Room.Board</th>
+<th data-quarto-table-cell-role="th">Books</th>
+<th data-quarto-table-cell-role="th">Personal</th>
+<th data-quarto-table-cell-role="th">PhD</th>
+<th data-quarto-table-cell-role="th">Terminal</th>
+<th data-quarto-table-cell-role="th">S.F.Ratio</th>
+<th data-quarto-table-cell-role="th">perc.alumni</th>
+<th data-quarto-table-cell-role="th">Expend</th>
+<th data-quarto-table-cell-role="th">Grad.Rate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Abilene Christian University</td>
+<td>Yes</td>
+<td>1660</td>
+<td>1232</td>
+<td>721</td>
+<td>23</td>
+<td>52</td>
+<td>2885</td>
+<td>537</td>
+<td>7440</td>
+<td>3300</td>
+<td>450</td>
+<td>2200</td>
+<td>70</td>
+<td>78</td>
+<td>18.1</td>
+<td>12</td>
+<td>7041</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Adelphi University</td>
+<td>Yes</td>
+<td>2186</td>
+<td>1924</td>
+<td>512</td>
+<td>16</td>
+<td>29</td>
+<td>2683</td>
+<td>1227</td>
+<td>12280</td>
+<td>6450</td>
+<td>750</td>
+<td>1500</td>
+<td>29</td>
+<td>30</td>
+<td>12.2</td>
+<td>16</td>
+<td>10527</td>
+<td>56</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Adrian College</td>
+<td>Yes</td>
+<td>1428</td>
+<td>1097</td>
+<td>336</td>
+<td>22</td>
+<td>50</td>
+<td>1036</td>
+<td>99</td>
+<td>11250</td>
+<td>3750</td>
+<td>400</td>
+<td>1165</td>
+<td>53</td>
+<td>66</td>
+<td>12.9</td>
+<td>30</td>
+<td>8735</td>
+<td>54</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Agnes Scott College</td>
+<td>Yes</td>
+<td>417</td>
+<td>349</td>
+<td>137</td>
+<td>60</td>
+<td>89</td>
+<td>510</td>
+<td>63</td>
+<td>12960</td>
+<td>5450</td>
+<td>450</td>
+<td>875</td>
+<td>92</td>
+<td>97</td>
+<td>7.7</td>
+<td>37</td>
+<td>19016</td>
+<td>59</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Alaska Pacific University</td>
+<td>Yes</td>
+<td>193</td>
+<td>146</td>
+<td>55</td>
+<td>16</td>
+<td>44</td>
+<td>249</td>
+<td>869</td>
+<td>7560</td>
+<td>4120</td>
+<td>800</td>
+<td>1500</td>
+<td>76</td>
+<td>72</td>
+<td>11.9</td>
+<td>2</td>
+<td>10922</td>
+<td>15</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1254,153 +1207,154 @@ dtype: float64</code></pre>
 <span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>college[<span class="st">'Expend_bin'</span>] <span class="op">=</span> Binned_expend[<span class="dv">0</span>]</span>
 <span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>college.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="126">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Unnamed: 0</th>
-      <th>Private</th>
-      <th>Apps</th>
-      <th>Accept</th>
-      <th>Enroll</th>
-      <th>Top10perc</th>
-      <th>Top25perc</th>
-      <th>F.Undergrad</th>
-      <th>P.Undergrad</th>
-      <th>Outstate</th>
-      <th>Room.Board</th>
-      <th>Books</th>
-      <th>Personal</th>
-      <th>PhD</th>
-      <th>Terminal</th>
-      <th>S.F.Ratio</th>
-      <th>perc.alumni</th>
-      <th>Expend</th>
-      <th>Grad.Rate</th>
-      <th>Expend_bin</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Abilene Christian University</td>
-      <td>Yes</td>
-      <td>1660</td>
-      <td>1232</td>
-      <td>721</td>
-      <td>23</td>
-      <td>52</td>
-      <td>2885</td>
-      <td>537</td>
-      <td>7440</td>
-      <td>3300</td>
-      <td>450</td>
-      <td>2200</td>
-      <td>70</td>
-      <td>78</td>
-      <td>18.1</td>
-      <td>12</td>
-      <td>7041</td>
-      <td>60</td>
-      <td>(3132.953, 20868.333]</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Adelphi University</td>
-      <td>Yes</td>
-      <td>2186</td>
-      <td>1924</td>
-      <td>512</td>
-      <td>16</td>
-      <td>29</td>
-      <td>2683</td>
-      <td>1227</td>
-      <td>12280</td>
-      <td>6450</td>
-      <td>750</td>
-      <td>1500</td>
-      <td>29</td>
-      <td>30</td>
-      <td>12.2</td>
-      <td>16</td>
-      <td>10527</td>
-      <td>56</td>
-      <td>(3132.953, 20868.333]</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Adrian College</td>
-      <td>Yes</td>
-      <td>1428</td>
-      <td>1097</td>
-      <td>336</td>
-      <td>22</td>
-      <td>50</td>
-      <td>1036</td>
-      <td>99</td>
-      <td>11250</td>
-      <td>3750</td>
-      <td>400</td>
-      <td>1165</td>
-      <td>53</td>
-      <td>66</td>
-      <td>12.9</td>
-      <td>30</td>
-      <td>8735</td>
-      <td>54</td>
-      <td>(3132.953, 20868.333]</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Agnes Scott College</td>
-      <td>Yes</td>
-      <td>417</td>
-      <td>349</td>
-      <td>137</td>
-      <td>60</td>
-      <td>89</td>
-      <td>510</td>
-      <td>63</td>
-      <td>12960</td>
-      <td>5450</td>
-      <td>450</td>
-      <td>875</td>
-      <td>92</td>
-      <td>97</td>
-      <td>7.7</td>
-      <td>37</td>
-      <td>19016</td>
-      <td>59</td>
-      <td>(3132.953, 20868.333]</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Alaska Pacific University</td>
-      <td>Yes</td>
-      <td>193</td>
-      <td>146</td>
-      <td>55</td>
-      <td>16</td>
-      <td>44</td>
-      <td>249</td>
-      <td>869</td>
-      <td>7560</td>
-      <td>4120</td>
-      <td>800</td>
-      <td>1500</td>
-      <td>76</td>
-      <td>72</td>
-      <td>11.9</td>
-      <td>2</td>
-      <td>10922</td>
-      <td>15</td>
-      <td>(3132.953, 20868.333]</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Unnamed: 0</th>
+<th data-quarto-table-cell-role="th">Private</th>
+<th data-quarto-table-cell-role="th">Apps</th>
+<th data-quarto-table-cell-role="th">Accept</th>
+<th data-quarto-table-cell-role="th">Enroll</th>
+<th data-quarto-table-cell-role="th">Top10perc</th>
+<th data-quarto-table-cell-role="th">Top25perc</th>
+<th data-quarto-table-cell-role="th">F.Undergrad</th>
+<th data-quarto-table-cell-role="th">P.Undergrad</th>
+<th data-quarto-table-cell-role="th">Outstate</th>
+<th data-quarto-table-cell-role="th">Room.Board</th>
+<th data-quarto-table-cell-role="th">Books</th>
+<th data-quarto-table-cell-role="th">Personal</th>
+<th data-quarto-table-cell-role="th">PhD</th>
+<th data-quarto-table-cell-role="th">Terminal</th>
+<th data-quarto-table-cell-role="th">S.F.Ratio</th>
+<th data-quarto-table-cell-role="th">perc.alumni</th>
+<th data-quarto-table-cell-role="th">Expend</th>
+<th data-quarto-table-cell-role="th">Grad.Rate</th>
+<th data-quarto-table-cell-role="th">Expend_bin</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Abilene Christian University</td>
+<td>Yes</td>
+<td>1660</td>
+<td>1232</td>
+<td>721</td>
+<td>23</td>
+<td>52</td>
+<td>2885</td>
+<td>537</td>
+<td>7440</td>
+<td>3300</td>
+<td>450</td>
+<td>2200</td>
+<td>70</td>
+<td>78</td>
+<td>18.1</td>
+<td>12</td>
+<td>7041</td>
+<td>60</td>
+<td>(3132.953, 20868.333]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Adelphi University</td>
+<td>Yes</td>
+<td>2186</td>
+<td>1924</td>
+<td>512</td>
+<td>16</td>
+<td>29</td>
+<td>2683</td>
+<td>1227</td>
+<td>12280</td>
+<td>6450</td>
+<td>750</td>
+<td>1500</td>
+<td>29</td>
+<td>30</td>
+<td>12.2</td>
+<td>16</td>
+<td>10527</td>
+<td>56</td>
+<td>(3132.953, 20868.333]</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Adrian College</td>
+<td>Yes</td>
+<td>1428</td>
+<td>1097</td>
+<td>336</td>
+<td>22</td>
+<td>50</td>
+<td>1036</td>
+<td>99</td>
+<td>11250</td>
+<td>3750</td>
+<td>400</td>
+<td>1165</td>
+<td>53</td>
+<td>66</td>
+<td>12.9</td>
+<td>30</td>
+<td>8735</td>
+<td>54</td>
+<td>(3132.953, 20868.333]</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Agnes Scott College</td>
+<td>Yes</td>
+<td>417</td>
+<td>349</td>
+<td>137</td>
+<td>60</td>
+<td>89</td>
+<td>510</td>
+<td>63</td>
+<td>12960</td>
+<td>5450</td>
+<td>450</td>
+<td>875</td>
+<td>92</td>
+<td>97</td>
+<td>7.7</td>
+<td>37</td>
+<td>19016</td>
+<td>59</td>
+<td>(3132.953, 20868.333]</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Alaska Pacific University</td>
+<td>Yes</td>
+<td>193</td>
+<td>146</td>
+<td>55</td>
+<td>16</td>
+<td>44</td>
+<td>249</td>
+<td>869</td>
+<td>7560</td>
+<td>4120</td>
+<td>800</td>
+<td>1500</td>
+<td>76</td>
+<td>72</td>
+<td>11.9</td>
+<td>2</td>
+<td>10922</td>
+<td>15</td>
+<td>(3132.953, 20868.333]</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1575,51 +1529,52 @@ Name: Grad.Rate, dtype: float64</code></pre>
 <div class="cell" data-execution_count="98">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>dummy_Expend.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="98">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Low_expend</th>
-      <th>Med_expend</th>
-      <th>High_expend</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Low_expend</th>
+<th data-quarto-table-cell-role="th">Med_expend</th>
+<th data-quarto-table-cell-role="th">High_expend</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1840,8 +1795,8 @@ dtype: int64</code></pre>
 <p>People joining no club, or more than 4 clubs are outliers.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography" style="display: none">
-<div id="ref-rubin1976inference" class="csl-entry" role="doc-biblioentry">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-rubin1976inference" class="csl-entry" role="listitem">
 Rubin, Donald B. 1976. <span>“Inference and Missing Data.”</span> <em>Biometrika</em> 63 (3): 581–92.
 </div>
 </div>
@@ -1876,9 +1831,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1943,6 +1912,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

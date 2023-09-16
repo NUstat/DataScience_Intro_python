@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -120,13 +91,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -135,11 +108,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reading data.html">Exploratory data analysis</a></li><li class="breadcrumb-item"><a href="./Data visualization.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -147,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./NU_Stat_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -156,149 +134,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <a href="./">Introduction to Data Science with Python</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Quick overview: Python programming</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Quick overview: Python programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></a>
+  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></a>
+  <a href="./data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Exploratory data analysis</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  <a href="./Reading data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./NumPy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></a>
+  <a href="./NumPy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Pandas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></a>
+  <a href="./Pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></a>
+  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></a>
+  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></a>
+  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></a>
+  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./student_solutions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Alternative solutions by students</span></a>
+  <a href="./student_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Alternative solutions by students</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Assignments</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Assignment 1 (Reading data).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Assignment 1 (Reading data)</span></a>
+  <a href="./Datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Assignment 2 (NumPy).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assignment 2 (NumPy)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 3 (Pandas).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assignment 3 (Pandas)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 4 (Data Visualization).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Assignment 4 (Data Visualization)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 5 (Data cleaning and preparation).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Assignment 5 (Data cleaning &amp; preparation)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 6 (Data wrangling).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Assignment 6 (Data wrangling)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 7 (Data aggregation).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Assignment 7 (Data aggregation)</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -306,36 +255,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link active" data-scroll-target="#matplotlib"><span class="toc-section-number">6.1</span>  Matplotlib</a>
+  <li><a href="#matplotlib" id="toc-matplotlib" class="nav-link active" data-scroll-target="#matplotlib"><span class="header-section-number">6.1</span> Matplotlib</a>
   <ul>
-  <li><a href="#matplotlib-object-hierarchy" id="toc-matplotlib-object-hierarchy" class="nav-link" data-scroll-target="#matplotlib-object-hierarchy"><span class="toc-section-number">6.1.1</span>  Matplotlib: Object hierarchy</a></li>
-  <li><a href="#scatterplots-and-trendline-with-matplotlib" id="toc-scatterplots-and-trendline-with-matplotlib" class="nav-link" data-scroll-target="#scatterplots-and-trendline-with-matplotlib"><span class="toc-section-number">6.1.2</span>  Scatterplots and trendline with Matplotlib</a></li>
-  <li><a href="#subplots" id="toc-subplots" class="nav-link" data-scroll-target="#subplots"><span class="toc-section-number">6.1.3</span>  Subplots</a></li>
-  <li><a href="#practice-problem-1" id="toc-practice-problem-1" class="nav-link" data-scroll-target="#practice-problem-1"><span class="toc-section-number">6.1.4</span>  Practice problem 1</a></li>
-  <li><a href="#overlapping-plots-with-legend" id="toc-overlapping-plots-with-legend" class="nav-link" data-scroll-target="#overlapping-plots-with-legend"><span class="toc-section-number">6.1.5</span>  Overlapping plots with legend</a></li>
+  <li><a href="#matplotlib-object-hierarchy" id="toc-matplotlib-object-hierarchy" class="nav-link" data-scroll-target="#matplotlib-object-hierarchy"><span class="header-section-number">6.1.1</span> Matplotlib: Object hierarchy</a></li>
+  <li><a href="#scatterplots-and-trendline-with-matplotlib" id="toc-scatterplots-and-trendline-with-matplotlib" class="nav-link" data-scroll-target="#scatterplots-and-trendline-with-matplotlib"><span class="header-section-number">6.1.2</span> Scatterplots and trendline with Matplotlib</a></li>
+  <li><a href="#subplots" id="toc-subplots" class="nav-link" data-scroll-target="#subplots"><span class="header-section-number">6.1.3</span> Subplots</a></li>
+  <li><a href="#practice-problem-1" id="toc-practice-problem-1" class="nav-link" data-scroll-target="#practice-problem-1"><span class="header-section-number">6.1.4</span> Practice problem 1</a></li>
+  <li><a href="#overlapping-plots-with-legend" id="toc-overlapping-plots-with-legend" class="nav-link" data-scroll-target="#overlapping-plots-with-legend"><span class="header-section-number">6.1.5</span> Overlapping plots with legend</a></li>
   </ul></li>
-  <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"><span class="toc-section-number">6.2</span>  Pandas</a>
+  <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"><span class="header-section-number">6.2</span> Pandas</a>
   <ul>
-  <li><a href="#scatterplots-with-pandas" id="toc-scatterplots-with-pandas" class="nav-link" data-scroll-target="#scatterplots-with-pandas"><span class="toc-section-number">6.2.1</span>  Scatterplots with Pandas</a></li>
-  <li><a href="#lineplots-with-pandas" id="toc-lineplots-with-pandas" class="nav-link" data-scroll-target="#lineplots-with-pandas"><span class="toc-section-number">6.2.2</span>  Lineplots with Pandas</a></li>
-  <li><a href="#bar-plots-with-pandas" id="toc-bar-plots-with-pandas" class="nav-link" data-scroll-target="#bar-plots-with-pandas"><span class="toc-section-number">6.2.3</span>  Bar plots with Pandas</a></li>
+  <li><a href="#scatterplots-with-pandas" id="toc-scatterplots-with-pandas" class="nav-link" data-scroll-target="#scatterplots-with-pandas"><span class="header-section-number">6.2.1</span> Scatterplots with Pandas</a></li>
+  <li><a href="#lineplots-with-pandas" id="toc-lineplots-with-pandas" class="nav-link" data-scroll-target="#lineplots-with-pandas"><span class="header-section-number">6.2.2</span> Lineplots with Pandas</a></li>
+  <li><a href="#bar-plots-with-pandas" id="toc-bar-plots-with-pandas" class="nav-link" data-scroll-target="#bar-plots-with-pandas"><span class="header-section-number">6.2.3</span> Bar plots with Pandas</a></li>
   </ul></li>
-  <li><a href="#seaborn" id="toc-seaborn" class="nav-link" data-scroll-target="#seaborn"><span class="toc-section-number">6.3</span>  Seaborn</a>
+  <li><a href="#seaborn" id="toc-seaborn" class="nav-link" data-scroll-target="#seaborn"><span class="header-section-number">6.3</span> Seaborn</a>
   <ul>
-  <li><a href="#bar-plots-with-confidence-intervals-with-seaborn" id="toc-bar-plots-with-confidence-intervals-with-seaborn" class="nav-link" data-scroll-target="#bar-plots-with-confidence-intervals-with-seaborn"><span class="toc-section-number">6.3.1</span>  Bar plots with confidence intervals with Seaborn</a></li>
-  <li><a href="#facetgrid-multi-plot-grid-for-plotting-conditional-relationships" id="toc-facetgrid-multi-plot-grid-for-plotting-conditional-relationships" class="nav-link" data-scroll-target="#facetgrid-multi-plot-grid-for-plotting-conditional-relationships"><span class="toc-section-number">6.3.2</span>  Facetgrid: Multi-plot grid for plotting conditional relationships</a></li>
-  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">6.3.3</span>  Practice exercise 2</a></li>
-  <li><a href="#histogram-and-density-plots-with-seaborn" id="toc-histogram-and-density-plots-with-seaborn" class="nav-link" data-scroll-target="#histogram-and-density-plots-with-seaborn"><span class="toc-section-number">6.3.4</span>  Histogram and density plots with Seaborn</a></li>
-  <li><a href="#boxplots-with-seaborn" id="toc-boxplots-with-seaborn" class="nav-link" data-scroll-target="#boxplots-with-seaborn"><span class="toc-section-number">6.3.5</span>  Boxplots with Seaborn</a></li>
-  <li><a href="#scatterplots-with-seaborn" id="toc-scatterplots-with-seaborn" class="nav-link" data-scroll-target="#scatterplots-with-seaborn"><span class="toc-section-number">6.3.6</span>  Scatterplots with Seaborn</a></li>
-  <li><a href="#heatmaps-with-seaborn" id="toc-heatmaps-with-seaborn" class="nav-link" data-scroll-target="#heatmaps-with-seaborn"><span class="toc-section-number">6.3.7</span>  Heatmaps with Seaborn</a></li>
-  <li><a href="#pairplots-with-seaborn" id="toc-pairplots-with-seaborn" class="nav-link" data-scroll-target="#pairplots-with-seaborn"><span class="toc-section-number">6.3.8</span>  Pairplots with Seaborn</a></li>
+  <li><a href="#bar-plots-with-confidence-intervals-with-seaborn" id="toc-bar-plots-with-confidence-intervals-with-seaborn" class="nav-link" data-scroll-target="#bar-plots-with-confidence-intervals-with-seaborn"><span class="header-section-number">6.3.1</span> Bar plots with confidence intervals with Seaborn</a></li>
+  <li><a href="#facetgrid-multi-plot-grid-for-plotting-conditional-relationships" id="toc-facetgrid-multi-plot-grid-for-plotting-conditional-relationships" class="nav-link" data-scroll-target="#facetgrid-multi-plot-grid-for-plotting-conditional-relationships"><span class="header-section-number">6.3.2</span> Facetgrid: Multi-plot grid for plotting conditional relationships</a></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="header-section-number">6.3.3</span> Practice exercise 2</a></li>
+  <li><a href="#histogram-and-density-plots-with-seaborn" id="toc-histogram-and-density-plots-with-seaborn" class="nav-link" data-scroll-target="#histogram-and-density-plots-with-seaborn"><span class="header-section-number">6.3.4</span> Histogram and density plots with Seaborn</a></li>
+  <li><a href="#boxplots-with-seaborn" id="toc-boxplots-with-seaborn" class="nav-link" data-scroll-target="#boxplots-with-seaborn"><span class="header-section-number">6.3.5</span> Boxplots with Seaborn</a></li>
+  <li><a href="#scatterplots-with-seaborn" id="toc-scatterplots-with-seaborn" class="nav-link" data-scroll-target="#scatterplots-with-seaborn"><span class="header-section-number">6.3.6</span> Scatterplots with Seaborn</a></li>
+  <li><a href="#heatmaps-with-seaborn" id="toc-heatmaps-with-seaborn" class="nav-link" data-scroll-target="#heatmaps-with-seaborn"><span class="header-section-number">6.3.7</span> Heatmaps with Seaborn</a></li>
+  <li><a href="#pairplots-with-seaborn" id="toc-pairplots-with-seaborn" class="nav-link" data-scroll-target="#pairplots-with-seaborn"><span class="header-section-number">6.3.8</span> Pairplots with Seaborn</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -345,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></h1>
 </div>
 
 
@@ -392,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-hierarchy" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <img src="./Datasets/matplotlib.png" class="figure-img">
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.1: Matplotlib Object hierarchy</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;6.1: Matplotlib Object hierarchy</figcaption>
 </figure>
 </div>
 </div>
@@ -401,7 +351,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-anatomy" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <img src="./Datasets/anatomy.webp" width="675" class="figure-img">
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.2: Matplotlib anatomy of a figure</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;6.2: Matplotlib anatomy of a figure</figcaption>
 </figure>
 </div>
 </div>
@@ -414,69 +364,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gdp_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>country</th>
-      <th>continent</th>
-      <th>year</th>
-      <th>lifeExp</th>
-      <th>pop</th>
-      <th>gdpPercap</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>1952</td>
-      <td>28.801</td>
-      <td>8425333</td>
-      <td>779.445314</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>1957</td>
-      <td>30.332</td>
-      <td>9240934</td>
-      <td>820.853030</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>1962</td>
-      <td>31.997</td>
-      <td>10267083</td>
-      <td>853.100710</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>1967</td>
-      <td>34.020</td>
-      <td>11537966</td>
-      <td>836.197138</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Afghanistan</td>
-      <td>Asia</td>
-      <td>1972</td>
-      <td>36.088</td>
-      <td>13079460</td>
-      <td>739.981106</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">continent</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">lifeExp</th>
+<th data-quarto-table-cell-role="th">pop</th>
+<th data-quarto-table-cell-role="th">gdpPercap</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>1952</td>
+<td>28.801</td>
+<td>8425333</td>
+<td>779.445314</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>1957</td>
+<td>30.332</td>
+<td>9240934</td>
+<td>820.853030</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>1962</td>
+<td>31.997</td>
+<td>10267083</td>
+<td>853.100710</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>1967</td>
+<td>34.020</td>
+<td>11537966</td>
+<td>836.197138</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Afghanistan</td>
+<td>Asia</td>
+<td>1972</td>
+<td>36.088</td>
+<td>13079460</td>
+<td>739.981106</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -708,71 +659,72 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita <span class="op">=</span> gdp_data.pivot_table(index <span class="op">=</span> <span class="st">'year'</span>, columns <span class="op">=</span> <span class="st">'continent'</span>,values <span class="op">=</span> <span class="st">'gdpPercap'</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>mean_gdp_per_capita.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="86">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>continent</th>
-      <th>Africa</th>
-      <th>Americas</th>
-      <th>Asia</th>
-      <th>Europe</th>
-      <th>Oceania</th>
-    </tr>
-    <tr>
-      <th>year</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1952</th>
-      <td>1252.572466</td>
-      <td>4079.062552</td>
-      <td>5195.484004</td>
-      <td>5661.057435</td>
-      <td>10298.085650</td>
-    </tr>
-    <tr>
-      <th>1957</th>
-      <td>1385.236062</td>
-      <td>4616.043733</td>
-      <td>5787.732940</td>
-      <td>6963.012816</td>
-      <td>11598.522455</td>
-    </tr>
-    <tr>
-      <th>1962</th>
-      <td>1598.078825</td>
-      <td>4901.541870</td>
-      <td>5729.369625</td>
-      <td>8365.486814</td>
-      <td>12696.452430</td>
-    </tr>
-    <tr>
-      <th>1967</th>
-      <td>2050.363801</td>
-      <td>5668.253496</td>
-      <td>5971.173374</td>
-      <td>10143.823757</td>
-      <td>14495.021790</td>
-    </tr>
-    <tr>
-      <th>1972</th>
-      <td>2339.615674</td>
-      <td>6491.334139</td>
-      <td>8187.468699</td>
-      <td>12479.575246</td>
-      <td>16417.333380</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">continent</th>
+<th data-quarto-table-cell-role="th">Africa</th>
+<th data-quarto-table-cell-role="th">Americas</th>
+<th data-quarto-table-cell-role="th">Asia</th>
+<th data-quarto-table-cell-role="th">Europe</th>
+<th data-quarto-table-cell-role="th">Oceania</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1952</td>
+<td>1252.572466</td>
+<td>4079.062552</td>
+<td>5195.484004</td>
+<td>5661.057435</td>
+<td>10298.085650</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1957</td>
+<td>1385.236062</td>
+<td>4616.043733</td>
+<td>5787.732940</td>
+<td>6963.012816</td>
+<td>11598.522455</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1962</td>
+<td>1598.078825</td>
+<td>4901.541870</td>
+<td>5729.369625</td>
+<td>8365.486814</td>
+<td>12696.452430</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1967</td>
+<td>2050.363801</td>
+<td>5668.253496</td>
+<td>5971.173374</td>
+<td>10143.823757</td>
+<td>14495.021790</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1972</td>
+<td>2339.615674</td>
+<td>6491.334139</td>
+<td>8187.468699</td>
+<td>12479.575246</td>
+<td>16417.333380</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -798,93 +750,94 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/party_nyc.csv'</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>nyc_party_complaints.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Created Date</th>
-      <th>Closed Date</th>
-      <th>Location Type</th>
-      <th>Incident Zip</th>
-      <th>City</th>
-      <th>Borough</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Hour_of_the_day</th>
-      <th>Month_of_the_year</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>12/31/2015 0:01</td>
-      <td>12/31/2015 3:48</td>
-      <td>Store/Commercial</td>
-      <td>10034.0</td>
-      <td>NEW YORK</td>
-      <td>MANHATTAN</td>
-      <td>40.866183</td>
-      <td>-73.918930</td>
-      <td>0</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>12/31/2015 0:02</td>
-      <td>12/31/2015 4:36</td>
-      <td>Store/Commercial</td>
-      <td>10040.0</td>
-      <td>NEW YORK</td>
-      <td>MANHATTAN</td>
-      <td>40.859324</td>
-      <td>-73.931237</td>
-      <td>0</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>12/31/2015 0:03</td>
-      <td>12/31/2015 0:40</td>
-      <td>Residential Building/House</td>
-      <td>10026.0</td>
-      <td>NEW YORK</td>
-      <td>MANHATTAN</td>
-      <td>40.799415</td>
-      <td>-73.953371</td>
-      <td>0</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>12/31/2015 0:03</td>
-      <td>12/31/2015 1:53</td>
-      <td>Residential Building/House</td>
-      <td>11231.0</td>
-      <td>BROOKLYN</td>
-      <td>BROOKLYN</td>
-      <td>40.678285</td>
-      <td>-73.994668</td>
-      <td>0</td>
-      <td>12</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>12/31/2015 0:05</td>
-      <td>12/31/2015 3:49</td>
-      <td>Residential Building/House</td>
-      <td>10033.0</td>
-      <td>NEW YORK</td>
-      <td>MANHATTAN</td>
-      <td>40.850304</td>
-      <td>-73.938516</td>
-      <td>0</td>
-      <td>12</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Created Date</th>
+<th data-quarto-table-cell-role="th">Closed Date</th>
+<th data-quarto-table-cell-role="th">Location Type</th>
+<th data-quarto-table-cell-role="th">Incident Zip</th>
+<th data-quarto-table-cell-role="th">City</th>
+<th data-quarto-table-cell-role="th">Borough</th>
+<th data-quarto-table-cell-role="th">Latitude</th>
+<th data-quarto-table-cell-role="th">Longitude</th>
+<th data-quarto-table-cell-role="th">Hour_of_the_day</th>
+<th data-quarto-table-cell-role="th">Month_of_the_year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>12/31/2015 0:01</td>
+<td>12/31/2015 3:48</td>
+<td>Store/Commercial</td>
+<td>10034.0</td>
+<td>NEW YORK</td>
+<td>MANHATTAN</td>
+<td>40.866183</td>
+<td>-73.918930</td>
+<td>0</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>12/31/2015 0:02</td>
+<td>12/31/2015 4:36</td>
+<td>Store/Commercial</td>
+<td>10040.0</td>
+<td>NEW YORK</td>
+<td>MANHATTAN</td>
+<td>40.859324</td>
+<td>-73.931237</td>
+<td>0</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>12/31/2015 0:03</td>
+<td>12/31/2015 0:40</td>
+<td>Residential Building/House</td>
+<td>10026.0</td>
+<td>NEW YORK</td>
+<td>MANHATTAN</td>
+<td>40.799415</td>
+<td>-73.953371</td>
+<td>0</td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>12/31/2015 0:03</td>
+<td>12/31/2015 1:53</td>
+<td>Residential Building/House</td>
+<td>11231.0</td>
+<td>BROOKLYN</td>
+<td>BROOKLYN</td>
+<td>40.678285</td>
+<td>-73.994668</td>
+<td>0</td>
+<td>12</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>12/31/2015 0:05</td>
+<td>12/31/2015 3:49</td>
+<td>Residential Building/House</td>
+<td>10033.0</td>
+<td>NEW YORK</td>
+<td>MANHATTAN</td>
+<td>40.850304</td>
+<td>-73.938516</td>
+<td>0</td>
+<td>12</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -916,78 +869,79 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>complaints_location<span class="op">=</span>pd.crosstab(nyc_party_complaints.Month_of_the_year, nyc_party_complaints[<span class="st">'Location Type'</span>])</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>complaints_location.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="104">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>Location Type</th>
-      <th>Club/Bar/Restaurant</th>
-      <th>House of Worship</th>
-      <th>Park/Playground</th>
-      <th>Residential Building/House</th>
-      <th>Store/Commercial</th>
-      <th>Street/Sidewalk</th>
-    </tr>
-    <tr>
-      <th>Month_of_the_year</th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1</th>
-      <td>748</td>
-      <td>24</td>
-      <td>17</td>
-      <td>9393</td>
-      <td>1157</td>
-      <td>832</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>570</td>
-      <td>29</td>
-      <td>16</td>
-      <td>8383</td>
-      <td>1197</td>
-      <td>782</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>747</td>
-      <td>39</td>
-      <td>90</td>
-      <td>9689</td>
-      <td>1480</td>
-      <td>1835</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>848</td>
-      <td>53</td>
-      <td>129</td>
-      <td>11984</td>
-      <td>1761</td>
-      <td>2943</td>
-    </tr>
-    <tr>
-      <th>5</th>
-      <td>2091</td>
-      <td>72</td>
-      <td>322</td>
-      <td>15676</td>
-      <td>1941</td>
-      <td>5090</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Location Type</th>
+<th data-quarto-table-cell-role="th">Club/Bar/Restaurant</th>
+<th data-quarto-table-cell-role="th">House of Worship</th>
+<th data-quarto-table-cell-role="th">Park/Playground</th>
+<th data-quarto-table-cell-role="th">Residential Building/House</th>
+<th data-quarto-table-cell-role="th">Store/Commercial</th>
+<th data-quarto-table-cell-role="th">Street/Sidewalk</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">Month_of_the_year</th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">1</td>
+<td>748</td>
+<td>24</td>
+<td>17</td>
+<td>9393</td>
+<td>1157</td>
+<td>832</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">2</td>
+<td>570</td>
+<td>29</td>
+<td>16</td>
+<td>8383</td>
+<td>1197</td>
+<td>782</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">3</td>
+<td>747</td>
+<td>39</td>
+<td>90</td>
+<td>9689</td>
+<td>1480</td>
+<td>1835</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">4</td>
+<td>848</td>
+<td>53</td>
+<td>129</td>
+<td>11984</td>
+<td>1761</td>
+<td>2943</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">5</td>
+<td>2091</td>
+<td>72</td>
+<td>322</td>
+<td>15676</td>
+<td>1941</td>
+<td>5090</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1000,7 +954,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="fig-stacked" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="Data visualization_files/figure-html/fig-stacked-output-1.png" class="img-fluid figure-img"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;6.3: Stacked bar plot with Pandas</figcaption><p></p>
+<figcaption class="figure-caption">Figure&nbsp;6.3: Stacked bar plot with Pandas</figcaption>
 </figure>
 </div>
 </div>
@@ -1034,63 +988,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped <span class="op">=</span> nyc_party_complaints[[<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Latitude'</span>,<span class="st">'Hour_of_the_day'</span>]].groupby([<span class="st">'Location Type'</span>,<span class="st">'Borough'</span>,<span class="st">'Month_of_the_year'</span>,<span class="st">'Hour_of_the_day'</span>])[<span class="st">'Latitude'</span>].agg([(<span class="st">'complaints'</span>,<span class="st">'count'</span>)]).reset_index()</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>nyc_complaints_grouped.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Location Type</th>
-      <th>Borough</th>
-      <th>Month_of_the_year</th>
-      <th>Hour_of_the_day</th>
-      <th>complaints</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Club/Bar/Restaurant</td>
-      <td>BRONX</td>
-      <td>1</td>
-      <td>0</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Club/Bar/Restaurant</td>
-      <td>BRONX</td>
-      <td>1</td>
-      <td>1</td>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Club/Bar/Restaurant</td>
-      <td>BRONX</td>
-      <td>1</td>
-      <td>2</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Club/Bar/Restaurant</td>
-      <td>BRONX</td>
-      <td>1</td>
-      <td>3</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Club/Bar/Restaurant</td>
-      <td>BRONX</td>
-      <td>1</td>
-      <td>4</td>
-      <td>3</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Location Type</th>
+<th data-quarto-table-cell-role="th">Borough</th>
+<th data-quarto-table-cell-role="th">Month_of_the_year</th>
+<th data-quarto-table-cell-role="th">Hour_of_the_day</th>
+<th data-quarto-table-cell-role="th">complaints</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Club/Bar/Restaurant</td>
+<td>BRONX</td>
+<td>1</td>
+<td>0</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Club/Bar/Restaurant</td>
+<td>BRONX</td>
+<td>1</td>
+<td>1</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Club/Bar/Restaurant</td>
+<td>BRONX</td>
+<td>1</td>
+<td>2</td>
+<td>6</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Club/Bar/Restaurant</td>
+<td>BRONX</td>
+<td>1</td>
+<td>3</td>
+<td>6</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Club/Bar/Restaurant</td>
+<td>BRONX</td>
+<td>1</td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1116,195 +1071,190 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.lineplot,<span class="st">'Month_of_the_year'</span>,<span class="st">'complaints'</span>)</span>
 <span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Month of the year"</span>, <span class="st">"Complaints"</span>)</span>
 <span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="146">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231afeafac0&gt;</code></pre>
-</div>
 <div class="cell-output cell-output-display">
-<p><img src="Data visualization_files/figure-html/cell-28-output-2.png" class="img-fluid"></p>
+<p><img src="Data visualization_files/figure-html/cell-28-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we get a couple of interesting insights: 1. For Queens and Staten Island, most of the complaints occur in summer, for Manhattan and Bronx it is mostly during late spring, while Brooklyn has a spike of complaints in early Fall. 2. In most of the Boroughs, the majority complaints always occur in residential areas. However, for Manhattan, the number of street/sidewalk complaints in the summer are comparable to those from residential areas.</p>
 <p>We have visualized 4 variables simultaneously in the above plot.</p>
 <p>Let us consider another example, where we will visualize the weather in a few cities of Australia. The file <em>Australia_weather.csv</em> consists of weather details of Sydney, Canberra, and Melbourne from 2007 to 2017.</p>
 <div class="cell" data-execution_count="148">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>aussie_weather <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Australia_weather.csv'</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>aussie_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>aussie_weather <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Australia_weather.csv'</span>)</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>aussie_weather.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="148">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Date</th>
-      <th>Location</th>
-      <th>MinTemp</th>
-      <th>MaxTemp</th>
-      <th>Rainfall</th>
-      <th>Evaporation</th>
-      <th>Sunshine</th>
-      <th>WindGustDir</th>
-      <th>WindGustSpeed</th>
-      <th>WindDir9am</th>
-      <th>...</th>
-      <th>Humidity3pm</th>
-      <th>Pressure9am</th>
-      <th>Pressure3pm</th>
-      <th>Cloud9am</th>
-      <th>Cloud3pm</th>
-      <th>Temp9am</th>
-      <th>Temp3pm</th>
-      <th>RainToday</th>
-      <th>RISK_MM</th>
-      <th>RainTomorrow</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>10/20/2010</td>
-      <td>Sydney</td>
-      <td>12.9</td>
-      <td>20.3</td>
-      <td>0.2</td>
-      <td>3.0</td>
-      <td>10.9</td>
-      <td>ENE</td>
-      <td>37</td>
-      <td>W</td>
-      <td>...</td>
-      <td>57</td>
-      <td>1028.8</td>
-      <td>1025.6</td>
-      <td>3</td>
-      <td>1</td>
-      <td>16.9</td>
-      <td>19.8</td>
-      <td>No</td>
-      <td>0.0</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>10/21/2010</td>
-      <td>Sydney</td>
-      <td>13.3</td>
-      <td>21.5</td>
-      <td>0.0</td>
-      <td>6.6</td>
-      <td>11.0</td>
-      <td>ENE</td>
-      <td>41</td>
-      <td>W</td>
-      <td>...</td>
-      <td>58</td>
-      <td>1025.9</td>
-      <td>1022.4</td>
-      <td>2</td>
-      <td>5</td>
-      <td>17.6</td>
-      <td>21.3</td>
-      <td>No</td>
-      <td>0.0</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>10/22/2010</td>
-      <td>Sydney</td>
-      <td>15.3</td>
-      <td>23.0</td>
-      <td>0.0</td>
-      <td>5.6</td>
-      <td>11.0</td>
-      <td>NNE</td>
-      <td>41</td>
-      <td>W</td>
-      <td>...</td>
-      <td>63</td>
-      <td>1021.4</td>
-      <td>1017.8</td>
-      <td>1</td>
-      <td>4</td>
-      <td>19.0</td>
-      <td>22.2</td>
-      <td>No</td>
-      <td>0.0</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>10/26/2010</td>
-      <td>Sydney</td>
-      <td>12.9</td>
-      <td>26.7</td>
-      <td>0.2</td>
-      <td>3.8</td>
-      <td>12.1</td>
-      <td>NE</td>
-      <td>33</td>
-      <td>W</td>
-      <td>...</td>
-      <td>56</td>
-      <td>1018.0</td>
-      <td>1015.0</td>
-      <td>1</td>
-      <td>5</td>
-      <td>17.8</td>
-      <td>22.5</td>
-      <td>No</td>
-      <td>0.0</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>10/27/2010</td>
-      <td>Sydney</td>
-      <td>14.8</td>
-      <td>23.8</td>
-      <td>0.0</td>
-      <td>6.8</td>
-      <td>9.6</td>
-      <td>SSE</td>
-      <td>54</td>
-      <td>SSE</td>
-      <td>...</td>
-      <td>69</td>
-      <td>1016.0</td>
-      <td>1014.7</td>
-      <td>2</td>
-      <td>7</td>
-      <td>20.2</td>
-      <td>20.6</td>
-      <td>No</td>
-      <td>1.8</td>
-      <td>Yes</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Date</th>
+<th data-quarto-table-cell-role="th">Location</th>
+<th data-quarto-table-cell-role="th">MinTemp</th>
+<th data-quarto-table-cell-role="th">MaxTemp</th>
+<th data-quarto-table-cell-role="th">Rainfall</th>
+<th data-quarto-table-cell-role="th">Evaporation</th>
+<th data-quarto-table-cell-role="th">Sunshine</th>
+<th data-quarto-table-cell-role="th">WindGustDir</th>
+<th data-quarto-table-cell-role="th">WindGustSpeed</th>
+<th data-quarto-table-cell-role="th">WindDir9am</th>
+<th data-quarto-table-cell-role="th">...</th>
+<th data-quarto-table-cell-role="th">Humidity3pm</th>
+<th data-quarto-table-cell-role="th">Pressure9am</th>
+<th data-quarto-table-cell-role="th">Pressure3pm</th>
+<th data-quarto-table-cell-role="th">Cloud9am</th>
+<th data-quarto-table-cell-role="th">Cloud3pm</th>
+<th data-quarto-table-cell-role="th">Temp9am</th>
+<th data-quarto-table-cell-role="th">Temp3pm</th>
+<th data-quarto-table-cell-role="th">RainToday</th>
+<th data-quarto-table-cell-role="th">RISK_MM</th>
+<th data-quarto-table-cell-role="th">RainTomorrow</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>10/20/2010</td>
+<td>Sydney</td>
+<td>12.9</td>
+<td>20.3</td>
+<td>0.2</td>
+<td>3.0</td>
+<td>10.9</td>
+<td>ENE</td>
+<td>37</td>
+<td>W</td>
+<td>...</td>
+<td>57</td>
+<td>1028.8</td>
+<td>1025.6</td>
+<td>3</td>
+<td>1</td>
+<td>16.9</td>
+<td>19.8</td>
+<td>No</td>
+<td>0.0</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>10/21/2010</td>
+<td>Sydney</td>
+<td>13.3</td>
+<td>21.5</td>
+<td>0.0</td>
+<td>6.6</td>
+<td>11.0</td>
+<td>ENE</td>
+<td>41</td>
+<td>W</td>
+<td>...</td>
+<td>58</td>
+<td>1025.9</td>
+<td>1022.4</td>
+<td>2</td>
+<td>5</td>
+<td>17.6</td>
+<td>21.3</td>
+<td>No</td>
+<td>0.0</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>10/22/2010</td>
+<td>Sydney</td>
+<td>15.3</td>
+<td>23.0</td>
+<td>0.0</td>
+<td>5.6</td>
+<td>11.0</td>
+<td>NNE</td>
+<td>41</td>
+<td>W</td>
+<td>...</td>
+<td>63</td>
+<td>1021.4</td>
+<td>1017.8</td>
+<td>1</td>
+<td>4</td>
+<td>19.0</td>
+<td>22.2</td>
+<td>No</td>
+<td>0.0</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>10/26/2010</td>
+<td>Sydney</td>
+<td>12.9</td>
+<td>26.7</td>
+<td>0.2</td>
+<td>3.8</td>
+<td>12.1</td>
+<td>NE</td>
+<td>33</td>
+<td>W</td>
+<td>...</td>
+<td>56</td>
+<td>1018.0</td>
+<td>1015.0</td>
+<td>1</td>
+<td>5</td>
+<td>17.8</td>
+<td>22.5</td>
+<td>No</td>
+<td>0.0</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>10/27/2010</td>
+<td>Sydney</td>
+<td>14.8</td>
+<td>23.8</td>
+<td>0.0</td>
+<td>6.8</td>
+<td>9.6</td>
+<td>SSE</td>
+<td>54</td>
+<td>SSE</td>
+<td>...</td>
+<td>69</td>
+<td>1016.0</td>
+<td>1014.7</td>
+<td>2</td>
+<td>7</td>
+<td>20.2</td>
+<td>20.6</td>
+<td>No</td>
+<td>1.8</td>
+<td>Yes</td>
+</tr>
+</tbody>
 </table>
+
 <p>5 rows × 24 columns</p>
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="149">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>aussie_weather.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>aussie_weather.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="149">
 <pre><code>(4666, 24)</code></pre>
 </div>
 </div>
 <p><strong>Q:</strong> Visualize if it rains the next day (<em>RainTomorrow</em>) given whether it has rained today (<em>RainToday</em>), the current day’s humidity (<em>Humidity9am</em>), maximum temperature (<em>MaxTemp</em>) and the city (<em>Location</em>).</p>
 <div class="cell" data-execution_count="156">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(aussie_weather,col<span class="op">=</span><span class="st">'Location'</span>,row<span class="op">=</span><span class="st">'RainToday'</span>,height <span class="op">=</span> <span class="dv">4</span>,aspect <span class="op">=</span> <span class="dv">1</span>,hue <span class="op">=</span> <span class="st">'RainTomorrow'</span>)</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(plt.scatter,<span class="st">'MaxTemp'</span>,<span class="st">'Humidity9am'</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Humidity at 9 am"</span>)</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>, row_template<span class="op">=</span><span class="st">"Rain today: </span><span class="sc">{row_name}</span><span class="st">"</span>)</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="156">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x231b57e51c0&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(aussie_weather,col<span class="op">=</span><span class="st">'Location'</span>,row<span class="op">=</span><span class="st">'RainToday'</span>,height <span class="op">=</span> <span class="dv">4</span>,aspect <span class="op">=</span> <span class="dv">1</span>,hue <span class="op">=</span> <span class="st">'RainTomorrow'</span>)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(plt.scatter,<span class="st">'MaxTemp'</span>,<span class="st">'Humidity9am'</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Humidity at 9 am"</span>)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(col_template<span class="op">=</span><span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>, row_template<span class="op">=</span><span class="st">"Rain today: </span><span class="sc">{row_name}</span><span class="st">"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data visualization_files/figure-html/cell-31-output-2.png" class="img-fluid"></p>
+<p><img src="Data visualization_files/figure-html/cell-31-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Humidity tends to be higher when it is going to rain the next day. However, the correlation is much more pronounced for Syndey. In case it is not raining on the current day, humidity seems to be slightly negatively correlated with temperature.</p>
@@ -1316,12 +1266,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Make a visualization that compares the mean <code>expected_marriage_age</code> of introverts and extroverts <em>(use the variable <code>introvert_extrovert</code>)</em>. What insights do you obtain?</li>
 </ol>
 <div class="cell" data-execution_count="31">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">9</span>,<span class="dv">6</span>)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>sns.barplot(x <span class="op">=</span> <span class="st">'introvert_extrovert'</span> ,y <span class="op">=</span> <span class="st">'expected_marriage_age'</span>, data <span class="op">=</span> survey_data)</span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Personality'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Expected marriage age'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(fontsize<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>plt.yticks(fontsize<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">9</span>,<span class="dv">6</span>)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>sns.barplot(x <span class="op">=</span> <span class="st">'introvert_extrovert'</span> ,y <span class="op">=</span> <span class="st">'expected_marriage_age'</span>, data <span class="op">=</span> survey_data)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Personality'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Expected marriage age'</span>, fontsize<span class="op">=</span><span class="dv">16</span>)<span class="op">;</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>plt.xticks(fontsize<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>plt.yticks(fontsize<span class="op">=</span><span class="dv">15</span>)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <p><img src="Data visualization_files/figure-html/cell-32-output-1.png" class="img-fluid"></p>
 </div>
@@ -1331,16 +1281,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they believe in love in first sight <em>(variable name: <code>love_first_sight</code>)</em>? Update the previous visualization to answer the question.</li>
 </ol>
 <div class="cell" data-execution_count="34">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(survey_data,col<span class="op">=</span><span class="st">'love_first_sight'</span>,height <span class="op">=</span> <span class="dv">5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.barplot, <span class="st">'introvert_extrovert'</span> , <span class="st">'expected_marriage_age'</span> ,order <span class="op">=</span> [<span class="st">'Introvert'</span>, <span class="st">'Extrovert'</span>])</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Personality"</span>, <span class="st">"Expected marriage age"</span>)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="34">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x20c14eed760&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(survey_data,col<span class="op">=</span><span class="st">'love_first_sight'</span>,height <span class="op">=</span> <span class="dv">5</span>,aspect <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.barplot, <span class="st">'introvert_extrovert'</span> , <span class="st">'expected_marriage_age'</span> ,order <span class="op">=</span> [<span class="st">'Introvert'</span>, <span class="st">'Extrovert'</span>])</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Personality"</span>, <span class="st">"Expected marriage age"</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data visualization_files/figure-html/cell-33-output-2.png" class="img-fluid"></p>
+<p><img src="Data visualization_files/figure-html/cell-33-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Yes, only those introverts who do not believe in love in first sight have a higher mean value of expected marriage age.</p>
@@ -1348,16 +1295,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>In addition to <code>love_first_sight</code>, does the mean <code>expected_marriage_age</code> of introverts and extroverts depend on whether they are a procrastinator <em>(variable name: <code>procrastinator</code>)</em>? Update the previous visualization to answer the question.</li>
 </ol>
 <div class="cell" data-execution_count="35">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(survey_data,col<span class="op">=</span><span class="st">'love_first_sight'</span>,height <span class="op">=</span> <span class="dv">5</span>,aspect <span class="op">=</span> <span class="dv">1</span>, row <span class="op">=</span> <span class="st">'procrastinator'</span>)</span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.barplot, <span class="st">'introvert_extrovert'</span> , <span class="st">'expected_marriage_age'</span> ,order <span class="op">=</span> [<span class="st">'Introvert'</span>, <span class="st">'Extrovert'</span>])</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Personality"</span>, <span class="st">"Expected marriage age"</span>)</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="35">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x20c1578cb50&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.25</span>)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.FacetGrid(survey_data,col<span class="op">=</span><span class="st">'love_first_sight'</span>,height <span class="op">=</span> <span class="dv">5</span>,aspect <span class="op">=</span> <span class="dv">1</span>, row <span class="op">=</span> <span class="st">'procrastinator'</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>a.<span class="bu">map</span>(sns.barplot, <span class="st">'introvert_extrovert'</span> , <span class="st">'expected_marriage_age'</span> ,order <span class="op">=</span> [<span class="st">'Introvert'</span>, <span class="st">'Extrovert'</span>])</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Personality"</span>, <span class="st">"Expected marriage age"</span>)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>a.add_legend()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data visualization_files/figure-html/cell-34-output-2.png" class="img-fluid"></p>
+<p><img src="Data visualization_files/figure-html/cell-34-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>Procrastination does not seem to make much of a difference in the expected marriage age. The mean expected marriage age of procrastinating introverts seems to be only a little higher than the non-procrastinating introverts.</p>
@@ -1367,69 +1311,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Yes, we don’t know the number of observations corresponding to each bar of the bar plots. If there are a very few observations in any of the categories, then the trend shown by that category may not be reliable. For example, in the data (<code>survey_data</code>), there are only 8 introverts who are not procrastinators and believe in love in first sight, while there are 52 introverts who are procrastinators and do not believe in love in first sight.</p>
 <p>If there are more introverts in the class of STAT303-1 who are not procrastinators and believe in love at first sight (may be they didn’t fill the survey), then they are under-represented in the sample of people who filled the survey, and the trend observed for them may be less reliable than that for other people.</p>
 <div class="cell" data-execution_count="42">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Code for finding the number of people in each category - you will understand this code later in chapter 9 on data aggregation</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>survey_data[[<span class="st">'introvert_extrovert'</span>,<span class="st">'love_first_sight'</span>,<span class="st">'procrastinator'</span>,<span class="st">'Timestamp'</span>]].groupby([<span class="st">'introvert_extrovert'</span>,</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                                                                                  <span class="st">'love_first_sight'</span>,<span class="st">'procrastinator'</span>]).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Code for finding the number of people in each category - you will understand this code later in chapter 9 on data aggregation</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>survey_data[[<span class="st">'introvert_extrovert'</span>,<span class="st">'love_first_sight'</span>,<span class="st">'procrastinator'</span>,<span class="st">'Timestamp'</span>]].groupby([<span class="st">'introvert_extrovert'</span>,</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>                                                                                  <span class="st">'love_first_sight'</span>,<span class="st">'procrastinator'</span>]).count()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="42">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th>Timestamp</th>
-    </tr>
-    <tr>
-      <th>introvert_extrovert</th>
-      <th>love_first_sight</th>
-      <th>procrastinator</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th rowspan="4" valign="top">Extrovert</th>
-      <th rowspan="2" valign="top">0</th>
-      <th>0</th>
-      <td>19</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>35</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">1</th>
-      <th>0</th>
-      <td>10</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>15</td>
-    </tr>
-    <tr>
-      <th rowspan="4" valign="top">Introvert</th>
-      <th rowspan="2" valign="top">0</th>
-      <th>0</th>
-      <td>32</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>52</td>
-    </tr>
-    <tr>
-      <th rowspan="2" valign="top">1</th>
-      <th>0</th>
-      <td>8</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>21</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Timestamp</th>
+</tr>
+<tr class="odd">
+<th data-quarto-table-cell-role="th">introvert_extrovert</th>
+<th data-quarto-table-cell-role="th">love_first_sight</th>
+<th data-quarto-table-cell-role="th">procrastinator</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Extrovert</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">0</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>19</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>35</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>10</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td rowspan="4" data-quarto-table-cell-role="th" data-valign="top">Introvert</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">0</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>32</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>52</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">1</td>
+<td data-quarto-table-cell-role="th">0</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>21</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1442,34 +1387,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can use the Seaborn <a href="https://seaborn.pydata.org/generated/seaborn.histplot.html">displot()</a> function to make both kinds of plots - histogram or density plot.</p>
 <p><strong>Example:</strong> Make a histogram showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
 <div class="cell" data-execution_count="188">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="188">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x2319fbeabb0&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale <span class="op">=</span> <span class="fl">1.4</span>)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'hist'</span>,col<span class="op">=</span><span class="st">'Location'</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>a.set_axis_labels(<span class="st">"Maximum temperature"</span>, <span class="st">"Count"</span>)</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>a.set_titles(<span class="st">"</span><span class="sc">{col_name}</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data visualization_files/figure-html/cell-36-output-2.png" class="img-fluid"></p>
+<p><img src="Data visualization_files/figure-html/cell-36-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>From the above plot, we observe that: 1. Melbourne has a right skewed distribution with the median temperature being smaller than the mean. 2. Canberra seems to have the highest variation in the temperature.</p>
 <p><strong>Example:</strong> Make a density plot showing the distributions of maximum temperature in Sydney, Canberra and Melbourne.</p>
 <div class="cell" data-execution_count="262">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="262">
-<pre><code>&lt;seaborn.axisgrid.FacetGrid at 0x1d0e963f8e0&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>sns.displot(data <span class="op">=</span> aussie_weather, x <span class="op">=</span> <span class="st">'MaxTemp'</span>,kind <span class="op">=</span> <span class="st">'kde'</span>, col <span class="op">=</span> <span class="st">'Location'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data visualization_files/figure-html/cell-37-output-2.png" class="img-fluid"></p>
+<p><img src="Data visualization_files/figure-html/cell-37-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p><strong>Example:</strong> Show the distributions of the maximum and minimum temperatures in a single plot.</p>
 <div class="cell" data-execution_count="158">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MaxTemp"</span>, color<span class="op">=</span><span class="st">"skyblue"</span>, label<span class="op">=</span><span class="st">"MaxTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>aussie_weather, x<span class="op">=</span><span class="st">"MinTemp"</span>, color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"MinTemp"</span>, kde<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Temperature'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="158">
 <pre><code>Text(0.5, 0, 'Temperature')</code></pre>
 </div>
@@ -1489,7 +1428,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><strong>Example:</strong> Make a boxplot comparing the distributions of maximum temperatures of Sydney, Canberra and Melbourne, given whether or not it has rained on the day.</p>
 <div class="cell" data-execution_count="159">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>sns.boxplot(data <span class="op">=</span> aussie_weather,x <span class="op">=</span> <span class="st">'Location'</span>, y <span class="op">=</span> <span class="st">'MaxTemp'</span>,hue <span class="op">=</span> <span class="st">'RainToday'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="159">
 <pre><code>&lt;AxesSubplot:xlabel='Location', ylabel='MaxTemp'&gt;</code></pre>
 </div>
@@ -1504,13 +1443,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3 data-number="6.3.6" class="anchored" data-anchor-id="scatterplots-with-seaborn"><span class="header-section-number">6.3.6</span> Scatterplots with Seaborn</h3>
 <p>We made scatterplots with Matplotlib and Pandas earlier. With Seaborn, the <code>regplot()</code> function allows us to plot a trendline over the scatterplot, along with a 95% confidence interval for the trendline. Note that this is much easier than making a trendline with Matplotlib.</p>
 <div class="cell" data-scrolled="true" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot and trendline with seaborn</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">9</span>,<span class="dv">6</span>)</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.5</span>)</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.regplot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, data <span class="op">=</span> gdp_data,scatter_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"orange"</span>}, line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"blue"</span>})</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
-<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'GDP per capita'</span>)</span>
-<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Life expectancy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Scatterplot and trendline with seaborn</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>plt.rcParams[<span class="st">"figure.figsize"</span>] <span class="op">=</span> (<span class="dv">9</span>,<span class="dv">6</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(font_scale<span class="op">=</span><span class="fl">1.5</span>)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>ax<span class="op">=</span>sns.regplot(x <span class="op">=</span> <span class="st">'gdpPercap'</span>, y <span class="op">=</span> <span class="st">'lifeExp'</span>, data <span class="op">=</span> gdp_data,scatter_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"orange"</span>}, line_kws<span class="op">=</span>{<span class="st">"color"</span>: <span class="st">"blue"</span>})</span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>ax.xaxis.set_major_formatter(<span class="st">'${x:,.0f}'</span>)</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'GDP per capita'</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Life expectancy'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>Text(0, 0.5, 'Life expectancy')</code></pre>
 </div>
@@ -1525,8 +1464,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Heatmaps help us visualize the correlation between all variable-pairs.</p>
 <p>Below is a heatmap visualizing the pairwise correlation of all the numerical variables of <code>survey_data_clean</code>. With a heatmap it becomes easier to see strongly correlated variables.</p>
 <div class="cell" data-execution_count="173">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>sns.<span class="bu">set</span>(rc<span class="op">=</span>{<span class="st">'figure.figsize'</span>:(<span class="dv">12</span>,<span class="dv">10</span>)})</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>sns.heatmap(survey_data.corr())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="173">
 <pre><code>&lt;AxesSubplot:&gt;</code></pre>
 </div>
@@ -1545,13 +1484,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>Purpose:</strong> Pairplots are used to visualize the association between all variable-pairs in the data. In other words, pairplots simultaneously visualize the scatterplots between all variable-pairs.</p>
 <p>Let us visualize the pair-wise association of nutrition variables in the starbucks drinks data.</p>
 <div class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>&lt;seaborn.axisgrid.PairGrid at 0x162423db9a0&gt;</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>starbucks_drinks <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/starbucks-menu-nutrition-drinks.csv'</span>)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>sns.pairplot(starbucks_drinks)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="Data visualization_files/figure-html/cell-43-output-2.png" class="img-fluid"></p>
+<p><img src="Data visualization_files/figure-html/cell-43-output-1.png" class="img-fluid"></p>
 </div>
 </div>
 <p>In the above pairplot, note that:</p>
@@ -1599,9 +1535,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1666,6 +1616,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {

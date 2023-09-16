@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.335">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -17,9 +17,10 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -46,43 +47,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -120,13 +91,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 </head>
@@ -135,11 +108,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reading data.html">Exploratory data analysis</a></li><li class="breadcrumb-item"><a href="./NumPy.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -147,7 +125,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
       <img src="./NU_Stat_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
@@ -156,149 +134,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <a href="./">Introduction to Data Science with Python</a> 
     </div>
       </div>
-      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">Preface</a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Quick overview: Python programming</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Quick overview: Python programming</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></a>
+  <a href="./Introduction to Python and Jupyter Notebooks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Python and Jupyter Notebooks</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./data_structures.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></a>
+  <a href="./data_structures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Exploratory data analysis</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Exploratory data analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Reading data.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a>
+  <a href="./Reading data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./NumPy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></a>
+  <a href="./NumPy.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Pandas.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></a>
+  <a href="./Pandas.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Pandas</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></a>
+  <a href="./Data visualization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Data visualization</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></a>
+  <a href="./Data cleaning and preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Data cleaning and preparation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></a>
+  <a href="./Data wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Data wrangling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></a>
+  <a href="./Data aggregation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Data aggregation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./student_solutions.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Alternative solutions by students</span></a>
+  <a href="./student_solutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Alternative solutions by students</span></span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Assignments</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Assignment 1 (Reading data).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Assignment 1 (Reading data)</span></a>
+  <a href="./Datasets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Assignment 2 (NumPy).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Assignment 2 (NumPy)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 3 (Pandas).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Assignment 3 (Pandas)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 4 (Data Visualization).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Assignment 4 (Data Visualization)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 5 (Data cleaning and preparation).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Assignment 5 (Data cleaning &amp; preparation)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 6 (Data wrangling).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Assignment 6 (Data wrangling)</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment 7 (Data aggregation).html" class="sidebar-item-text sidebar-link"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Assignment 7 (Data aggregation)</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Appendices</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Datasets.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">References</a>
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
@@ -306,41 +255,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#why-do-we-need-numpy-arrays" id="toc-why-do-we-need-numpy-arrays" class="nav-link active" data-scroll-target="#why-do-we-need-numpy-arrays"><span class="toc-section-number">4.1</span>  Why do we need NumPy arrays?</a>
+  <li><a href="#why-do-we-need-numpy-arrays" id="toc-why-do-we-need-numpy-arrays" class="nav-link active" data-scroll-target="#why-do-we-need-numpy-arrays"><span class="header-section-number">4.1</span> Why do we need NumPy arrays?</a>
   <ul>
-  <li><a href="#numpy-arrays-are-memory-efficient" id="toc-numpy-arrays-are-memory-efficient" class="nav-link" data-scroll-target="#numpy-arrays-are-memory-efficient"><span class="toc-section-number">4.1.1</span>  Numpy arrays are memory efficient</a></li>
-  <li><a href="#numpy-arrays-are-fast" id="toc-numpy-arrays-are-fast" class="nav-link" data-scroll-target="#numpy-arrays-are-fast"><span class="toc-section-number">4.1.2</span>  NumPy arrays are fast</a></li>
+  <li><a href="#numpy-arrays-are-memory-efficient" id="toc-numpy-arrays-are-memory-efficient" class="nav-link" data-scroll-target="#numpy-arrays-are-memory-efficient"><span class="header-section-number">4.1.1</span> Numpy arrays are memory efficient</a></li>
+  <li><a href="#numpy-arrays-are-fast" id="toc-numpy-arrays-are-fast" class="nav-link" data-scroll-target="#numpy-arrays-are-fast"><span class="header-section-number">4.1.2</span> NumPy arrays are fast</a></li>
   </ul></li>
-  <li><a href="#numpy-array-basic-attributes" id="toc-numpy-array-basic-attributes" class="nav-link" data-scroll-target="#numpy-array-basic-attributes"><span class="toc-section-number">4.2</span>  NumPy array: Basic attributes</a>
+  <li><a href="#numpy-array-basic-attributes" id="toc-numpy-array-basic-attributes" class="nav-link" data-scroll-target="#numpy-array-basic-attributes"><span class="header-section-number">4.2</span> NumPy array: Basic attributes</a>
   <ul>
-  <li><a href="#ndim" id="toc-ndim" class="nav-link" data-scroll-target="#ndim"><span class="toc-section-number">4.2.1</span>  <code>ndim</code></a></li>
-  <li><a href="#shape" id="toc-shape" class="nav-link" data-scroll-target="#shape"><span class="toc-section-number">4.2.2</span>  <code>shape</code></a></li>
-  <li><a href="#size" id="toc-size" class="nav-link" data-scroll-target="#size"><span class="toc-section-number">4.2.3</span>  <code>size</code></a></li>
-  <li><a href="#dtype" id="toc-dtype" class="nav-link" data-scroll-target="#dtype"><span class="toc-section-number">4.2.4</span>  <code>dtype</code></a></li>
-  <li><a href="#t" id="toc-t" class="nav-link" data-scroll-target="#t"><span class="toc-section-number">4.2.5</span>  <code>T</code></a></li>
+  <li><a href="#ndim" id="toc-ndim" class="nav-link" data-scroll-target="#ndim"><span class="header-section-number">4.2.1</span> <code>ndim</code></a></li>
+  <li><a href="#shape" id="toc-shape" class="nav-link" data-scroll-target="#shape"><span class="header-section-number">4.2.2</span> <code>shape</code></a></li>
+  <li><a href="#size" id="toc-size" class="nav-link" data-scroll-target="#size"><span class="header-section-number">4.2.3</span> <code>size</code></a></li>
+  <li><a href="#dtype" id="toc-dtype" class="nav-link" data-scroll-target="#dtype"><span class="header-section-number">4.2.4</span> <code>dtype</code></a></li>
+  <li><a href="#t" id="toc-t" class="nav-link" data-scroll-target="#t"><span class="header-section-number">4.2.5</span> <code>T</code></a></li>
   </ul></li>
-  <li><a href="#arithmetic-operations" id="toc-arithmetic-operations" class="nav-link" data-scroll-target="#arithmetic-operations"><span class="toc-section-number">4.3</span>  Arithmetic operations</a></li>
-  <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="toc-section-number">4.4</span>  Broadcasting</a></li>
-  <li><a href="#comparison" id="toc-comparison" class="nav-link" data-scroll-target="#comparison"><span class="toc-section-number">4.5</span>  Comparison</a></li>
-  <li><a href="#concatenating-arrays" id="toc-concatenating-arrays" class="nav-link" data-scroll-target="#concatenating-arrays"><span class="toc-section-number">4.6</span>  Concatenating arrays</a></li>
-  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="toc-section-number">4.7</span>  Practice exercise 1</a>
+  <li><a href="#arithmetic-operations" id="toc-arithmetic-operations" class="nav-link" data-scroll-target="#arithmetic-operations"><span class="header-section-number">4.3</span> Arithmetic operations</a></li>
+  <li><a href="#broadcasting" id="toc-broadcasting" class="nav-link" data-scroll-target="#broadcasting"><span class="header-section-number">4.4</span> Broadcasting</a></li>
+  <li><a href="#comparison" id="toc-comparison" class="nav-link" data-scroll-target="#comparison"><span class="header-section-number">4.5</span> Comparison</a></li>
+  <li><a href="#concatenating-arrays" id="toc-concatenating-arrays" class="nav-link" data-scroll-target="#concatenating-arrays"><span class="header-section-number">4.6</span> Concatenating arrays</a></li>
+  <li><a href="#practice-exercise-1" id="toc-practice-exercise-1" class="nav-link" data-scroll-target="#practice-exercise-1"><span class="header-section-number">4.7</span> Practice exercise 1</a>
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="toc-section-number">4.7.0.1</span>  </a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="toc-section-number">4.7.0.2</span>  </a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">4.7.0.1</span> </a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"><span class="header-section-number">4.7.0.2</span> </a></li>
   </ul></li>
-  <li><a href="#vectorized-computation-with-numpy" id="toc-vectorized-computation-with-numpy" class="nav-link" data-scroll-target="#vectorized-computation-with-numpy"><span class="toc-section-number">4.8</span>  Vectorized computation with NumPy</a>
+  <li><a href="#vectorized-computation-with-numpy" id="toc-vectorized-computation-with-numpy" class="nav-link" data-scroll-target="#vectorized-computation-with-numpy"><span class="header-section-number">4.8</span> Vectorized computation with NumPy</a>
   <ul>
-  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="toc-section-number">4.8.1</span>  Practice exercise 2</a></li>
+  <li><a href="#practice-exercise-2" id="toc-practice-exercise-2" class="nav-link" data-scroll-target="#practice-exercise-2"><span class="header-section-number">4.8.1</span> Practice exercise 2</a></li>
   </ul></li>
-  <li><a href="#pseudorandom-number-generation" id="toc-pseudorandom-number-generation" class="nav-link" data-scroll-target="#pseudorandom-number-generation"><span class="toc-section-number">4.9</span>  Pseudorandom number generation</a>
+  <li><a href="#pseudorandom-number-generation" id="toc-pseudorandom-number-generation" class="nav-link" data-scroll-target="#pseudorandom-number-generation"><span class="header-section-number">4.9</span> Pseudorandom number generation</a>
   <ul>
-  <li><a href="#practice-exercise-3" id="toc-practice-exercise-3" class="nav-link" data-scroll-target="#practice-exercise-3"><span class="toc-section-number">4.9.1</span>  Practice exercise 3</a></li>
+  <li><a href="#practice-exercise-3" id="toc-practice-exercise-3" class="nav-link" data-scroll-target="#practice-exercise-3"><span class="header-section-number">4.9.1</span> Practice exercise 3</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -350,7 +300,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></h1>
 </div>
 
 
@@ -952,92 +902,94 @@ Coordinates of the top 10 cities closest to US are:
 <div class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>food_qty</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="33">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Person</th>
-      <th>roll</th>
-      <th>bun</th>
-      <th>cake</th>
-      <th>bread</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Ben</td>
-      <td>6</td>
-      <td>5</td>
-      <td>3</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Barbara</td>
-      <td>3</td>
-      <td>6</td>
-      <td>2</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>Beth</td>
-      <td>3</td>
-      <td>4</td>
-      <td>3</td>
-      <td>1</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Person</th>
+<th data-quarto-table-cell-role="th">roll</th>
+<th data-quarto-table-cell-role="th">bun</th>
+<th data-quarto-table-cell-role="th">cake</th>
+<th data-quarto-table-cell-role="th">bread</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Ben</td>
+<td>6</td>
+<td>5</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Barbara</td>
+<td>3</td>
+<td>6</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Beth</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
 <div class="cell" data-execution_count="34">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>price</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="34">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Item</th>
-      <th>Target</th>
-      <th>Kroger</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>roll</td>
-      <td>1.5</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>bun</td>
-      <td>2.0</td>
-      <td>2.5</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>cake</td>
-      <td>5.0</td>
-      <td>4.5</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>bread</td>
-      <td>16.0</td>
-      <td>17.0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Item</th>
+<th data-quarto-table-cell-role="th">Target</th>
+<th data-quarto-table-cell-role="th">Kroger</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>roll</td>
+<td>1.5</td>
+<td>1.0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>bun</td>
+<td>2.0</td>
+<td>2.5</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>cake</td>
+<td>5.0</td>
+<td>4.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>bread</td>
+<td>16.0</td>
+<td>17.0</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1098,33 +1050,34 @@ dtype: float64</code></pre>
 <span id="cb107-6"><a href="#cb107-6" aria-hidden="true" tabindex="-1"></a>            store_expense.iloc[j,i] <span class="op">+=</span> food_qty.iloc[i,k<span class="op">+</span><span class="dv">1</span>]<span class="op">*</span>price.iloc[k,j<span class="op">+</span><span class="dv">1</span>]</span>
 <span id="cb107-7"><a href="#cb107-7" aria-hidden="true" tabindex="-1"></a>store_expense</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="40">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th>Person</th>
-      <th>Ben</th>
-      <th>Barbara</th>
-      <th>Beth</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Target</th>
-      <td>50.0</td>
-      <td>58.5</td>
-      <td>43.5</td>
-    </tr>
-    <tr>
-      <th>Kroger</th>
-      <td>49.0</td>
-      <td>61.0</td>
-      <td>43.5</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Person</th>
+<th data-quarto-table-cell-role="th">Ben</th>
+<th data-quarto-table-cell-role="th">Barbara</th>
+<th data-quarto-table-cell-role="th">Beth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">Target</td>
+<td>50.0</td>
+<td>58.5</td>
+<td>43.5</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Kroger</td>
+<td>49.0</td>
+<td>61.0</td>
+<td>43.5</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1155,105 +1108,106 @@ Note that, with each layer of complication, the number of for loops keep increas
 <span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movies_cleaned.csv'</span>)</span>
 <span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>Title</th>
-      <th>IMDB Rating</th>
-      <th>Rotten Tomatoes Rating</th>
-      <th>Running Time min</th>
-      <th>Release Date</th>
-      <th>US Gross</th>
-      <th>Worldwide Gross</th>
-      <th>Production Budget</th>
-      <th>comedy</th>
-      <th>Action</th>
-      <th>drama</th>
-      <th>horror</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>Broken Arrow</td>
-      <td>5.8</td>
-      <td>55</td>
-      <td>108</td>
-      <td>Feb 09 1996</td>
-      <td>70645997</td>
-      <td>148345997</td>
-      <td>65000000</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>Brazil</td>
-      <td>8.0</td>
-      <td>98</td>
-      <td>136</td>
-      <td>Dec 18 1985</td>
-      <td>9929135</td>
-      <td>9929135</td>
-      <td>15000000</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>The Cable Guy</td>
-      <td>5.8</td>
-      <td>52</td>
-      <td>95</td>
-      <td>Jun 14 1996</td>
-      <td>60240295</td>
-      <td>102825796</td>
-      <td>47000000</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>Chain Reaction</td>
-      <td>5.2</td>
-      <td>13</td>
-      <td>106</td>
-      <td>Aug 02 1996</td>
-      <td>21226204</td>
-      <td>60209334</td>
-      <td>55000000</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>Clash of the Titans</td>
-      <td>5.9</td>
-      <td>65</td>
-      <td>108</td>
-      <td>Jun 12 1981</td>
-      <td>30000000</td>
-      <td>30000000</td>
-      <td>15000000</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Title</th>
+<th data-quarto-table-cell-role="th">IMDB Rating</th>
+<th data-quarto-table-cell-role="th">Rotten Tomatoes Rating</th>
+<th data-quarto-table-cell-role="th">Running Time min</th>
+<th data-quarto-table-cell-role="th">Release Date</th>
+<th data-quarto-table-cell-role="th">US Gross</th>
+<th data-quarto-table-cell-role="th">Worldwide Gross</th>
+<th data-quarto-table-cell-role="th">Production Budget</th>
+<th data-quarto-table-cell-role="th">comedy</th>
+<th data-quarto-table-cell-role="th">Action</th>
+<th data-quarto-table-cell-role="th">drama</th>
+<th data-quarto-table-cell-role="th">horror</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>Broken Arrow</td>
+<td>5.8</td>
+<td>55</td>
+<td>108</td>
+<td>Feb 09 1996</td>
+<td>70645997</td>
+<td>148345997</td>
+<td>65000000</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>Brazil</td>
+<td>8.0</td>
+<td>98</td>
+<td>136</td>
+<td>Dec 18 1985</td>
+<td>9929135</td>
+<td>9929135</td>
+<td>15000000</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>The Cable Guy</td>
+<td>5.8</td>
+<td>52</td>
+<td>95</td>
+<td>Jun 14 1996</td>
+<td>60240295</td>
+<td>102825796</td>
+<td>47000000</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>Chain Reaction</td>
+<td>5.2</td>
+<td>13</td>
+<td>106</td>
+<td>Aug 02 1996</td>
+<td>21226204</td>
+<td>60209334</td>
+<td>55000000</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>Clash of the Titans</td>
+<td>5.9</td>
+<td>65</td>
+<td>108</td>
+<td>Jun 12 1981</td>
+<td>30000000</td>
+<td>30000000</td>
+<td>15000000</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1337,36 +1291,37 @@ Note that, with each layer of complication, the number of for loops keep increas
 <div class="sourceCode cell-code" id="cb126"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>pd.DataFrame(ratings_sum_genre<span class="op">/</span>movies_count_genre,columns <span class="op">=</span> [<span class="st">'comedy'</span>,<span class="st">'Action'</span>,<span class="st">'drama'</span>,<span class="st">'horror'</span>],</span>
 <span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>             index <span class="op">=</span> [<span class="st">'IMDB Rating'</span>,<span class="st">'Rotten Tomatoes Rating'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
-
 <div>
 
-<table class="dataframe table table-sm table-striped">
-  <thead>
-    <tr>
-      <th></th>
-      <th>comedy</th>
-      <th>Action</th>
-      <th>drama</th>
-      <th>horror</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>IMDB Rating</th>
-      <td>5.912583</td>
-      <td>6.337500</td>
-      <td>6.821339</td>
-      <td>6.144156</td>
-    </tr>
-    <tr>
-      <th>Rotten Tomatoes Rating</th>
-      <td>46.751656</td>
-      <td>51.988636</td>
-      <td>60.815900</td>
-      <td>42.422078</td>
-    </tr>
-  </tbody>
+
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">comedy</th>
+<th data-quarto-table-cell-role="th">Action</th>
+<th data-quarto-table-cell-role="th">drama</th>
+<th data-quarto-table-cell-role="th">horror</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">IMDB Rating</td>
+<td>5.912583</td>
+<td>6.337500</td>
+<td>6.821339</td>
+<td>6.144156</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">Rotten Tomatoes Rating</td>
+<td>46.751656</td>
+<td>51.988636</td>
+<td>60.815900</td>
+<td>42.422078</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1511,9 +1466,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1578,6 +1547,92 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
   const findCites = (el) => {
     const parentEl = el.parentElement;
     if (parentEl) {
