@@ -27,6 +27,15 @@ book:
         - Data wrangling.ipynb
         - Data aggregation.ipynb
         - student_solutions.ipynb
+    - part: 'Assignments' 
+      chapters:
+        - Assignment 1 (Reading data).ipynb
+        - Assignment 2 (NumPy).ipynb
+        - Assignment 3 (Pandas).ipynb
+        - Assignment 4 (Data Visualization).ipynb
+        - Assignment 5 (Data cleaning and preparation).ipynb
+        - Assignment 6 (Data wrangling).ipynb
+        - Assignment 7 (Data aggregation).ipynb
   appendices: 
     - Datasets.ipynb
     - references.qmd
