@@ -288,15 +288,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#user-defined-functions" id="toc-user-defined-functions" class="nav-link" data-scroll-target="#user-defined-functions"><span class="header-section-number">1.3.6</span> User-defined functions</a>
   <ul class="collapse">
   <li><a href="#creating-and-using-functions" id="toc-creating-and-using-functions" class="nav-link" data-scroll-target="#creating-and-using-functions"><span class="header-section-number">1.3.6.1</span> Creating and using functions</a></li>
-  </ul></li>
-  <li><a href="#variable-scope-local-and-global-variables" id="toc-variable-scope-local-and-global-variables" class="nav-link" data-scroll-target="#variable-scope-local-and-global-variables"><span class="header-section-number">1.3.7</span> Variable scope: Local and global Variables</a>
-  <ul class="collapse">
-  <li><a href="#local-variable" id="toc-local-variable" class="nav-link" data-scroll-target="#local-variable"><span class="header-section-number">1.3.7.1</span> Local variable</a></li>
-  <li><a href="#global-variable" id="toc-global-variable" class="nav-link" data-scroll-target="#global-variable"><span class="header-section-number">1.3.7.2</span> Global variable</a></li>
-  </ul></li>
-  <li><a href="#named-arguments" id="toc-named-arguments" class="nav-link" data-scroll-target="#named-arguments"><span class="header-section-number">1.3.8</span> Named arguments</a>
-  <ul class="collapse">
-  <li><a href="#optional-arguments" id="toc-optional-arguments" class="nav-link" data-scroll-target="#optional-arguments"><span class="header-section-number">1.3.8.1</span> Optional Arguments</a></li>
+  <li><a href="#variable-scope-local-and-global-variables" id="toc-variable-scope-local-and-global-variables" class="nav-link" data-scroll-target="#variable-scope-local-and-global-variables"><span class="header-section-number">1.3.6.2</span> Variable scope: Local and global Variables</a></li>
+  <li><a href="#named-arguments" id="toc-named-arguments" class="nav-link" data-scroll-target="#named-arguments"><span class="header-section-number">1.3.6.3</span> Named arguments</a></li>
+  <li><a href="#optional-arguments" id="toc-optional-arguments" class="nav-link" data-scroll-target="#optional-arguments"><span class="header-section-number">1.3.6.4</span> Optional Arguments</a></li>
+  <li><a href="#args-and-kwargs" id="toc-args-and-kwargs" class="nav-link" data-scroll-target="#args-and-kwargs"><span class="header-section-number">1.3.6.5</span> *args and **kwargs</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -768,12 +763,9 @@ How are you?</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="variable-scope-local-and-global-variables" class="level3" data-number="1.3.7">
-<h3 data-number="1.3.7" class="anchored" data-anchor-id="variable-scope-local-and-global-variables"><span class="header-section-number">1.3.7</span> Variable scope: Local and global Variables</h3>
-<section id="local-variable" class="level4" data-number="1.3.7.1">
-<h4 data-number="1.3.7.1" class="anchored" data-anchor-id="local-variable"><span class="header-section-number">1.3.7.1</span> Local variable</h4>
-<p>When we declare variables inside a function, these variables will have a local scope (within the function). We cannot access them outside the function. These types of variables are called local variables. For example,</p>
+<section id="variable-scope-local-and-global-variables" class="level4" data-number="1.3.6.2">
+<h4 data-number="1.3.6.2" class="anchored" data-anchor-id="variable-scope-local-and-global-variables"><span class="header-section-number">1.3.6.2</span> Variable scope: Local and global Variables</h4>
+<p><strong>Local variable:</strong> When we declare variables inside a function, these variables will have a local scope (within the function). We cannot access them outside the function. These types of variables are called local variables. For example,</p>
 <div class="cell" data-scrolled="true" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(): </span>
 <span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>    message <span class="op">=</span> <span class="st">'Hello'</span>  <span class="co"># local variable</span></span>
@@ -790,10 +782,7 @@ How are you?</code></pre>
 </div>
 </div>
 <p>As <code>message</code> was defined within the function <code>greet()</code>, it is local to the function, and cannot be called outside the function.</p>
-</section>
-<section id="global-variable" class="level4" data-number="1.3.7.2">
-<h4 data-number="1.3.7.2" class="anchored" data-anchor-id="global-variable"><span class="header-section-number">1.3.7.2</span> Global variable</h4>
-<p>Aa variable declared outside of the function or in global scope is known as a global variable. This means that a global variable can be accessed inside or outside of the function.</p>
+<p><strong>Global variable:</strong> Aa variable declared outside of the function or in global scope is known as a global variable. This means that a global variable can be accessed inside or outside of the function.</p>
 <p>Let’s see an example of how a global variable is created.</p>
 <div class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">'Hello'</span>  <span class="co"># declare global variable</span></span>
@@ -809,9 +798,8 @@ Global Hello</code></pre>
 </div>
 </div>
 </section>
-</section>
-<section id="named-arguments" class="level3" data-number="1.3.8">
-<h3 data-number="1.3.8" class="anchored" data-anchor-id="named-arguments"><span class="header-section-number">1.3.8</span> Named arguments</h3>
+<section id="named-arguments" class="level4" data-number="1.3.6.3">
+<h4 data-number="1.3.6.3" class="anchored" data-anchor-id="named-arguments"><span class="header-section-number">1.3.6.3</span> Named arguments</h4>
 <p>Invoking a function with many arguments can often get confusing and is prone to human errors. Python provides the option of invoking functions with <em>named</em> arguments for better clarity. You can also split function invocation into multiple lines.</p>
 <div class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loan_emi(amount, duration, rate, down_payment<span class="op">=</span><span class="dv">0</span>):</span>
@@ -833,8 +821,9 @@ Global Hello</code></pre>
 <pre><code>14567.19753389219</code></pre>
 </div>
 </div>
-<section id="optional-arguments" class="level4" data-number="1.3.8.1">
-<h4 data-number="1.3.8.1" class="anchored" data-anchor-id="optional-arguments"><span class="header-section-number">1.3.8.1</span> Optional Arguments</h4>
+</section>
+<section id="optional-arguments" class="level4" data-number="1.3.6.4">
+<h4 data-number="1.3.6.4" class="anchored" data-anchor-id="optional-arguments"><span class="header-section-number">1.3.6.4</span> Optional Arguments</h4>
 <p>Functions with optional arguments offer more flexibility in how you can use them. You can call the function with or without the argument, and if there is no argument in the function call, then a default value is used.</p>
 <div class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>emi2 <span class="op">=</span> loan_emi(</span>
@@ -845,6 +834,26 @@ Global Hello</code></pre>
 <span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>emi2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="29">
 <pre><code>19119.4467632335</code></pre>
+</div>
+</div>
+</section>
+<section id="args-and-kwargs" class="level4" data-number="1.3.6.5">
+<h4 data-number="1.3.6.5" class="anchored" data-anchor-id="args-and-kwargs"><span class="header-section-number">1.3.6.5</span> *args and **kwargs</h4>
+<p>We can pass a variable number of arguments to a function using special symbols. There are two special symbols:</p>
+<p><img src="https://miro.medium.com/v2/resize:fit:689/1*qON1tnv1i7hSfs9vtBBQ8g.png" width="500"></p>
+<p>Special Symbols Used for passing arguments: 1. *args (Non-Keyword Arguments) 2. *<em>kwargs (Keyword Arguments) &gt; Note: “We use the “wildcard” or “</em>” notation like this – *args OR **kwargs – as our function’s argument when we have doubts about the number of arguments we should pass in a function.”</p>
+<div class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> myFun(<span class="op">*</span>args,<span class="op">**</span>kwargs):</span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"args: "</span>, args)</span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"kwargs: "</span>, kwargs)</span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Now we can use both *args ,**kwargs</span></span>
+<span id="cb91-7"><a href="#cb91-7" aria-hidden="true" tabindex="-1"></a><span class="co"># to pass arguments to this function :</span></span>
+<span id="cb91-8"><a href="#cb91-8" aria-hidden="true" tabindex="-1"></a>myFun(<span class="st">'John'</span>,<span class="dv">22</span>,<span class="st">'cs'</span>,name<span class="op">=</span><span class="st">"John"</span>,age<span class="op">=</span><span class="dv">22</span>,major<span class="op">=</span><span class="st">"cs"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>args:  ('John', 22, 'cs')
+kwargs:  {'name': 'John', 'age': 22, 'major': 'cs'}</code></pre>
 </div>
 </div>
 
