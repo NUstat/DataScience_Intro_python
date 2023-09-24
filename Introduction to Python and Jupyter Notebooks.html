@@ -278,13 +278,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#assigning-multiple-variable-names" id="toc-assigning-multiple-variable-names" class="nav-link" data-scroll-target="#assigning-multiple-variable-names"><span class="header-section-number">1.3.2.2</span> Assigning multiple variable names</a></li>
   <li><a href="#rules-for-varianle-names" id="toc-rules-for-varianle-names" class="nav-link" data-scroll-target="#rules-for-varianle-names"><span class="header-section-number">1.3.2.3</span> Rules for varianle names</a></li>
   </ul></li>
-  <li><a href="#importing-libraries" id="toc-importing-libraries" class="nav-link" data-scroll-target="#importing-libraries"><span class="header-section-number">1.3.3</span> Importing libraries</a></li>
-  <li><a href="#built-in-objects" id="toc-built-in-objects" class="nav-link" data-scroll-target="#built-in-objects"><span class="header-section-number">1.3.4</span> Built-in objects</a>
+  <li><a href="#built-in-objects" id="toc-built-in-objects" class="nav-link" data-scroll-target="#built-in-objects"><span class="header-section-number">1.3.3</span> Built-in objects</a>
   <ul class="collapse">
-  <li><a href="#built-in-data-types" id="toc-built-in-data-types" class="nav-link" data-scroll-target="#built-in-data-types"><span class="header-section-number">1.3.4.1</span> Built-in data types</a></li>
-  <li><a href="#built-in-modules-and-functions" id="toc-built-in-modules-and-functions" class="nav-link" data-scroll-target="#built-in-modules-and-functions"><span class="header-section-number">1.3.4.2</span> Built-in modules and functions</a></li>
+  <li><a href="#built-in-data-types" id="toc-built-in-data-types" class="nav-link" data-scroll-target="#built-in-data-types"><span class="header-section-number">1.3.3.1</span> Built-in data types</a></li>
+  <li><a href="#built-in-modules-and-functions" id="toc-built-in-modules-and-functions" class="nav-link" data-scroll-target="#built-in-modules-and-functions"><span class="header-section-number">1.3.3.2</span> Built-in modules and functions</a></li>
   </ul></li>
+  <li><a href="#importing-libraries" id="toc-importing-libraries" class="nav-link" data-scroll-target="#importing-libraries"><span class="header-section-number">1.3.4</span> Importing libraries</a></li>
   <li><a href="#control-flow" id="toc-control-flow" class="nav-link" data-scroll-target="#control-flow"><span class="header-section-number">1.3.5</span> Control flow</a></li>
+  <li><a href="#user-defined-functions" id="toc-user-defined-functions" class="nav-link" data-scroll-target="#user-defined-functions"><span class="header-section-number">1.3.6</span> User-defined functions</a>
+  <ul class="collapse">
+  <li><a href="#creating-and-using-functions" id="toc-creating-and-using-functions" class="nav-link" data-scroll-target="#creating-and-using-functions"><span class="header-section-number">1.3.6.1</span> Creating and using functions</a></li>
+  </ul></li>
+  <li><a href="#variable-scope-local-and-global-variables" id="toc-variable-scope-local-and-global-variables" class="nav-link" data-scroll-target="#variable-scope-local-and-global-variables"><span class="header-section-number">1.3.7</span> Variable scope: Local and global Variables</a>
+  <ul class="collapse">
+  <li><a href="#local-variable" id="toc-local-variable" class="nav-link" data-scroll-target="#local-variable"><span class="header-section-number">1.3.7.1</span> Local variable</a></li>
+  <li><a href="#global-variable" id="toc-global-variable" class="nav-link" data-scroll-target="#global-variable"><span class="header-section-number">1.3.7.2</span> Global variable</a></li>
+  </ul></li>
+  <li><a href="#named-arguments" id="toc-named-arguments" class="nav-link" data-scroll-target="#named-arguments"><span class="header-section-number">1.3.8</span> Named arguments</a>
+  <ul class="collapse">
+  <li><a href="#optional-arguments" id="toc-optional-arguments" class="nav-link" data-scroll-target="#optional-arguments"><span class="header-section-number">1.3.8.1</span> Optional Arguments</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -489,79 +502,56 @@ Real part of 'var':  0</code></pre>
 </div>
 </section>
 </section>
-<section id="importing-libraries" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="importing-libraries"><span class="header-section-number">1.3.3</span> Importing libraries</h3>
-<p>There are several <a href="https://docs.python.org/3/library/functions.html">built-in functions</a> in python like <code>print()</code>, <code>abs()</code>, <code>max()</code>, <code>sum()</code> etc., which do not require importing any library. However, these functions will typically be insufficient for a analyzing data. Some of the popular libraries and their primary purposes are as follows:</p>
-<ol type="1">
-<li><strong>NumPy</strong>: Performing numerical operations and efficiently storing numerical data.</li>
-<li><strong>Pandas</strong>: Reading, cleaning and manipulating data.</li>
-<li><strong>Matplotlib, Seaborn</strong>: Visualizing data.</li>
-<li><strong>SciPy</strong>: Performing scientific computing such as solving differential equations, optimization, statistical tests, etc.</li>
-<li><strong>Scikit-learn</strong>: Data pre-processing and machine learning, with a focus on prediction.</li>
-<li><strong>Statsmodels</strong>: Developing statistical models with a focus on inference</li>
-</ol>
-<p>A library can be imported using the <code>import</code> keyword. For example, a NumPy library can be imported as:</p>
-<div class="cell" data-execution_count="62">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Using the <code>as</code> keyboard, the NumPy library has been given the name <code>np</code>. All the functions and attributes of the library can be called using the <em>‘np.’</em> prefix. For example, let us generate a sequence of whole numbers upto <code>10</code> using the NumPy function <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html">arange()</a>:</p>
-<div class="cell" data-execution_count="64">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="64">
-<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7])</code></pre>
-</div>
-</div>
-</section>
-<section id="built-in-objects" class="level3" data-number="1.3.4">
-<h3 data-number="1.3.4" class="anchored" data-anchor-id="built-in-objects"><span class="header-section-number">1.3.4</span> Built-in objects</h3>
-<section id="built-in-data-types" class="level4" data-number="1.3.4.1">
-<h4 data-number="1.3.4.1" class="anchored" data-anchor-id="built-in-data-types"><span class="header-section-number">1.3.4.1</span> Built-in data types</h4>
+<section id="built-in-objects" class="level3" data-number="1.3.3">
+<h3 data-number="1.3.3" class="anchored" data-anchor-id="built-in-objects"><span class="header-section-number">1.3.3</span> Built-in objects</h3>
+<section id="built-in-data-types" class="level4" data-number="1.3.3.1">
+<h4 data-number="1.3.3.1" class="anchored" data-anchor-id="built-in-data-types"><span class="header-section-number">1.3.3.1</span> Built-in data types</h4>
 <p>Variable is created as soon as a value is assigned to it. We don’t have to define the type of variable explicitly as in other programming languages because Python can automatically guess the type of data entered <strong>(dynamically typed)</strong>.</p>
 <p>Any data or information stored within a Python variable has a <em>type</em>. We can view the type of data stored within a variable using the <code>type</code> function.</p>
 <div class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>a_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>a_variable</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <pre><code>23</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(a_variable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(a_variable)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>int</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>is_today_Saturday</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>is_today_Saturday</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>False</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(is_today_Saturday)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(is_today_Saturday)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>bool</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>my_favorite_car</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>my_favorite_car</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <pre><code>'Delorean'</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(my_favorite_car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(my_favorite_car)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>str</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>the_3_musketeers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>the_3_musketeers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <pre><code>['Athos', 'Porthos', 'Aramis']</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(the_3_musketeers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(the_3_musketeers)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>list</code></pre>
 </div>
@@ -576,82 +566,119 @@ Real part of 'var':  0</code></pre>
 <p><strong>Containers:</strong> Other data types like list, tuple, and dictionary are often called <em>data structures</em> or <em>containers</em> because they hold multiple pieces of data together. We’ll discuss these datatypes in chapter 2.</p>
 <p>The data type of the object can be identified using the in-built python function <code>type()</code>. For example, see the following objects and their types:</p>
 <div class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
 <pre><code>int</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="36">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="fl">4.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="fl">4.4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="36">
 <pre><code>float</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="37">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="st">'4'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="st">'4'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="37">
 <pre><code>str</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="38">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(<span class="va">True</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="38">
 <pre><code>bool</code></pre>
 </div>
 </div>
 </section>
-<section id="built-in-modules-and-functions" class="level4" data-number="1.3.4.2">
-<h4 data-number="1.3.4.2" class="anchored" data-anchor-id="built-in-modules-and-functions"><span class="header-section-number">1.3.4.2</span> <a href="https://docs.python.org/3/library/stdtypes.html">Built-in modules and functions</a></h4>
+<section id="built-in-modules-and-functions" class="level4" data-number="1.3.3.2">
+<h4 data-number="1.3.3.2" class="anchored" data-anchor-id="built-in-modules-and-functions"><span class="header-section-number">1.3.3.2</span> Built-in modules and functions</h4>
+<p>Built-in functions in Python are a set of predefined functions that are available for use without the need to import any additional libraries or modules. The <a href="https://docs.python.org/3/library/">Python Standard Library</a> is very extensive. Besides built-in functions, it also contains many Python scripts (with the . py extension) containing useful utilities and modules written in Python that provide standardized solutions for many problems that occur in everyday programming.</p>
 <p>Below are a couple of examples:</p>
 <p><strong>range():</strong> The <code>range()</code> function returns a sequence of evenly-spaced integer values. It is commonly used in <code>for</code> loops to define the sequence of elements over which the iterations are performed.</p>
 <p>Below is an example where the <code>range()</code> function is used to create a sequence of whole numbers upto 10:</p>
 <div class="cell" data-execution_count="108">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">1</span>,<span class="dv">10</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1, 2, 3, 4, 5, 6, 7, 8, 9]</code></pre>
 </div>
 </div>
 <p><strong>Date time:</strong> Python as a built-in <a href="https://docs.python.org/3/library/datetime.html">datetime</a> module for handling date/time objects:</p>
 <div class="cell" data-execution_count="70">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime <span class="im">as</span> dt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-execution_count="72">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a date-time object </span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>dt_object <span class="op">=</span> dt.datetime(<span class="dv">2022</span>, <span class="dv">9</span>, <span class="dv">20</span>, <span class="dv">11</span>,<span class="dv">30</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a date-time object </span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>dt_object <span class="op">=</span> dt.datetime(<span class="dv">2022</span>, <span class="dv">9</span>, <span class="dv">20</span>, <span class="dv">11</span>,<span class="dv">30</span>,<span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Information about date and time can be accessed with the relevant attribute of the <code>datetime</code> object.</p>
 <div class="cell" data-execution_count="74">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>dt_object.day</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>dt_object.day</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="74">
 <pre><code>20</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="79">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>dt_object.year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>dt_object.year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="79">
 <pre><code>2022</code></pre>
 </div>
 </div>
 <p>The <code>strftime</code> method of the <code>datetime</code> module formats a <code>datetime</code> object as a string. There are several types of formats for representing date as a string:</p>
 <div class="cell" data-execution_count="80">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>dt_object.strftime(<span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%Y'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>dt_object.strftime(<span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%Y'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="80">
 <pre><code>'09/20/2022'</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="100">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>dt_object.strftime(<span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%y %H:%M'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>dt_object.strftime(<span class="st">'%m/</span><span class="sc">%d</span><span class="st">/%y %H:%M'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="100">
 <pre><code>'09/20/22 11:30'</code></pre>
 </div>
 </div>
 <div class="cell" data-execution_count="99">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>dt_object.strftime(<span class="st">'%h-</span><span class="sc">%d</span><span class="st">-%Y'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>dt_object.strftime(<span class="st">'%h-</span><span class="sc">%d</span><span class="st">-%Y'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="99">
 <pre><code>'Sep-20-2022'</code></pre>
 </div>
 </div>
 </section>
+</section>
+<section id="importing-libraries" class="level3" data-number="1.3.4">
+<h3 data-number="1.3.4" class="anchored" data-anchor-id="importing-libraries"><span class="header-section-number">1.3.4</span> Importing libraries</h3>
+<p>There are several <a href="https://docs.python.org/3/library/functions.html">built-in functions</a> in python like <code>print()</code>, <code>abs()</code>, <code>max()</code>, <code>sum()</code> etc., which do not require importing any library. However, these functions will typically be insufficient for a analyzing data. Some of the popular libraries and their primary purposes are as follows:</p>
+<ol type="1">
+<li><p><strong>NumPy</strong>: NumPy is a fundamental library for numerical computing in Python. It provides support for arrays, matrices, and mathematical functions, making it essential for scientific and data analysis tasks.. It is mostly used for performing numerical operations and efficiently storing numerical data.</p></li>
+<li><p><strong>Pandas</strong>: Pandas is a powerful data manipulation and analysis library. It offers data structures like DataFrames and Series, which facilitate data reading, cleaning, transformation, and analysis, making it indispensable in data science projects.</p></li>
+<li><p><strong>Matplotlib, Seaborn</strong>: Matplotlib is a comprehensive library for creating static, animated, or interactive plots and visualizations. It is commonly used for data visualization and exploration in data science. Seaborn is a Python data visualization library based on matplotlib. It provides a high-level interface for drawing attractive and informative statistical graphics.</p></li>
+<li><p><strong>SciPy</strong>: SciPy is used for performing scientific computing such as solving differential equations, optimization, statistical tests, etc.</p></li>
+<li><p><strong>Scikit-learn</strong>: Scikit-learn is a machine learning library that provides a wide range of tools for data pre-procesing, classification, regression, clustering, dimensionality reduction, and more. It simplifies the implementation of machine learning algorithms and model evaluation.</p></li>
+<li><p><strong>Statsmodels</strong>: Statsmodels is used for developing statistical models with a focus on inference <em>(in contrast to focus on prediction as in scikit-learn)</em>.</p></li>
+</ol>
+<p>To use libraries like NumPy, pandas, Matplotlib, and scikit-learn in Python, you typically need to follow these steps:</p>
+<ol type="1">
+<li><p>Install the libraries (Anaconda already does this)</p></li>
+<li><p>Import the libraries in the python script or jupyter notebook</p></li>
+<li><p>Use the Library Functions and Classes: After importing the libraries, you can use their functions, classes, and methods in your code. For instance, you can create NumPy arrays, manipulate data with pandas, create plots with Matplotlib, or train machine learning models with scikit-learn.</p></li>
+</ol>
+<p>A library can be imported using the <code>import</code> keyword. For example, a NumPy library can be imported as:</p>
+<div class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Using the <code>as</code> keyboard, the NumPy library has been given the name <code>np</code>. All the functions and attributes of the library can be called using the <em>‘np.’</em> prefix. For example, let us generate a sequence of whole numbers upto <code>10</code> using the NumPy function <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html">arange()</a>:</p>
+<div class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">8</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="64">
+<pre><code>array([0, 1, 2, 3, 4, 5, 6, 7])</code></pre>
+</div>
+</div>
+<p><strong>There’s different ways to import:</strong></p>
+<ul>
+<li><p>Import the whole module using its original name: <br> <code>import math, os</code></p></li>
+<li><p>Import specific things from the module: <br> <code>from random import randint</code> <br> <code>from math import pi</code></p></li>
+<li><p>Import the whole library and rename it, usually using a shorter variable name: <br> <code>import pandas as pd</code></p></li>
+<li><p>Import a specific method from the module and rename it as it is imported: <br> <code>from os.path import join as join_path</code></p></li>
+</ul>
 </section>
 <section id="control-flow" class="level3" data-number="1.3.5">
 <h3 data-number="1.3.5" class="anchored" data-anchor-id="control-flow"><span class="header-section-number">1.3.5</span> Control flow</h3>
@@ -699,8 +726,130 @@ Real part of 'var':  0</code></pre>
 9</code></pre>
 </div>
 </div>
+</section>
+<section id="user-defined-functions" class="level3" data-number="1.3.6">
+<h3 data-number="1.3.6" class="anchored" data-anchor-id="user-defined-functions"><span class="header-section-number">1.3.6</span> User-defined functions</h3>
+<p>A function is a reusable set of instructions that takes one or more inputs, performs some operations, and often returns an output. <strong>Indeed, while python’s standard library and ecosystem libraries offer a wealth of pre-defined functions for a wide range of tasks, there are situations where defining your own functions is not just beneficial but necessary.</strong> <img src="https://www.scientecheasy.com/wp-content/uploads/2022/11/python-function-definition.png" width="500"></p>
+<section id="creating-and-using-functions" class="level4" data-number="1.3.6.1">
+<h4 data-number="1.3.6.1" class="anchored" data-anchor-id="creating-and-using-functions"><span class="header-section-number">1.3.6.1</span> Creating and using functions</h4>
+<p>You can define a new function using the def keyword.</p>
+<div class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hello():</span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Hello there!'</span>)</span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'How are you?'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note the round brackets or parentheses <code>()</code> and colon <code>:</code> after the function’s name. Both are essential parts of the syntax. The function’s <em>body</em> contains an indented block of statements. The statements inside a function’s body are not executed when the function is defined. To execute the statements, we need to <em>call</em> or <em>invoke</em> the function.</p>
+<div class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>say_hello()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello there!
+How are you?</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hello_to(name):</span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Hello '</span>, name)</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'How are you?'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-scrolled="true" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>say_hello_to(<span class="st">'Lizhen'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello  Lizhen
+How are you?</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>name <span class="op">=</span> <span class="bu">input</span> (<span class="st">'Please enter your name: '</span>)</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>say_hello_to(name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Please enter your name: George
+Hello  George
+How are you?</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="variable-scope-local-and-global-variables" class="level3" data-number="1.3.7">
+<h3 data-number="1.3.7" class="anchored" data-anchor-id="variable-scope-local-and-global-variables"><span class="header-section-number">1.3.7</span> Variable scope: Local and global Variables</h3>
+<section id="local-variable" class="level4" data-number="1.3.7.1">
+<h4 data-number="1.3.7.1" class="anchored" data-anchor-id="local-variable"><span class="header-section-number">1.3.7.1</span> Local variable</h4>
+<p>When we declare variables inside a function, these variables will have a local scope (within the function). We cannot access them outside the function. These types of variables are called local variables. For example,</p>
+<div class="cell" data-scrolled="true" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(): </span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a>    message <span class="op">=</span> <span class="st">'Hello'</span>  <span class="co"># local variable</span></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Local'</span>, message)</span>
+<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>greet()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Local Hello</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(message) <span class="co"># try to access message variable outside greet() function</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>NameError: name 'message' is not defined</code></pre>
+</div>
+</div>
+<p>As <code>message</code> was defined within the function <code>greet()</code>, it is local to the function, and cannot be called outside the function.</p>
+</section>
+<section id="global-variable" class="level4" data-number="1.3.7.2">
+<h4 data-number="1.3.7.2" class="anchored" data-anchor-id="global-variable"><span class="header-section-number">1.3.7.2</span> Global variable</h4>
+<p>Aa variable declared outside of the function or in global scope is known as a global variable. This means that a global variable can be accessed inside or outside of the function.</p>
+<p>Let’s see an example of how a global variable is created.</p>
+<div class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> <span class="st">'Hello'</span>  <span class="co"># declare global variable</span></span>
+<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet():</span>
+<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Local'</span>, message)  <span class="co"># declare local variable</span></span>
+<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>greet()</span>
+<span id="cb83-7"><a href="#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Global'</span>, message)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Local Hello
+Global Hello</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="named-arguments" class="level3" data-number="1.3.8">
+<h3 data-number="1.3.8" class="anchored" data-anchor-id="named-arguments"><span class="header-section-number">1.3.8</span> Named arguments</h3>
+<p>Invoking a function with many arguments can often get confusing and is prone to human errors. Python provides the option of invoking functions with <em>named</em> arguments for better clarity. You can also split function invocation into multiple lines.</p>
+<div class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loan_emi(amount, duration, rate, down_payment<span class="op">=</span><span class="dv">0</span>):</span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>    loan_amount <span class="op">=</span> amount <span class="op">-</span> down_payment</span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>    emi <span class="op">=</span> loan_amount <span class="op">*</span> rate <span class="op">*</span> ((<span class="dv">1</span><span class="op">+</span>rate)<span class="op">**</span>duration) <span class="op">/</span> (((<span class="dv">1</span><span class="op">+</span>rate)<span class="op">**</span>duration)<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb85-4"><a href="#cb85-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> emi</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>emi1 <span class="op">=</span> loan_emi(</span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>    amount<span class="op">=</span><span class="dv">1260000</span>, </span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>    duration<span class="op">=</span><span class="dv">8</span><span class="op">*</span><span class="dv">12</span>, </span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>    rate<span class="op">=</span><span class="fl">0.1</span><span class="op">/</span><span class="dv">12</span>, </span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>    down_payment<span class="op">=</span><span class="fl">3e5</span></span>
+<span id="cb86-6"><a href="#cb86-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-scrolled="true" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>emi1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="27">
+<pre><code>14567.19753389219</code></pre>
+</div>
+</div>
+<section id="optional-arguments" class="level4" data-number="1.3.8.1">
+<h4 data-number="1.3.8.1" class="anchored" data-anchor-id="optional-arguments"><span class="header-section-number">1.3.8.1</span> Optional Arguments</h4>
+<p>Functions with optional arguments offer more flexibility in how you can use them. You can call the function with or without the argument, and if there is no argument in the function call, then a default value is used.</p>
+<div class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>emi2 <span class="op">=</span> loan_emi(</span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a>    amount<span class="op">=</span><span class="dv">1260000</span>, </span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a>    duration<span class="op">=</span><span class="dv">8</span><span class="op">*</span><span class="dv">12</span>, </span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a>    rate<span class="op">=</span><span class="fl">0.1</span><span class="op">/</span><span class="dv">12</span>)</span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-6"><a href="#cb89-6" aria-hidden="true" tabindex="-1"></a>emi2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<pre><code>19119.4467632335</code></pre>
+</div>
+</div>
 
 
+</section>
 </section>
 </section>
 
