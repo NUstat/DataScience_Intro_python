@@ -28,6 +28,7 @@ book:
         - Data aggregation.ipynb
         - student_solutions.ipynb
   appendices: 
+    - Assignment A.ipynb
     - Datasets.ipynb
     - references.qmd
 
