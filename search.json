@@ -385,11 +385,11 @@
     "text": "A.5 University rankings\n\nA.5.1 \nDownload the data set “univ.txt”. Read it with python.\n(1 point)\n\n\nA.5.2 \nFind summary statistics of the data. Based on the statistics, answer the next four questions.\n(1 point)\n\n\nA.5.3 \nHow many universities are there in the data set?\n(1 point)\n\n\nA.5.4 \nEstimate the maximum Tuition and fees among universities that are in the bottom 25% when ranked by total tuition and fees.\n(2 points)\n\n\nA.5.5 \nHow many universities share the ranking of 220? (If s universities share the same rank, say r, then the next lower rank is r+s, and all the ranks in between r and r+s are dropped)\n(4 points)\n\n\nA.5.6 \nCan you find the mean Tuition and fees for an undergrad student in the US from the summary statistics? Justify your answer.\n(3 points)\n\n\nA.5.7 \nFind the average Tuition and fees for an undergrad student in the US.\n(5 points)"
   },
   {
-    "objectID": "Assignment A.html#iv-file-formats",
-    "href": "Assignment A.html#iv-file-formats",
+    "objectID": "Assignment A.html#file-formats",
+    "href": "Assignment A.html#file-formats",
     "title": "Appendix A — Assignment A",
-    "section": "A.6 IV File formats",
-    "text": "A.6 IV File formats\nConsider the file formats - csv, JSON, txt. Mention one advantage and one disadvantage of each format over the other two formats.\n(2+2+2 = 6 points)"
+    "section": "A.6 File formats",
+    "text": "A.6 File formats\nConsider the file formats - csv, JSON, txt. Mention one advantage and one disadvantage of each format over the other two formats.\n(2+2+2 = 6 points)"
   },
   {
     "objectID": "Datasets.html",
