@@ -29,6 +29,7 @@ book:
         - student_solutions.ipynb
   appendices: 
     - Assignment A.ipynb
+    - Assignment B.ipynb
     - Datasets.ipynb
     - references.qmd
 
