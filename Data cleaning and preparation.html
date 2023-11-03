@@ -378,7 +378,7 @@ div.csl-indent {
 <p>Missing values in a dataset can occur due to several reasons such as breakdown of measuring equipment, accidental removal of observations, lack of response by respondents, error on the part of the researcher, etc.</p>
 <p>Let us read the dataset <em>GDP_missing_data.csv</em>, in which we have randomly removed some values, or put missing values in some of the columns.</p>
 <p>We’ll also read <em>GDP_complete_data.csv</em>, in which we have not removed any values. We’ll use this data later to assess the accuracy of our guess or estimate of missing values in <em>GDP_missing_data.csv</em>.</p>
-<div class="cell" data-execution_count="121">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -738,11 +738,11 @@ dtype: int64</code></pre>
 </div>
 <p>After imputing missing values, note there is still one missing value for <em>illiteracyMale</em>. Can you guess why one missing value remained?</p>
 <p>Let us check how good is this method in imputing missing values. We’ll compare the imputed values of <code>gdpPerCapita</code> with the actual values. Recall that we had randomly put some missing values in <code>gdp_missing_values_data</code>, and we have the actual values in <code>gdp_complete_data</code>.</p>
-<div class="cell" data-execution_count="29">
+<div class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Index of rows with missing values for GDP per capita</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>null_ind_gdpPC <span class="op">=</span> gdp_missing_values_data.index[gdp_missing_values_data.gdpPerCapita.isnull()]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="30">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function to plot the imputed values vs actual values </span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_actual_vs_predicted():</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
@@ -806,11 +806,11 @@ dtype: int64</code></pre>
 </div>
 </div>
 <p>We observe that there is a distinct difference between the GDPs per capita of some of the contents. Let us impute the missing GDP per capita of a country as the mean GDP per capita of the corresponding continent. This imputation should be better than imputing the missing GDP per capita as the mean of all the non-missing values, as the GDP per capita of a country is likely to be closer to the mean GDP per capita of the continent, rather the mean GDP per capita of the whole world.</p>
-<div class="cell" data-execution_count="31">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the mean GDP per capita of the continent - please defer the understanding of this code to chapter 9.</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita <span class="op">=</span> gdp_missing_values_data[<span class="st">'gdpPerCapita'</span>].groupby(gdp_missing_values_data[<span class="st">'continent'</span>]).mean()</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>avg_gdpPerCapita</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="31">
+<div class="cell-output cell-output-display" data-execution_count="3">
 <pre><code>continent
 Africa            7638.178571
 Asia             25922.750000
@@ -821,15 +821,15 @@ South America    15360.909091
 Name: gdpPerCapita, dtype: float64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="32">
+<div class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a copy of missing data to impute missing values</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="33">
+<div class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Replacing missing GDP per capita with the mean GDP per capita for the corresponding continent</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cont <span class="kw">in</span> avg_gdpPerCapita.index:</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    gdp_imputed_data.loc[(gdp_imputed_data.continent<span class="op">==</span>cont) <span class="op">&amp;</span> (gdp_imputed_data.gdpPerCapita.isnull()),</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'gdpPerCapita'</span>]<span class="op">=</span>avg_gdpPerCapita[cont]</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data[<span class="st">'gdpPerCapita'</span>].fillna(gdp_imputed_data[<span class="st">'continent'</span>].<span class="bu">map</span>(avg_gdpPerCapita))</span>
 <span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116</code></pre>

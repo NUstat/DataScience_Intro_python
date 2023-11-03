@@ -289,14 +289,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#missing-value-imputation-based-on-correlated-variables-in-the-data" id="toc-missing-value-imputation-based-on-correlated-variables-in-the-data" class="nav-link active" data-scroll-target="#missing-value-imputation-based-on-correlated-variables-in-the-data"><span class="header-section-number">10.1</span> Missing value imputation based on correlated variables in the data</a>
   <ul>
-  <li><a href="#original-code-in-the-book" id="toc-original-code-in-the-book" class="nav-link" data-scroll-target="#original-code-in-the-book"><span class="header-section-number">10.1.1</span> Original code (in the book)</a></li>
+  <li><a href="#original-code" id="toc-original-code" class="nav-link" data-scroll-target="#original-code"><span class="header-section-number">10.1.1</span> Original code</a></li>
   <li><a href="#alternative-code-1" id="toc-alternative-code-1" class="nav-link" data-scroll-target="#alternative-code-1"><span class="header-section-number">10.1.2</span> Alternative code 1:</a></li>
-  <li><a href="#alternative-code-2" id="toc-alternative-code-2" class="nav-link" data-scroll-target="#alternative-code-2"><span class="header-section-number">10.1.3</span> Alternative code 2:</a></li>
-  <li><a href="#alternative-code-3" id="toc-alternative-code-3" class="nav-link" data-scroll-target="#alternative-code-3"><span class="header-section-number">10.1.4</span> Alternative code 3:</a></li>
+  <li><a href="#alternative-code-1-1" id="toc-alternative-code-1-1" class="nav-link" data-scroll-target="#alternative-code-1-1"><span class="header-section-number">10.1.3</span> Alternative code 1:</a></li>
+  <li><a href="#alternative-code-2" id="toc-alternative-code-2" class="nav-link" data-scroll-target="#alternative-code-2"><span class="header-section-number">10.1.4</span> Alternative code 2:</a></li>
+  <li><a href="#alternative-code-3" id="toc-alternative-code-3" class="nav-link" data-scroll-target="#alternative-code-3"><span class="header-section-number">10.1.5</span> Alternative code 3:</a></li>
   </ul></li>
   <li><a href="#binning-with-equal-sized-bins" id="toc-binning-with-equal-sized-bins" class="nav-link" data-scroll-target="#binning-with-equal-sized-bins"><span class="header-section-number">10.2</span> Binning with equal sized bins</a>
   <ul>
-  <li><a href="#original-code-in-the-book-1" id="toc-original-code-in-the-book-1" class="nav-link" data-scroll-target="#original-code-in-the-book-1"><span class="header-section-number">10.2.1</span> Original code (in the book)</a></li>
+  <li><a href="#original-code-in-the-book" id="toc-original-code-in-the-book" class="nav-link" data-scroll-target="#original-code-in-the-book"><span class="header-section-number">10.2.1</span> Original code (in the book)</a></li>
   <li><a href="#alternative-code" id="toc-alternative-code" class="nav-link" data-scroll-target="#alternative-code"><span class="header-section-number">10.2.2</span> Alternative code:</a></li>
   </ul></li>
   </ul>
@@ -322,13 +323,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>This chapter will consist of solutions suggested by students of the STAT303-1 Fall 2022 class, which are more efficient than those presented in the book. However, these solutions do not replace those in the book to preserve the simplicity of the book.</p>
+<p>This chapter will consist of solutions suggested by students of the STAT303-1 Fall 2022 &amp; Fall 2023 class, which are more efficient than those presented in the original version of the book.</p>
 <section id="missing-value-imputation-based-on-correlated-variables-in-the-data" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="missing-value-imputation-based-on-correlated-variables-in-the-data"><span class="header-section-number">10.1</span> Missing value imputation based on correlated variables in the data</h2>
 <p>The code below refers to <strong>Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20cleaning%20and%20preparation.html#method-3-imputing-missing-values-based-on-correlated-variables-in-the-data">7.1.5.3</a></strong> of the book. Students have proposed some ways to avoid a <code>for</code> loop in the code, which will lead to parallel computations, thereby saving execution time.</p>
-<section id="original-code-in-the-book" class="level3" data-number="10.1.1">
-<h3 data-number="10.1.1" class="anchored" data-anchor-id="original-code-in-the-book"><span class="header-section-number">10.1.1</span> Original code (in the book)</h3>
-<div class="cell" data-execution_count="171">
+<section id="original-code" class="level3" data-number="10.1.1">
+<h3 data-number="10.1.1" class="anchored" data-anchor-id="original-code"><span class="header-section-number">10.1.1</span> Original code</h3>
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> cont <span class="kw">in</span> avg_gdpPerCapita.index:</span>
@@ -338,7 +339,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116
-Time taken to execute code:  0.032 seconds</code></pre>
+Time taken to execute code:  0.061 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="student_solutions_files/figure-html/cell-3-output-2.png" class="img-fluid"></p>
@@ -348,62 +349,81 @@ Time taken to execute code:  0.032 seconds</code></pre>
 </section>
 <section id="alternative-code-1" class="level3" data-number="10.1.2">
 <h3 data-number="10.1.2" class="anchored" data-anchor-id="alternative-code-1"><span class="header-section-number">10.1.2</span> Alternative code 1:</h3>
-<p><em>By Victoria Shi</em></p>
-<div class="cell" data-execution_count="191">
+<p><em>By Ryan Yi</em></p>
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data[<span class="st">"gdpPerCapita"</span>] <span class="op">=</span>  gdp_missing_values_data[[<span class="st">'continent'</span>,<span class="st">'gdpPerCapita'</span>]].groupby(<span class="st">'continent'</span>).transform(<span class="kw">lambda</span> x: x.fillna(x.mean()))</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> <span class="op">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data[<span class="st">'gdpPerCapita'</span>].fillna(gdp_imputed_data[<span class="st">'continent'</span>].<span class="bu">map</span>(avg_gdpPerCapita))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116
-Time taken to execute code:  0.024 seconds</code></pre>
+Time taken to execute code:  0.023 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="student_solutions_files/figure-html/cell-4-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
-<section id="alternative-code-2" class="level3" data-number="10.1.3">
-<h3 data-number="10.1.3" class="anchored" data-anchor-id="alternative-code-2"><span class="header-section-number">10.1.3</span> Alternative code 2:</h3>
-<p><em>By Elijah Nacar</em></p>
-<div class="cell" data-execution_count="192">
+<section id="alternative-code-1-1" class="level3" data-number="10.1.3">
+<h3 data-number="10.1.3" class="anchored" data-anchor-id="alternative-code-1-1"><span class="header-section-number">10.1.3</span> Alternative code 1:</h3>
+<p><em>By Victoria Shi</em></p>
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> gdp_imputed_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x: avg_gdpPerCapita[x[<span class="st">'continent'</span>]] <span class="cf">if</span> pd.isnull(x[<span class="st">'gdpPerCapita'</span>]) <span class="cf">else</span> x[<span class="st">'gdpPerCapita'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data[<span class="st">"gdpPerCapita"</span>] <span class="op">=</span>  gdp_missing_values_data[[<span class="st">'continent'</span>,<span class="st">'gdpPerCapita'</span>]].groupby(<span class="st">'continent'</span>).transform(<span class="kw">lambda</span> x: x.fillna(x.mean()))</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116
-Time taken to execute code:  0.024 seconds</code></pre>
+Time taken to execute code:  0.026 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="student_solutions_files/figure-html/cell-5-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
-<section id="alternative-code-3" class="level3" data-number="10.1.4">
-<h3 data-number="10.1.4" class="anchored" data-anchor-id="alternative-code-3"><span class="header-section-number">10.1.4</span> Alternative code 3:</h3>
-<p><em>By Erica Zhou</em></p>
-<div class="cell" data-execution_count="160">
+<section id="alternative-code-2" class="level3" data-number="10.1.4">
+<h3 data-number="10.1.4" class="anchored" data-anchor-id="alternative-code-2"><span class="header-section-number">10.1.4</span> Alternative code 2:</h3>
+<p><em>By Elijah Nacar</em></p>
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>cond_list <span class="op">=</span> [gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Africa'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Asia'</span>,</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Europe'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'North America'</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Oceania'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'South America'</span>]</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>choice_list <span class="op">=</span> <span class="bu">list</span>(avg_gdpPerCapita)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> np.select(cond_list, choice_list, gdp_imputed_data.gdpPerCapita)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> gdp_imputed_data.<span class="bu">apply</span>(<span class="kw">lambda</span> x: avg_gdpPerCapita[x[<span class="st">'continent'</span>]] <span class="cf">if</span> pd.isnull(x[<span class="st">'gdpPerCapita'</span>]) <span class="cf">else</span> x[<span class="st">'gdpPerCapita'</span>],axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>RMSE= 25473.20645170116
-Time taken to execute code:  0.024 seconds</code></pre>
+Time taken to execute code:  0.023 seconds</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <p><img src="student_solutions_files/figure-html/cell-6-output-2.png" class="img-fluid"></p>
+</div>
+</div>
+</section>
+<section id="alternative-code-3" class="level3" data-number="10.1.5">
+<h3 data-number="10.1.5" class="anchored" data-anchor-id="alternative-code-3"><span class="header-section-number">10.1.5</span> Alternative code 3:</h3>
+<p><em>By Erica Zhou</em></p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data <span class="op">=</span> gdp_missing_values_data.copy()</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>cond_list <span class="op">=</span> [gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Africa'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Asia'</span>,</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Europe'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'North America'</span>,</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>             gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'Oceania'</span>,gdp_imputed_data[<span class="st">'continent'</span>] <span class="op">==</span> <span class="st">'South America'</span>]</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>choice_list <span class="op">=</span> <span class="bu">list</span>(avg_gdpPerCapita)</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>gdp_imputed_data.gdpPerCapita <span class="op">=</span> np.select(cond_list, choice_list, gdp_imputed_data.gdpPerCapita)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>plot_actual_vs_predicted()</span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>RMSE= 25473.20645170116
+Time taken to execute code:  0.022 seconds</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="student_solutions_files/figure-html/cell-7-output-2.png" class="img-fluid"></p>
 </div>
 </div>
 </section>
@@ -411,16 +431,16 @@ Time taken to execute code:  0.024 seconds</code></pre>
 <section id="binning-with-equal-sized-bins" class="level2" data-number="10.2">
 <h2 data-number="10.2" class="anchored" data-anchor-id="binning-with-equal-sized-bins"><span class="header-section-number">10.2</span> Binning with equal sized bins</h2>
 <p>The code below refers to <strong>Section <a href="https://nustat.github.io/DataScience_Intro_python/Data%20cleaning%20and%20preparation.html#binning-with-equal-sized-bins">7.2.2</a></strong> of the book. A student has proposed a way to avoid the <code>for</code> loop in the code, which will lead to parallel computations, thereby saving execution time.</p>
-<section id="original-code-in-the-book-1" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="original-code-in-the-book-1"><span class="header-section-number">10.2.1</span> Original code (in the book)</h3>
+<section id="original-code-in-the-book" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="original-code-in-the-book"><span class="header-section-number">10.2.1</span> Original code (in the book)</h3>
 <div class="cell" data-execution_count="23">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bootstrapping to find 95% confidence intervals of Graduation Rate of US universities based on average expenditure per student</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> expend_bin <span class="kw">in</span> college.Expend_bin.unique():</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    data_sub <span class="op">=</span> college.loc[college.Expend_bin<span class="op">==</span>expend_bin,:]</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(data_sub[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>,data_sub.shape[<span class="dv">0</span>]))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span><span class="op">+</span>expend_bin<span class="op">+</span><span class="st">" univeristies = ["</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">","</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">"]"</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Bootstrapping to find 95% confidence intervals of Graduation Rate of US universities based on average expenditure per student</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> expend_bin <span class="kw">in</span> college.Expend_bin.unique():</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    data_sub <span class="op">=</span> college.loc[college.Expend_bin<span class="op">==</span>expend_bin,:]</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(data_sub[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>,data_sub.shape[<span class="dv">0</span>]))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span><span class="op">+</span>expend_bin<span class="op">+</span><span class="st">" univeristies = ["</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">","</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">"]"</span>)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>95% Confidence interval of Grad.Rate for Low expend univeristies = [55.31,59.35]
 95% Confidence interval of Grad.Rate for High expend univeristies = [71.03,74.9]
@@ -433,12 +453,12 @@ Time taken to execute code:  0.151 seconds</code></pre>
 <h3 data-number="10.2.2" class="anchored" data-anchor-id="alternative-code"><span class="header-section-number">10.2.2</span> Alternative code:</h3>
 <p><em>By Victoria Shi</em></p>
 <div class="cell" data-execution_count="48">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confidence_interval(df):</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(df[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>, df.shape[<span class="dv">0</span>]))</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span><span class="op">+</span>df[<span class="st">"Expend_bin"</span>].iloc[<span class="dv">0</span>]<span class="op">+</span><span class="st">" univeristies = ["</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">","</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">"]"</span>)</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>college.groupby(<span class="st">'Expend_bin'</span>).<span class="bu">apply</span>(confidence_interval)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>start_time <span class="op">=</span> tm.time()</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> confidence_interval(df):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    samples <span class="op">=</span> np.random.choice(df[<span class="st">'Grad.Rate'</span>], size<span class="op">=</span>(<span class="dv">10000</span>, df.shape[<span class="dv">0</span>]))</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"95% Confidence interval of Grad.Rate for "</span><span class="op">+</span>df[<span class="st">"Expend_bin"</span>].iloc[<span class="dv">0</span>]<span class="op">+</span><span class="st">" univeristies = ["</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">2.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">","</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(np.percentile(samples.mean(axis<span class="op">=</span><span class="dv">1</span>),<span class="fl">97.5</span>),<span class="dv">2</span>))<span class="op">+</span><span class="st">"]"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>college.groupby(<span class="st">'Expend_bin'</span>).<span class="bu">apply</span>(confidence_interval)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time taken to execute code: "</span>,np.<span class="bu">round</span>(tm.time()<span class="op">-</span>start_time,<span class="dv">3</span>), <span class="st">"seconds"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>95% Confidence interval of Grad.Rate for Low expend univeristies = [55.35,59.35]
 95% Confidence interval of Grad.Rate for Med expend univeristies = [64.16,67.95]
