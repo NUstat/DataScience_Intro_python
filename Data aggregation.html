@@ -396,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>Some combination of the above: <em>GroupBy</em> will examine the results of the <em>apply</em> step and try to return a sensibly combined result if it doesn’t fit into either of the above two categories.</p>
 <p>We’ll use Pandas to group the data and perform <em>GroupBy</em> operations.</p>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
@@ -409,10 +409,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This Pandas DataFrame method <code>groupby()</code> is used to create a <code>GroupBy</code> object.</p>
 <p>A string passed to <code>groupby()</code> may refer to either a column or an index level. If a string matches both a column name and an index level name, a ValueError will be raised.</p>
 <p><strong>Example</strong>: Consider the life expectancy dataset, <em>gdp_lifeExpectancy.csv</em>. Suppose we want to group by the observations by <code>continent</code>.</p>
-<div class="cell" data-execution_count="3">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gdp_lifeExp_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/gdp_lifeExpectancy.csv'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gdp_lifeExp_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="3">
+<div class="cell-output cell-output-display" data-execution_count="2">
 <div>
 
 
@@ -481,16 +481,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>We will pass the column <code>continent</code> as an argument to the <code>groupby()</code> method.</p>
-<div class="cell" data-execution_count="5">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a GroupBy object</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>grouped <span class="op">=</span> gdp_lifeExp_data.groupby(<span class="st">'continent'</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#This will split the data into groups that correspond to values of the column 'continent'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <code>groupby()</code> method returns a <em>GroupBy</em> object.</p>
-<div class="cell" data-execution_count="7">
+<div class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#A 'GroupBy' objects is created with the `groupby()` function</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(grouped)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>pandas.core.groupby.generic.DataFrameGroupBy</code></pre>
 </div>
 </div>
@@ -501,10 +501,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="keys" class="level4" data-number="9.1.2.1">
 <h4 data-number="9.1.2.1" class="anchored" data-anchor-id="keys"><span class="header-section-number">9.1.2.1</span> <code>keys</code></h4>
 <p>The object(s) grouping the data are called <em>key(s)</em>. Here <code>continent</code> is the group key. The keys of the <em>GroupBy</em> object can be seen using Its <code>keys</code> attribute.</p>
-<div class="cell" data-execution_count="8">
+<div class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Key(s) of the GroupBy object</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>grouped.keys</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<div class="cell-output cell-output-display" data-execution_count="5">
 <pre><code>'continent'</code></pre>
 </div>
 </div>
@@ -512,10 +512,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="ngroups" class="level4" data-number="9.1.2.2">
 <h4 data-number="9.1.2.2" class="anchored" data-anchor-id="ngroups"><span class="header-section-number">9.1.2.2</span> <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.core.groupby.GroupBy.ngroup.html"><code>ngroups</code></a></h4>
 <p>The number of groups in which the data is distributed based on the keys can be seen with the <code>ngroups</code> attribute.</p>
-<div class="cell" data-execution_count="9">
+<div class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The number of groups based on the key(s)</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>grouped.ngroups</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="9">
+<div class="cell-output cell-output-display" data-execution_count="6">
 <pre><code>5</code></pre>
 </div>
 </div>
@@ -1602,10 +1602,10 @@ dtype: int64</code></pre>
 <li><p>Custom aggregate functions (in addition to in-built functions like mean, std, count etc.)</p></li>
 </ol>
 <p>Consider the spotify dataset containing information about tracks and artists.</p>
-<div class="cell" data-execution_count="137">
+<div class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>spotify_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/spotify_data.csv'</span>)</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>spotify_data.head(<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="137">
+<div class="cell-output cell-output-display" data-execution_count="8">
 <div>
 
 
@@ -1860,7 +1860,7 @@ Name: track_popularity, dtype: float64</code></pre>
 <section id="custom-aggregate-functions" class="level4" data-number="9.2.3.2">
 <h4 data-number="9.2.3.2" class="anchored" data-anchor-id="custom-aggregate-functions"><span class="header-section-number">9.2.3.2</span> Custom aggregate functions</h4>
 <p>In addition to the mean and standard deviation of the track popularirty of each genre, let us also include the <span class="math inline">\(90^{th}\)</span> percentile of track popularity in the table above, and sort it by the same.</p>
-<div class="cell" data-execution_count="19">
+<div class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Defining a function that returns the 90th percentile value</span></span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> Ninety_pc(x):</span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x.quantile(<span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -2192,19 +2192,19 @@ Name: track_popularity, dtype: float64</code></pre>
 <section id="grouping-by-multiple-columns" class="level4" data-number="9.2.3.3">
 <h4 data-number="9.2.3.3" class="anchored" data-anchor-id="grouping-by-multiple-columns"><span class="header-section-number">9.2.3.3</span> Grouping by multiple columns</h4>
 <p>Let us find aggregate statistics when we group data by multiple columns. For that, let us create a new categorical column <code>energy_lvl</code> that has two levels - <em>Low energy</em> and <em>High energy</em>, depending on the <code>energy</code> of the track.</p>
-<div class="cell" data-execution_count="141">
+<div class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Creating a new categorical column 'energy_lvl'</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>spotify_data[<span class="st">'energy_lvl'</span>] <span class="op">=</span> pd.qcut(spotify_data.energy,<span class="dv">2</span>,labels<span class="op">=</span>[<span class="st">'Low energy'</span>, <span class="st">'High energy'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now, let us find the mean, standard deviation and 90th percentile value of the track popularity for each genre-energy level combination simultaneously.</p>
-<div class="cell" data-execution_count="40">
+<div class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Grouping the data with 'genres' and 'energy_lvl'</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>grouped<span class="op">=</span>spotify_data.groupby([<span class="st">'genres'</span>,<span class="st">'energy_lvl'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="41">
+<div class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding aggregate statistics of data grouped with multple columns</span></span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>grouped[<span class="st">'track_popularity'</span>].agg([<span class="st">'mean'</span>,<span class="st">'std'</span>,Ninety_pc])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="41">
+<div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
@@ -2406,10 +2406,10 @@ Name: track_popularity, dtype: float64</code></pre>
 <section id="multiple-aggregate-functions-on-multiple-columns" class="level4" data-number="9.2.3.4">
 <h4 data-number="9.2.3.4" class="anchored" data-anchor-id="multiple-aggregate-functions-on-multiple-columns"><span class="header-section-number">9.2.3.4</span> Multiple aggregate functions on multiple columns</h4>
 <p>Let us find the mean and standard deviation of track popularity and danceability for each genre and energy level.</p>
-<div class="cell" data-execution_count="139">
+<div class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability <span class="op">=</span> grouped[[<span class="st">'track_popularity'</span>,<span class="st">'danceability'</span>]].agg([(<span class="st">'Average'</span>,<span class="st">'mean'</span>),(<span class="st">'Standard deviation'</span>,<span class="st">'std'</span>)])</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>spotify_popularity_danceability</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="139">
+<div class="cell-output cell-output-display" data-execution_count="14">
 <div>
 
 
@@ -2417,10 +2417,12 @@ Name: track_popularity, dtype: float64</code></pre>
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th"></th>
 <th colspan="2" data-quarto-table-cell-role="th" data-halign="left">track_popularity</th>
 <th colspan="2" data-quarto-table-cell-role="th" data-halign="left">danceability</th>
 </tr>
 <tr class="odd">
+<th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th">Average</th>
 <th data-quarto-table-cell-role="th">Standard deviation</th>
@@ -2429,6 +2431,7 @@ Name: track_popularity, dtype: float64</code></pre>
 </tr>
 <tr class="header">
 <th data-quarto-table-cell-role="th">genres</th>
+<th data-quarto-table-cell-role="th">energy_lvl</th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
 <th data-quarto-table-cell-role="th"></th>
@@ -2437,95 +2440,199 @@ Name: track_popularity, dtype: float64</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">country</td>
-<td>41.132686</td>
-<td>20.544338</td>
-<td>0.600392</td>
-<td>0.119116</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">country</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>34.982069</td>
+<td>19.877274</td>
+<td>0.602382</td>
+<td>0.128027</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">electronic</td>
-<td>43.253165</td>
-<td>16.075841</td>
-<td>0.610729</td>
-<td>0.190133</td>
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>49.859100</td>
+<td>18.196092</td>
+<td>0.597569</td>
+<td>0.105243</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">folk</td>
-<td>29.716767</td>
-<td>15.150717</td>
-<td>0.525161</td>
-<td>0.150081</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">electronic</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>43.754789</td>
+<td>13.294925</td>
+<td>0.563125</td>
+<td>0.242978</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">hip hop</td>
-<td>48.700665</td>
-<td>12.824901</td>
-<td>0.719329</td>
-<td>0.128615</td>
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>43.005671</td>
+<td>17.290356</td>
+<td>0.634216</td>
+<td>0.152565</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">hoerspiel</td>
-<td>31.258670</td>
-<td>6.459370</td>
-<td>0.661288</td>
-<td>0.078628</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">folk</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>29.617831</td>
+<td>15.360910</td>
+<td>0.510957</td>
+<td>0.152062</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">jazz</td>
-<td>20.349472</td>
-<td>15.087119</td>
-<td>0.518045</td>
-<td>0.149548</td>
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>29.991957</td>
+<td>14.556622</td>
+<td>0.564669</td>
+<td>0.136981</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">latin</td>
-<td>37.563765</td>
-<td>14.492199</td>
-<td>0.607981</td>
-<td>0.152661</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">hip hop</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>50.283669</td>
+<td>12.423124</td>
+<td>0.731064</td>
+<td>0.134749</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">metal</td>
-<td>46.334539</td>
-<td>14.331154</td>
-<td>0.419201</td>
-<td>0.125717</td>
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>48.012067</td>
+<td>12.936656</td>
+<td>0.714225</td>
+<td>0.125525</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">miscellaneous</td>
-<td>36.167401</td>
-<td>16.240129</td>
-<td>0.576601</td>
-<td>0.178777</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">hoerspiel</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>31.534779</td>
+<td>5.953968</td>
+<td>0.673494</td>
+<td>0.072998</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">pop</td>
-<td>37.783194</td>
-<td>17.790385</td>
-<td>0.588314</td>
-<td>0.153629</td>
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>30.514032</td>
+<td>7.609088</td>
+<td>0.628369</td>
+<td>0.083672</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">pop &amp; rock</td>
-<td>35.619242</td>
-<td>15.560975</td>
-<td>0.545856</td>
-<td>0.143857</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">jazz</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>19.421085</td>
+<td>14.599499</td>
+<td>0.503981</td>
+<td>0.147328</td>
 </tr>
 <tr class="even">
-<td data-quarto-table-cell-role="th">rap</td>
-<td>51.162959</td>
-<td>20.912240</td>
-<td>0.723586</td>
-<td>0.133588</td>
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>25.715373</td>
+<td>16.662754</td>
+<td>0.599330</td>
+<td>0.135762</td>
 </tr>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">rock</td>
-<td>36.749623</td>
-<td>14.350580</td>
-<td>0.520255</td>
-<td>0.154649</td>
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">latin</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>34.308370</td>
+<td>15.126721</td>
+<td>0.559290</td>
+<td>0.158853</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>39.992605</td>
+<td>13.504109</td>
+<td>0.644309</td>
+<td>0.137094</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">metal</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>38.612403</td>
+<td>16.000151</td>
+<td>0.409464</td>
+<td>0.146364</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>46.985621</td>
+<td>13.993685</td>
+<td>0.420022</td>
+<td>0.123839</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">miscellaneous</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>34.157235</td>
+<td>16.516910</td>
+<td>0.543357</td>
+<td>0.188526</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>39.394186</td>
+<td>15.241620</td>
+<td>0.629966</td>
+<td>0.146947</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">pop</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>34.722631</td>
+<td>18.340408</td>
+<td>0.544546</td>
+<td>0.158974</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>40.597155</td>
+<td>16.784034</td>
+<td>0.628555</td>
+<td>0.136695</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">pop &amp; rock</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>32.987221</td>
+<td>15.594202</td>
+<td>0.533666</td>
+<td>0.150233</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>37.413357</td>
+<td>15.280915</td>
+<td>0.554165</td>
+<td>0.138734</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">rap</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>57.177966</td>
+<td>16.491203</td>
+<td>0.712144</td>
+<td>0.139155</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>48.225166</td>
+<td>22.182320</td>
+<td>0.729174</td>
+<td>0.130477</td>
+</tr>
+<tr class="odd">
+<td rowspan="2" data-quarto-table-cell-role="th" data-valign="top">rock</td>
+<td data-quarto-table-cell-role="th">Low energy</td>
+<td>34.654871</td>
+<td>14.387263</td>
+<td>0.533698</td>
+<td>0.160000</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">High energy</td>
+<td>38.256199</td>
+<td>14.133726</td>
+<td>0.510587</td>
+<td>0.149943</td>
 </tr>
 </tbody>
 </table>
