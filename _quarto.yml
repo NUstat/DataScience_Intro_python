@@ -28,13 +28,13 @@ book:
         - Data aggregation.ipynb
         - student_solutions.ipynb
   appendices: 
-    - Assignment A.ipynb
-    - Assignment B.ipynb
-    - Assignment C.ipynb
-    - Assignment D.ipynb
-    - Assignment E.ipynb
-    - Assignment F.ipynb
-    - Assignment G.ipynb
+    # - Assignment A.ipynb
+    # - Assignment B.ipynb
+    # - Assignment C.ipynb
+    # - Assignment D.ipynb
+    # - Assignment E.ipynb
+    # - Assignment F.ipynb
+    # - Assignment G.ipynb
     - Datasets.ipynb
     - references.qmd
 
