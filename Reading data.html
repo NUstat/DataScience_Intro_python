@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Introduction to Data Science with Python - 3&nbsp; Reading data</title>
+<title>3&nbsp; Reading data – Introduction to Data Science with Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -57,7 +57,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -90,13 +96,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
     "search-submit-button-title": "Submit",
     "search-label": "Search"
   }
 }</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
 <script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
@@ -108,13 +115,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reading data.html">Exploratory data analysis</a></li><li class="breadcrumb-item"><a href="./Reading data.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reading data.html">Exploratory data analysis</a></li><li class="breadcrumb-item"><a href="./Reading data.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -123,9 +130,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
+      <a href="https://statistics.northwestern.edu/" class="sidebar-logo-link">
       <img src="./NU_Stat_logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
@@ -147,9 +154,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
  <span class="menu-text">Quick overview: Python programming</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -170,9 +177,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Exploratory data analysis</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
@@ -229,59 +236,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Appendices</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Assignment A.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Assignment A</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment B.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Assignment B</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment C.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Assignment C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment D.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Assignment D</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment E.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Assignment E</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment F.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Assignment F</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./Assignment G.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">G</span>&nbsp; <span class="chapter-title">Assignment G</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./Datasets.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">H</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Datasets &amp; Templates</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -295,7 +260,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -356,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Reading data.html">Exploratory data analysis</a></li><li class="breadcrumb-item"><a href="./Reading data.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Reading data</span></h1>
 </div>
@@ -371,7 +336,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="types-of-data---structured-and-unstructured" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="types-of-data---structured-and-unstructured"><span class="header-section-number">3.1</span> Types of data - structured and unstructured</h2>
@@ -381,12 +348,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Unstructured data.</li>
 </ol>
 <p>Structured data is typically stored in a tabular form, where rows in the data correspond to “observations” and columns correspond to “variables”. For example, the following dataset contains 5 observations, where each observation (or row) consists of information about a movie. The variables (or columns) contain different pieces of information about a given movie. As all variables for a given row are related to the same movie, the data below is also called relational data.</p>
-<div class="cell" data-execution_count="1">
+<div id="988e2792" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -471,23 +438,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-the-read_csv-function" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="using-the-read_csv-function"><span class="header-section-number">3.2.1</span> Using the <em>read_csv</em> function</h3>
 <p>We will use functions from the <em>Pandas</em> library of <em>Python</em> to read data. Let us import <em>Pandas</em> to use its functions.</p>
-<div class="cell" data-execution_count="2">
+<div id="699cba8d" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that <em>pd</em> is the acronym that we will use to call a <em>Pandas</em> function. This acronym can be anything as desired by the user.</p>
 <p>The function to read a <em>csv</em> file is <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html">read_csv()</a>. It reads the dataset into an object of type <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html">Pandas DataFrame</a>. Let us read the dataset <em>movie_ratings.csv</em> in Python.</p>
-<div class="cell" data-execution_count="9">
+<div id="32ceebd5" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>movie_ratings <span class="op">=</span> pd.read_csv(<span class="st">'movie_ratings.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The built-in python function <code>type</code> can be used to check the dataype of an object:</p>
-<div class="cell" data-execution_count="26">
+<div id="fb7da2b9" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(movie_ratings)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="26">
 <pre><code>pandas.core.frame.DataFrame</code></pre>
 </div>
 </div>
 <p>Note that the file <em>movie_ratings.csv</em> is stored at the same location as the python script containing the above code. If that is not the case, we’ll need to specify the location of the file as in the following code.</p>
-<div class="cell">
+<div id="39c1e9a8" class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>movie_ratings <span class="op">=</span> pd.read_csv(<span class="st">'D:/Books/DataScience_Intro_python/movie_ratings.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Note that forward slash is used instead of backslash while specifying the path of the data file. Another option is to use two consecutive backslashes instead of a single forward slash.</p>
@@ -496,35 +463,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="specifying-the-working-directory"><span class="header-section-number">3.2.2</span> Specifying the working directory</h3>
 <p>In case we need to read several datasets from a given location, it may be inconvenient to specify the path every time. In such a case we can change the current working directory to the location where the datasets are located.</p>
 <p>We’ll use the <em>os</em> library of <em>Python</em> to view and/or change the current working directory.</p>
-<div class="cell">
+<div id="4e7bfdbb" class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os <span class="co">#Importing the 'os' library</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>os.getcwd() <span class="co">#Getting the path to the current working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="6">
+<div id="a3e05328" class="cell" data-execution_count="6">
 <div class="cell-output cell-output-stdout">
 <pre><code>C:\Users\username\STAT303-1\Quarto Book\DataScience_Intro_python</code></pre>
 </div>
 </div>
 <p>The function <em>getcwd()</em> stands for get current working directory.</p>
 <p>Suppose the dataset to be read is located at <code>'D:\Books\DataScience_Intro_python\Datasets'</code>. Then, we’ll use the function <em>chdir</em> to change the current working directory to this location.</p>
-<div class="cell" data-execution_count="12">
+<div id="6c17f1c1" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">'D:/Books/DataScience_Intro_python/Datasets'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Now we can read the dataset from this location without mentioning the entire path as shown below.</p>
-<div class="cell" data-execution_count="102">
+<div id="5df87b04" class="cell" data-execution_count="102">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>movie_ratings <span class="op">=</span> pd.read_csv(<span class="st">'movie_ratings.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="data-overview" class="level3" data-number="3.2.3">
 <h3 data-number="3.2.3" class="anchored" data-anchor-id="data-overview"><span class="header-section-number">3.2.3</span> Data overview</h3>
 <p>Once the data has been read, we may want to see what the data looks like. We’ll use another <em>Pandas</em> function <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.head.html">head()</a> to view the first few rows of the data.</p>
-<div class="cell" data-scrolled="true" data-execution_count="19">
+<div id="eabb2fc5" class="cell" data-scrolled="true" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>movie_ratings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="19">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -627,7 +594,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="shape-of-dataframe" class="level4" data-number="3.2.3.2">
 <h4 data-number="3.2.3.2" class="anchored" data-anchor-id="shape-of-dataframe"><span class="header-section-number">3.2.3.2</span> Shape of DataFrame</h4>
 <p>For finding the number of rows and columns in the data, you may use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.shape.html">shape()</a> function.</p>
-<div class="cell" data-execution_count="20">
+<div id="7a1c7f37" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding the shape of movie_ratings dataset</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>movie_ratings.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
@@ -645,25 +612,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell" data-execution_count="35">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finding summary statistics of movie_ratings dataset</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>movie_ratings.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="tbl-ss" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="35">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3.1: Summary statistics of numeric variables
+</figcaption>
+<div aria-describedby="tbl-ss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output cell-output-display" data-execution_count="35">
 <div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
 
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-
-<div id="tbl-ss" class="anchored">
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<caption>Table&nbsp;3.1: Summary statistics of numeric variables</caption>
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -750,13 +709,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
-</div>
 
 </div>
 </div>
 </div>
+</figure>
+</div>
+</div>
 <p>Answer the following questions based on the above table.</p>
-<div class="cell" data-execution_count="11">
+<div id="1d8c3971" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-stdout">
 <pre><code></code></pre>
 </div>
@@ -1660,7 +1621,7 @@ if (typeof version == 'undefined') {
         
 </div>
 </div>
-<div class="cell" data-execution_count="9">
+<div id="da7a4cba" class="cell" data-execution_count="9">
 <div class="cell-output cell-output-stdout">
 <pre><code></code></pre>
 </div>
@@ -2569,7 +2530,7 @@ if (typeof version == 'undefined') {
 <h4 data-number="3.2.4.2" class="anchored" data-anchor-id="summary-statistics-across-rowscolumns"><span class="header-section-number">3.2.4.2</span> Summary statistics across rows/columns</h4>
 <p>The Pandas DataFrame class has functions such as <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.sum.html">sum()</a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.mean.html">mean()</a> to compute sum over rows or columns of a DataFrame.</p>
 <p>Let us compute the mean of all the numeric columns of the data:</p>
-<div class="cell" data-execution_count="10">
+<div id="9211a979" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>movie_ratings.mean(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <pre><code>US Gross             5.076370e+07
@@ -2582,7 +2543,7 @@ dtype: float64</code></pre>
 </div>
 <p>The argument <code>axis=0</code> denotes that the mean is taken over all the rows of the DataFrame. For computing a statistic across columns the argument <code>axis=1</code> will be used.</p>
 <p>If mean over a subset of columns is desired, then those column names can be subset from the data. For example, let us compute the mean IMDB rating, and mean IMDB votes of all the movies:</p>
-<div class="cell" data-execution_count="15">
+<div id="41746be7" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>movie_ratings[[<span class="st">'IMDB Rating'</span>,<span class="st">'IMDB Votes'</span>]].mean(axis <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>IMDB Rating        6.239004
@@ -2598,14 +2559,14 @@ dtype: float64</code></pre>
 <section id="section" class="level4" data-number="3.2.5.1">
 <h4 data-number="3.2.5.1" class="anchored" data-anchor-id="section"><span class="header-section-number">3.2.5.1</span> </h4>
 <p>Print the first 5 rows of the data.</p>
-<div class="cell" data-execution_count="3">
+<div id="99b8e22b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>album_data <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/Top 10 Albums By Year.csv'</span>)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>album_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="3">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -2709,7 +2670,7 @@ dtype: float64</code></pre>
 <section id="section-1" class="level4" data-number="3.2.5.2">
 <h4 data-number="3.2.5.2" class="anchored" data-anchor-id="section-1"><span class="header-section-number">3.2.5.2</span> </h4>
 <p>How many rows and columns are there in the data?</p>
-<div class="cell" data-execution_count="4">
+<div id="2b096c48" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>album_data.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <pre><code>(320, 12)</code></pre>
@@ -2724,13 +2685,13 @@ dtype: float64</code></pre>
 <li>What proportion of albums have 15 or lesser tracks? Mention a range for the proportion.</li>
 <li>What is the mean length of a track (in minutes)?</li>
 </ol>
-<div class="cell" data-execution_count="7">
+<div id="3cc15005" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>album_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="7">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -2831,7 +2792,7 @@ dtype: float64</code></pre>
 </div>
 </div>
 <p>At least 75% of the albums have 15 tracks or lesser tracks since the 75th percentile value of the number of tracks is 15. However, albums between those having 75th percentile value for the number of tracks and those having the maximum number of tracks can also have 15 tracks. Thus, the proportion of albums having 15 or lesser tracks = [75%-99.99%].</p>
-<div class="cell" data-execution_count="25">
+<div id="2ea2397d" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Mean length of a track ="</span>,<span class="fl">56.478500</span><span class="op">/</span><span class="fl">14.306250</span>, <span class="st">"minutes"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Mean length of a track = 3.9478200087374398 minutes</code></pre>
@@ -2842,17 +2803,17 @@ dtype: float64</code></pre>
 <section id="creating-new-columns-from-existing-columns" class="level3" data-number="3.2.6">
 <h3 data-number="3.2.6" class="anchored" data-anchor-id="creating-new-columns-from-existing-columns"><span class="header-section-number">3.2.6</span> Creating new columns from existing columns</h3>
 <p>New variables (or columns) can be created based on existing variables, or with external data (we’ll see adding external data later). For example, let us create a new variable <code>ratio_wgross_by_budget</code>, which is the ratio of <code>Worldwide Gross</code> and <code>Production Budget</code> for each movie:</p>
-<div class="cell" data-execution_count="103">
+<div id="a06383ea" class="cell" data-execution_count="103">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>movie_ratings[<span class="st">'ratio_wgross_by_budget'</span>] <span class="op">=</span> movie_ratings[<span class="st">'Worldwide Gross'</span>]<span class="op">/</span>movie_ratings[<span class="st">'Production Budget'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The new variable can be seen at the right end of the updated DataFrame as shown below.</p>
-<div class="cell" data-execution_count="104">
+<div id="7f3fc8fb" class="cell" data-execution_count="104">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>movie_ratings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="104">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -2955,9 +2916,9 @@ dtype: float64</code></pre>
 </section>
 <section id="datatype-of-variables" class="level3" data-number="3.2.7">
 <h3 data-number="3.2.7" class="anchored" data-anchor-id="datatype-of-variables"><span class="header-section-number">3.2.7</span> Datatype of variables</h3>
-<p>Note that in <a href="#tbl-ss">Table&nbsp;<span>3.1</span></a> (summary statistics), we don’t see <code>Release Date</code>. This is because the datatype of <code>Release Data</code> is not <code>numeric</code>.</p>
+<p>Note that in <a href="#tbl-ss" class="quarto-xref">Table&nbsp;<span>3.1</span></a> (summary statistics), we don’t see <code>Release Date</code>. This is because the datatype of <code>Release Data</code> is not <code>numeric</code>.</p>
 <p>The datatype of each variable can be seen using the <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.dtypes.html">dtypes()</a> function of the DataFrame class.</p>
-<div class="cell" data-execution_count="21">
+<div id="d0c7bc96" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking the datatypes of the variables </span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>movie_ratings.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="21">
@@ -2976,7 +2937,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Often, we wish to convert the datatypes of some of the variables to make them suitable for analysis. For example, the datatype of <code>Release Date</code> in the DataFrame <em>movie_ratings</em> is <code>object</code>. To perform numerical computations on this variable, we’ll need to convert it to a <code>datetime</code> format. We’ll use the Pandas function <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_datetime.html">to_datetime()</a> to covert it to a <code>datetime</code> format. Similar functions such as <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html">to_numeric()</a>, <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.to_string.html">to_string()</a> etc., can be used for other conversions.</p>
-<div class="cell" data-execution_count="22">
+<div id="94dc6da0" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>pd.to_datetime(movie_ratings[<span class="st">'Release Date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <pre><code>0      2006-11-22
@@ -2995,10 +2956,10 @@ Name: Release Date, Length: 2228, dtype: datetime64[ns]</code></pre>
 </div>
 <p>We can see above that the function <code>to_datetime()</code> converts <em>Release Date</em> to a <code>datetime</code> format.</p>
 <p>Now, we’ll update the variable <code>Release Date</code> in the DataFrame to be in the <code>datetime</code> format:</p>
-<div class="cell" data-execution_count="23">
+<div id="01cb6649" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>movie_ratings[<span class="st">'Release Date'</span>] <span class="op">=</span> pd.to_datetime(movie_ratings[<span class="st">'Release Date'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="24">
+<div id="bcce2359" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>movie_ratings.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="24">
 <pre><code>Title                        object
@@ -3016,17 +2977,17 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>We can see that the datatype of <em>Release Date</em> has changed to <code>datetime</code> in the updated DataFrame, <em>movie_ratings</em>. Now we can perform computations on <code>Release Date</code>. Suppose we wish to create a new variable <code>Release_year</code> that consists of the year of release of the movie. We’ll use the attribute <code>year</code> of the <a href="https://docs.python.org/3/library/datetime.html">datetime</a> module to extract the year from <code>Release Date</code>:</p>
-<div class="cell" data-execution_count="27">
+<div id="e6445774" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Extracting year from Release Date</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>movie_ratings[<span class="st">'Release Year'</span>] <span class="op">=</span> movie_ratings[<span class="st">'Release Date'</span>].dt.year</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="30">
+<div id="793acc8b" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>movie_ratings.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="30">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3127,13 +3088,13 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>As year is a numeric variable, it will appear in the numeric summary statistics with the <code>describe()</code> function, as shown below.</p>
-<div class="cell" data-execution_count="31">
+<div id="4cfeb823" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>movie_ratings.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3230,7 +3191,7 @@ dtype: object</code></pre>
 <section id="section-3" class="level4" data-number="3.2.8.1">
 <h4 data-number="3.2.8.1" class="anchored" data-anchor-id="section-3"><span class="header-section-number">3.2.8.1</span> </h4>
 <p>Why is <code>Worldwide Sales</code> not included in the summary statistics table printed in Practice exercise 1?</p>
-<div class="cell" data-execution_count="9">
+<div id="7ca6b3a5" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>album_data.dtypes</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>Year                 int64
@@ -3254,14 +3215,14 @@ dtype: object</code></pre>
 <h4 data-number="3.2.8.2" class="anchored" data-anchor-id="section-4"><span class="header-section-number">3.2.8.2</span> </h4>
 <p>Update the DataFrame so that <code>Worldwide Sales</code> is included in the summary statistics table. Print the summary statistics table.</p>
 <p><strong>Hint:</strong> Sometimes it may not be possible to convert an object to numeric(). For example, the object ‘hi’ cannot be converted to a numeric() by the python compiler. To avoid getting an error, use the <em>errors</em> argument of <a href="https://pandas.pydata.org/docs/reference/api/pandas.to_numeric.html">to_numeric()</a> to force such conversions to NaN (missing value).</p>
-<div class="cell" data-execution_count="12">
+<div id="31edace8" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>album_data[<span class="st">'Worldwide Sales'</span>] <span class="op">=</span> pd.to_numeric(album_data[<span class="st">'Worldwide Sales'</span>], errors <span class="op">=</span> <span class="st">'coerce'</span>)</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>album_data.describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3374,14 +3335,14 @@ dtype: object</code></pre>
 <section id="section-5" class="level4" data-number="3.2.8.3">
 <h4 data-number="3.2.8.3" class="anchored" data-anchor-id="section-5"><span class="header-section-number">3.2.8.3</span> </h4>
 <p>Create a new column that computes the average worldwide sales per year for each album, assuming that the worldwide sales are as of 2022. Print the first 5 rows of the updated DataFrame.</p>
-<div class="cell" data-execution_count="13">
+<div id="be910b91" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>album_data[<span class="st">'mean_sales_per_year'</span>] <span class="op">=</span> album_data[<span class="st">'Worldwide Sales'</span>]<span class="op">/</span>(<span class="dv">2022</span><span class="op">-</span>album_data[<span class="st">'Year'</span>])</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>album_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="13">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3493,17 +3454,17 @@ dtype: object</code></pre>
 <h3 data-number="3.2.9" class="anchored" data-anchor-id="reading-a-sub-set-of-data-loc-and-iloc"><span class="header-section-number">3.2.9</span> Reading a sub-set of data: <code>loc</code> and <code>iloc</code></h3>
 <p>Sometimes we may be interested in working with a subset of rows and columns of the data, instead of working with the entire dataset. The indexing operators <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html">loc</a> and <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.iloc.html">iloc</a> provide a convenient way of selecting a subset of desired rows and columns. The operator <code>loc</code> uses axis labels (row indices and column names) to subset the data, while <code>iloc</code> uses the position of rows or columns, where position has values 0,1,2,3,…and so on, for rows from top to bottom and columns from left to right. In other words, the first row has position 0, the second row has position 1, the third row has position 2, and so on. Similarly, the first column from left has position 0, the second column from left has position 1, the third column from left has position 2, and so on.</p>
 <p>Let us read the file <em>movie_IMDBratings_sorted.csv</em>, which has movies sorted in the descending order of their IMDB ratings.</p>
-<div class="cell" data-execution_count="6">
+<div id="3a19dd39" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>movies_sorted <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/movie_IMDBratings_sorted.csv'</span>,index_col <span class="op">=</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The argument <code>index_col=0</code> assigns the first column of the file as the row indices of the DataFrame.</p>
-<div class="cell" data-execution_count="44">
+<div id="85319963" class="cell" data-execution_count="44">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>movies_sorted.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="44">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3612,7 +3573,7 @@ dtype: object</code></pre>
 </div>
 </div>
 <p>Let us say, we wish to subset the title, worldwide gross, production budget, and IMDB rating of top 3 movies.</p>
-<div class="cell" data-execution_count="48">
+<div id="7c7f0e5a" class="cell" data-execution_count="48">
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting the DataFrame by loc - using axis labels</span></span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>movies_subset <span class="op">=</span> movies_sorted.loc[<span class="dv">1</span>:<span class="dv">3</span>,[<span class="st">'Title'</span>,<span class="st">'Worldwide Gross'</span>,<span class="st">'Production Budget'</span>,<span class="st">'IMDB Rating'</span>]]</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>movies_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3620,7 +3581,7 @@ dtype: object</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3665,7 +3626,7 @@ dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="49">
+<div id="cbb18af0" class="cell" data-execution_count="49">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subsetting the DataFrame by iloc - using index of the position of rows and columns</span></span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>movies_subset <span class="op">=</span> movies_sorted.iloc[<span class="dv">0</span>:<span class="dv">3</span>,[<span class="dv">0</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">9</span>]]</span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>movies_subset</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3673,7 +3634,7 @@ dtype: object</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3720,10 +3681,10 @@ dtype: object</code></pre>
 </div>
 <p>Let us find the movie with the maximum <code>Worldwide Gross</code>.</p>
 <p>We will use the <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.argmax.html">argmax()</a> function of the Pandas Series class to find the position of the movie with the maximum worldwide gross, and then use the position to find the movie.</p>
-<div class="cell" data-execution_count="26">
+<div id="fe97e47e" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>position_max_wgross <span class="op">=</span> movies_sorted[<span class="st">'Worldwide Gross'</span>].argmax()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="27">
+<div id="e98c8646" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>movies_sorted.iloc[position_max_wgross,:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="27">
 <pre><code>Title                             Avatar
@@ -3755,7 +3716,7 @@ Name: 59, dtype: object</code></pre>
 </ul></li>
 </ul>
 <p>Examples: Assuming you have a DataFrame like this:</p>
-<div class="cell" data-execution_count="12">
+<div id="77b33193" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'A'</span>: [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>],</span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>        <span class="st">'B'</span>: [<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">30</span>, <span class="dv">40</span>, <span class="dv">50</span>],</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>        <span class="st">'C'</span>: [<span class="dv">100</span>, <span class="dv">200</span>, <span class="dv">300</span>, <span class="dv">400</span>, <span class="dv">500</span>]}</span>
@@ -3767,7 +3728,7 @@ Name: 59, dtype: object</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3813,7 +3774,7 @@ Name: 59, dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="4">
+<div id="20b5ee90" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using 'loc'</span></span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>df.loc[<span class="st">'row2'</span>:<span class="st">'row4'</span>, <span class="st">'B'</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
@@ -3823,7 +3784,7 @@ row4    40
 Name: B, dtype: int64</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="5">
+<div id="8b16ba3f" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using 'iloc'</span></span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>df.iloc[<span class="dv">1</span>:<span class="dv">4</span>, <span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="5">
@@ -3840,7 +3801,7 @@ Name: B, dtype: int64</code></pre>
 <section id="section-6" class="level4" data-number="3.2.10.1">
 <h4 data-number="3.2.10.1" class="anchored" data-anchor-id="section-6"><span class="header-section-number">3.2.10.1</span> </h4>
 <p>Find the album having the highest worldwide sales per year, and its artist.</p>
-<div class="cell" data-execution_count="14">
+<div id="9113c01e" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>album_data.iloc[album_data[<span class="st">'mean_sales_per_year'</span>].argmax(),:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="14">
 <pre><code>Year                        2021
@@ -3864,7 +3825,7 @@ Name: 312, dtype: object</code></pre>
 <section id="section-7" class="level4" data-number="3.2.10.2">
 <h4 data-number="3.2.10.2" class="anchored" data-anchor-id="section-7"><span class="header-section-number">3.2.10.2</span> </h4>
 <p>Subset the data to include only Hip-Hop albums. How many Hip_Hop albums are there?</p>
-<div class="cell" data-execution_count="15">
+<div id="a518418d" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>hiphop_albums <span class="op">=</span> album_data.loc[album_data[<span class="st">'Genre'</span>]<span class="op">==</span><span class="st">'Hip Hop'</span>,:]</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"There are"</span>,hiphop_albums.shape[<span class="dv">0</span>], <span class="st">"hip-hop albums"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -3875,7 +3836,7 @@ Name: 312, dtype: object</code></pre>
 <section id="section-8" class="level4" data-number="3.2.10.3">
 <h4 data-number="3.2.10.3" class="anchored" data-anchor-id="section-8"><span class="header-section-number">3.2.10.3</span> </h4>
 <p>Which album amongst hip-hop has the higest mean sales per year per track, and who is its artist?</p>
-<div class="cell" data-execution_count="17">
+<div id="89e1a07b" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>hiphop_albums.loc[:,<span class="st">'mean_sales_per_year_track'</span>] <span class="op">=</span> hiphop_albums.loc[:,<span class="st">'Worldwide Sales'</span>]<span class="op">/</span>((<span class="dv">2022</span><span class="op">-</span>hiphop_albums.loc[:,<span class="st">'Year'</span>])<span class="op">*</span>(hiphop_albums.loc[:,<span class="st">'Tracks'</span>]))</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>hiphop_albums.iloc[hiphop_albums[<span class="st">'mean_sales_per_year_track'</span>].argmax(),:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
@@ -3906,7 +3867,7 @@ Name: 318, dtype: object</code></pre>
 <section id="reading-txt-files" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="reading-txt-files"><span class="header-section-number">3.3.1</span> Reading <em>txt</em> files</h3>
 <p>The <em>txt</em> format offers some additional flexibility as compared to the <em>csv</em> format. In the <em>csv</em> format, the delimiter is a comma (or the column values are separated by a comma). However, in a <em>txt</em> file, the delimiter can be anything as desired by the user. Let us read the file <em>movie_ratings.txt</em>, where the variable values are separated by a tab character.</p>
-<div class="cell" data-execution_count="15">
+<div id="2e08e255" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>movie_ratings_txt <span class="op">=</span> pd.read_csv(<span class="st">'movie_ratings.txt'</span>,sep<span class="op">=</span><span class="st">'</span><span class="ch">\t</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We use the function <em>read_csv</em> to read a <em>txt</em> file. However, we mention the tab character (r”) as a separator of variable values.</p>
@@ -3916,7 +3877,7 @@ Name: 318, dtype: object</code></pre>
 <h3 data-number="3.3.2" class="anchored" data-anchor-id="practice-exercise-4"><span class="header-section-number">3.3.2</span> Practice exercise 4</h3>
 <p>Read the file <em>bestseller_books.txt</em>. It contains top 50 best-selling books on amazon from 2009 to 2019. Identify the delimiter without opening the file with Notepad or a text-editing software. How many rows and columns are there in the dataset?</p>
 <p><strong>Solution:</strong></p>
-<div class="cell" data-execution_count="19">
+<div id="956d5232" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading some lines with 'error_bad_lines=False' to identify the delimiter</span></span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>bestseller_books <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/bestseller_books.txt'</span>,error_bad_lines<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>bestseller_books.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3927,7 +3888,7 @@ Name: 318, dtype: object</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -3961,7 +3922,7 @@ Name: 318, dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="20">
+<div id="79a57ef8" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The delimiter seems to be ';' based on the output of the above code</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>bestseller_books <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/bestseller_books.txt'</span>,sep<span class="op">=</span><span class="st">';'</span>)</span>
 <span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>bestseller_books.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -3969,7 +3930,7 @@ Name: 318, dtype: object</code></pre>
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4051,7 +4012,7 @@ Name: 318, dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="21">
+<div id="4a5323ae" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The file read with ';' as the delimited is correct</span></span>
 <span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"The file has"</span>,bestseller_books.shape[<span class="dv">0</span>],<span class="st">"rows and"</span>,bestseller_books.shape[<span class="dv">1</span>],<span class="st">"columns"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -4059,14 +4020,14 @@ Name: 318, dtype: object</code></pre>
 </div>
 </div>
 <p>Alternatively, you can use the argument <code>sep = None</code>, and <code>engine = 'python'</code>. The default engine is C. However, the ‘python’ engine has a ‘sniffer’ tool which may identify the delimiter automatically.</p>
-<div class="cell" data-execution_count="22">
+<div id="41274841" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>bestseller_books <span class="op">=</span> pd.read_csv(<span class="st">'./Datasets/bestseller_books.txt'</span>,sep<span class="op">=</span><span class="va">None</span>, engine <span class="op">=</span> <span class="st">'python'</span>)</span>
 <span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>bestseller_books.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4152,12 +4113,12 @@ Name: 318, dtype: object</code></pre>
 <section id="reading-html-data" class="level3" data-number="3.3.3">
 <h3 data-number="3.3.3" class="anchored" data-anchor-id="reading-html-data"><span class="header-section-number">3.3.3</span> Reading HTML data</h3>
 <p>The <em>Pandas</em> function <em>read_html</em> searches for tabular data, i.e., data contained within the <em>&lt;table&gt;</em> tags of an html file. Let us read the tables in the GDP per capita <a href="https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita">page</a> on Wikipedia.</p>
-<div class="cell" data-execution_count="7">
+<div id="dd56a8fd" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading all the tables from the Wikipedia page on GDP per capita</span></span>
 <span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>All the tables will be read and stored in the variable named as <em>tables</em>. Let us find the datatype of the variable <em>tables</em>.</p>
-<div class="cell" data-execution_count="16">
+<div id="50a53916" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb68"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Finidng datatype of the variable - tables</span></span>
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="16">
@@ -4165,7 +4126,7 @@ Name: 318, dtype: object</code></pre>
 </div>
 </div>
 <p>The variable - tables is a list of all the tables read from the HTML data.</p>
-<div class="cell" data-execution_count="9">
+<div id="2afb0533" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Number of tables read from the page</span></span>
 <span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="9">
@@ -4173,14 +4134,14 @@ Name: 318, dtype: object</code></pre>
 </div>
 </div>
 <p>The in-built function <em>len</em> can be used to find the length of the list - <em>tables</em> or the number of tables read from the Wikipedia page. Let us check out the first table.</p>
-<div class="cell" data-execution_count="10">
+<div id="3ce6a168" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb72"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking out the first table. Note that the index of the first table will be 0.</span></span>
 <span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4203,14 +4164,14 @@ Name: 318, dtype: object</code></pre>
 </div>
 </div>
 <p>The above table doesn’t seem to be useful. Let us check out the second table.</p>
-<div class="cell" data-execution_count="11">
+<div id="a43e342e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb73"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking out the second table. Note that the index of the first table will be 1.</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="11">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4362,26 +4323,26 @@ Name: 318, dtype: object</code></pre>
 </div>
 </div>
 <p>The above table contains the estimated GDP per capita of all countries. This is the table that is likely to be relevant to a user interested in analyzing GDP per capita of countries. Instead of reading all tables of an HTML file, we can focus the search to tables containing certain relevant keywords. Let us try searching all table containing the word ‘Country’.</p>
-<div class="cell" data-execution_count="13">
+<div id="ee4cba80" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb74"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Reading all the tables from the Wikipedia page on GDP per capita, containing the word 'Country'</span></span>
 <span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>tables <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/List_of_countries_by_GDP_(nominal)_per_capita'</span>, match <span class="op">=</span> <span class="st">'Country'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The <em>match</em> argument can be used to specify the keywords to be present in the table to be read.</p>
-<div class="cell" data-execution_count="15">
+<div id="f8ff00c4" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb75"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="bu">len</span>(tables)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="15">
 <pre><code>1</code></pre>
 </div>
 </div>
 <p>Only one table contains the keyword - ‘Country’. Let us check out the table obtained.</p>
-<div class="cell" data-execution_count="18">
+<div id="e5370bcc" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb77"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Table having the keyword - 'Country' from the HTML page</span></span>
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>tables[<span class="dv">0</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4537,7 +4498,7 @@ Name: 318, dtype: object</code></pre>
 <section id="practice-exercise-5" class="level3" data-number="3.3.4">
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="practice-exercise-5"><span class="header-section-number">3.3.4</span> Practice exercise 5</h3>
 <p>Read the table(s) consisting of attendance of spectators in FIFA worlds cup from this <a href="https://en.wikipedia.org/wiki/FIFA_World_Cup">page</a>. Read only those table(s) that have the word <em>‘attendance’</em> in them. How many rows and columns are there in the table(s)?</p>
-<div class="cell" data-execution_count="23">
+<div id="dfe82cfe" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb78"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>dfs <span class="op">=</span> pd.read_html(<span class="st">'https://en.wikipedia.org/wiki/FIFA_World_Cup'</span>,</span>
 <span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>                       match<span class="op">=</span><span class="st">'attendance'</span>)</span>
 <span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(dfs))</span>
@@ -4564,16 +4525,16 @@ Number of rows = 22 and number of columns= 9</code></pre>
 <p>These are universal data structures. Virtually all modern programming languages support them in one form or another. It makes sense that a data format that is interchangeable with programming languages also be based on these structures.</p>
 <p>The <em>Pandas</em> function <a href="https://pandas.pydata.org/docs/reference/api/pandas.read_json.html">read_json</a> converts a JSON string to a Pandas DataFrame. The function <em>dumps()</em> of the <em>json</em> library converts a Python object to a JSON string.</p>
 <p>Lets read the JSON data on Ted Talks.</p>
-<div class="cell" data-execution_count="3">
+<div id="71bdd533" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb80"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data <span class="op">=</span> pd.read_json(<span class="st">'https://raw.githubusercontent.com/cwkenwaysun/TEDmap/master/data/TED_Talks.json'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="4">
+<div id="1982f96a" class="cell" data-scrolled="false" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb81"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>tedtalks_data.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="4">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4701,7 +4662,7 @@ Number of rows = 22 and number of columns= 9</code></pre>
 <section id="practice-exercise-6" class="level3" data-number="3.3.6">
 <h3 data-number="3.3.6" class="anchored" data-anchor-id="practice-exercise-6"><span class="header-section-number">3.3.6</span> Practice exercise 6</h3>
 <p>Read the movies dataset from <a href="https://raw.githubusercontent.com/vega/vega-datasets/master/data/movies.json">here</a>. How many rows and columns are there in the data?</p>
-<div class="cell" data-execution_count="24">
+<div id="78008cc2" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb82"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>movies_data <span class="op">=</span> pd.read_json(<span class="st">'https://raw.githubusercontent.com/vega/vega-datasets/master/data/movies.json'</span>)</span>
 <span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of rows ="</span>,movies_data.shape[<span class="dv">0</span>], <span class="st">"and number of columns="</span>,movies_data.shape[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -4713,11 +4674,11 @@ Number of rows = 22 and number of columns= 9</code></pre>
 <h3 data-number="3.3.7" class="anchored" data-anchor-id="reading-data-from-web-apis"><span class="header-section-number">3.3.7</span> Reading data from web APIs</h3>
 <p><a href="https://en.wikipedia.org/wiki/API">API</a>, an acronym for Application programming interface, is a way of transferring information between systems. Many websites have public APIs that provide data via JSON or other formats. For example, the <a href="https://imdb-api.com/">IMDb-API</a> is a web service for receiving movies, serial, and cast information. API results are in the JSON format and include items such as movie specifications, ratings, Wikipedia page content, etc. One of these APIs contains ratings of the top 250 movies on IMDB. Let us read this data using the IMDB API.</p>
 <p>We’ll use the <em>get</em> function from the python library <em>requests</em> to request data from the API and obtain a response code. The response code will let us know if our request to pull data from this API was successful.</p>
-<div class="cell" data-execution_count="124">
+<div id="783633dc" class="cell" data-execution_count="124">
 <div class="sourceCode cell-code" id="cb84"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Importing the requests library</span></span>
 <span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> requests <span class="im">as</span> rq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="125">
+<div id="87571c5a" class="cell" data-execution_count="125">
 <div class="sourceCode cell-code" id="cb85"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Downloading imdb top 250 movie's data</span></span>
 <span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> <span class="st">'https://imdb-api.com/en/API/Top250Movies/k_v6gf8ppf'</span> <span class="co">#URL of the API containing top 250 movies based on IMDB ratings</span></span>
 <span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a>response <span class="op">=</span> rq.get(url) <span class="co">#Requesting data from the API</span></span>
@@ -4728,28 +4689,28 @@ Number of rows = 22 and number of columns= 9</code></pre>
 </div>
 <p>We have a response code of 200, which indicates that the request was successful.</p>
 <p>The response object’s JSON method will return a dictionary containing JSON parsed into native Python objects.</p>
-<div class="cell" data-execution_count="122">
+<div id="dd00386d" class="cell" data-execution_count="122">
 <div class="sourceCode cell-code" id="cb87"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>movie_data <span class="op">=</span> response.json()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="123">
+<div id="6e0fec71" class="cell" data-execution_count="123">
 <div class="sourceCode cell-code" id="cb88"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a>movie_data.keys()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="123">
 <pre><code>dict_keys(['items', 'errorMessage'])</code></pre>
 </div>
 </div>
 <p>The <em>movie_data</em> contains only two keys. The <em>items</em> key seems likely to contain information about the top 250 movies. Let us convert the values of the <em>items</em> key (which is list of dictionaries) to a dataframe, so that we can view it in a tabular form.</p>
-<div class="cell" data-execution_count="126">
+<div id="5d1d6034" class="cell" data-execution_count="126">
 <div class="sourceCode cell-code" id="cb90"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Converting a list of dictionaries to a dataframe</span></span>
 <span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>movie_data_df <span class="op">=</span> pd.DataFrame(movie_data[<span class="st">'items'</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-execution_count="113">
+<div id="4cd7a47c" class="cell" data-execution_count="113">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Checking the movie data pulled using the API</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="113">
 <div>
 
 
-<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th"></th>
@@ -4831,7 +4792,7 @@ Number of rows = 22 and number of columns= 9</code></pre>
 </div>
 </div>
 </div>
-<div class="cell" data-execution_count="114">
+<div id="de7a18a1" class="cell" data-execution_count="114">
 <div class="sourceCode cell-code" id="cb92"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Rows and columns of the movie data</span></span>
 <span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.shape</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="114">
@@ -4845,17 +4806,17 @@ Number of rows = 22 and number of columns= 9</code></pre>
 <h2 data-number="3.4" class="anchored" data-anchor-id="writing-data"><span class="header-section-number">3.4</span> Writing data</h2>
 <p>The <em>Pandas</em> function <em>to_csv</em> can be used to write (or export) data to a <em>csv</em> or <em>txt</em> file. Below are some examples.</p>
 <p><strong>Example 1:</strong> Let us export the movies data of the top 250 movies to a <em>csv</em> file.</p>
-<div class="cell" data-execution_count="130">
+<div id="4935819f" class="cell" data-execution_count="130">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Exporting the data of the top 250 movies to a csv file</span></span>
 <span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>movie_data_df.to_csv(<span class="st">'movie_data_exported.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The file <em>movie_data_exported.csv</em> will appear in the working directory.</p>
 <p><strong>Example 2:</strong> Let us export the movies data of the top 250 movies to a <em>txt</em> file with a semi-colon as the delimiter.</p>
-<div class="cell" data-execution_count="131">
+<div id="1057e8c7" class="cell" data-execution_count="131">
 <div class="sourceCode cell-code" id="cb95"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>movie_data_df.to_csv(<span class="st">'movie_data_exported.txt'</span>,sep<span class="op">=</span><span class="st">';'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Example 3:</strong> Let us export the movies data of the top 250 movies to a <em>JSON</em> file.</p>
-<div class="cell" data-execution_count="136">
+<div id="7d62c664" class="cell" data-execution_count="136">
 <div class="sourceCode cell-code" id="cb96"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'movie_data.json'</span>, <span class="st">'w'</span>) <span class="im">as</span> f:</span>
 <span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>    json.dump(movie_data, f)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -4899,18 +4860,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -4942,11 +4892,50 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -4956,8 +4945,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -4969,7 +4967,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -5013,6 +5134,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -5038,6 +5160,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -5099,17 +5247,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data_structures.html" class="pagination-link">
+      <a href="./data_structures.html" class="pagination-link" aria-label="Data structures">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data structures</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./NumPy.html" class="pagination-link">
+      <a href="./NumPy.html" class="pagination-link" aria-label="NumPy">
         <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">NumPy</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
