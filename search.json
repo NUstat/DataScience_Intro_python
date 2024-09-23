@@ -627,17 +627,6 @@
     ]
   },
   {
-    "objectID": "Datasets.html",
-    "href": "Datasets.html",
-    "title": "Appendix A — Datasets & Templates",
-    "section": "",
-    "text": "Datasets used in the book, and assignment / project templates can be found here",
-    "crumbs": [
-      "Appendices",
-      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Datasets & Templates</span>"
-    ]
-  },
-  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Introduction to Data Science with Python",
